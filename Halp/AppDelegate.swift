@@ -28,6 +28,29 @@ extension String  {
     }
 }
 
+// Creates a UIColor from a Hex string.
+func colorWithHexString (hex:String) -> UIColor {
+    var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
+    
+    if (cString.hasPrefix("#")) {
+        cString = cString.substringFromIndex(advance(cString.startIndex, 1))
+    }
+    
+    if (countElements(cString) != 6) {
+        return UIColor.grayColor()
+    }
+    
+    var rgbValue:UInt32 = 0
+    NSScanner(string: cString).scanHexInt(&rgbValue)
+    
+    return UIColor(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+    )
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -36,7 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // Whenever a person opens the app, check for a cached session FBSessionStateCreatedTokenLoaded
+        FBLoginView.self
+        FBProfilePictureView.self
+        
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
+        var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+        return wasHandled
     }
 
     func applicationWillResignActive(application: UIApplication) {

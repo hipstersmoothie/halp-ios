@@ -13,8 +13,6 @@ class TutorList: UITableViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let backItem = UIBarButtonItem(title: "Custom Text HERE", style: .Bordered, target: nil, action: nil)
-        nav.backBarButtonItem = backItem
     }
     
     override func didReceiveMemoryWarning() {

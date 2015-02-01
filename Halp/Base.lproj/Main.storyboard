@@ -149,6 +149,10 @@
                                     <color key="titleColor" red="0.015686274509803921" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="findTutorButton:" destination="IQw-MT-eGb" eventType="touchUpInside" id="1s8-zM-Sw8"/>
+                                    <segue destination="uK6-rC-NoG" kind="show" id="h1F-kO-eoI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -183,12 +187,118 @@
             </objects>
             <point key="canvasLocation" x="1313.5" y="351.5"/>
         </scene>
+        <!--Session Details-->
+        <scene sceneID="fkY-bl-yzg">
+            <objects>
+                <viewController id="uK6-rC-NoG" customClass="SessionDetialController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h6U-TV-Jik"/>
+                        <viewControllerLayoutGuide type="bottom" id="K6o-bY-Z4P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Zl-bW-Ru5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="University" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6zX-JZ-bd4">
+                                <rect key="frame" x="58" y="236" width="273" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnM-tR-e9O">
+                                <rect key="frame" x="58" y="308" width="273" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2km-EK-eAg">
+                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                <connections>
+                                    <outlet property="delegate" destination="uK6-rC-NoG" id="fI9-9S-oWW"/>
+                                </connections>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZk-f2-SIu">
+                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                <connections>
+                                    <outlet property="delegate" destination="uK6-rC-NoG" id="z8n-f3-B3Z"/>
+                                </connections>
+                            </pickerView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description of the problem you need help with." translatesAutoresizingMaskIntoConstraints="NO" id="rYH-wR-BR9">
+                                <rect key="frame" x="58" y="385" width="273" height="107"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="uK6-rC-NoG" id="ASR-dB-Fai"/>
+                                </connections>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Desired Time to Meet" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vlb-jQ-51t">
+                                <rect key="frame" x="58" y="528" width="273" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xE1-4r-dtF">
+                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="444461083.094437">
+                                    <!--2015-02-01 05:24:43 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJ6-8g-Gjr">
+                                <rect key="frame" x="133" y="85" width="122" height="122"/>
+                                <state key="normal" title="Add Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPhotoButton:" destination="uK6-rC-NoG" eventType="touchUpInside" id="Xd2-il-Z5e"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsB-sk-mFs">
+                                <rect key="frame" x="153" y="592" width="69" height="30"/>
+                                <state key="normal" title="Search!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="search:" destination="uK6-rC-NoG" eventType="touchUpInside" id="L8Y-H0-wCI"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dO7-5O-7qZ">
+                                <rect key="frame" x="0.0" y="461" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZFN-rr-sUa"/>
+                                    <barButtonItem title="Done" id="DxB-Q9-lSS">
+                                        <connections>
+                                            <action selector="donePicker:" destination="uK6-rC-NoG" id="nqa-XB-uHp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Session Details" id="8iG-J6-egt"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="addPhoto" destination="RJ6-8g-Gjr" id="5a0-eI-BYk"/>
+                        <outlet property="courseField" destination="bnM-tR-e9O" id="YYK-WN-dq7"/>
+                        <outlet property="coursePicker" destination="SZk-f2-SIu" id="HP7-lz-Rsx"/>
+                        <outlet property="datePicker" destination="xE1-4r-dtF" id="kHS-cO-tcM"/>
+                        <outlet property="nav" destination="8iG-J6-egt" id="EVB-FI-KPX"/>
+                        <outlet property="sessDesc" destination="rYH-wR-BR9" id="aey-zS-NIZ"/>
+                        <outlet property="timeField" destination="vlb-jQ-51t" id="520-JQ-XOZ"/>
+                        <outlet property="toolbar" destination="dO7-5O-7qZ" id="Ihs-pM-x4o"/>
+                        <outlet property="uniPicker" destination="2km-EK-eAg" id="LJT-ah-ofX"/>
+                        <outlet property="universityField" destination="6zX-JZ-bd4" id="d6N-nd-95L"/>
+                        <segue destination="IQw-MT-eGb" kind="show" identifier="toMapNewSession" id="jMr-h5-ryh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDP-FD-x0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1256.5" y="1191.5"/>
+        </scene>
         <!--Tutors in Area-->
         <scene sceneID="pgZ-bj-Ghg">
             <objects>
                 <tableViewController id="2mD-ax-29V" customClass="TutorList" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4Fq-RI-3km">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -337,4 +447,7 @@
         <image name="facebook-login.png" width="416" height="101"/>
         <image name="student.png" width="128" height="128"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="jMr-h5-ryh"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -22,6 +22,12 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         nav.backBarButtonItem = backItem
         self.performSegueWithIdentifier("toTutors", sender: self)
     }
+    
+    @IBAction func findTutorButton(sender: AnyObject) {
+        let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
+        nav.backBarButtonItem = backItem
+    }
+    
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         findTutorButton.layer.borderWidth = 1
         findTutorButton.layer.borderColor = UIColor.whiteColor().CGColor
         findTutorButton.clipsToBounds = true
+        
+        self.navigationItem.hidesBackButton = true
     }
     
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {

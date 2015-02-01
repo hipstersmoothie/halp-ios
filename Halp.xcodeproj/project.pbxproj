@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C24391CC1A7C425000A3AC58 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */; };
+		C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391CD1A7D79B800A3AC58 /* FBHelper.swift */; };
+		C24391E41A7D816800A3AC58 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391E31A7D816800A3AC58 /* MapController.swift */; };
+		C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */; };
 		C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646CB1A7843B0008B396C /* AppDelegate.swift */; };
 		C26646CE1A7843B0008B396C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646CD1A7843B0008B396C /* ViewController.swift */; };
 		C26646D11A7843B0008B396C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C26646CF1A7843B0008B396C /* Main.storyboard */; };
@@ -17,7 +21,6 @@
 		C26646EE1A784576008B396C /* Red-signin_Long_base_44dp.png in Resources */ = {isa = PBXBuildFile; fileRef = C26646ED1A784576008B396C /* Red-signin_Long_base_44dp.png */; };
 		C26646F01A7849CA008B396C /* createController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646EF1A7849CA008B396C /* createController.swift */; };
 		C278E36F1A79E51B0006BCBD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C278E36E1A79E51B0006BCBD /* MapKit.framework */; };
-		C278E3711A79E9990006BCBD /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278E3701A79E9990006BCBD /* MapController.swift */; };
 		C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3751A79EFB90006BCBD /* location-alt-512.png */; };
 		C278E3781A79F04B0006BCBD /* student.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3771A79F04B0006BCBD /* student.png */; };
 		C278E37E1A79F9AF0006BCBD /* timeline-list-grid-list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */; };
@@ -36,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		C24391CD1A7D79B800A3AC58 /* FBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBHelper.swift; sourceTree = "<group>"; };
+		C24391E31A7D816800A3AC58 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetialController.swift; sourceTree = "<group>"; };
 		C26646C61A7843B0008B396C /* Halp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Halp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26646CA1A7843B0008B396C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C26646CB1A7843B0008B396C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +58,6 @@
 		C26646EF1A7849CA008B396C /* createController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createController.swift; sourceTree = "<group>"; };
 		C278E36B1A79E0C20006BCBD /* Halp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Halp-Bridging-Header.h"; sourceTree = "<group>"; };
 		C278E36E1A79E51B0006BCBD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		C278E3701A79E9990006BCBD /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		C278E3751A79EFB90006BCBD /* location-alt-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-alt-512.png"; sourceTree = "<group>"; };
 		C278E3771A79F04B0006BCBD /* student.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student.png; sourceTree = "<group>"; };
 		C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-list-grid-list-icon.png"; sourceTree = "<group>"; };
@@ -65,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C278E36F1A79E51B0006BCBD /* MapKit.framework in Frameworks */,
+				C24391CC1A7C425000A3AC58 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,16 +108,19 @@
 		C26646C81A7843B0008B396C /* Halp */ = {
 			isa = PBXGroup;
 			children = (
-				C278E3701A79E9990006BCBD /* MapController.swift */,
+				C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */,
 				C26646CB1A7843B0008B396C /* AppDelegate.swift */,
+				C24391E31A7D816800A3AC58 /* MapController.swift */,
 				C278E3811A79FE170006BCBD /* TutorList.swift */,
 				C26646EB1A78452E008B396C /* facebook-login.png */,
 				C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */,
 				C278E3751A79EFB90006BCBD /* location-alt-512.png */,
 				C278E3771A79F04B0006BCBD /* student.png */,
 				C26646CD1A7843B0008B396C /* ViewController.swift */,
+				C24391CD1A7D79B800A3AC58 /* FBHelper.swift */,
 				C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */,
 				C26646CF1A7843B0008B396C /* Main.storyboard */,
+				C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */,
 				C26646EF1A7849CA008B396C /* createController.swift */,
 				C26646ED1A784576008B396C /* Red-signin_Long_base_44dp.png */,
 				C26646D21A7843B0008B396C /* Images.xcassets */,
@@ -251,9 +261,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C26646CE1A7843B0008B396C /* ViewController.swift in Sources */,
+				C24391E41A7D816800A3AC58 /* MapController.swift in Sources */,
+				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
+				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
-				C278E3711A79E9990006BCBD /* MapController.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,
 			);
@@ -379,6 +391,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Halp",
+				);
 				INFOPLIST_FILE = Halp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -392,6 +408,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Halp",
+				);
 				INFOPLIST_FILE = Halp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
