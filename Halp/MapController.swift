@@ -25,6 +25,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     @IBAction func findTutorButton(sender: AnyObject) {
         let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
+    
         nav.backBarButtonItem = backItem
     }
     
@@ -33,6 +34,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
+        navigationController?.setNavigationBarHidden(false, animated: true)
         manager = CLLocationManager()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -45,6 +47,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         findTutorButton.clipsToBounds = true
         
         self.navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
     
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {

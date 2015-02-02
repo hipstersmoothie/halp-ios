@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
+    @IBOutlet var diffAccountLabel: UILabel!
     
     @IBAction func login(sender: AnyObject) {
         if username.text == "" {
@@ -38,11 +39,44 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         
     }
     
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var registerButton: UIButton!
     override func viewDidLoad() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("executeHandle:"), name: "PostData", object: nil);
 
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        diffAccountLabel.textColor = UIColor.whiteColor()
+        var border = CALayer()
+        var width = CGFloat(1.0)
+        border.borderColor = UIColor.whiteColor().CGColor
+        border.frame = CGRect(x: 0, y: diffAccountLabel.frame.size.height - width, width:  diffAccountLabel.frame.size.width, height: diffAccountLabel.frame.size.height)
+        
+        border.borderWidth = width
+        diffAccountLabel.layer.addSublayer(border)
+        diffAccountLabel.layer.masksToBounds = true
+        
+        let buttonColor = UIColor(red: 20/255, green: 140/255, blue: 139/255, alpha: 1)
+        
+        loginButton.backgroundColor = buttonColor
+        loginButton.layer.cornerRadius = 12
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = buttonColor.CGColor
+        loginButton.clipsToBounds = true
+        
+        
+        registerButton.backgroundColor = buttonColor
+        registerButton.layer.cornerRadius = 12
+        registerButton.layer.borderWidth = 1
+        registerButton.layer.borderColor = buttonColor.CGColor
+        registerButton.clipsToBounds = true
+
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return navigationController?.navigationBarHidden == true
     }
     
     override func viewDidDisappear(animated: Bool) {

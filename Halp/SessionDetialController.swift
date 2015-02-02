@@ -64,7 +64,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     @IBOutlet var toolbar: UIToolbar!
-    
+    @IBOutlet var searchButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,6 +97,14 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         timeField.addTarget(self, action: Selector("datePickerInit:"), forControlEvents: .EditingDidBegin)
+        
+        let buttonColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        
+        searchButton.backgroundColor = buttonColor
+        searchButton.layer.cornerRadius = 12
+        searchButton.layer.borderWidth = 1
+        searchButton.layer.borderColor = buttonColor.CGColor
+        searchButton.clipsToBounds = true
     }
     
     @IBAction func donePicker(sender: AnyObject) {

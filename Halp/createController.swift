@@ -98,6 +98,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         }
     }
     
+    @IBOutlet var createButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -106,6 +107,32 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         addPhoto.layer.borderWidth = 1
         addPhoto.layer.borderColor = colorWithHexString("e0e0e0").CGColor
         addPhoto.clipsToBounds = true
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        myBackButton.addTarget(self, action: "popToRoot:", forControlEvents: .TouchUpInside)
+        myBackButton.setTitle("Back", forState: .Normal)
+        myBackButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        myBackButton.sizeToFit()
+        var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
+        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
+        
+        let buttonColor = UIColor(red: 20/255, green: 140/255, blue: 139/255, alpha: 1)
+        
+        createButton.backgroundColor = buttonColor
+        createButton.layer.cornerRadius = 12
+        createButton.layer.borderWidth = 1
+        createButton.layer.borderColor = buttonColor.CGColor
+        createButton.clipsToBounds = true
+    }
+    
+    func popToRoot(sender:UIBarButtonItem){
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
     }
     
     override func didReceiveMemoryWarning() {
