@@ -41,7 +41,7 @@ class reviewList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         cell.reviewBody?.text = selectedTutor.reviews[indexPath.row].reviewBody
         cell.title?.text = selectedTutor.reviews[indexPath.row].title
-        setRating(cell.rating, selectedTutor.reviews[indexPath.row].rating)
+        cell.rating?.rating = selectedTutor.reviews[indexPath.row].rating
         
         return cell;
     }

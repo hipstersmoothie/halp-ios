@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class reviewRow: UITableViewCell {
-    @IBOutlet var rating: UIImageView!
+    @IBOutlet var rating: FloatRatingView!
     @IBOutlet var title: UILabel!
     @IBOutlet var reviewBody: UITextView!
 }

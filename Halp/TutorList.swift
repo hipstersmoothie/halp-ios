@@ -10,7 +10,7 @@ import UIKit
 
 class tutor: NSObject {
     var name:String
-    var rating:Int
+    var rating:Float
     var pph:Int
     var profilePic:UIImage
     var university:String
@@ -19,7 +19,7 @@ class tutor: NSObject {
     var classes:[String]
     var reviews:[review]
     
-    init(nameI: String, ratingI: Int, pricePerHour: Int, pic: UIImage, uni: String, major:String, year:Int, classes:[String], reviews:[review]) {
+    init(nameI: String, ratingI: Float, pricePerHour: Int, pic: UIImage, uni: String, major:String, year:Int, classes:[String], reviews:[review]) {
         name = nameI
         rating = ratingI
         pph = pricePerHour
@@ -35,28 +35,12 @@ class tutor: NSObject {
 class review:NSObject {
     var title:String
     var reviewBody:String
-    var rating:Int
+    var rating:Float
     
-    init(title:String, reviewBody:String, rating:Int) {
+    init(title:String, reviewBody:String, rating:Float) {
         self.title = title
         self.reviewBody = reviewBody
         self.rating = rating
-    }
-}
-
-func setRating(cell: UIImageView, rating: Int) {
-    if rating == 1 {
-        cell.image = UIImage(named: "1-stars.png")
-    } else if rating == 2 {
-        cell.image = UIImage(named: "2-stars.png")
-    } else if rating == 3 {
-        cell.image = UIImage(named: "3-stars.png")
-    } else if rating == 4 {
-        cell.image = UIImage(named: "4-stars.png")
-    } else if rating == 5 {
-        cell.image = UIImage(named: "5-stars.png")
-    } else  {
-        cell.image = UIImage(named: "0-stars.png")
     }
 }
 
@@ -101,7 +85,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
         
         let user = tutors[indexPath.row]
         cell.myLabel.text = user.name
-        setRating(cell.myImageView, user.rating)
+        cell.rating.rating = user.rating
         
         return cell;
     }

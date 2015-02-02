@@ -8,10 +8,9 @@
 
 import UIKit
 
-class tutorProfile: UIViewController {
+class tutorProfile: UIViewController, FloatRatingViewDelegate {
     
     @IBOutlet var profilePic: UIImageView!
-    @IBOutlet var rating: UIImageView!
     @IBOutlet var price: UILabel!
     
     @IBOutlet var first: UIView!
@@ -32,10 +31,11 @@ class tutorProfile: UIViewController {
         }
     }
     
+    @IBOutlet var rating: FloatRatingView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = selectedTutor.name
-        setRating(rating, selectedTutor.rating)
+        rating.rating = selectedTutor.rating
         price.text = "$\(selectedTutor.pph)/hour"
         
         profilePic.image = selectedTutor.profilePic
@@ -50,5 +50,13 @@ class tutorProfile: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
+
+    }
+    
+    func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
+
     }
 }

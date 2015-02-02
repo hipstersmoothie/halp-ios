@@ -323,30 +323,52 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GKR-S2-Cf2" id="VU0-f9-RYU">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hqo-9q-PTm">
-                                            <rect key="frame" x="188" y="8" width="167" height="27.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="29" id="0gm-ds-ujG"/>
-                                                <constraint firstAttribute="width" constant="167" id="CG2-Gz-65X"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYd-Gj-fAe">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYd-Gj-fAe">
                                             <rect key="frame" x="25" y="11" width="134" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="134" id="JIo-Gz-HcC"/>
+                                                <constraint firstAttribute="height" constant="21" id="jqt-6Q-2zP"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZW-AI-dsE" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                            <rect key="frame" x="180" y="7" width="176" height="30"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.1764705882" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="nOF-2T-cJF"/>
+                                                <constraint firstAttribute="width" constant="176" id="r7z-jV-1s2"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty.png"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull.png"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Hqo-9q-PTm" secondAttribute="trailing" constant="20" id="LhG-XL-2FG"/>
+                                        <constraint firstAttribute="trailing" secondItem="aZW-AI-dsE" secondAttribute="trailing" constant="19" id="NQS-jk-b69"/>
+                                        <constraint firstItem="aZW-AI-dsE" firstAttribute="top" secondItem="VU0-f9-RYU" secondAttribute="top" constant="7" id="e9q-4U-1Ty"/>
                                         <constraint firstItem="DYd-Gj-fAe" firstAttribute="top" secondItem="VU0-f9-RYU" secondAttribute="top" constant="11" id="fn2-fG-5ED"/>
                                         <constraint firstItem="DYd-Gj-fAe" firstAttribute="leading" secondItem="VU0-f9-RYU" secondAttribute="leading" constant="25" id="fva-Nw-xhs"/>
-                                        <constraint firstItem="Hqo-9q-PTm" firstAttribute="top" secondItem="VU0-f9-RYU" secondAttribute="top" constant="8" id="i9f-Vy-YdD"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="myImageView" destination="Hqo-9q-PTm" id="Hvb-vU-ldO"/>
                                     <outlet property="myLabel" destination="DYd-Gj-fAe" id="sg5-fb-Dvx"/>
+                                    <outlet property="rating" destination="aZW-AI-dsE" id="5vo-IV-e4R"/>
                                     <segue destination="zg9-bm-efp" kind="show" id="Si0-xB-Xr5"/>
                                 </connections>
                             </tableViewCell>
@@ -380,9 +402,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Hb-lq-0ug">
-                                <rect key="frame" x="187" y="114" width="167" height="30"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2mt-hs-ad0">
                                 <rect key="frame" x="26" y="88" width="142" height="142"/>
                             </imageView>
@@ -414,6 +433,27 @@
                                     <segue destination="0Pi-By-Zxt" kind="embed" id="WbM-LC-Gfk"/>
                                 </connections>
                             </containerView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcc-hc-h82" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                <rect key="frame" x="182" y="99" width="176" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.1764705882" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty.png"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull.png"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -423,7 +463,7 @@
                         <outlet property="first" destination="s8V-WX-llb" id="hZu-40-xLg"/>
                         <outlet property="price" destination="EYo-J0-BRK" id="9hG-C1-ivL"/>
                         <outlet property="profilePic" destination="2mt-hs-ad0" id="QgY-5s-jI7"/>
-                        <outlet property="rating" destination="6Hb-lq-0ug" id="xiO-9F-fzc"/>
+                        <outlet property="rating" destination="pcc-hc-h82" id="oGK-2T-RgS"/>
                         <outlet property="second" destination="T00-cr-TBb" id="x8x-NC-Ig8"/>
                         <outlet property="segmentedControl" destination="wax-pc-Aq1" id="HsD-3D-lVR"/>
                     </connections>
@@ -557,7 +597,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Rgq-lP-x5d"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JRM-Qe-ugc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="328"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="University" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MB-8T-zQq">
@@ -602,7 +642,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3i-up-zze">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X3i-up-zze">
                                 <rect key="frame" x="204" y="143" width="130" height="158"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -621,7 +661,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4BI-QB-PJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153.5" y="818"/>
+            <point key="canvasLocation" x="2061" y="954"/>
         </scene>
         <!--Review List-->
         <scene sceneID="JEY-kn-QYf">
@@ -644,31 +684,49 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N1L-R0-i1S" id="D15-vR-RVm">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ols-v8-xK9">
-                                                    <rect key="frame" x="182" y="8" width="160" height="30"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kb-tX-K9l">
                                                     <rect key="frame" x="182" y="46" width="160" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwo-c3-Swv">
-                                                    <rect key="frame" x="29" y="49" width="313" height="162"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkm-CG-fqY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkm-CG-fqY">
                                                     <rect key="frame" x="29" y="12" width="125" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Az3-1k-MdV" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                                    <rect key="frame" x="187" y="8" width="166" height="28"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.1764705882" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                                    </accessibility>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty.png"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull.png"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                            <real key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwo-c3-Swv">
+                                                    <rect key="frame" x="31" y="46" width="313" height="137"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="rating" destination="Ols-v8-xK9" id="YC8-O9-VYQ"/>
+                                            <outlet property="rating" destination="Az3-1k-MdV" id="e8o-Lm-5l0"/>
                                             <outlet property="reviewBody" destination="bwo-c3-Swv" id="jvh-xh-WPO"/>
                                             <outlet property="title" destination="Gkm-CG-fqY" id="PyJ-d1-FLh"/>
                                         </connections>
@@ -695,6 +753,8 @@
     </scenes>
     <resources>
         <image name="Red-signin_Long_base_44dp.png" width="492" height="108"/>
+        <image name="StarEmpty.png" width="22" height="22"/>
+        <image name="StarFull.png" width="22" height="22"/>
         <image name="facebook-login.png" width="416" height="101"/>
         <image name="student.png" width="128" height="128"/>
     </resources>

@@ -11,5 +11,5 @@ import UIKit
 
 class tutorRow: UITableViewCell {
     @IBOutlet weak var myLabel: UILabel!
-    @IBOutlet weak var myImageView: UIImageView!
+    @IBOutlet var rating: FloatRatingView!
 }
