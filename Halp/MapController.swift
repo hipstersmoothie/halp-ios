@@ -50,6 +50,11 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
+    }
+    
+    func launchMenu() {
+        
     }
     
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {

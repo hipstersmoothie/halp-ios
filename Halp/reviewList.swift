@@ -47,7 +47,6 @@ class reviewList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        println("here")
         if(indexPath.row == expanded) {
             return 180
         }

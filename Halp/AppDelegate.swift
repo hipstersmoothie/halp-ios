@@ -8,60 +8,34 @@
 
 import UIKit
 
-extension String  {
-    var md5: String! {
-        let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
-        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
-        
-        CC_MD5(str!, strLen, result)
-        
-        var hash = NSMutableString()
-        for i in 0..<digestLen {
-            hash.appendFormat("%02x", result[i])
-        }
-        
-        result.dealloc(digestLen)
-        
-        return String(format: hash)
-    }
-}
-
-// Creates a UIColor from a Hex string.
-func colorWithHexString (hex:String) -> UIColor {
-    var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
-    
-    if (cString.hasPrefix("#")) {
-        cString = cString.substringFromIndex(advance(cString.startIndex, 1))
-    }
-    
-    if (countElements(cString) != 6) {
-        return UIColor.grayColor()
-    }
-    
-    var rgbValue:UInt32 = 0
-    NSScanner(string: cString).scanHexInt(&rgbValue)
-    
-    return UIColor(
-        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-        alpha: CGFloat(1.0)
-    )
-}
+var nvc: UINavigationController!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         // Whenever a person opens the app, check for a cached session FBSessionStateCreatedTokenLoaded
         FBLoginView.self
         FBProfilePictureView.self
+        
+        
+        // create viewController code...
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
+        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as LeftViewController
+        nvc = UINavigationController(rootViewController: mainViewController)
+        
+        leftViewController.mainViewController = nvc
+        
+        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+        
+        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
         
         return true
     }

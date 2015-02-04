@@ -13,7 +13,6 @@
 		C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */; };
 		C24391FD1A7E2C7900A3AC58 /* Lobster 1.4.otf in Resources */ = {isa = PBXBuildFile; fileRef = C24391FC1A7E2C7900A3AC58 /* Lobster 1.4.otf */; };
 		C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391FE1A7EC6CA00A3AC58 /* tutorRow.swift */; };
-		C243920D1A7F348E00A3AC58 /* tutorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243920C1A7F348E00A3AC58 /* tutorProfile.swift */; };
 		C243920F1A7F3A3100A3AC58 /* tutor.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C243920E1A7F3A3100A3AC58 /* tutor.jpeg */; };
 		C24392111A7F430D00A3AC58 /* TutorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24392101A7F430D00A3AC58 /* TutorDetails.swift */; };
 		C24392131A7F485D00A3AC58 /* reviewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24392121A7F485D00A3AC58 /* reviewList.swift */; };
@@ -36,6 +35,21 @@
 		C278E37E1A79F9AF0006BCBD /* timeline-list-grid-list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */; };
 		C278E3821A79FE170006BCBD /* TutorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278E3811A79FE170006BCBD /* TutorList.swift */; };
 		C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */; };
+		C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298901A8041BD0010C475 /* tutorProfile.swift */; };
+		C2C298931A80455B0010C475 /* chatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298921A80455B0010C475 /* chatController.swift */; };
+		C2C298971A8046A70010C475 /* LGSimpleChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298961A8046A70010C475 /* LGSimpleChat.swift */; };
+		C2C298991A805A490010C475 /* bump.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298981A805A490010C475 /* bump.png */; };
+		C2C2989B1A805CD20010C475 /* SessionCounterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2989A1A805CD20010C475 /* SessionCounterController.swift */; };
+		C2C2989D1A8197FF0010C475 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2989C1A8197FF0010C475 /* SlideMenuController.swift */; };
+		C2C2989F1A8199CE0010C475 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2989E1A8199CE0010C475 /* LeftViewController.swift */; };
+		C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298A01A819A190010C475 /* BaseTableViewCell.swift */; };
+		C2C298A41A819CC80010C475 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298A21A819CC80010C475 /* UITableViewExtension.swift */; };
+		C2C298A51A819CC80010C475 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298A31A819CC80010C475 /* UIViewControllerExtension.swift */; };
+		C2C298A81A819CED0010C475 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298A71A819CED0010C475 /* StringExtension.swift */; };
+		C2C298AA1A81A4520010C475 /* optionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298A91A81A4520010C475 /* optionRow.swift */; };
+		C2C298AC1A81A7320010C475 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AB1A81A7320010C475 /* logout.png */; };
+		C2C298AE1A81A9390010C475 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AD1A81A9390010C475 /* cog.png */; };
+		C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AF1A81A97F0010C475 /* power-off2-hi.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +69,6 @@
 		C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetialController.swift; sourceTree = "<group>"; };
 		C24391FC1A7E2C7900A3AC58 /* Lobster 1.4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster 1.4.otf"; sourceTree = "<group>"; };
 		C24391FE1A7EC6CA00A3AC58 /* tutorRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorRow.swift; sourceTree = "<group>"; };
-		C243920C1A7F348E00A3AC58 /* tutorProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorProfile.swift; sourceTree = "<group>"; };
 		C243920E1A7F3A3100A3AC58 /* tutor.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutor.jpeg; sourceTree = "<group>"; };
 		C24392101A7F430D00A3AC58 /* TutorDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorDetails.swift; sourceTree = "<group>"; };
 		C24392121A7F485D00A3AC58 /* reviewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reviewList.swift; sourceTree = "<group>"; };
@@ -83,6 +96,21 @@
 		C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-list-grid-list-icon.png"; sourceTree = "<group>"; };
 		C278E3811A79FE170006BCBD /* TutorList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorList.swift; sourceTree = "<group>"; };
 		C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		C2C298901A8041BD0010C475 /* tutorProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorProfile.swift; sourceTree = "<group>"; };
+		C2C298921A80455B0010C475 /* chatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatController.swift; sourceTree = "<group>"; };
+		C2C298961A8046A70010C475 /* LGSimpleChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGSimpleChat.swift; sourceTree = "<group>"; };
+		C2C298981A805A490010C475 /* bump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bump.png; sourceTree = "<group>"; };
+		C2C2989A1A805CD20010C475 /* SessionCounterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionCounterController.swift; sourceTree = "<group>"; };
+		C2C2989C1A8197FF0010C475 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		C2C2989E1A8199CE0010C475 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		C2C298A01A819A190010C475 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		C2C298A21A819CC80010C475 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		C2C298A31A819CC80010C475 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		C2C298A71A819CED0010C475 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		C2C298A91A81A4520010C475 /* optionRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = optionRow.swift; sourceTree = "<group>"; };
+		C2C298AB1A81A7320010C475 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		C2C298AD1A81A9390010C475 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
+		C2C298AF1A81A97F0010C475 /* power-off2-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-off2-hi.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +136,11 @@
 		C24392181A802AA000A3AC58 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C2C298AF1A81A97F0010C475 /* power-off2-hi.png */,
+				C2C298AD1A81A9390010C475 /* cog.png */,
+				C2C298AB1A81A7320010C475 /* logout.png */,
 				C243921D1A802C7300A3AC58 /* StarFull@2x.png */,
+				C2C298981A805A490010C475 /* bump.png */,
 				C243921B1A802C6800A3AC58 /* StarEmpty@2x.png */,
 				C26646EB1A78452E008B396C /* facebook-login.png */,
 				C26646ED1A784576008B396C /* Red-signin_Long_base_44dp.png */,
@@ -146,20 +178,28 @@
 				C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */,
 				C24391FC1A7E2C7900A3AC58 /* Lobster 1.4.otf */,
 				C24391CD1A7D79B800A3AC58 /* FBHelper.swift */,
+				C2C2989C1A8197FF0010C475 /* SlideMenuController.swift */,
+				C2C298961A8046A70010C475 /* LGSimpleChat.swift */,
 				C24392191A802B5E00A3AC58 /* FloatRatingView.swift */,
 				C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */,
 				C26646CF1A7843B0008B396C /* Main.storyboard */,
+				C2C298A91A81A4520010C475 /* optionRow.swift */,
+				C2C2989A1A805CD20010C475 /* SessionCounterController.swift */,
 				C26646CB1A7843B0008B396C /* AppDelegate.swift */,
 				C26646CD1A7843B0008B396C /* ViewController.swift */,
 				C24391E31A7D816800A3AC58 /* MapController.swift */,
 				C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */,
+				C2C298921A80455B0010C475 /* chatController.swift */,
 				C278E3811A79FE170006BCBD /* TutorList.swift */,
+				C2C298A01A819A190010C475 /* BaseTableViewCell.swift */,
+				C2C2989E1A8199CE0010C475 /* LeftViewController.swift */,
 				C24391FE1A7EC6CA00A3AC58 /* tutorRow.swift */,
-				C243920C1A7F348E00A3AC58 /* tutorProfile.swift */,
 				C24392101A7F430D00A3AC58 /* TutorDetails.swift */,
+				C2C298901A8041BD0010C475 /* tutorProfile.swift */,
 				C24392121A7F485D00A3AC58 /* reviewList.swift */,
 				C24392141A7F516100A3AC58 /* reviewRow.swift */,
 				C26646EF1A7849CA008B396C /* createController.swift */,
+				C2C298A61A819CD30010C475 /* Extensions */,
 				C24392161A802A1900A3AC58 /* Images.xcassets */,
 				C24392181A802AA000A3AC58 /* Images */,
 				C26646D41A7843B0008B396C /* LaunchScreen.xib */,
@@ -191,6 +231,16 @@
 				C26646E01A7843B0008B396C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2C298A61A819CD30010C475 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C2C298A21A819CC80010C475 /* UITableViewExtension.swift */,
+				C2C298A71A819CED0010C475 /* StringExtension.swift */,
+				C2C298A31A819CC80010C475 /* UIViewControllerExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,16 +323,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2C298AE1A81A9390010C475 /* cog.png in Resources */,
 				C26646D11A7843B0008B396C /* Main.storyboard in Resources */,
+				C2C298991A805A490010C475 /* bump.png in Resources */,
 				C243921E1A802C7300A3AC58 /* StarFull@2x.png in Resources */,
 				C26646EC1A78452E008B396C /* facebook-login.png in Resources */,
 				C278E37E1A79F9AF0006BCBD /* timeline-list-grid-list-icon.png in Resources */,
 				C26646EE1A784576008B396C /* Red-signin_Long_base_44dp.png in Resources */,
 				C24391FD1A7E2C7900A3AC58 /* Lobster 1.4.otf in Resources */,
 				C243921C1A802C6800A3AC58 /* StarEmpty@2x.png in Resources */,
+				C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */,
 				C26646D61A7843B0008B396C /* LaunchScreen.xib in Resources */,
 				C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */,
 				C24392171A802A1900A3AC58 /* Images.xcassets in Resources */,
+				C2C298AC1A81A7320010C475 /* logout.png in Resources */,
 				C243920F1A7F3A3100A3AC58 /* tutor.jpeg in Resources */,
 				C278E3781A79F04B0006BCBD /* student.png in Resources */,
 			);
@@ -302,20 +356,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C243920D1A7F348E00A3AC58 /* tutorProfile.swift in Sources */,
 				C24392131A7F485D00A3AC58 /* reviewList.swift in Sources */,
 				C243921A1A802B5E00A3AC58 /* FloatRatingView.swift in Sources */,
+				C2C2989B1A805CD20010C475 /* SessionCounterController.swift in Sources */,
+				C2C298AA1A81A4520010C475 /* optionRow.swift in Sources */,
 				C26646CE1A7843B0008B396C /* ViewController.swift in Sources */,
+				C2C2989D1A8197FF0010C475 /* SlideMenuController.swift in Sources */,
 				C24392111A7F430D00A3AC58 /* TutorDetails.swift in Sources */,
+				C2C298A41A819CC80010C475 /* UITableViewExtension.swift in Sources */,
 				C24391E41A7D816800A3AC58 /* MapController.swift in Sources */,
 				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
+				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
+				C2C298931A80455B0010C475 /* chatController.swift in Sources */,
+				C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */,
+				C2C298971A8046A70010C475 /* LGSimpleChat.swift in Sources */,
 				C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,
+				C2C298A51A819CC80010C475 /* UIViewControllerExtension.swift in Sources */,
+				C2C298A81A819CED0010C475 /* StringExtension.swift in Sources */,
+				C2C2989F1A8199CE0010C475 /* LeftViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

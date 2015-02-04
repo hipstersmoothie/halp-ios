@@ -18,6 +18,7 @@ class tutor: NSObject {
     var year:Int
     var classes:[String]
     var reviews:[review]
+    var interestedInTutoringYou:Bool
     
     init(nameI: String, ratingI: Float, pricePerHour: Int, pic: UIImage, uni: String, major:String, year:Int, classes:[String], reviews:[review]) {
         name = nameI
@@ -29,6 +30,7 @@ class tutor: NSObject {
         self.year = year
         self.classes = classes
         self.reviews = reviews
+        interestedInTutoringYou = false
     }
 }
 
@@ -61,6 +63,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
         var harry = tutor(nameI: "Harry", ratingI: 2, pricePerHour: 12, pic: UIImage(named: "tutor.jpeg")!, uni: "SFSU", major: "Business", year: 2, classes: ["BOT121", "ART201", "MATH100"], reviews: reviewslist)
         var tanner = tutor(nameI: "Tanner", ratingI: 3, pricePerHour: 18, pic: UIImage(named: "tutor.jpeg")!, uni: "ICON Acedemy", major: "Productyear: ion", year: 3, classes: ["MUS200", "MUS340", "CSC101"], reviews: reviewslist)
         var emma = tutor(nameI: "Emma", ratingI: 5, pricePerHour: 20, pic: UIImage(named: "tutor.jpeg")!, uni: "Cal Poly SLO", major: "Computer Science", year: 1, classes: ["CSC101", "CPE365", "ENGL139"], reviews: reviewslist)
+        kyle.interestedInTutoringYou = true
         tutors.append(kyle)
         tutors.append(harry)
         tutors.append(tanner)
