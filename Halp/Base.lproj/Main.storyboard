@@ -27,7 +27,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfq-88-ASs">
+                                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Courses and Tags" translatesAutoresizingMaskIntoConstraints="NO" id="zfq-88-ASs">
                                                     <rect key="frame" x="0.0" y="0.0" width="270" height="44"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </searchBar>
@@ -233,19 +233,6 @@
                                     <outlet property="delegate" destination="IQw-MT-eGb" id="hTW-9M-bwg"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBm-3N-FYZ">
-                                <rect key="frame" x="10" y="10" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student.png" translatesAutoresizingMaskIntoConstraints="NO" id="fVR-Xb-mBB">
-                                <rect key="frame" x="177" y="320" width="20" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="M7C-oQ-0aa"/>
-                                    <constraint firstAttribute="height" constant="27" id="yeL-Rn-7wh"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2y-DM-HdV">
                                 <rect key="frame" x="33" y="590" width="308" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -262,6 +249,13 @@
                                     <segue destination="uK6-rC-NoG" kind="show" id="h1F-kO-eoI"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student.png" translatesAutoresizingMaskIntoConstraints="NO" id="fVR-Xb-mBB">
+                                <rect key="frame" x="177" y="320" width="20" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="M7C-oQ-0aa"/>
+                                    <constraint firstAttribute="height" constant="27" id="yeL-Rn-7wh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -643,19 +637,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2A-yc-n8o">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2A-yc-n8o">
                                 <rect key="frame" x="203" y="321" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocn-iM-QON">
-                                <rect key="frame" x="146" y="445" width="82" height="30"/>
+                                <rect key="frame" x="111" y="445" width="152" height="45"/>
                                 <state key="normal" title="Hold to End">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbk-sz-NQ8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbk-sz-NQ8">
                                 <rect key="frame" x="198" y="163" width="138" height="76"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="43"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -667,13 +662,75 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cost" destination="jbk-sz-NQ8" id="AtM-HO-9Xe"/>
+                        <outlet property="hold" destination="ocn-iM-QON" id="gQ9-vi-07b"/>
                         <outlet property="rate" destination="tqL-q7-eWP" id="Uuh-rh-YkM"/>
                         <outlet property="time" destination="g2A-yc-n8o" id="ldD-FG-4kz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBz-sM-Ydy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3033.5" y="230"/>
+            <point key="canvasLocation" x="3032.5" y="223.5"/>
+        </scene>
+        <!--Review Controller-->
+        <scene sceneID="Unp-fz-wGn">
+            <objects>
+                <viewController storyboardIdentifier="review" id="bki-HQ-hu7" customClass="ReviewController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Zg-dk-Ypo"/>
+                        <viewControllerLayoutGuide type="bottom" id="fbK-kh-e6V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3uO-5B-q0p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sZt-Yx-XPg" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                <rect key="frame" x="99" y="181" width="176" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.1764705882" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty.png"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull.png"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z1X-sr-2Gg">
+                                <rect key="frame" x="39" y="114" width="296" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyv-hK-c5g">
+                                <rect key="frame" x="111" y="574" width="152" height="45"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write a Review!" translatesAutoresizingMaskIntoConstraints="NO" id="duN-3j-wtC">
+                                <rect key="frame" x="39" y="255" width="296" height="273"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="reviewSpace" destination="duN-3j-wtC" id="uuz-EM-yeI"/>
+                        <outlet property="submit" destination="uyv-hK-c5g" id="FbO-J2-Wzj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xBX-mp-fNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3478.5" y="223.5"/>
         </scene>
         <!--Register-->
         <scene sceneID="suz-8K-Wf2">

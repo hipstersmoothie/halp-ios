@@ -50,6 +50,7 @@
 		C2C298AC1A81A7320010C475 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AB1A81A7320010C475 /* logout.png */; };
 		C2C298AE1A81A9390010C475 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AD1A81A9390010C475 /* cog.png */; };
 		C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AF1A81A97F0010C475 /* power-off2-hi.png */; };
+		C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298B11A81B7BE0010C475 /* ReviewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		C2C298AB1A81A7320010C475 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		C2C298AD1A81A9390010C475 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
 		C2C298AF1A81A97F0010C475 /* power-off2-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-off2-hi.png"; sourceTree = "<group>"; };
+		C2C298B11A81B7BE0010C475 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				C24392191A802B5E00A3AC58 /* FloatRatingView.swift */,
 				C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */,
 				C26646CF1A7843B0008B396C /* Main.storyboard */,
+				C2C298B11A81B7BE0010C475 /* ReviewController.swift */,
 				C2C298A91A81A4520010C475 /* optionRow.swift */,
 				C2C2989A1A805CD20010C475 /* SessionCounterController.swift */,
 				C26646CB1A7843B0008B396C /* AppDelegate.swift */,
@@ -369,6 +372,7 @@
 				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
+				C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */,
 				C2C298931A80455B0010C475 /* chatController.swift in Sources */,
 				C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */,
 				C2C298971A8046A70010C475 /* LGSimpleChat.swift in Sources */,

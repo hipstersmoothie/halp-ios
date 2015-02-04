@@ -26,7 +26,6 @@ class chatController: UIViewController {
         if(event.subtype == UIEventSubtype.MotionShake) {
             var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var chat:SessionCounterController = storyboard.instantiateViewControllerWithIdentifier("SessionCounter") as SessionCounterController
-            
             self.navigationController?.pushViewController(chat, animated: true)
         }
     }
