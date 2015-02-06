@@ -18,6 +18,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     @IBOutlet var addPhoto: UIButton!
     @IBOutlet var sessDesc: UITextView!
     @IBOutlet var nav: UINavigationItem!
+    let halpApi = HalpAPI()
     
     @IBAction func addPhotoButton(sender: AnyObject) {
         var image = UIImagePickerController()
@@ -39,11 +40,11 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     var courses:[String]!
     
     func getUniversities() -> [String] {
-        return ["Cal Poly SLO", "UCSB", "Berkeley", "UCLA", "Standford"]
+        return ["Cal Poly"]
     }
     
     func getCourses() -> [String] {
-        return ["CPE101", "PSY252", "ENGL149", "CSC103"]
+        return ["CPE 101", "PSY 252", "ENGL 149", "CSC 103"]
     }
     
     @IBAction func search(sender: AnyObject) {
@@ -59,8 +60,40 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
             //send request
             self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.backBarButtonItem = nil
+            var course = split(courseField.text) {$0 == " "}
+            
+            var params = [
+                "latitude": "\(userLocation.latitude)",
+                "longitude": "\(userLocation.longitude)",
+                "university": universityField.text!,
+                "course" : [
+                    "subject": course[0],
+                    "number": course[1]
+                ],
+                "description": sessDesc.text!,
+                "images": [],
+                "skills": []
+            ]
+            
+            halpApi.postPin(params, completionHandler: self.afterPostPin)
             self.performSegueWithIdentifier("toMapNewSession", sender: nil)
         }
+    }
+    
+    func JSONStringify(value: AnyObject, prettyPrinted: Bool = false) -> String {
+        var options = prettyPrinted ? NSJSONWritingOptions.PrettyPrinted : nil
+        if NSJSONSerialization.isValidJSONObject(value) {
+            if let data = NSJSONSerialization.dataWithJSONObject(value, options: options, error: nil) {
+                if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                    return string
+                }
+            }
+        }
+        return ""
+    }
+    
+    func afterPostPin(success: Bool, json: JSON) {
+        println(json)
     }
     
     @IBOutlet var toolbar: UIToolbar!

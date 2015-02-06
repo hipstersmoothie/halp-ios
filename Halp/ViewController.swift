@@ -8,8 +8,11 @@
 
 import UIKit
 
+var sessionId:JSON!
+
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
-    let fbHelper = FBHelper();
+    let fbHelper = FBHelper()
+    let halpApi = HalpAPI()
     
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
@@ -27,7 +30,18 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
                 "type":"halp"
             ] as Dictionary<String, String>
             
-            loginApi(params)
+            halpApi.login(params, completionHandler: self.afterLogin)
+        }
+    }
+    
+    func afterLogin(success: Bool, json: JSON) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if success {
+                sessionId = json["sessionId"]
+                self.performSegueWithIdentifier("toApp", sender: self)
+            } else {
+                self.createAlert("Error Logging In", message: "Please provide valid credentials.")
+            }
         }
     }
 
@@ -111,39 +125,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         return UIInterfaceOrientation.Portrait.rawValue
     }
     
-    func loginApi(params: Dictionary<String, String>) {
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://api.halp.me/login")!)
-        request.HTTPMethod = "POST"
-        
-        var err: NSError?
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {data, response, error -> Void in
-            if error != nil {
-                println("error=\(error)")
-                return
-            }
-            
-            let json = JSON(data: data)
-            if json["code"] == "success" {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.performSegueWithIdentifier("toApp", sender: self)
-                }
-            } else {
-                self.createAlert("Error Logging In", message: "Please provide valid credentials.")
-            }
-        }
-        task.resume()
-    }
-    
     func executeHandle(notification:NSNotification){
         let params = [
             "accessToken" : notification.object as String,
             "type" : "facebook"
         ] as Dictionary <String, String>
         
-        loginApi(params)
+        halpApi.login(params, completionHandler: self.afterLogin)
     }
 }

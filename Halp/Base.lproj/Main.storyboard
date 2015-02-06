@@ -52,6 +52,24 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6uG-qu-gnn">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6uG-qu-gnn" id="KHf-AB-9js">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remove Pin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5a-OV-TDz">
+                                                    <rect key="frame" x="22" y="11" width="93" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cancel.png" translatesAutoresizingMaskIntoConstraints="NO" id="dO1-9d-WLN">
+                                                    <rect key="frame" x="227" y="8" width="27" height="27"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ayC-xK-1ZJ">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ayC-xK-1ZJ" id="5t2-Kr-q4O">
@@ -246,11 +264,11 @@
                                 </state>
                                 <connections>
                                     <action selector="findTutorButton:" destination="IQw-MT-eGb" eventType="touchUpInside" id="1s8-zM-Sw8"/>
-                                    <segue destination="uK6-rC-NoG" kind="show" id="h1F-kO-eoI"/>
+                                    <segue destination="uK6-rC-NoG" kind="show" id="K6N-sa-zlN"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student.png" translatesAutoresizingMaskIntoConstraints="NO" id="fVR-Xb-mBB">
-                                <rect key="frame" x="177" y="320" width="20" height="27"/>
+                                <rect key="frame" x="177" y="350" width="20" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="M7C-oQ-0aa"/>
                                     <constraint firstAttribute="height" constant="27" id="yeL-Rn-7wh"/>
@@ -259,14 +277,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="fVR-Xb-mBB" secondAttribute="centerX" id="5ww-X3-Wy6"/>
                             <constraint firstItem="O3d-LK-Y4U" firstAttribute="top" secondItem="d2y-DM-HdV" secondAttribute="bottom" constant="27" id="72N-Qg-u8H"/>
                             <constraint firstItem="O3d-LK-Y4U" firstAttribute="top" secondItem="6c7-zj-uyJ" secondAttribute="bottom" id="7bn-Nd-d7J"/>
-                            <constraint firstAttribute="centerY" secondItem="fVR-Xb-mBB" secondAttribute="centerY" id="JaU-nQ-8tS"/>
+                            <constraint firstAttribute="centerX" secondItem="fVR-Xb-mBB" secondAttribute="centerX" id="9hC-02-4Di"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6c7-zj-uyJ" secondAttribute="trailing" constant="-16" id="Deu-bo-rFf"/>
+                            <constraint firstItem="6c7-zj-uyJ" firstAttribute="top" secondItem="T8e-1k-a91" secondAttribute="topMargin" id="EMX-ZC-7Q1"/>
                             <constraint firstAttribute="centerX" secondItem="d2y-DM-HdV" secondAttribute="centerX" id="RjH-iO-RCC"/>
                             <constraint firstItem="6c7-zj-uyJ" firstAttribute="leading" secondItem="T8e-1k-a91" secondAttribute="leadingMargin" constant="-16" id="aIZ-Go-wLS"/>
                             <constraint firstItem="6c7-zj-uyJ" firstAttribute="top" secondItem="T8e-1k-a91" secondAttribute="topMargin" id="acu-zX-hh4"/>
+                            <constraint firstAttribute="centerY" secondItem="fVR-Xb-mBB" secondAttribute="centerY" constant="-30" id="aog-W8-CkB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6c7-zj-uyJ" secondAttribute="trailing" constant="-16" id="gON-el-qI8"/>
+                            <constraint firstItem="O3d-LK-Y4U" firstAttribute="top" secondItem="6c7-zj-uyJ" secondAttribute="bottom" id="okA-x3-wDf"/>
+                            <constraint firstItem="6c7-zj-uyJ" firstAttribute="leading" secondItem="T8e-1k-a91" secondAttribute="leadingMargin" constant="-16" id="qT7-hK-KWa"/>
                             <constraint firstAttribute="centerX" secondItem="d2y-DM-HdV" secondAttribute="centerX" id="sen-a3-72X"/>
                         </constraints>
                     </view>
@@ -396,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDP-FD-x0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1212.5" y="987.5"/>
+            <point key="canvasLocation" x="1212.5" y="982.5"/>
         </scene>
         <!--Tutors in Area-->
         <scene sceneID="pgZ-bj-Ghg">
@@ -572,10 +594,10 @@
             </objects>
             <point key="canvasLocation" x="2153.5" y="223.5"/>
         </scene>
-        <!--Chat Controller-->
+        <!--Bump Controller-->
         <scene sceneID="X0H-Bt-fhe">
             <objects>
-                <viewController storyboardIdentifier="tapPhones" id="wKt-Yw-obD" customClass="chatController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tapPhones" id="wKt-Yw-obD" customClass="BumpController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NRv-NO-GXW"/>
                         <viewControllerLayoutGuide type="bottom" id="1zp-1o-gnd"/>
@@ -824,6 +846,7 @@
                         <outlet property="firstname" destination="XOd-5L-1NX" id="haZ-is-R4Y"/>
                         <outlet property="lastName" destination="0m3-rL-hYR" id="FEM-Hc-dhW"/>
                         <outlet property="password" destination="0Bs-VI-6Z6" id="dPJ-l6-slI"/>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="toLogin" id="4gX-RO-JUP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hk-6F-6TZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -998,6 +1021,7 @@
         <image name="StarEmpty.png" width="22" height="22"/>
         <image name="StarFull.png" width="22" height="22"/>
         <image name="bump.png" width="667" height="740"/>
+        <image name="cancel.png" width="512" height="512"/>
         <image name="cog.png" width="512" height="512"/>
         <image name="facebook-login.png" width="416" height="101"/>
         <image name="logout.png" width="512" height="512"/>
@@ -1005,6 +1029,7 @@
         <image name="student.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OZU-QR-Khw"/>
+        <segue reference="jMr-h5-ryh"/>
+        <segue reference="6IL-E7-WHO"/>
     </inferredMetricsTieBreakers>
 </document>

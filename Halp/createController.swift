@@ -10,6 +10,7 @@ import UIKit
 
 class createController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate {
     @IBOutlet var addPhoto: UIButton!
+    let halpApi = HalpAPI()
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -74,27 +75,17 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
                 "passwordHash":"\(password.text.md5)"
             ] as Dictionary<String, String>
             
-            var err: NSError?
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {data, response, error -> Void in
-                if error != nil {
-                    println("error=\(error)")
-                    return
-                }
-                
-                let json = JSON(data: data)
-                if json["code"] == "success" {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.performSegueWithIdentifier("toLogin", sender: self)
-                    }
-                } else if json["code"] == "email_taken" {
-                    self.createAlert("Problem Creating Accoutn", message: "Someone is already using that email!")
-                }
+            halpApi.register(params, completionHandler: self.afterCreate)
+        }
+    }
+    
+    func afterCreate(success: Bool, json: JSON) {
+        if success {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("toLogin", sender: self)
             }
-            task.resume()
+        } else {
+            self.createAlert("Problem Creating Accoutn", message: "Someone is already using that email!")
         }
     }
     

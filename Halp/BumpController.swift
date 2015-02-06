@@ -8,7 +8,7 @@
 
 import UIKit
 
-class chatController: UIViewController {
+class BumpController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }

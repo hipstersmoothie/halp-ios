@@ -43,10 +43,6 @@ class FBHelper{
             //got error
         }
         else{
-            //let resultDict = result as Dictionary;
-            //let email = result["email"];
-            //let firstName = result["first_name"];
-            
             let email : AnyObject = result.valueForKey("email")!;
             let firstName:AnyObject = result.valueForKey("first_name")!;
             let userFBID:AnyObject = result.valueForKey("id")!;
@@ -55,9 +51,6 @@ class FBHelper{
             let url = NSURL(string: userImageURL);
             let imageData = NSData(contentsOfURL: url!);
             let image = UIImage(data: imageData!);
-            
-            println("userFBID: \(userFBID) Email \(email) \n firstName:\(firstName) \n image: \(image)");
-            //var userModel = User(email: email, name: firstName, image: image);
             
             NSNotificationCenter.defaultCenter().postNotificationName("PostData", object: FBSession.activeSession().accessTokenData.accessToken, userInfo: nil);
         }

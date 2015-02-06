@@ -76,7 +76,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tutors.count
+        return pinsInArea.count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -86,9 +86,9 @@ class TutorList: UITableViewController, UITableViewDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: tutorRow = tableView.dequeueReusableCellWithIdentifier("tutorCell") as tutorRow
         
-        let user = tutors[indexPath.row]
-        cell.myLabel.text = user.name
-        cell.rating.rating = user.rating
+        let user = pinsInArea[indexPath.row]
+        cell.myLabel.text = user.firstname
+        cell.rating.rating = 3 // change once josh update backend
         
         return cell;
     }

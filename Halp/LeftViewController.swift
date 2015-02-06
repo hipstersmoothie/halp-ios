@@ -10,6 +10,7 @@ import UIKit
 enum LeftMenu: Int {
     case Search = 0
     case TutorMode
+    case RemovePin
     case Settings
     case Logout
 }
@@ -21,6 +22,7 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var loginViewController: UIViewController!
+    var halpApi = HalpAPI()
     
     override init() {
         super.init()
@@ -52,6 +54,26 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         }
     }
     
+    func createAlert(title: String, message: String) {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func afterDeletePin(success:Bool, json:JSON) {
+        println(json)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.slideMenuController()?.closeLeft()
+            if success {
+                self.createAlert("Success", message: "Removed Pin")
+                self.slideMenuController()?.closeLeft()
+            } else {
+                self.createAlert("Error", message: "Couldn't remove pin.")
+            }
+        }
+    }
+    
     func changeViewController(menu: LeftMenu) {
         switch menu {
         case .Search:
@@ -63,8 +85,10 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         case .Settings:
             //self.slideMenuController()?.changeMainViewController(self.javaViewController, close: true)
             break
+        case .RemovePin:
+            halpApi.deletePin(self.afterDeletePin)
+            break
         case .Logout:
-            println("here")
             var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var login:ViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
             nvc.pushViewController(login, animated: true)

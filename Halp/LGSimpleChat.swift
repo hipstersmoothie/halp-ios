@@ -265,7 +265,7 @@ class LGChatController : UIViewController, UITableViewDelegate, UITableViewDataS
 
     func begin() {
         var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var chat:chatController = storyboard.instantiateViewControllerWithIdentifier("tapPhones") as chatController
+        var chat:BumpController = storyboard.instantiateViewControllerWithIdentifier("tapPhones") as BumpController
         
         self.navigationController?.pushViewController(chat, animated: true)
     }

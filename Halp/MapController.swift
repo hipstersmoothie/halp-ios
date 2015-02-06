@@ -10,14 +10,18 @@ import UIKit
 import MapKit
 import CoreLocation
 
+var pinsInArea:[UserPin] = []
+var myPin:UserPin!
+var userLocation:CLLocationCoordinate2D!
+
 class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet var map: MKMapView!
     var manager:CLLocationManager!
     var center = false
+    let halpApi = HalpAPI()
 
     @IBOutlet var nav: UINavigationItem!
     @IBAction func TutorListButton(sender: AnyObject) {
-        println("h")
         let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
         nav.backBarButtonItem = backItem
         self.performSegueWithIdentifier("toTutors", sender: self)
@@ -27,6 +31,48 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
     
         nav.backBarButtonItem = backItem
+        userLocation = map.region.center
+    }
+    
+    func addPin(pin:UserPin) {
+        var latitude:CLLocationDegrees = CLLocationDegrees(pin.latitude)
+        var longitude:CLLocationDegrees = CLLocationDegrees(pin.longitude)
+
+        var latDelta:CLLocationDegrees = 0.01
+        var lonDelta:CLLocationDegrees = 0.01
+        
+        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "\(pin.course.subject) \(pin.course.number)"
+        
+        var skills = ""
+        for var i = 0; i < pin.skills.count; i++ {
+            skills += pin.skills[i]
+            if i != pin.skills.count - 1 {
+                skills += ", "
+            }
+        }
+        annotation.subtitle = skills
+        map.addAnnotation(annotation)
+    }
+    
+    func gotPins(success: Bool, json: JSON) {
+        if success {
+            println("load")
+            var pins = json["pins"]
+            
+            for (index: String, subJson: JSON) in pins {
+                var skills:[String] = subJson["skills"].arrayObject as [String]
+
+                let user = UserPin(userId: subJson["userId"].intValue, course: subJson["course"], longitude: subJson["longitude"].doubleValue, latitude: subJson["latitude"].doubleValue, skills: skills, firstname: subJson["firstname"].stringValue, lastname: subJson["lastname"].stringValue)
+                pinsInArea.append(user)
+                addPin(user)
+            }
+        } else {
+            //error getting pins
+        }
     }
     
     @IBOutlet var findTutorButton: UIButton!
@@ -34,6 +80,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
+        halpApi.getTutorsInArea(self.gotPins)
         navigationController?.setNavigationBarHidden(false, animated: true)
         manager = CLLocationManager()
         manager.delegate = self
@@ -51,6 +98,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
+        
+        map.showsUserLocation = true
     }
     
     func launchMenu() {
