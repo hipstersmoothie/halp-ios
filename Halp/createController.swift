@@ -75,17 +75,19 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
                 "passwordHash":"\(password.text.md5)"
             ] as Dictionary<String, String>
             
+            pause(self.view)
             halpApi.register(params, completionHandler: self.afterCreate)
         }
     }
     
     func afterCreate(success: Bool, json: JSON) {
-        if success {
-            dispatch_async(dispatch_get_main_queue()) {
+        dispatch_async(dispatch_get_main_queue()) {
+            start(self.view)
+            if success {
                 self.performSegueWithIdentifier("toLogin", sender: self)
+            } else {
+                self.createAlert("Problem Creating Accoutn", message: "Someone is already using that email!")
             }
-        } else {
-            self.createAlert("Problem Creating Accoutn", message: "Someone is already using that email!")
         }
     }
     

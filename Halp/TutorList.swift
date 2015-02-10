@@ -87,7 +87,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
         var cell: tutorRow = tableView.dequeueReusableCellWithIdentifier("tutorCell") as tutorRow
         
         let user = pinsInArea[indexPath.row]
-        cell.myLabel.text = user.firstname
+        cell.myLabel.text = user.user.firstname
         cell.rating.rating = 3 // change once josh update backend
         
         return cell;

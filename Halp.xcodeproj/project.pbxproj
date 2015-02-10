@@ -21,6 +21,7 @@
 		C243921A1A802B5E00A3AC58 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24392191A802B5E00A3AC58 /* FloatRatingView.swift */; };
 		C243921C1A802C6800A3AC58 /* StarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C243921B1A802C6800A3AC58 /* StarEmpty@2x.png */; };
 		C243921E1A802C7300A3AC58 /* StarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C243921D1A802C7300A3AC58 /* StarFull@2x.png */; };
+		C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2605A0E1A897D6700AEBBFE /* Settings.swift */; };
 		C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646CB1A7843B0008B396C /* AppDelegate.swift */; };
 		C26646CE1A7843B0008B396C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646CD1A7843B0008B396C /* ViewController.swift */; };
 		C26646D61A7843B0008B396C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26646D41A7843B0008B396C /* LaunchScreen.xib */; };
@@ -38,6 +39,7 @@
 		C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B0FB4B1A842E75003DE861 /* Main.storyboard */; };
 		C2B0FB4F1A8443B0003DE861 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B0FB4E1A8443B0003DE861 /* cancel.png */; };
 		C2B0FB511A844A10003DE861 /* StudentAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */; };
+		C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */; };
 		C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */; };
 		C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298901A8041BD0010C475 /* tutorProfile.swift */; };
 		C2C298931A80455B0010C475 /* BumpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298921A80455B0010C475 /* BumpController.swift */; };
@@ -54,6 +56,7 @@
 		C2C298AE1A81A9390010C475 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AD1A81A9390010C475 /* cog.png */; };
 		C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AF1A81A97F0010C475 /* power-off2-hi.png */; };
 		C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298B11A81B7BE0010C475 /* ReviewController.swift */; };
+		C2F8E93B1A89576F003ED69D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8E93A1A89576F003ED69D /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,7 @@
 		C24392191A802B5E00A3AC58 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		C243921B1A802C6800A3AC58 /* StarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarEmpty@2x.png"; sourceTree = "<group>"; };
 		C243921D1A802C7300A3AC58 /* StarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarFull@2x.png"; sourceTree = "<group>"; };
+		C2605A0E1A897D6700AEBBFE /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C26646C61A7843B0008B396C /* Halp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Halp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26646CA1A7843B0008B396C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C26646CB1A7843B0008B396C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 		C2B0FB4C1A842E75003DE861 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Halp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C2B0FB4E1A8443B0003DE861 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAnnotation.swift; sourceTree = "<group>"; };
+		C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorHelper.swift; sourceTree = "<group>"; };
 		C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C2C298901A8041BD0010C475 /* tutorProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorProfile.swift; sourceTree = "<group>"; };
 		C2C298921A80455B0010C475 /* BumpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumpController.swift; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 		C2C298AD1A81A9390010C475 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
 		C2C298AF1A81A97F0010C475 /* power-off2-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-off2-hi.png"; sourceTree = "<group>"; };
 		C2C298B11A81B7BE0010C475 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		C2F8E93A1A89576F003ED69D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,7 @@
 				C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */,
 				C26646CB1A7843B0008B396C /* AppDelegate.swift */,
 				C2B0FB4B1A842E75003DE861 /* Main.storyboard */,
+				C2605A0E1A897D6700AEBBFE /* Settings.swift */,
 				C2C298B81A81D8BA0010C475 /* Login */,
 				C2C298B71A81D89A0010C475 /* Session */,
 				C2C298B61A81D7870010C475 /* Side Menu */,
@@ -252,6 +259,7 @@
 		C2C298B41A81D6E60010C475 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */,
 				C24391CD1A7D79B800A3AC58 /* FBHelper.swift */,
 				C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */,
 				C24392191A802B5E00A3AC58 /* FloatRatingView.swift */,
@@ -267,6 +275,7 @@
 				C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */,
 				C24391E31A7D816800A3AC58 /* MapController.swift */,
 				C2B0FB411A840782003DE861 /* UserPin.swift */,
+				C2F8E93A1A89576F003ED69D /* User.swift */,
 				C278E3811A79FE170006BCBD /* TutorList.swift */,
 				C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */,
 				C24391FE1A7EC6CA00A3AC58 /* tutorRow.swift */,
@@ -425,8 +434,10 @@
 				C2C2989D1A8197FF0010C475 /* SlideMenuController.swift in Sources */,
 				C24392111A7F430D00A3AC58 /* TutorDetails.swift in Sources */,
 				C2C298A41A819CC80010C475 /* UITableViewExtension.swift in Sources */,
+				C2F8E93B1A89576F003ED69D /* User.swift in Sources */,
 				C24391E41A7D816800A3AC58 /* MapController.swift in Sources */,
 				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
+				C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */,
 				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
@@ -439,6 +450,7 @@
 				C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
+				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,
 				C2B0FB421A840782003DE861 /* UserPin.swift in Sources */,
 				C2C298A51A819CC80010C475 /* UIViewControllerExtension.swift in Sources */,

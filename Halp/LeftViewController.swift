@@ -21,6 +21,7 @@ protocol LeftMenuProtocol : class {
 
 class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
+    var settingsViewController: UIViewController!
     var loginViewController: UIViewController!
     var halpApi = HalpAPI()
     
@@ -41,6 +42,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         let swiftViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
         self.loginViewController = UINavigationController(rootViewController: swiftViewController)
+        
+        let settings = storyboard.instantiateViewControllerWithIdentifier("Settings") as Settings
+        self.settingsViewController = UINavigationController(rootViewController: settings)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -68,6 +72,8 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             if success {
                 self.createAlert("Success", message: "Removed Pin")
                 self.slideMenuController()?.closeLeft()
+            } else if json["code"] == "no_pin" {
+                self.createAlert("Couldn't remove pin.", message: "Because you dont have a pin down!")
             } else {
                 self.createAlert("Error", message: "Couldn't remove pin.")
             }
@@ -84,14 +90,15 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             break
         case .Settings:
             //self.slideMenuController()?.changeMainViewController(self.javaViewController, close: true)
+            //self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
+            nvc.pushViewController(self.settingsViewController, animated: true)
+            self.slideMenuController()?.closeLeft()
             break
         case .RemovePin:
             halpApi.deletePin(self.afterDeletePin)
             break
         case .Logout:
-            var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var login:ViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
-            nvc.pushViewController(login, animated: true)
+            nvc.pushViewController(self.loginViewController, animated: true)
             self.slideMenuController()?.closeLeft()
             break
         default:

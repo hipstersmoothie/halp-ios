@@ -30,12 +30,14 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
                 "type":"halp"
             ] as Dictionary<String, String>
             
+            pause(self.view)
             halpApi.login(params, completionHandler: self.afterLogin)
         }
     }
     
     func afterLogin(success: Bool, json: JSON) {
         dispatch_async(dispatch_get_main_queue()) {
+            start(self.view)
             if success {
                 sessionId = json["sessionId"]
                 self.performSegueWithIdentifier("toApp", sender: self)
@@ -130,7 +132,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
             "accessToken" : notification.object as String,
             "type" : "facebook"
         ] as Dictionary <String, String>
-        
+
+        pause(self.view)
         halpApi.login(params, completionHandler: self.afterLogin)
     }
 }

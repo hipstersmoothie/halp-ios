@@ -54,7 +54,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/ViewController.swift"
-            timestampString = "444858704.665742"
+            timestampString = "444880254.96689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -70,11 +70,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "444865003.253232"
+            timestampString = "444879352.466437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
             landmarkName = "MapController"
             landmarkType = "3">
             <Locations>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionDetialController.swift"
-            timestampString = "444864460.572078"
+            timestampString = "445205761.341694"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "search(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "444877982.855256"
+            timestampString = "445211817.159106"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -292,11 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/HalpAPI.swift"
-            timestampString = "444877039.379413"
+            timestampString = "445211817.159106"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "login(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -308,44 +308,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/HalpAPI.swift"
-            timestampString = "444877039.379413"
+            timestampString = "445211817.159106"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "getTutorsInArea(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Halp/SessionDetialController.swift"
-            timestampString = "444865408.460249"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "search(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Halp/SessionDetialController.swift"
-            timestampString = "444867800.55487"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "search(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -361,6 +329,82 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "11"
             endingLineNumber = "11">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Halp/UserPin.swift"
+            timestampString = "445211817.159106"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "UserPin"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Halp/UserPin.swift"
+            timestampString = "445211817.159106"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "init(user:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.Course.__deallocating_deinit"
+                  moduleName = "Halp"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/Halp/UserPin.swift"
+                  timestampString = "445210378.982784"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc Halp.Course.__ivar_destroyer"
+                  moduleName = "Halp"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/Halp/UserPin.swift"
+                  timestampString = "445210378.983051"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.Course.init (Halp.Course.Type)() -&gt; Halp.Course"
+                  moduleName = "Halp"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/Halp/UserPin.swift"
+                  timestampString = "445210378.983205"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -47,6 +47,20 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         return ["CPE 101", "PSY 252", "ENGL 149", "CSC 103"]
     }
     
+    func configureDatePicker() {
+        // Set min/max date for the date picker.
+        // As an example we will limit the date between now and 7 days from now.
+        let now = NSDate()
+        datePicker.minimumDate = now
+        
+        let currentCalendar = NSCalendar.currentCalendar()
+        let dateComponents = NSDateComponents()
+        dateComponents.day = 7
+        
+        let sevenDaysFromNow = currentCalendar.dateByAddingComponents(dateComponents, toDate: now, options: nil)
+        datePicker.maximumDate = sevenDaysFromNow        
+    }
+    
     @IBAction func search(sender: AnyObject) {
         if universityField.text == "" {
             createAlert("Error Creating Sesson", message: "Please provide a university.")
@@ -61,20 +75,26 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
             self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.backBarButtonItem = nil
             var course = split(courseField.text) {$0 == " "}
-            
             var params = [
+                "pinMode": pinMode,
                 "latitude": "\(userLocation.latitude)",
                 "longitude": "\(userLocation.longitude)",
-                "university": universityField.text!,
-                "course" : [
-                    "subject": course[0],
-                    "number": course[1]
-                ],
+                "duration": datePicker.date.timeIntervalSinceNow,
                 "description": sessDesc.text!,
+                "skills": [],
                 "images": [],
-                "skills": []
+                "courses" : [
+                    universityField.text!: [
+                        [
+                            "subject": course[0],
+                            "number": course[1]
+                        ]
+                    ]
+                    
+                ]
             ]
             
+            pause(self.view)
             halpApi.postPin(params, completionHandler: self.afterPostPin)
             self.performSegueWithIdentifier("toMapNewSession", sender: nil)
         }
@@ -94,6 +114,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     
     func afterPostPin(success: Bool, json: JSON) {
         println(json)
+        start(self.view)
     }
     
     @IBOutlet var toolbar: UIToolbar!
@@ -117,6 +138,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         courseField.addTarget(self, action: Selector("enterCourse:"), forControlEvents: .EditingDidBegin)
         
         datePicker.removeFromSuperview()
+        configureDatePicker()
         timeField.inputView = datePicker
         timeField.inputAccessoryView = toolbar
         
@@ -145,7 +167,6 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     func datePickerChanged(datePicker:UIDatePicker) {
-        println("here")
         var dateFormatter = NSDateFormatter()
         
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle

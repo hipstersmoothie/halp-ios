@@ -45,7 +45,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         var annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "\(pin.course.subject) \(pin.course.number)"
+        
+        var a = pin.courses["Cal Poly"]?[0]
+        annotation.title = "\(a?.subject) \(a?.number)"
         
         var skills = ""
         for var i = 0; i < pin.skills.count; i++ {
@@ -60,13 +62,12 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func gotPins(success: Bool, json: JSON) {
         if success {
-            println("load")
             var pins = json["pins"]
             
             for (index: String, subJson: JSON) in pins {
                 var skills:[String] = subJson["skills"].arrayObject as [String]
 
-                let user = UserPin(userId: subJson["userId"].intValue, course: subJson["course"], longitude: subJson["longitude"].doubleValue, latitude: subJson["latitude"].doubleValue, skills: skills, firstname: subJson["firstname"].stringValue, lastname: subJson["lastname"].stringValue)
+                let user = UserPin(user: subJson)
                 pinsInArea.append(user)
                 addPin(user)
             }
@@ -80,7 +81,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
-        halpApi.getTutorsInArea(self.gotPins)
+        //halpApi.getTutorsInArea(self.gotPins)
         navigationController?.setNavigationBarHidden(false, animated: true)
         manager = CLLocationManager()
         manager.delegate = self
@@ -109,19 +110,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
         if !center {
             var userLocation:CLLocation = locations[0] as CLLocation
-            
             var latitude:CLLocationDegrees = userLocation.coordinate.latitude
-            
             var longitude:CLLocationDegrees = userLocation.coordinate.longitude
-            
             var latDelta:CLLocationDegrees = 0.01
-            
             var lonDelta:CLLocationDegrees = 0.01
             
             var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
-            
             var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-            
             var region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
             
             map.setRegion(region, animated: true)

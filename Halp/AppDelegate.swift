@@ -9,6 +9,7 @@
 import UIKit
 
 var nvc: UINavigationController!
+var pinMode = "student"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
