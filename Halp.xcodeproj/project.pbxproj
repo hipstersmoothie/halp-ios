@@ -41,6 +41,11 @@
 		C2B0FB511A844A10003DE861 /* StudentAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */; };
 		C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */; };
 		C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */; };
+		C2BBA70D1A8C7B6F0023A5EF /* basicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBA70C1A8C7B6F0023A5EF /* basicInfo.swift */; };
+		C2BBA70F1A8D2C060023A5EF /* bioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBA70E1A8D2C060023A5EF /* bioCell.swift */; };
+		C2BBA7111A8D2C890023A5EF /* skillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBA7101A8D2C890023A5EF /* skillsCell.swift */; };
+		C2BBA7131A8D2CE40023A5EF /* rateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBA7121A8D2CE40023A5EF /* rateCell.swift */; };
+		C2BBA7151A8D2D300023A5EF /* experienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBA7141A8D2D300023A5EF /* experienceCell.swift */; };
 		C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298901A8041BD0010C475 /* tutorProfile.swift */; };
 		C2C298931A80455B0010C475 /* BumpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298921A80455B0010C475 /* BumpController.swift */; };
 		C2C298971A8046A70010C475 /* LGSimpleChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298961A8046A70010C475 /* LGSimpleChat.swift */; };
@@ -109,6 +114,11 @@
 		C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAnnotation.swift; sourceTree = "<group>"; };
 		C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorHelper.swift; sourceTree = "<group>"; };
 		C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		C2BBA70C1A8C7B6F0023A5EF /* basicInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = basicInfo.swift; sourceTree = "<group>"; };
+		C2BBA70E1A8D2C060023A5EF /* bioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bioCell.swift; sourceTree = "<group>"; };
+		C2BBA7101A8D2C890023A5EF /* skillsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = skillsCell.swift; sourceTree = "<group>"; };
+		C2BBA7121A8D2CE40023A5EF /* rateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateCell.swift; sourceTree = "<group>"; };
+		C2BBA7141A8D2D300023A5EF /* experienceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experienceCell.swift; sourceTree = "<group>"; };
 		C2C298901A8041BD0010C475 /* tutorProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorProfile.swift; sourceTree = "<group>"; };
 		C2C298921A80455B0010C475 /* BumpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumpController.swift; sourceTree = "<group>"; };
 		C2C298961A8046A70010C475 /* LGSimpleChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGSimpleChat.swift; sourceTree = "<group>"; };
@@ -194,7 +204,6 @@
 				C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */,
 				C26646CB1A7843B0008B396C /* AppDelegate.swift */,
 				C2B0FB4B1A842E75003DE861 /* Main.storyboard */,
-				C2605A0E1A897D6700AEBBFE /* Settings.swift */,
 				C2C298B81A81D8BA0010C475 /* Login */,
 				C2C298B71A81D89A0010C475 /* Session */,
 				C2C298B61A81D7870010C475 /* Side Menu */,
@@ -288,6 +297,12 @@
 			children = (
 				C2C298A01A819A190010C475 /* BaseTableViewCell.swift */,
 				C2C2989E1A8199CE0010C475 /* LeftViewController.swift */,
+				C2605A0E1A897D6700AEBBFE /* Settings.swift */,
+				C2BBA70C1A8C7B6F0023A5EF /* basicInfo.swift */,
+				C2BBA70E1A8D2C060023A5EF /* bioCell.swift */,
+				C2BBA7101A8D2C890023A5EF /* skillsCell.swift */,
+				C2BBA7121A8D2CE40023A5EF /* rateCell.swift */,
+				C2BBA7141A8D2D300023A5EF /* experienceCell.swift */,
 			);
 			name = "Side Menu";
 			sourceTree = "<group>";
@@ -428,6 +443,7 @@
 			files = (
 				C24392131A7F485D00A3AC58 /* reviewList.swift in Sources */,
 				C243921A1A802B5E00A3AC58 /* FloatRatingView.swift in Sources */,
+				C2BBA70F1A8D2C060023A5EF /* bioCell.swift in Sources */,
 				C2C2989B1A805CD20010C475 /* SessionCounterController.swift in Sources */,
 				C26646CE1A7843B0008B396C /* ViewController.swift in Sources */,
 				C2B0FB511A844A10003DE861 /* StudentAnnotation.swift in Sources */,
@@ -435,19 +451,23 @@
 				C24392111A7F430D00A3AC58 /* TutorDetails.swift in Sources */,
 				C2C298A41A819CC80010C475 /* UITableViewExtension.swift in Sources */,
 				C2F8E93B1A89576F003ED69D /* User.swift in Sources */,
+				C2BBA7111A8D2C890023A5EF /* skillsCell.swift in Sources */,
 				C24391E41A7D816800A3AC58 /* MapController.swift in Sources */,
 				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
 				C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */,
 				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
+				C2BBA7151A8D2D300023A5EF /* experienceCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
 				C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */,
 				C2C298931A80455B0010C475 /* BumpController.swift in Sources */,
+				C2BBA7131A8D2CE40023A5EF /* rateCell.swift in Sources */,
 				C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */,
 				C2C298971A8046A70010C475 /* LGSimpleChat.swift in Sources */,
 				C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,
 				C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */,
+				C2BBA70D1A8C7B6F0023A5EF /* basicInfo.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,

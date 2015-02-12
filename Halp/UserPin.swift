@@ -18,11 +18,10 @@ class UserPin: NSObject {
     var images:[String]
     
     init(user:JSON) {
-        println(user)
         self.user = User(user: user["user"])
         self.latitude = user["latitude"].doubleValue
         self.longitude = user["longitude"].doubleValue
-        self.pinDescription = user["pinDescription"].stringValue
+        self.pinDescription = user["description"].stringValue
         self.skills = user["skills"].arrayObject as [String]
         self.images = user["images"].arrayObject as [String]
         
@@ -34,18 +33,20 @@ class UserPin: NSObject {
         for (key, val) in unis {
             self.courses.updateValue(getCourses(val), forKey: key)
         }
+        
+        println("some stuff \(self.courses)")
+    }
+}
+
+func getCourses(courses:JSON) -> [Course] {
+    var courseArray = courses.arrayValue
+    var procCourses:[Course] = []
+    
+    for var i = 0; i < courseArray.count; i++ {
+        procCourses.append(Course(course: courseArray[i]))
     }
     
-    func getCourses(courses:JSON) -> [Course] {
-        var courseArray = courses.arrayValue
-        var procCourses:[Course] = []
-        
-        for var i = 0; i < courseArray.count; i++ {
-            procCourses.append(Course(course: courseArray[i]))
-        }
-        
-        return procCourses
-    }
+    return procCourses
 }
 
 class Course: NSObject {

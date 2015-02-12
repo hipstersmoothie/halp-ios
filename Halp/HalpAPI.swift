@@ -30,13 +30,14 @@ class HalpAPI {
         
         request.HTTPMethod = method
         
-        if method == "POST" {
+        if method == "POST" || method == "PUT" {
             request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        if method == "GET" && params.count > 0 {
+        if (method == "GET" || method == "DELETE") && params.count > 0 {
+            
             request.URL = addQueryStringParams(request.URL!.absoluteString!, params: params)
         }
 
@@ -72,8 +73,9 @@ class HalpAPI {
     }
     
     func getTutorsInArea(completionHandler: ((Bool, JSON) -> Void)?) {
+        var pin = (pinMode == "student") ? "tutor" : "student"
         var params = [
-            "pinMode":pinMode
+            "pinMode":pin
         ]
         
         halpRequest("/pins", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
@@ -94,11 +96,12 @@ class HalpAPI {
     // Get information about the currently logged in user.
     func getProfile(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()
+        println(sessionId.stringValue)
         halpRequest("/profile", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
     func updateProfile(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
-        var params = Dictionary<String, String>()
+        println(params)
         halpRequest("/profile", method: "PUT", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
 }

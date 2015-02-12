@@ -47,7 +47,11 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         annotation.coordinate = location
         
         var a = pin.courses["Cal Poly"]?[0]
-        annotation.title = "\(a?.subject) \(a?.number)"
+        if let subject = a?.subject {
+            if let number = a?.number {
+                annotation.title = "\(subject) \(number)"
+            }
+        }        
         
         var skills = ""
         for var i = 0; i < pin.skills.count; i++ {
@@ -63,7 +67,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func gotPins(success: Bool, json: JSON) {
         if success {
             var pins = json["pins"]
-            
+            pinsInArea = []
             for (index: String, subJson: JSON) in pins {
                 var skills:[String] = subJson["skills"].arrayObject as [String]
 
@@ -81,7 +85,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
-        //halpApi.getTutorsInArea(self.gotPins)
+        halpApi.getTutorsInArea(self.gotPins)
         navigationController?.setNavigationBarHidden(false, animated: true)
         manager = CLLocationManager()
         manager.delegate = self
