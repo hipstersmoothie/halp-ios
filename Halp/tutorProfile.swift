@@ -71,12 +71,10 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate, LGChatControllerD
         // Dispose of any resources that can be recreated.
     }
     
+     // MARK: FloatRatingViewDelegate
+    
     func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
 
-    }
-    
-    func begin() {
-        println("begin")
     }
     
     func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {

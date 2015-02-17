@@ -22,3 +22,10 @@ func start(view: UIView) {
     activityIndicator.stopAnimating()
     UIApplication.sharedApplication().endIgnoringInteractionEvents()
 }
+
+func createAlert(me: UIViewController, title: String, message: String) {
+    var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+    }))
+    me.presentViewController(alert, animated: true, completion: nil)
+}

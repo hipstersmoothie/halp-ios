@@ -32,7 +32,6 @@ class HalpAPI {
         
         if method == "POST" || method == "PUT" {
             request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-            println(request.HTTPBody)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }

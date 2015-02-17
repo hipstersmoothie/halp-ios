@@ -21,9 +21,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     
     @IBAction func login(sender: AnyObject) {
         if username.text == "" {
-            createAlert("Error Logging In", message: "Please provide an email address.")
+            createAlert(self, "Error Logging In", "Please provide an email address.")
         } else if password.text == "" {
-            createAlert("Error Logging In", message: "Please provide a password.")
+            createAlert(self, "Error Logging In", "Please provide a password.")
         } else {
             var params = [
                 "email": username.text,
@@ -44,7 +44,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
                 sessionId = json["sessionId"]
                 self.performSegueWithIdentifier("toApp", sender: self)
             } else {
-                self.createAlert("Error Logging In", message: "Please provide valid credentials.")
+                createAlert(self, "Error Logging In", "Please provide valid credentials.")
             }
         }
     }
@@ -112,13 +112,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func shouldAutorotate() -> Bool {

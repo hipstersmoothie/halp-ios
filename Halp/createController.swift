@@ -28,13 +28,6 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         self.presentViewController(image, animated: true, completion: nil)
     }
     
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     func isValidEmail(testStr:String) -> Bool {
         println("validate calendar: \(testStr)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
@@ -51,19 +44,19 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
     @IBOutlet var confirmPass: UITextField!
     @IBAction func createButton(sender: AnyObject) {
         if email.text == "" {
-            createAlert("Error Creating Account", message: "Please provide an email address.")
+            createAlert(self, "Error Creating Account", "Please provide an email address.")
         } else if !isValidEmail(email.text) {
-            createAlert("Error Creating Account", message: "Please provide a valid email address.")
+            createAlert(self, "Error Creating Account", "Please provide a valid email address.")
         } else if firstname.text == "" {
-            createAlert("Error Creating Account", message: "Please provide a first name.")
+            createAlert(self, "Error Creating Account", "Please provide a first name.")
         } else if lastName.text == "" {
-            createAlert("Error Creating Account", message: "Please provide a last name.")
+            createAlert(self, "Error Creating Account", "Please provide a last name.")
         } else if password.text == "" {
-            createAlert("Error Creating Account", message: "Please provide a password.")
+            createAlert(self, "Error Creating Account", "Please provide a password.")
         } else if confirmPass.text == "" {
-            createAlert("Error Creating Account", message: "Please provide confirm your password.")
+            createAlert(self, "Error Creating Account", "Please provide confirm your password.")
         } else if confirmPass.text != password.text {
-            createAlert("Error Creating Account", message: "Passwords didn't match.")
+            createAlert(self, "Error Creating Account", "Passwords didn't match.")
         } else {
             //Send new account to backend
             let request = NSMutableURLRequest(URL: NSURL(string: "http://api.halp.me/register")!)
@@ -86,7 +79,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
             if success {
                 self.performSegueWithIdentifier("toLogin", sender: self)
             } else {
-                self.createAlert("Problem Creating Accoutn", message: "Someone is already using that email!")
+                createAlert(self, "Problem Creating Account", "Someone is already using that email!")
             }
         }
     }

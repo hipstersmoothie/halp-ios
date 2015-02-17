@@ -33,13 +33,6 @@ class SetRateController: UIViewController {
         halpApi.updateProfile(params, completionHandler: self.afterTutorCreate)
     }
     
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     @IBOutlet var expTItle: UILabel!
     @IBOutlet var expText: UILabel!
     @IBOutlet var expButton: UIButton!
@@ -60,7 +53,7 @@ class SetRateController: UIViewController {
                 self.expText.hidden = false
                 self.expButton.hidden = false
             } else {
-                self.createAlert("Oops!", message: "Something went wrong making your tutor profile!")
+                createAlert(self, "Oops!", "Something went wrong making your tutor profile!")
             }
         }
     }

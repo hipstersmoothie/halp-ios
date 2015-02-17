@@ -63,13 +63,13 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     
     @IBAction func search(sender: AnyObject) {
         if universityField.text == "" {
-            createAlert("Error Creating Sesson", message: "Please provide a university.")
+            createAlert(self, "Error Creating Sesson", "Please provide a university.")
         } else if courseField.text == "" {
-            createAlert("Error Creating Sesson", message: "Please provide a course.")
+            createAlert(self, "Error Creating Sesson", "Please provide a course.")
         } else if sessDesc.text == "" {
-            createAlert("Error Creating Sesson", message: "Please provide a description.")
+            createAlert(self, "Error Creating Sesson", "Please provide a description.")
         } else if timeField.text == "" {
-            createAlert("Error Creating Sesson", message: "Please provide a desired time.")
+            createAlert(self, "Error Creating Sesson", "Please provide a desired time.")
         } else {
             //send request
             self.navigationItem.leftBarButtonItem = nil
@@ -253,12 +253,5 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
-    }
-    
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
 }

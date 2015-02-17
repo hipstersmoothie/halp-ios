@@ -30,9 +30,9 @@ class TutorSetupCourses: UITableViewController {
         for cell in cells {
             if let uniCell = cell as? experienceCell {
                 if uniCell.university.text == "" {
-                    return createAlert("Error!", message: "Please provide at least one university.")
+                    return createAlert(self, "Error!", "Please provide at least one university.")
                 } else if uniCell.courseList.text == "" {
-                    return createAlert("Error!", message: "Please provide at least one course.")
+                    return createAlert(self, "Error!", "Please provide at least one course.")
                 } else {
                     let uni = uniCell.university.text
                     let coursesText = split(uniCell.courseList.text) {$0 == ","}
@@ -53,13 +53,6 @@ class TutorSetupCourses: UITableViewController {
         setUpTutorParams.updateValue(courses, forKey: "courses")
         println(setUpTutorParams)
         self.performSegueWithIdentifier("toSetRate", sender: self)
-    }
-    
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

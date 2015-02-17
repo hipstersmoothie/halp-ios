@@ -22,9 +22,9 @@ class BioAndSkillsController: UIViewController {
     @IBOutlet var skills: UITextField!
     func nextScreen() {
         if bio.text == "" || bio.text == "Write a bio about yourself. This helps student get to know you before you meet." {
-            createAlert("Error!", message: "Provide a bio.")
+            createAlert(self, "Error!", "Provide a bio.")
         } else if skills.text == "" {
-            createAlert("Error!", message: "Provide some skills.")
+            createAlert(self, "Error!", "Provide some skills.")
         } else {
             setUpTutorParams.updateValue(bio.text, forKey: "bio")
             var skillsArr = split(skills.text) {$0 == ","}
@@ -35,13 +35,6 @@ class BioAndSkillsController: UIViewController {
             
             self.performSegueWithIdentifier("toAddClasses", sender: self)
         }
-    }
-    
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

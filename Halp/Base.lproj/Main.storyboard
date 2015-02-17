@@ -464,6 +464,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="expButton" destination="wrN-BF-dOw" id="cMx-Vn-Axt"/>
                         <outlet property="expTItle" destination="Jhm-xa-O9z" id="9ET-ut-Myy"/>
                         <outlet property="expText" destination="72B-ac-7vm" id="OSQ-Tz-zRq"/>
                         <outlet property="perHourLabel" destination="6CP-BL-xVl" id="N6u-4u-2fR"/>
@@ -599,12 +600,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-zj-uyJ">
-                                <rect key="frame" x="0.0" y="-6" width="375" height="673"/>
-                                <connections>
-                                    <outlet property="delegate" destination="IQw-MT-eGb" id="hTW-9M-bwg"/>
-                                </connections>
-                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2y-DM-HdV">
                                 <rect key="frame" x="33" y="590" width="308" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -634,6 +629,12 @@
                                     <!--2015-02-17 04:19:33 +0000-->
                                 </date>
                             </datePicker>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-zj-uyJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IQw-MT-eGb" id="hTW-9M-bwg"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1397,6 +1398,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6IL-E7-WHO"/>
-        <segue reference="jMr-h5-ryh"/>
+        <segue reference="FkZ-fb-a2G"/>
     </inferredMetricsTieBreakers>
 </document>

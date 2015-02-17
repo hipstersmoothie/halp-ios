@@ -56,18 +56,11 @@ class Settings: UITableViewController {
         println(json)
         dispatch_async(dispatch_get_main_queue()) {
             if success {
-                self.createAlert("Success!", message: "Account details changed.")
+                createAlert(self, "Success!", "Account details changed.")
             } else {
-                self.createAlert("Error.", message: "Something went wrong changing your account details.")
+                createAlert(self, "Error.", "Something went wrong changing your account details.")
             }
         }
-    }
-    
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

@@ -62,23 +62,16 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         }
     }
     
-    func createAlert(title: String, message: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     func afterDeletePin(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
             self.slideMenuController()?.closeLeft()
             if success {
-                self.createAlert("Success", message: "Removed Pin")
+                createAlert(self, "Success", "Removed Pin")
                 self.slideMenuController()?.closeLeft()
             } else if json["code"] == "no_pin" {
-                self.createAlert("Couldn't remove pin.", message: "Because you dont have a pin down!")
+                createAlert(self, "Couldn't remove pin.", "Because you dont have a pin down!")
             } else {
-                self.createAlert("Error", message: "Couldn't remove pin.")
+                createAlert(self, "Error", "Couldn't remove pin.")
             }
         }
     }

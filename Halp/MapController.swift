@@ -66,13 +66,19 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     func tutorPinPosted(success:Bool, json:JSON) {
-        println(json)
+        dispatch_async(dispatch_get_main_queue()) {
+            if success {
+                createAlert(self, "Success!", "You will now be notified when students post pins that match your profile.")
+            } else {
+                println(json)
+                createAlert(self, "Error!", "Couldn't place pin. You might already have a pin down")
+            }
+        }
     }
     
 
     func datePickerChanged(datePicker:UIDatePicker) {
         var dateFormatter = NSDateFormatter()
-        println("here")
         
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -160,10 +166,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         map.showsUserLocation = true
         datePicker.removeFromSuperview()
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
-    }
-    
-    func launchMenu() {
-        
     }
     
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
