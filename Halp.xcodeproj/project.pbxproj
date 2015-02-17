@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */; };
+		C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */; };
+		C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22B6C4C1A905CCF009729AD /* SetRateController.swift */; };
 		C24391CC1A7C425000A3AC58 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */; };
 		C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391CD1A7D79B800A3AC58 /* FBHelper.swift */; };
 		C24391E41A7D816800A3AC58 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391E31A7D816800A3AC58 /* MapController.swift */; };
@@ -75,6 +78,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioAndSkillsController.swift; sourceTree = "<group>"; };
+		C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorSetupCourses.swift; sourceTree = "<group>"; };
+		C22B6C4C1A905CCF009729AD /* SetRateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRateController.swift; sourceTree = "<group>"; };
 		C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		C24391CD1A7D79B800A3AC58 /* FBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBHelper.swift; sourceTree = "<group>"; };
 		C24391E31A7D816800A3AC58 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -303,6 +309,9 @@
 				C2BBA7101A8D2C890023A5EF /* skillsCell.swift */,
 				C2BBA7121A8D2CE40023A5EF /* rateCell.swift */,
 				C2BBA7141A8D2D300023A5EF /* experienceCell.swift */,
+				C22B6C4C1A905CCF009729AD /* SetRateController.swift */,
+				C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */,
+				C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */,
 			);
 			name = "Side Menu";
 			sourceTree = "<group>";
@@ -443,6 +452,7 @@
 			files = (
 				C24392131A7F485D00A3AC58 /* reviewList.swift in Sources */,
 				C243921A1A802B5E00A3AC58 /* FloatRatingView.swift in Sources */,
+				C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */,
 				C2BBA70F1A8D2C060023A5EF /* bioCell.swift in Sources */,
 				C2C2989B1A805CD20010C475 /* SessionCounterController.swift in Sources */,
 				C26646CE1A7843B0008B396C /* ViewController.swift in Sources */,
@@ -455,6 +465,7 @@
 				C24391E41A7D816800A3AC58 /* MapController.swift in Sources */,
 				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
 				C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */,
+				C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */,
 				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
 				C2BBA7151A8D2D300023A5EF /* experienceCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
@@ -463,6 +474,7 @@
 				C2C298931A80455B0010C475 /* BumpController.swift in Sources */,
 				C2BBA7131A8D2CE40023A5EF /* rateCell.swift in Sources */,
 				C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */,
+				C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */,
 				C2C298971A8046A70010C475 /* LGSimpleChat.swift in Sources */,
 				C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,

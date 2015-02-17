@@ -22,6 +22,7 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var settingsViewController: UIViewController!
+    var tutorSetupController: UIViewController!
     var loginViewController: UIViewController!
     var halpApi = HalpAPI()
     
@@ -45,6 +46,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         
         let settings = storyboard.instantiateViewControllerWithIdentifier("Settings") as Settings
         self.settingsViewController = UINavigationController(rootViewController: settings)
+        
+        let setup = storyboard.instantiateViewControllerWithIdentifier("PageContentController") as BioAndSkillsController
+        self.tutorSetupController = UINavigationController(rootViewController: setup)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -66,7 +70,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     }
     
     func afterDeletePin(success:Bool, json:JSON) {
-        println(json)
         dispatch_async(dispatch_get_main_queue()) {
             self.slideMenuController()?.closeLeft()
             if success {
@@ -80,17 +83,31 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         }
     }
     
+    @IBOutlet var modeLabel: UILabel!
     func changeViewController(menu: LeftMenu) {
         switch menu {
         case .Search:
-            //self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
             break
         case .TutorMode:
-            //self.slideMenuController()?.changeMainViewController(self.swiftViewController, close: true)
+            if loggedInUser.rate > 0 {
+                if modeLabel.text == "Tutor Mode" {
+                    pinMode = "tutor"
+                    modeLabel.text = "Student Mode"
+                } else {
+                    pinMode = "student"
+                    modeLabel.text = "Tutor Mode"
+                }
+                
+                var storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let map = storyboard.instantiateViewControllerWithIdentifier("MapController") as MapController
+                nvc.pushViewController(map, animated: false)
+                self.slideMenuController()?.closeLeft()
+            } else {
+                nvc.pushViewController(self.tutorSetupController, animated: true)
+                self.slideMenuController()?.closeLeft()
+            }
             break
         case .Settings:
-            //self.slideMenuController()?.changeMainViewController(self.javaViewController, close: true)
-            //self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
             nvc.pushViewController(self.settingsViewController, animated: true)
             self.slideMenuController()?.closeLeft()
             break

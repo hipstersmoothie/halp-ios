@@ -9,6 +9,7 @@
 import UIKit
 
 var sessionId:JSON!
+var loggedInUser:User!
 
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
     let fbHelper = FBHelper()
@@ -39,6 +40,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         dispatch_async(dispatch_get_main_queue()) {
             start(self.view)
             if success {
+                loggedInUser = User(user: json["profile"])
                 sessionId = json["sessionId"]
                 self.performSegueWithIdentifier("toApp", sender: self)
             } else {

@@ -11,7 +11,6 @@ import UIKit
 class Settings: UITableViewController {
     var courseRow = 1
     var firstname:String!
-    var user:User!
     let halpApi = HalpAPI()
     
     @IBAction func addUniRow(sender: AnyObject) {
@@ -22,26 +21,26 @@ class Settings: UITableViewController {
     @IBAction func saveSettings(sender: AnyObject) {
         var params = Dictionary<String, AnyObject>()
         
-        if infoCell.firstName.text != user.firstname {
+        if infoCell.firstName.text != loggedInUser.firstname {
             params.updateValue(infoCell.firstName.text, forKey: "firstname")
         }
         
-        if infoCell.lastName.text != user.lastname {
+        if infoCell.lastName.text != loggedInUser.lastname {
             params.updateValue(infoCell.lastName.text, forKey: "lastname")
         }
         
         //Tutor Settings
         var tutor = Dictionary<String, AnyObject>()
-        if bio.bio.text != user.bio {
+        if bio.bio.text != loggedInUser.bio {
             tutor.updateValue(bio.bio.text, forKey: "bio")
         }
         
         var skillsArr = split(skills.skills.text) {$0 == ","}
-        if skillsArr.count != user.skills.count {
+        if skillsArr.count != loggedInUser.skills.count {
             tutor.updateValue(skillsArr, forKey: "skills")
         }
         
-        if rate.rate.text.toInt() != Int(user.rate) {
+        if rate.rate.text.toInt() != Int(loggedInUser.rate) {
             tutor.updateValue(rate.rate.text.toInt()!, forKey: "rate")
         }
         
@@ -55,20 +54,24 @@ class Settings: UITableViewController {
     
     func updatedProfile(success:Bool, json:JSON) {
         println(json)
+        dispatch_async(dispatch_get_main_queue()) {
+            if success {
+                self.createAlert("Success!", message: "Account details changed.")
+            } else {
+                self.createAlert("Error.", message: "Something went wrong changing your account details.")
+            }
+        }
+    }
+    
+    func createAlert(title: String, message: String) {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        halpApi.getProfile(self.gotProfile)
-    }
-
-    func gotProfile(success: Bool, json:JSON) {
-        if success {
-            user = User(user: json)
-            tableView.reloadData()
-        }
-        println(json)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,7 +84,10 @@ class Settings: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        if loggedInUser.rate > 0 {
+            return 3
+        }
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,10 +109,8 @@ class Settings: UITableViewController {
         if indexPath.section == 0 {
             infoCell = self.tableView.dequeueReusableCellWithIdentifier("basicInfo") as basicInfo
             
-            if user != nil {
-                infoCell.firstName.text = user.firstname
-                infoCell.lastName.text = user.lastname
-            }
+            infoCell.firstName.text = loggedInUser.firstname
+            infoCell.lastName.text = loggedInUser.lastname
     
             infoCell.selectionStyle = .None
             return infoCell
@@ -114,12 +118,10 @@ class Settings: UITableViewController {
             if indexPath.row == 0 {
                 bio = self.tableView.dequeueReusableCellWithIdentifier("bio") as bioCell
                 
-                if user != nil {
-                    if user.bio != "" {
-                         bio.bio.text = user.bio
-                    } else {
-                         bio.bio.text = "Write a bio about yourself. This helps student get to know you before you meet."
-                    }
+                if loggedInUser.bio != "" {
+                     bio.bio.text = loggedInUser.bio
+                } else {
+                     bio.bio.text = "Write a bio about yourself. This helps student get to know you before you meet."
                 }
                 
                 bio.selectionStyle = .None
@@ -127,21 +129,17 @@ class Settings: UITableViewController {
             } else if indexPath.row == 1 {
                 skills = self.tableView.dequeueReusableCellWithIdentifier("skills") as skillsCell
                 
-                if user != nil {
-                    skills.skills.text = ",".join(user.skills)
-                }
+                skills.skills.text = ",".join(loggedInUser.skills)
                 
                 skills.selectionStyle = .None
                 return skills
             } else {
                 rate = self.tableView.dequeueReusableCellWithIdentifier("rate") as rateCell
                 
-                if user != nil {
-                    if user.rate > 0 {
-                        rate.rate.text = "\(user.rate)"
-                    } else {
-                        rate.rate.text = "0"
-                    }
+                if loggedInUser.rate > 0 {
+                    rate.rate.text = "\(loggedInUser.rate)"
+                } else {
+                    rate.rate.text = "0"
                 }
                 
                 rate.selectionStyle = .None

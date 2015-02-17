@@ -32,6 +32,7 @@ class HalpAPI {
         
         if method == "POST" || method == "PUT" {
             request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            println(request.HTTPBody)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
@@ -73,9 +74,8 @@ class HalpAPI {
     }
     
     func getTutorsInArea(completionHandler: ((Bool, JSON) -> Void)?) {
-        var pin = (pinMode == "student") ? "tutor" : "student"
         var params = [
-            "pinMode":pin
+            "pinMode": (pinMode == "student") ? "tutor" : "student"
         ]
         
         halpRequest("/pins", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)

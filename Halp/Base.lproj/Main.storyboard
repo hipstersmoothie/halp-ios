@@ -41,7 +41,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tutor Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVK-0a-CiR">
-                                                    <rect key="frame" x="22" y="11" width="88" height="21"/>
+                                                    <rect key="frame" x="22" y="11" width="161" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -116,7 +116,9 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="modeLabel" destination="HVK-0a-CiR" id="3fd-ip-S0M"/>
                         <segue destination="vXZ-lx-hvc" kind="show" identifier="logout" id="6IL-E7-WHO"/>
+                        <segue destination="IQw-MT-eGb" kind="show" identifier="toMap" id="0E0-GV-I3n"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hb8-VY-rdo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -284,7 +286,196 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FjJ-Gm-Xyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698.5" y="-558.5"/>
+            <point key="canvasLocation" x="181.5" y="-542.5"/>
+        </scene>
+        <!--Bio And Skills Controller-->
+        <scene sceneID="0Ty-MO-hZP">
+            <objects>
+                <viewController storyboardIdentifier="PageContentController" id="Bik-Nx-3xd" customClass="BioAndSkillsController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Le-BX-qU4"/>
+                        <viewControllerLayoutGuide type="bottom" id="OZs-Fi-rte"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="emf-NR-CnA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="So you want to be a tutor?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIn-kD-M1q">
+                                <rect key="frame" x="44" y="103" width="286" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write a bio about yourself. This helps student get to know you before you meet." translatesAutoresizingMaskIntoConstraints="NO" id="EpZ-BX-gRl">
+                                <rect key="frame" x="16" y="156" width="343" height="146.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Now list some skills you are good at that go beyond just one class:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nF-sf-6we">
+                                <rect key="frame" x="44" y="323" width="300" height="80"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="excel, java, essay drafting (comma seperated)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GCs-4T-3TJ">
+                                <rect key="frame" x="19" y="434" width="336" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="bio" destination="EpZ-BX-gRl" id="lQ3-O3-EYp"/>
+                        <outlet property="skills" destination="GCs-4T-3TJ" id="86L-g5-JSV"/>
+                        <segue destination="GQ6-fZ-bLO" kind="show" identifier="toAddClasses" id="U0c-mv-9qp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k5Y-7d-6j8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="692.5" y="-542.5"/>
+        </scene>
+        <!--Tutor Setup Courses-->
+        <scene sceneID="DV6-qY-ulX">
+            <objects>
+                <tableViewController id="GQ6-fZ-bLO" customClass="TutorSetupCourses" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Cm0-X4-4h4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="uniAndCourse" rowHeight="117" id="ZYW-wz-hHA" customClass="experienceCell" customModule="Halp" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZYW-wz-hHA" id="xHZ-iv-jRH">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="University" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSv-B3-Qh6">
+                                            <rect key="frame" x="31" y="19" width="313" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Courses (comma seperated)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lJu-Bk-8Kz">
+                                            <rect key="frame" x="31" y="66" width="313" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="courseList" destination="lJu-Bk-8Kz" id="4zo-uT-ZVG"/>
+                                    <outlet property="university" destination="vSv-B3-Qh6" id="Moa-Qq-HqC"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAnother" rowHeight="66" id="pah-3j-BcK">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pah-3j-BcK" id="xfb-5l-1V2">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6v-vX-RaO">
+                                            <rect key="frame" x="108" y="18" width="159" height="30"/>
+                                            <state key="normal" title="Add Another University">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addAnother:" destination="GQ6-fZ-bLO" eventType="touchUpInside" id="Lcp-3i-IO0"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="GQ6-fZ-bLO" id="P1s-DB-uqk"/>
+                            <outlet property="delegate" destination="GQ6-fZ-bLO" id="qdw-bI-jHw"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="table" destination="Cm0-X4-4h4" id="bcQ-EB-lMP"/>
+                        <segue destination="Yuh-8s-i7r" kind="show" identifier="toSetRate" id="V3k-dk-3Wp"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="988-gD-gVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1212.5" y="-542.5"/>
+        </scene>
+        <!--Set Rate Controller-->
+        <scene sceneID="KWk-pq-qhc">
+            <objects>
+                <viewController id="Yuh-8s-i7r" customClass="SetRateController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w33-tK-dNN"/>
+                        <viewControllerLayoutGuide type="bottom" id="ubN-Af-TqH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N3J-f9-04G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set your Rate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWc-HH-kNL">
+                                <rect key="frame" x="96" y="188" width="183" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="QIJ-kn-89u">
+                                <rect key="frame" x="42" y="382" width="290" height="31"/>
+                                <connections>
+                                    <action selector="adjustRate:" destination="Yuh-8s-i7r" eventType="valueChanged" id="3Dw-nB-eLW"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/ hour" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CP-BL-xVl">
+                                <rect key="frame" x="267" y="301" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zQ-Lf-dMO">
+                                <rect key="frame" x="109" y="239" width="157" height="118"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Now you can start tutoring!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhm-xa-O9z">
+                                <rect key="frame" x="25" y="149" width="334" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrN-BF-dOw">
+                                <rect key="frame" x="139" y="480" width="97" height="30"/>
+                                <state key="normal" title="Start Tutoring!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTutoring:" destination="Yuh-8s-i7r" eventType="touchUpInside" id="a4S-OF-ajG"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72B-ac-7vm">
+                                <rect key="frame" x="42" y="217" width="300" height="234"/>
+                                <string key="text">In tutor mode you can find people to tutor in few ways. You can drop a pin on the map, you will then be notified when people post pins for the subjects and skills you specified. You can also look at a that list of students without the notifications by clicking 'Students' at the top of the map</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="expTItle" destination="Jhm-xa-O9z" id="9ET-ut-Myy"/>
+                        <outlet property="expText" destination="72B-ac-7vm" id="OSQ-Tz-zRq"/>
+                        <outlet property="perHourLabel" destination="6CP-BL-xVl" id="N6u-4u-2fR"/>
+                        <outlet property="rate" destination="3zQ-Lf-dMO" id="FuZ-B3-Foa"/>
+                        <outlet property="rateSLider" destination="QIJ-kn-89u" id="Aw4-8e-Xw3"/>
+                        <outlet property="setRateLabel" destination="sWc-HH-kNL" id="LLq-GC-EPD"/>
+                        <segue destination="IQw-MT-eGb" kind="show" identifier="toMap" id="FkZ-fb-a2G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eVq-3x-DNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1699.5" y="-542.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -399,7 +590,7 @@
         <!--Halp-->
         <scene sceneID="k3x-SB-hYb">
             <objects>
-                <viewController id="IQw-MT-eGb" customClass="MapController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapController" id="IQw-MT-eGb" customClass="MapController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tNF-el-sgE"/>
                         <viewControllerLayoutGuide type="bottom" id="O3d-LK-Y4U"/>
@@ -408,8 +599,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-zj-uyJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-zj-uyJ">
+                                <rect key="frame" x="0.0" y="-6" width="375" height="673"/>
                                 <connections>
                                     <outlet property="delegate" destination="IQw-MT-eGb" id="hTW-9M-bwg"/>
                                 </connections>
@@ -437,6 +628,12 @@
                                     <constraint firstAttribute="height" constant="27" id="yeL-Rn-7wh"/>
                                 </constraints>
                             </imageView>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WYq-fV-YOP">
+                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="445839573.83060998">
+                                    <!--2015-02-17 04:19:33 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -465,6 +662,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="datePicker" destination="WYq-fV-YOP" id="aj8-q7-s84"/>
                         <outlet property="findTutorButton" destination="d2y-DM-HdV" id="27i-S5-S5w"/>
                         <outlet property="map" destination="6c7-zj-uyJ" id="bhb-AL-bY0"/>
                         <outlet property="nav" destination="Zhb-nI-cX2" id="axH-13-TXw"/>
@@ -1198,7 +1396,7 @@
         <image name="student.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OZU-QR-Khw"/>
         <segue reference="6IL-E7-WHO"/>
+        <segue reference="jMr-h5-ryh"/>
     </inferredMetricsTieBreakers>
 </document>

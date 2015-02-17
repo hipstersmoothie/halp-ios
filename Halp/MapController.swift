@@ -19,8 +19,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     var manager:CLLocationManager!
     var center = false
     let halpApi = HalpAPI()
+    var dateField: UITextField?
 
     @IBOutlet var nav: UINavigationItem!
+    @IBOutlet var datePicker: UIDatePicker!
     @IBAction func TutorListButton(sender: AnyObject) {
         let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
         nav.backBarButtonItem = backItem
@@ -28,10 +30,55 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     @IBAction func findTutorButton(sender: AnyObject) {
-        let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
+        if pinMode == "student" {
+            let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
+            
+            nav.backBarButtonItem = backItem
+            userLocation = map.region.center
+            self.performSegueWithIdentifier("toDetail", sender: self)
+        } else {
+            //Prompt for Time
+            let alertController = UIAlertController(title: "How long do you want to tutor for?", message: "Your pin will dissapear after this time.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alertController.addTextFieldWithConfigurationHandler { (textField) in
+                textField.inputView = self.datePicker
+                textField.textAlignment = .Center
+                self.dateField = textField
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                // ...
+            }
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                self.halpApi.postPin([
+                    "pinMode": pinMode,
+                    "duration": self.datePicker.date.timeIntervalSinceNow,
+                    "latitude": self.map.region.center.latitude,
+                    "longitude": self.map.region.center.longitude
+                    ], completionHandler: self.tutorPinPosted)
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true) { }
+        }
+    }
     
-        nav.backBarButtonItem = backItem
-        userLocation = map.region.center
+    func tutorPinPosted(success:Bool, json:JSON) {
+        println(json)
+    }
+    
+
+    func datePickerChanged(datePicker:UIDatePicker) {
+        var dateFormatter = NSDateFormatter()
+        println("here")
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        var strDate = dateFormatter.stringFromDate(datePicker.date)
+        dateField?.text = strDate
     }
     
     func addPin(pin:UserPin) {
@@ -97,14 +144,22 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         findTutorButton.layer.borderWidth = 1
         findTutorButton.layer.borderColor = UIColor.whiteColor().CGColor
         findTutorButton.clipsToBounds = true
+        if pinMode == "tutor" {
+            findTutorButton.setTitle("Place Tutor Pin", forState: .Normal)
+        }
         
         self.navigationItem.hidesBackButton = true
         navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
+        if pinMode == "tutor" {
+            self.navigationItem.rightBarButtonItem?.title = "Students"
+        }
         
         map.showsUserLocation = true
+        datePicker.removeFromSuperview()
+        datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
     }
     
     func launchMenu() {

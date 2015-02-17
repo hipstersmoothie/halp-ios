@@ -23,7 +23,11 @@ class UserPin: NSObject {
         self.longitude = user["longitude"].doubleValue
         self.pinDescription = user["description"].stringValue
         self.skills = user["skills"].arrayObject as [String]
-        self.images = user["images"].arrayObject as [String]
+        if let images = user["images"].arrayObject as? [String] {    
+            self.images = images
+        } else {
+            self.images = []
+        }
         
         var unis =  user["courses"].dictionaryValue
         self.courses = Dictionary<String, [Course]>()

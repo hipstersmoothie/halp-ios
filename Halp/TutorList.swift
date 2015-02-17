@@ -68,6 +68,10 @@ class TutorList: UITableViewController, UITableViewDelegate {
         tutors.append(harry)
         tutors.append(tanner)
         tutors.append(emma)
+        
+        if pinMode == "tutor" {
+            self.navigationItem.title = "Students in Area"
+        }
     }
     
     override func didReceiveMemoryWarning() {
