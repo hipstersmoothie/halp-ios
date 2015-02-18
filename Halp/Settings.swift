@@ -12,6 +12,8 @@ class Settings: UITableViewController {
     var courseRow = 1
     var firstname:String!
     let halpApi = HalpAPI()
+    var universities:[String] = []
+    var courses:[[Course]] = []
     
     @IBAction func addUniRow(sender: AnyObject) {
         courseRow++
@@ -48,7 +50,6 @@ class Settings: UITableViewController {
             params.updateValue(tutor, forKey: "tutor")
         }
         
-        
         halpApi.updateProfile(params, completionHandler: self.updatedProfile)
     }
     
@@ -65,6 +66,13 @@ class Settings: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for (university, courseList) in loggedInUser.courses {
+            universities.append(university)
+            courses.append(courseList)
+        }
+        
+        courseRow = universities.count
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,6 +83,8 @@ class Settings: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: Table View Functions
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if loggedInUser.rate > 0 {
@@ -122,7 +132,7 @@ class Settings: UITableViewController {
             } else if indexPath.row == 1 {
                 skills = self.tableView.dequeueReusableCellWithIdentifier("skills") as skillsCell
                 
-                skills.skills.text = ",".join(loggedInUser.skills)
+                skills.skills.text = ", ".join(loggedInUser.skills)
                 
                 skills.selectionStyle = .None
                 return skills
@@ -142,6 +152,13 @@ class Settings: UITableViewController {
             if indexPath.row == 0 || indexPath.row < courseRow {
                 var expCell = self.tableView.dequeueReusableCellWithIdentifier("uniAndCourse") as experienceCell
                 
+                expCell.university.text = universities[indexPath.row]
+                var courseArr:[String] = []
+                for course in courses[indexPath.row] {
+                    courseArr.append("\(course.subject) \(course.number)")
+                }
+                
+                expCell.courseList.text = ", ".join(courseArr)
                 expCell.selectionStyle = .None
                 return expCell
             } else {

@@ -70,7 +70,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             if success {
                 createAlert(self, "Success!", "You will now be notified when students post pins that match your profile.")
             } else {
-                println(json)
                 createAlert(self, "Error!", "Couldn't place pin. You might already have a pin down")
             }
         }
@@ -96,15 +95,18 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         
-        var annotation = MKPointAnnotation()
+        var annotation = UserPinAnnotation()
         annotation.coordinate = location
         
-        var a = pin.courses["Cal Poly"]?[0]
-        if let subject = a?.subject {
-            if let number = a?.number {
-                annotation.title = "\(subject) \(number)"
+        if pinMode == "tutor" {
+            for (university, courseList) in pin.courses {
+                for course in courseList {
+                    annotation.title = "\(course.subject) \(course.number)"
+                }
             }
-        }        
+        } else {
+            annotation.title = pin.user.firstname
+        }
         
         var skills = ""
         for var i = 0; i < pin.skills.count; i++ {
@@ -114,11 +116,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
         }
         annotation.subtitle = skills
+        annotation.pin = pin
+
         map.addAnnotation(annotation)
     }
     
     func gotPins(success: Bool, json: JSON) {
         if success {
+            println(json)
             var pins = json["pins"]
             pinsInArea = []
             for (index: String, subJson: JSON) in pins {
@@ -194,4 +199,47 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        mapView.userLocation
+        if  annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "userPin"
+        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        
+        if anView == nil {
+            var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView.canShowCallout = true
+            pinView.pinColor = .Red
+            
+            pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
+            return pinView
+        }
+        else {
+            anView.annotation = annotation
+        }
+        
+        return anView
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
+        calloutAccessoryControlTapped control: UIControl!) {
+        if control == view.rightCalloutAccessoryView {
+            if let pin = view.annotation as? UserPinAnnotation {
+                selectedTutor = pin.pin
+                if pinMode == "student" {
+                    self.performSegueWithIdentifier("toProfile", sender: self)
+                } else {
+                    self.performSegueWithIdentifier("toStudentProfile", sender: self)
+                }
+                
+            }
+        }
+    }
+}
+
+class UserPinAnnotation: MKPointAnnotation {
+    var pin: UserPin!
 }

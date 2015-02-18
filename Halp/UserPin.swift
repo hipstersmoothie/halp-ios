@@ -18,7 +18,7 @@ class UserPin: NSObject {
     var images:[String]
     
     init(user:JSON) {
-        self.user = User(user: user["user"])
+        self.user = User(user: user["user"], courses: user["courses"])
         self.latitude = user["latitude"].doubleValue
         self.longitude = user["longitude"].doubleValue
         self.pinDescription = user["description"].stringValue
@@ -36,9 +36,7 @@ class UserPin: NSObject {
         
         for (key, val) in unis {
             self.courses.updateValue(getCourses(val), forKey: key)
-        }
-        
-        println("some stuff \(self.courses)")
+        }        
     }
 }
 

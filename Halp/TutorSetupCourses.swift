@@ -60,6 +60,8 @@ class TutorSetupCourses: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Table View Functions
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

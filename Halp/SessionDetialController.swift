@@ -17,6 +17,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var addPhoto: UIButton!
     @IBOutlet var sessDesc: UITextView!
+    @IBOutlet var skillsField: UITextField!
     @IBOutlet var nav: UINavigationItem!
     let halpApi = HalpAPI()
     
@@ -75,13 +76,17 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
             self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.backBarButtonItem = nil
             var course = split(courseField.text) {$0 == " "}
+            var skillsArr = split(skillsField.text) {$0 == ","}
+            skillsArr = skillsArr.map({ skill in
+                skill.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            })
             var params = [
                 "pinMode": pinMode,
                 "latitude": "\(userLocation.latitude)",
                 "longitude": "\(userLocation.longitude)",
                 "duration": datePicker.date.timeIntervalSinceNow,
                 "description": sessDesc.text!,
-                "skills": [],
+                "skills": skillsArr,
                 "images": [],
                 "courses" : [
                     universityField.text!: [
@@ -90,7 +95,6 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
                             "number": course[1]
                         ]
                     ]
-                    
                 ]
             ]
             

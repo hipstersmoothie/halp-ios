@@ -14,14 +14,14 @@ class User: NSObject {
     var lastname:String
     var image:String
     
-    var rating:Double
+    var rating:Float
     var ratings:Int
     var bio: String
     var rate: Double
     var skills: [String]
     var courses: Dictionary<String, [Course]>
     
-    init(user:JSON) {
+    init(user:JSON, courses:JSON) {
         self.userId = user["userId"].intValue
         self.firstname = user["firstname"].stringValue
         self.lastname = user["lastname"].stringValue
@@ -32,9 +32,16 @@ class User: NSObject {
         if user["rate"].doubleValue > 0 {
             self.bio = user["bio"].stringValue
             self.rate = user["rate"].doubleValue
-            self.rating = user["rating"].doubleValue
+            self.rating = user["rating"].floatValue
             self.ratings = user["ratings"].intValue
+            
+            var unis =  courses.dictionaryValue
             self.courses = Dictionary<String, [Course]>()
+                        
+            for (key, val) in unis {
+                self.courses.updateValue(getCourses(val), forKey: key)
+            }
+            
         } else {
             self.bio = user["tutor"]["bio"].stringValue
             self.rate = user["tutor"]["rate"].doubleValue

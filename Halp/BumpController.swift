@@ -18,6 +18,12 @@ class BumpController: UIViewController {
         self.becomeFirstResponder()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Bump Functions
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
@@ -29,10 +35,4 @@ class BumpController: UIViewController {
             self.navigationController?.pushViewController(chat, animated: true)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

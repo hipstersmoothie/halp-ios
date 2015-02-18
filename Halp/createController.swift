@@ -12,31 +12,6 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
     @IBOutlet var addPhoto: UIButton!
     let halpApi = HalpAPI()
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        addPhoto.frame = CGRectMake(100, 100, 100, 100)
-        addPhoto.setBackgroundImage(image, forState: .Normal)
-        addPhoto.setTitle("", forState: .Normal)
-    }
-    
-    @IBAction func addPhotoButton(sender: AnyObject) {
-        var image = UIImagePickerController()
-        image.delegate = self
-        image.sourceType = .PhotoLibrary
-        image.allowsEditing = false
-        self.presentViewController(image, animated: true, completion: nil)
-    }
-    
-    func isValidEmail(testStr:String) -> Bool {
-        println("validate calendar: \(testStr)")
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        
-        var emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        let result = emailTest?.evaluateWithObject(testStr)
-        return result!
-    }
-    
     @IBOutlet var email: UITextField!
     @IBOutlet var firstname: UITextField!
     @IBOutlet var lastName: UITextField!
@@ -116,16 +91,22 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.popViewControllerAnimated(true)
     }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func isValidEmail(testStr:String) -> Bool {
+        println("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        
+        var emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest?.evaluateWithObject(testStr)
+        return result!
+    }
+    
+    // MARK: Text Field Usability
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
@@ -133,5 +114,22 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    // MARK: Image Picker functions
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        addPhoto.frame = CGRectMake(100, 100, 100, 100)
+        addPhoto.setBackgroundImage(image, forState: .Normal)
+        addPhoto.setTitle("", forState: .Normal)
+    }
+    
+    @IBAction func addPhotoButton(sender: AnyObject) {
+        var image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = .PhotoLibrary
+        image.allowsEditing = false
+        self.presentViewController(image, animated: true, completion: nil)
     }
 }

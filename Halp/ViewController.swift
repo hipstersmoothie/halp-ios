@@ -18,7 +18,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
     @IBOutlet var diffAccountLabel: UILabel!
-    
     @IBAction func login(sender: AnyObject) {
         if username.text == "" {
             createAlert(self, "Error Logging In", "Please provide an email address.")
@@ -36,11 +35,13 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         }
     }
     
+    // MARK: Login Functions
     func afterLogin(success: Bool, json: JSON) {
         dispatch_async(dispatch_get_main_queue()) {
             start(self.view)
             if success {
-                loggedInUser = User(user: json["profile"])
+                println(json)
+                loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
                 sessionId = json["sessionId"]
                 self.performSegueWithIdentifier("toApp", sender: self)
             } else {
@@ -55,6 +56,16 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     
     @IBAction func googlePlusLogin(sender: AnyObject) {
         
+    }
+    
+    func executeHandle(notification:NSNotification){
+        let params = [
+            "accessToken" : notification.object as String,
+            "type" : "facebook"
+            ] as Dictionary <String, String>
+        
+        pause(self.view)
+        halpApi.login(params, completionHandler: self.afterLogin)
     }
     
     @IBOutlet var loginButton: UIButton!
@@ -105,7 +116,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    // MARK: Text Field Usability
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
@@ -114,21 +126,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         return true
     }
     
+    // MARK: Only Portrait Mode
     override func shouldAutorotate() -> Bool {
         return false
     }
     
     override func supportedInterfaceOrientations() -> Int {
         return UIInterfaceOrientation.Portrait.rawValue
-    }
-    
-    func executeHandle(notification:NSNotification){
-        let params = [
-            "accessToken" : notification.object as String,
-            "type" : "facebook"
-        ] as Dictionary <String, String>
-
-        pause(self.view)
-        halpApi.login(params, completionHandler: self.afterLogin)
     }
 }

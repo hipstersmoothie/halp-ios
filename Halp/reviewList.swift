@@ -23,7 +23,7 @@ class reviewList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedTutor.reviews.count
+        return 1
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -39,9 +39,11 @@ class reviewList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:reviewRow = tableView.dequeueReusableCellWithIdentifier("reviewCell") as reviewRow
         
-        cell.reviewBody?.text = selectedTutor.reviews[indexPath.row].reviewBody
-        cell.title?.text = selectedTutor.reviews[indexPath.row].title
-        cell.rating?.rating = selectedTutor.reviews[indexPath.row].rating
+        cell.title.text = "No Reviews :("
+        cell.rating?.rating = 0
+//        cell.reviewBody?.text = selectedTutor.reviews[indexPath.row].reviewBody
+//        cell.title?.text = selectedTutor.reviews[indexPath.row].title
+//        cell.rating?.rating = selectedTutor.reviews[indexPath.row].rating
         
         return cell;
     }

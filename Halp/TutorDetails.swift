@@ -9,19 +9,18 @@
 import UIKit
 
 class TutorDetails: UIViewController {
-    @IBOutlet var university: UILabel!
-    @IBOutlet var major: UILabel!
-    @IBOutlet var year: UILabel!
+    @IBOutlet var bio: UITextView!
     @IBOutlet var classes: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        university.text = selectedTutor.university
-        major.text = selectedTutor.major
-        year.text = "\(selectedTutor.year)"
-        
+        bio.text = selectedTutor.user.bio
+        println(selectedTutor.user.courses)
         var classList = ""
-        for classString in selectedTutor.classes {
-            classList.extend("\(classString)\n")
+        for (university, courseList) in selectedTutor.user.courses {
+            println(university)
+            for course in courseList {
+                classList.extend("\(course.subject) \(course.number)\n")
+            }
         }
         
         classes.text = classList

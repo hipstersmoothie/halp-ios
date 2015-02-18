@@ -18,7 +18,7 @@ class SessionCounterController: UIViewController {
     @IBOutlet var hold: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        rate.text = "$\(selectedTutor.pph)/hour"
+        rate.text = "$\(selectedTutor.user.rate)/hour"
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increment"), userInfo: nil, repeats: true)
         
         var btn_LongPress_gesture = UILongPressGestureRecognizer(target: self, action: "handleBtnLongPressgesture:")
@@ -58,7 +58,7 @@ class SessionCounterController: UIViewController {
             time.text = "\(minutes):\(seconds)"
         }
         
-        var price = Float(selectedTutor.pph)
+        var price = Float(selectedTutor.user.rate)
         var timeF = Float(totTime)
         price =  (price / (60 * 60)) * timeF
         

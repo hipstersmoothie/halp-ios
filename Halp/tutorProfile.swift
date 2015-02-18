@@ -43,11 +43,17 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate, LGChatControllerD
     @IBOutlet var rating: FloatRatingView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = selectedTutor.name
-        rating.rating = selectedTutor.rating
-        price.text = "$\(selectedTutor.pph)/hour"
+        self.navigationItem.title = selectedTutor.user.firstname
+        rating.rating = selectedTutor.user.rating
+        var rateString = NSString(format:"%.2f", selectedTutor.user.rate)
+        price.text = "$\(rateString)/hour"
         
-        profilePic.image = selectedTutor.profilePic
+        if selectedTutor.user.image != "" {
+            profilePic.image = UIImage(named: selectedTutor.user.image)
+        } else {
+            profilePic.image = UIImage(named: "tutor.jpeg")
+        }
+        
         profilePic.layer.borderWidth=1.0
         profilePic.layer.masksToBounds = false
         profilePic.layer.borderColor = UIColor.whiteColor().CGColor
@@ -55,10 +61,10 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate, LGChatControllerD
         profilePic.layer.cornerRadius = profilePic.frame.size.height/2
         profilePic.clipsToBounds = true
         
-        if selectedTutor.interestedInTutoringYou == true {
-            rOSButton.setTitle("Start Session", forState: .Normal)
-        }
-                
+//        if selectedTutor.interestedInTutoringYou == true {
+//            rOSButton.setTitle("Start Session", forState: .Normal)
+//        }
+        
         rOSButton.backgroundColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
         rOSButton.layer.cornerRadius = 12
         rOSButton.layer.borderWidth = 1
