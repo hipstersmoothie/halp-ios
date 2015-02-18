@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Andrew Lisowski. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import MapKit
 
-class StudentAnnotation: MKPointAnnotation {
-    var imageName:String!
+class UserPinAnnotation: MKPointAnnotation {
+    var pin: UserPin!
+    var myPin:Bool!
 }

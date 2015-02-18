@@ -33,15 +33,7 @@ class studentProfile: UIViewController {
             }
         }
         
-        //Skills
-        var skillsArr = ""
-        for var i = 0; i < selectedTutor.skills.count; i++ {
-            skillsArr += selectedTutor.skills[i]
-            if i != selectedTutor.skills.count - 1 {
-                skillsArr += ", "
-            }
-        }
-        skills.text = skillsArr
+        skills.text = ", ".join(selectedTutor.skills)
         pinDesc.text = selectedTutor.pinDescription
         
         

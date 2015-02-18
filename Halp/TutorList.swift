@@ -55,15 +55,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
                 }
             }
             
-            var skills = ""
-            var pin = pinsInArea[indexPath.row]
-            for var i = 0; i < pin.skills.count; i++ {
-                skills += pin.skills[i]
-                if i != pin.skills.count - 1 {
-                    skills += ", "
-                }
-            }
-            cell.skills.text = skills
+            cell.skills.text = ", ".join(pinsInArea[indexPath.row].skills)
             
             return cell
         }

@@ -109,14 +109,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             annotation.title = pin.user.firstname
         }
         
-        var skills = ""
-        for var i = 0; i < pin.skills.count; i++ {
-            skills += pin.skills[i]
-            if i != pin.skills.count - 1 {
-                skills += ", "
-            }
-        }
-        annotation.subtitle = skills
+        annotation.subtitle = ", ".join(pin.skills)
         annotation.pin = pin
         annotation.myPin = myPin
 
@@ -128,8 +121,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             var pins = json["pins"]
             pinsInArea = []
             for (index: String, subJson: JSON) in pins {
-                var skills:[String] = subJson["skills"].arrayObject as [String]
-
                 let user = UserPin(user: subJson)
                 pinsInArea.append(user)
                 addPin(user, myPin: false)
@@ -269,7 +260,4 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
 }
 
-class UserPinAnnotation: MKPointAnnotation {
-    var pin: UserPin!
-    var myPin:Bool!
-}
+
