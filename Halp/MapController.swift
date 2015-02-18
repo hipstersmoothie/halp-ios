@@ -23,6 +23,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
 
     @IBOutlet var nav: UINavigationItem!
     @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var tutorIcon: UIImageView!
     @IBAction func TutorListButton(sender: AnyObject) {
         let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
         nav.backBarButtonItem = backItem
@@ -86,7 +87,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         dateField?.text = strDate
     }
     
-    func addPin(pin:UserPin) {
+    func addPin(pin:UserPin, myPin:Bool) {
         var latitude:CLLocationDegrees = CLLocationDegrees(pin.latitude)
         var longitude:CLLocationDegrees = CLLocationDegrees(pin.longitude)
 
@@ -117,13 +118,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
         annotation.subtitle = skills
         annotation.pin = pin
+        annotation.myPin = myPin
 
         map.addAnnotation(annotation)
     }
     
     func gotPins(success: Bool, json: JSON) {
         if success {
-            println(json)
             var pins = json["pins"]
             pinsInArea = []
             for (index: String, subJson: JSON) in pins {
@@ -131,11 +132,29 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
 
                 let user = UserPin(user: subJson)
                 pinsInArea.append(user)
-                addPin(user)
+                addPin(user, myPin: false)
             }
         } else {
             //error getting pins
         }
+    }
+    
+    func gotMyPins(success:Bool, json:JSON) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if pinMode == "student" {
+                myPin = UserPin(user: json["student"])
+            } else {
+                myPin = UserPin(user: json["tutor"])
+            }
+            
+            if myPin.latitude > 0 {
+                self.tutorIcon.hidden = true
+            }
+            self.addPin(myPin, myPin: true)
+        }
+        
+        println("MY PINS")
+        println(json)
     }
     
     @IBOutlet var findTutorButton: UIButton!
@@ -144,6 +163,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
         halpApi.getTutorsInArea(self.gotPins)
+        halpApi.getMyPins(self.gotMyPins)
         navigationController?.setNavigationBarHidden(false, animated: true)
         manager = CLLocationManager()
         manager.delegate = self
@@ -212,7 +232,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         if anView == nil {
             var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView.canShowCallout = true
-            pinView.pinColor = .Red
+            if let myPin = annotation as? UserPinAnnotation {
+                if myPin.myPin == true {
+                    pinView.image = UIImage(named: "student.png")
+                    pinView.frame = CGRectMake(0, 0, 20, 27)
+                } else {
+                    pinView.pinColor = .Red
+                }
+            }
             
             pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
             return pinView
@@ -220,6 +247,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         else {
             anView.annotation = annotation
         }
+        
+
         
         return anView
     }
@@ -242,4 +271,5 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
 
 class UserPinAnnotation: MKPointAnnotation {
     var pin: UserPin!
+    var myPin:Bool!
 }

@@ -80,6 +80,14 @@ class HalpAPI {
         halpRequest("/pins", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
+    func getMyPins(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "pinMode": "mine"
+        ]
+        
+        halpRequest("/pins", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
     func postPin(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
         halpRequest("/pin", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }

@@ -738,6 +738,7 @@
                         <outlet property="findTutorButton" destination="cTa-lS-yyM" id="05S-Zs-aKd"/>
                         <outlet property="map" destination="6c7-zj-uyJ" id="bhb-AL-bY0"/>
                         <outlet property="nav" destination="Zhb-nI-cX2" id="axH-13-TXw"/>
+                        <outlet property="tutorIcon" destination="y4g-HQ-Eik" id="cyl-tJ-NiM"/>
                         <segue destination="2mD-ax-29V" kind="show" identifier="toTutors" id="evS-bq-RUB"/>
                         <segue destination="zg9-bm-efp" kind="show" identifier="toProfile" id="2u0-A8-9Wo"/>
                         <segue destination="uK6-rC-NoG" kind="show" identifier="toDetail" id="sFe-05-7EP"/>
