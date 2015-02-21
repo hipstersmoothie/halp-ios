@@ -14,10 +14,9 @@ class TutorDetails: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bio.text = selectedTutor.user.bio
-        println(selectedTutor.user.courses)
+
         var classList = ""
         for (university, courseList) in selectedTutor.user.courses {
-            println(university)
             for course in courseList {
                 classList.extend("\(course.subject) \(course.number)\n")
             }

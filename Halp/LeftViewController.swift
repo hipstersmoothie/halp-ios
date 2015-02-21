@@ -19,12 +19,17 @@ protocol LeftMenuProtocol : class {
     func changeViewController(menu: LeftMenu)
 }
 
+protocol LeftViewControllerDelegate{
+    func refreshMyPin(controller:LeftViewController)
+}
+
 class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var settingsViewController: UIViewController!
     var tutorSetupController: UIViewController!
     var loginViewController: UIViewController!
     var halpApi = HalpAPI()
+    var delegate:LeftViewControllerDelegate? = nil
     
     override init() {
         super.init()
@@ -105,6 +110,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             self.slideMenuController()?.closeLeft()
             break
         case .RemovePin:
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let map = storyboard.instantiateViewControllerWithIdentifier("MapController") as MapController
+            nvc.pushViewController(map, animated: false)
             halpApi.deletePin(self.afterDeletePin)
             break
         case .Logout:
@@ -115,5 +123,4 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             break
         }
     }
-    
 }

@@ -13,6 +13,8 @@ import CoreLocation
 var pinsInArea:[UserPin] = []
 var myPin:UserPin!
 var userLocation:CLLocationCoordinate2D!
+var northWest:CLLocationCoordinate2D!
+var southEast:CLLocationCoordinate2D!
 
 class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet var map: MKMapView!
@@ -20,6 +22,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     var center = false
     let halpApi = HalpAPI()
     var dateField: UITextField?
+    var myPinAnn:UserPinAnnotation!
 
     @IBOutlet var nav: UINavigationItem!
     @IBOutlet var datePicker: UIDatePicker!
@@ -30,12 +33,18 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.performSegueWithIdentifier("toTutors", sender: self)
     }
     
+    func getCoordinateFromMapRectanglePoint(x:Double, y:Double) -> CLLocationCoordinate2D {
+        var swMapPoint = MKMapPointMake(x, y);
+        return MKCoordinateForMapPoint(swMapPoint);
+    }
+    
     @IBAction func findTutorButton(sender: AnyObject) {
         if pinMode == "student" {
             let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
             
             nav.backBarButtonItem = backItem
             userLocation = map.region.center
+            
             self.performSegueWithIdentifier("toDetail", sender: self)
         } else {
             //Prompt for Time
@@ -69,6 +78,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func tutorPinPosted(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
             if success {
+                self.halpApi.getMyPins(self.gotMyPins)
                 createAlert(self, "Success!", "You will now be notified when students post pins that match your profile.")
             } else {
                 createAlert(self, "Error!", "Couldn't place pin. You might already have a pin down")
@@ -99,53 +109,67 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         var annotation = UserPinAnnotation()
         annotation.coordinate = location
         
-        if pinMode == "tutor" {
+        if (pinMode == "tutor" && myPin == true) || (pinMode == "student" && myPin == false) {
+            annotation.title = pin.user.firstname
+        } else {
             for (university, courseList) in pin.courses {
                 for course in courseList {
                     annotation.title = "\(course.subject) \(course.number)"
                 }
             }
-        } else {
-            annotation.title = pin.user.firstname
         }
         
         annotation.subtitle = ", ".join(pin.skills)
         annotation.pin = pin
         annotation.myPin = myPin
-
+        
+        if myPin == true {
+            myPinAnn = annotation
+        }
+    
+        //check if pin is already on map
+        for ann in map.annotations {
+            if let uPin = ann as? UserPinAnnotation {
+                if uPin.pin.user.userId == annotation.pin.user.userId {
+                    return
+                }
+            }
+        }
+        
+        if myPin == false {
+            pinsInArea.append(pin)
+        }
         map.addAnnotation(annotation)
     }
     
     func gotPins(success: Bool, json: JSON) {
-        if success {
-            var pins = json["pins"]
-            pinsInArea = []
-            for (index: String, subJson: JSON) in pins {
-                let user = UserPin(user: subJson)
-                pinsInArea.append(user)
-                addPin(user, myPin: false)
+        dispatch_async(dispatch_get_main_queue()) {
+            if success {
+                for (index: String, subJson: JSON) in json["pins"] {
+                    self.addPin(UserPin(user: subJson), myPin: false)
+                }
+            } else {
+                //error getting pins
             }
-        } else {
-            //error getting pins
         }
     }
     
     func gotMyPins(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
-            if pinMode == "student" {
+            if pinMode == "student" && json["student"] != nil {
                 myPin = UserPin(user: json["student"])
-            } else {
+            } else if pinMode == "tutor" && json["tutor"] != nil {
                 myPin = UserPin(user: json["tutor"])
+            } else {
+                return
             }
             
             if myPin.latitude > 0 {
                 self.tutorIcon.hidden = true
             }
+            
             self.addPin(myPin, myPin: true)
         }
-        
-        println("MY PINS")
-        println(json)
     }
     
     @IBOutlet var findTutorButton: UIButton!
@@ -153,8 +177,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
-        halpApi.getTutorsInArea(self.gotPins)
-        halpApi.getMyPins(self.gotMyPins)
         navigationController?.setNavigationBarHidden(false, animated: true)
         manager = CLLocationManager()
         manager.delegate = self
@@ -182,6 +204,33 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         map.showsUserLocation = true
         datePicker.removeFromSuperview()
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
+        pinsInArea = []
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+    }
+    
+    func getPins() {
+        let mRect = map.visibleMapRect
+        let mode:NSString = (pinMode == "student") ? "tutor" : "student"
+        northWest = getCoordinateFromMapRectanglePoint(MKMapRectGetMinX(mRect), y: mRect.origin.y)
+        southEast = getCoordinateFromMapRectanglePoint(MKMapRectGetMaxX(mRect), y: MKMapRectGetMaxY(mRect))
+        var params = [
+            "pinMode": mode,
+            "lat1": northWest.latitude,
+            "lng1": northWest.longitude,
+            "lat2": southEast.latitude,
+            "lng2": southEast.longitude
+        ]
+
+        //map.removeAnnotations(map.annotations)
+        halpApi.getTutorsInArea(params, self.gotPins)
+        halpApi.getMyPins(self.gotMyPins)
+    }
+    
+    func refreshMyPin(controller: LeftViewController) {
+        map.removeAnnotation(myPinAnn)
+        halpApi.getMyPins(self.gotMyPins)
     }
     
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
@@ -189,14 +238,15 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             var userLocation:CLLocation = locations[0] as CLLocation
             var latitude:CLLocationDegrees = userLocation.coordinate.latitude
             var longitude:CLLocationDegrees = userLocation.coordinate.longitude
-            var latDelta:CLLocationDegrees = 0.01
-            var lonDelta:CLLocationDegrees = 0.01
+            var latDelta:CLLocationDegrees = 0.1
+            var lonDelta:CLLocationDegrees = 0.1
             
             var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
             var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
             var region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
             
-            map.setRegion(region, animated: true)
+            map.setRegion(region, animated: false)
+            getPins()
             center = true
         }
     }
@@ -217,30 +267,39 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             return nil
         }
         
-        let reuseId = "userPin"
-        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-        
-        if anView == nil {
-            var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView.canShowCallout = true
-            if let myPin = annotation as? UserPinAnnotation {
-                if myPin.myPin == true {
+        var anView:MKAnnotationView = MKAnnotationView()
+        if let myPin = annotation as? UserPinAnnotation {
+            if myPin.myPin == true {
+                let reuseId = "myPin"
+                var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+                
+                if anView == nil {
+                    var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                    pinView.canShowCallout = true
                     pinView.image = UIImage(named: "student.png")
                     pinView.frame = CGRectMake(0, 0, 20, 27)
+                    pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
+                    return pinView
                 } else {
+                    anView.annotation = annotation
+                    return anView
+                }
+            } else {
+                let reuseId = "userPin"
+                var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+                
+                if anView == nil {
+                    var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                    pinView.canShowCallout = true
                     pinView.pinColor = .Red
+                    pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
+                    return pinView
+                } else {
+                    anView.annotation = annotation
+                    return anView
                 }
             }
-            
-            pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
-            return pinView
         }
-        else {
-            anView.annotation = annotation
-        }
-        
-
-        
         return anView
     }
     
@@ -249,14 +308,43 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         if control == view.rightCalloutAccessoryView {
             if let pin = view.annotation as? UserPinAnnotation {
                 selectedTutor = pin.pin
-                if pinMode == "student" {
-                    self.performSegueWithIdentifier("toProfile", sender: self)
-                } else {
+                if (pinMode == "student" && pin.myPin == true) || (pinMode == "tutor" && pin.myPin == false) {
                     self.performSegueWithIdentifier("toStudentProfile", sender: self)
+                } else {
+                    self.performSegueWithIdentifier("toProfile", sender: self)
                 }
-                
             }
         }
+    }
+    
+    var mapChangedFromUserInteraction:Bool = false
+    
+    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
+        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+        
+        if mapChangedFromUserInteraction == true {
+            getPins()
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, regionWillChangeAnimated animated: Bool) {
+        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+        
+        if mapChangedFromUserInteraction == true {
+           getPins()
+        }
+    }
+    
+    func mapViewRegionDidChangeFromUserInteraction() -> Bool {
+        var view:UIView = map.subviews.first as UIView
+        
+        for recognizer in view.gestureRecognizers as [UIGestureRecognizer] {
+            if recognizer.state == UIGestureRecognizerState.Began || recognizer.state == UIGestureRecognizerState.Ended {
+                return true
+            }
+        }
+        
+        return false
     }
 }
 

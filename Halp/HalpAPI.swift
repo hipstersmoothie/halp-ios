@@ -17,11 +17,12 @@ class HalpAPI {
     
     func addQueryStringParams(oldUrl:String, params: Dictionary<String, AnyObject>) -> NSURL {
         var newUrl = "\(oldUrl)?"
+        var tuples:[String] = []
         for (key, val) in params {
-            newUrl += "\(key)=\(val)"
+            tuples.append("\(key)=\(val)")
         }
         
-        return NSURL(string: newUrl)!
+        return NSURL(string: newUrl + "&".join(tuples))!
     }
     
     func halpRequest(url: String, method: String, params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?, sessionId: String) {
@@ -37,7 +38,6 @@ class HalpAPI {
         }
         
         if (method == "GET" || method == "DELETE") && params.count > 0 {
-            
             request.URL = addQueryStringParams(request.URL!.absoluteString!, params: params)
         }
 
@@ -72,11 +72,7 @@ class HalpAPI {
         halpRequest("/register", method: "POST", params: params, completionHandler: completionHandler, sessionId: "")
     }
     
-    func getTutorsInArea(completionHandler: ((Bool, JSON) -> Void)?) {
-        var params = [
-            "pinMode": (pinMode == "student") ? "tutor" : "student"
-        ]
-        
+    func getTutorsInArea(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
         halpRequest("/pins", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     

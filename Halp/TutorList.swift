@@ -62,9 +62,10 @@ class TutorList: UITableViewController, UITableViewDelegate {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if pinsInArea[indexPath.row].skills.count > 0 {
+        if pinsInArea[indexPath.row].skills.count > 0 && pinsInArea[indexPath.row].pinDescription != "" {
             return 61
         }
+        
         return 44
     }
 }

@@ -51,3 +51,14 @@ func colorWithHexString (hex:String) -> UIColor {
         alpha: CGFloat(1.0)
     )
 }
+
+extension Array {
+    func find(includedElement: T -> Bool) -> Int? {
+        for (idx, element) in enumerate(self) {
+            if includedElement(element) {
+                return idx
+            }
+        }
+        return nil
+    }
+}
