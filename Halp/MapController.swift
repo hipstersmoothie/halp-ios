@@ -19,7 +19,7 @@ var southEast:CLLocationCoordinate2D!
 class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet var map: MKMapView!
     var manager:CLLocationManager!
-    var center = false
+    var center = false, findMe = false
     let halpApi = HalpAPI()
     var dateField: UITextField?
     var myPinAnn:UserPinAnnotation!
@@ -39,7 +39,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     @IBAction func findTutorButton(sender: AnyObject) {
-        if pinMode == "student" {
+        if findTutorButton.titleLabel?.text == "Go to my Pin" {
+            map.setRegion(focusRegion(CLLocation(latitude: myPin.latitude, longitude: myPin.longitude)), animated: true)
+        } else if pinMode == "student" {
             let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
             
             nav.backBarButtonItem = backItem
@@ -122,10 +124,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         annotation.subtitle = ", ".join(pin.skills)
         annotation.pin = pin
         annotation.myPin = myPin
-        
-        if myPin == true {
-            myPinAnn = annotation
-        }
     
         //check if pin is already on map
         for ann in map.annotations {
@@ -138,7 +136,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         if myPin == false {
             pinsInArea.append(pin)
+        } else {
+            myPinAnn = annotation
         }
+        
         map.addAnnotation(annotation)
     }
     
@@ -156,6 +157,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func gotMyPins(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
+            myPin = nil
             if pinMode == "student" && json["student"] != nil {
                 myPin = UserPin(user: json["student"])
             } else if pinMode == "tutor" && json["tutor"] != nil {
@@ -167,14 +169,60 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             if myPin.latitude > 0 {
                 self.tutorIcon.hidden = true
             }
-            
+                        
             self.addPin(myPin, myPin: true)
+            self.findTutorButton.setTitle("Go to my Pin", forState: .Normal)
+            if self.findMe == false {
+                self.map.setRegion(self.focusRegion(CLLocation(latitude: myPin.latitude, longitude: myPin.longitude)), animated: false)
+                self.findMe = true
+            }
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
+        //NSNotificationCenter.defaultCenter().removeObserver(self, name: "SwitchMode", object: nil) doesnt work after a while
+    }
+    
+    func removeMyPin() {
+        dispatch_async(dispatch_get_main_queue()) {
+            myPin = nil
+            self.tutorIcon.hidden = false
+            //self.map.removeAnnotations([self.myPinAnn])
+            for annotation in self.map.annotations {
+                if let pin = annotation as? UserPinAnnotation {
+                    if pin.myPin == true {
+                        self.map.removeAnnotation(pin)
+                    }
+                }
+            }
+            if pinMode == "tutor" {
+                self.findTutorButton.setTitle("Place Tutor Pin", forState: .Normal)
+            } else {
+                self.findTutorButton.setTitle("Find Tutor!", forState: .Normal)
+            }
+        }
+    }
+    
+    func toggleMode() {
+        if pinMode == "student" {
+            self.findTutorButton.setTitle("Find Tutor!", forState: .Normal)
+            self.navigationItem.rightBarButtonItem?.title = "Tutors"
+        } else {
+            self.findTutorButton.setTitle("Place Tutor Pin", forState: .Normal)
+            self.navigationItem.rightBarButtonItem?.title = "Students"
+        }
+        map.removeAnnotations(map.annotations)
+        pinsInArea = []
+        findMe = false
+        getPins()
     }
     
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("removeMyPin"), name: "DeleteMyPin", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode"), name: "SwitchMode", object: nil)
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -183,6 +231,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        configureDatePicker()
         
         findTutorButton.layer.cornerRadius = 0.5
         findTutorButton.layer.borderWidth = 1
@@ -202,12 +251,27 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
         
         map.showsUserLocation = true
+        map.rotateEnabled = false
         datePicker.removeFromSuperview()
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         pinsInArea = []
     }
     
-    override func viewWillAppear(animated: Bool) {
+    func configureDatePicker() {
+        // Set min/max date for the date picker.
+        // As an example we will limit the date between now and 7 days from now.
+        let now = NSDate()
+        let currentCalendar = NSCalendar.currentCalendar()
+        let dateComponents = NSDateComponents()
+    
+        dateComponents.day = 7
+        let sevenDaysFromNow = currentCalendar.dateByAddingComponents(dateComponents, toDate: now, options: nil)
+        
+        dateComponents.day = 1
+        let oneDayFromNow = currentCalendar.dateByAddingComponents(dateComponents, toDate: now, options: nil)
+        
+        datePicker.minimumDate = oneDayFromNow
+        datePicker.maximumDate = sevenDaysFromNow
     }
     
     func getPins() {
@@ -223,36 +287,40 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             "lng2": southEast.longitude
         ]
 
-        //map.removeAnnotations(map.annotations)
-        halpApi.getTutorsInArea(params, self.gotPins)
         halpApi.getMyPins(self.gotMyPins)
+        halpApi.getTutorsInArea(params, self.gotPins)
     }
     
     func refreshMyPin(controller: LeftViewController) {
-        map.removeAnnotation(myPinAnn)
+        removeMyPin()
         halpApi.getMyPins(self.gotMyPins)
+    }
+    
+    func focusRegion(userLocation:CLLocation) -> MKCoordinateRegion {
+        var latitude:CLLocationDegrees = userLocation.coordinate.latitude
+        var longitude:CLLocationDegrees = userLocation.coordinate.longitude
+        var latDelta:CLLocationDegrees = 0.1
+        var lonDelta:CLLocationDegrees = 0.1
+        
+        var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        return MKCoordinateRegionMake(location, span)
     }
     
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
         if !center {
-            var userLocation:CLLocation = locations[0] as CLLocation
-            var latitude:CLLocationDegrees = userLocation.coordinate.latitude
-            var longitude:CLLocationDegrees = userLocation.coordinate.longitude
-            var latDelta:CLLocationDegrees = 0.1
-            var lonDelta:CLLocationDegrees = 0.1
+            if userLocation != nil {
+                map.setRegion(focusRegion(CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)), animated: true)
+            } else {
+                map.setRegion(focusRegion(locations[0] as CLLocation), animated: false)
+            }
             
-            var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
-            var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-            var region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-            
-            map.setRegion(region, animated: false)
             getPins()
             center = true
         }
     }
     
-    func locationManager(manager:CLLocationManager, didFailWithError error:NSError)
-    {
+    func locationManager(manager:CLLocationManager, didFailWithError error:NSError) {
         println(error)
     }
     

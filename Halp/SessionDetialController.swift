@@ -19,6 +19,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     @IBOutlet var sessDesc: UITextView!
     @IBOutlet var skillsField: UITextField!
     @IBOutlet var nav: UINavigationItem!
+    var pickedImage:UIImage!
     let halpApi = HalpAPI()
     
     @IBAction func addPhotoButton(sender: AnyObject) {
@@ -35,6 +36,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         addPhoto.frame = CGRectMake(100, 100, 100, 100)
         addPhoto.setBackgroundImage(image, forState: .Normal)
         addPhoto.setTitle("", forState: .Normal)
+        pickedImage = image
     }
     
     var universities:[String]!
@@ -52,14 +54,17 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         // Set min/max date for the date picker.
         // As an example we will limit the date between now and 7 days from now.
         let now = NSDate()
-        datePicker.minimumDate = now
-        
         let currentCalendar = NSCalendar.currentCalendar()
         let dateComponents = NSDateComponents()
-        dateComponents.day = 7
         
+        dateComponents.day = 7
         let sevenDaysFromNow = currentCalendar.dateByAddingComponents(dateComponents, toDate: now, options: nil)
-        datePicker.maximumDate = sevenDaysFromNow        
+        
+        dateComponents.day = 1
+        let oneDayFromNow = currentCalendar.dateByAddingComponents(dateComponents, toDate: now, options: nil)
+        
+        datePicker.minimumDate = oneDayFromNow
+        datePicker.maximumDate = sevenDaysFromNow
     }
     
     @IBAction func search(sender: AnyObject) {
@@ -67,7 +72,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
             createAlert(self, "Error Creating Sesson", "Please provide a university.")
         } else if courseField.text == "" {
             createAlert(self, "Error Creating Sesson", "Please provide a course.")
-        } else if sessDesc.text == "" {
+        } else if sessDesc.text == "" || sessDesc.text == "Description of the problem you need help with." {
             createAlert(self, "Error Creating Sesson", "Please provide a description.")
         } else if timeField.text == "" {
             createAlert(self, "Error Creating Sesson", "Please provide a desired time.")
@@ -80,6 +85,12 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
             skillsArr = skillsArr.map({ skill in
                 skill.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             })
+            var base64String:String = ""
+            if pickedImage != nil {
+                let imageData = UIImagePNGRepresentation(pickedImage)
+                base64String = imageData.base64EncodedStringWithOptions(nil)
+            }
+            
             var params = [
                 "pinMode": pinMode,
                 "latitude": "\(userLocation.latitude)",
@@ -87,7 +98,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
                 "duration": datePicker.date.timeIntervalSinceNow,
                 "description": sessDesc.text!,
                 "skills": skillsArr,
-                "images": [],
+                "images": base64String != "" ? [base64String] : [],
                 "courses" : [
                     universityField.text!: [
                         [
@@ -117,6 +128,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     func afterPostPin(success: Bool, json: JSON) {
+        println("posted Pin")
         println(json)
         start(self.view)
     }
@@ -209,7 +221,6 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         if pickerView.tag == 0 {
             return universities.count
         } else if pickerView.tag == 1 {
@@ -223,7 +234,6 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        
         if pickerView.tag == 0 {
             return universities[row]
         } else if pickerView.tag == 1 {
@@ -238,7 +248,6 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
-        
         if pickerView.tag == 0 {
             universityField.text = universities[row]
         } else if pickerView.tag == 1 {
@@ -258,4 +267,41 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
+    
+    func uploadImageOne(){
+        var imageData = UIImagePNGRepresentation(pickedImage)
+        
+        if imageData != nil{
+            var request = NSMutableURLRequest(URL: NSURL(string:"Enter Your URL")!)
+            var session = NSURLSession.sharedSession()
+            
+            request.HTTPMethod = "POST"
+            
+            var boundary = NSString(format: "---------------------------14737809831466499882746641449")
+            var contentType = NSString(format: "multipart/form-data; boundary=%@",boundary)
+            //  println("Content Type \(contentType)")
+            request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+            
+            var body = NSMutableData.alloc()
+            
+            // Title
+            body.appendData(NSString(format: "\r\n--%@\r\n",boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"title\"\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Hello World".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
+            
+            // Image
+            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"profile_img\"; filename=\"img.jpg\"\\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(imageData)
+            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+            request.HTTPBody = body
+            
+            var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
+            var returnString = NSString(data: returnData!, encoding: NSUTF8StringEncoding)
+            println("returnString \(returnString)")
+        }
+    }
+
 }

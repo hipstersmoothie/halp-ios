@@ -27,7 +27,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var settingsViewController: UIViewController!
     var tutorSetupController: UIViewController!
-    var loginViewController: UIViewController!
     var halpApi = HalpAPI()
     var delegate:LeftViewControllerDelegate? = nil
     
@@ -46,12 +45,8 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         self.tableView.registerCellClass(BaseTableViewCell.self)
         
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let swiftViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
-        self.loginViewController = UINavigationController(rootViewController: swiftViewController)
-        
         let settings = storyboard.instantiateViewControllerWithIdentifier("Settings") as Settings
         self.settingsViewController = UINavigationController(rootViewController: settings)
-        
         let setup = storyboard.instantiateViewControllerWithIdentifier("PageContentController") as BioAndSkillsController
         self.tutorSetupController = UINavigationController(rootViewController: setup)
     }
@@ -95,10 +90,8 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
                     pinMode = "student"
                     modeLabel.text = "Tutor Mode"
                 }
-                
-                var storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let map = storyboard.instantiateViewControllerWithIdentifier("MapController") as MapController
-                nvc.pushViewController(map, animated: false)
+
+                NSNotificationCenter.defaultCenter().postNotificationName("SwitchMode", object: nil, userInfo: nil)
                 self.slideMenuController()?.closeLeft()
             } else {
                 nvc.pushViewController(self.tutorSetupController, animated: true)
@@ -110,14 +103,15 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             self.slideMenuController()?.closeLeft()
             break
         case .RemovePin:
-            var storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let map = storyboard.instantiateViewControllerWithIdentifier("MapController") as MapController
-            nvc.pushViewController(map, animated: false)
             halpApi.deletePin(self.afterDeletePin)
+            NSNotificationCenter.defaultCenter().postNotificationName("DeleteMyPin", object: nil, userInfo: nil)
             break
         case .Logout:
-            nvc.pushViewController(self.loginViewController, animated: true)
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let login = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
+            nvc.pushViewController(login, animated: true)
             self.slideMenuController()?.closeLeft()
+            fbHelper.logout()
             break
         default:
             break

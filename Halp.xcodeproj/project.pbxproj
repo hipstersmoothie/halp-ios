@@ -39,6 +39,8 @@
 		C278E3781A79F04B0006BCBD /* student.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3771A79F04B0006BCBD /* student.png */; };
 		C278E37E1A79F9AF0006BCBD /* timeline-list-grid-list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */; };
 		C278E3821A79FE170006BCBD /* TutorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278E3811A79FE170006BCBD /* TutorList.swift */; };
+		C294ECE91A9B018900CFBB0D /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECE71A9B018900CFBB0D /* blank.png */; };
+		C294ECEF1A9B084D00CFBB0D /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECEE1A9B084D00CFBB0D /* point.png */; };
 		C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */; };
 		C2B0FB421A840782003DE861 /* UserPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB411A840782003DE861 /* UserPin.swift */; };
 		C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B0FB4B1A842E75003DE861 /* Main.storyboard */; };
@@ -117,6 +119,8 @@
 		C278E3771A79F04B0006BCBD /* student.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student.png; sourceTree = "<group>"; };
 		C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-list-grid-list-icon.png"; sourceTree = "<group>"; };
 		C278E3811A79FE170006BCBD /* TutorList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorList.swift; sourceTree = "<group>"; };
+		C294ECE71A9B018900CFBB0D /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = ../../../blank.png; sourceTree = "<group>"; };
+		C294ECEE1A9B084D00CFBB0D /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = point.png; path = ../../../point.png; sourceTree = "<group>"; };
 		C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalpAPI.swift; sourceTree = "<group>"; };
 		C2B0FB411A840782003DE861 /* UserPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPin.swift; sourceTree = "<group>"; };
 		C2B0FB4C1A842E75003DE861 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Halp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -201,8 +205,10 @@
 				C2C298AB1A81A7320010C475 /* logout.png */,
 				C243921D1A802C7300A3AC58 /* StarFull@2x.png */,
 				C2C298981A805A490010C475 /* bump.png */,
+				C294ECEE1A9B084D00CFBB0D /* point.png */,
 				C243921B1A802C6800A3AC58 /* StarEmpty@2x.png */,
 				C26646EB1A78452E008B396C /* facebook-login.png */,
+				C294ECE71A9B018900CFBB0D /* blank.png */,
 				C26646ED1A784576008B396C /* Red-signin_Long_base_44dp.png */,
 				C243920E1A7F3A3100A3AC58 /* tutor.jpeg */,
 				C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */,
@@ -451,6 +457,8 @@
 				C26646D61A7843B0008B396C /* LaunchScreen.xib in Resources */,
 				C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */,
 				C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */,
+				C294ECEF1A9B084D00CFBB0D /* point.png in Resources */,
+				C294ECE91A9B018900CFBB0D /* blank.png in Resources */,
 				C24392171A802A1900A3AC58 /* Images.xcassets in Resources */,
 				C2C298AC1A81A7320010C475 /* logout.png in Resources */,
 				C243920F1A7F3A3100A3AC58 /* tutor.jpeg in Resources */,

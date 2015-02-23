@@ -10,9 +10,9 @@ import UIKit
 
 var sessionId:JSON!
 var loggedInUser:User!
+let fbHelper = FBHelper()
 
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
-    let fbHelper = FBHelper()
     let halpApi = HalpAPI()
     
     @IBOutlet var username: UITextField!
@@ -35,12 +35,51 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         }
     }
     
+    @IBOutlet var signUpSwitchButton: UIButton!
+    @IBOutlet var logInSwitchButton: UIButton!
+    @IBOutlet var forgotLoginButton: UIButton!
+    @IBOutlet var orLabel: UILabel!
+    @IBAction func logInSwitch(sender: AnyObject) {
+        fbButton.hidden = true
+        gPlusButton.hidden = true
+        signLabel.hidden = true
+        registerButton.hidden = true
+        orLabel.hidden = true
+        
+        username.hidden = false
+        password.hidden = false
+        loginButton.hidden = false
+        forgotLoginButton.hidden = false
+        
+        logInSwitchButton.alpha = 1.0
+        logInSwitchButton.setBackgroundImage(UIImage(named: "point.png"), forState: .Normal)
+        signUpSwitchButton.alpha = 0.6
+        signUpSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal)
+    }
+    
+    @IBAction func signUpShow(sender: AnyObject) {
+        username.hidden = true
+        password.hidden = true
+        loginButton.hidden = true
+        forgotLoginButton.hidden = true
+        
+        fbButton.hidden = false
+        gPlusButton.hidden = false
+        signLabel.hidden = false
+        registerButton.hidden = false
+        orLabel.hidden = false
+        
+        signUpSwitchButton.alpha = 1.0
+        signUpSwitchButton.setBackgroundImage(UIImage(named: "point.png"), forState: .Normal)
+        logInSwitchButton.alpha = 0.6
+        logInSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal)
+    }
+    
     // MARK: Login Functions
     func afterLogin(success: Bool, json: JSON) {
         dispatch_async(dispatch_get_main_queue()) {
             start(self.view)
             if success {
-                println(json)
                 loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
                 sessionId = json["sessionId"]
                 self.performSegueWithIdentifier("toApp", sender: self)
@@ -68,17 +107,23 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         halpApi.login(params, completionHandler: self.afterLogin)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("executeHandle:"), name: "PostData", object: nil);
+    }
+    
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var registerButton: UIButton!
+    @IBOutlet var fbButton: UIButton!
+    @IBOutlet var signLabel: UILabel!
+    @IBOutlet var gPlusButton: UIButton!
     override func viewDidLoad() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("executeHandle:"), name: "PostData", object: nil);
+       // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("executeHandle:"), name: "PostData", object: nil);
 
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        diffAccountLabel.textColor = UIColor.whiteColor()
         var border = CALayer()
         var width = CGFloat(1.0)
-        border.borderColor = UIColor.whiteColor().CGColor
+        border.borderColor = UIColor.blackColor().CGColor
         border.frame = CGRect(x: 0, y: diffAccountLabel.frame.size.height - width, width:  diffAccountLabel.frame.size.width, height: diffAccountLabel.frame.size.height)
         
         border.borderWidth = width
@@ -101,6 +146,26 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         registerButton.clipsToBounds = true
 
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        fbButton.hidden = true
+        gPlusButton.hidden = true
+        signLabel.hidden = true
+        registerButton.hidden = true
+        orLabel.hidden = true
+        
+        username.borderStyle = .RoundedRect
+        username.layer.shadowOpacity = 0.2
+        username.layer.shadowRadius = 3.5
+        username.layer.shadowColor = UIColor.blackColor().CGColor;
+        username.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        username.clipsToBounds = false
+        
+        password.borderStyle = .RoundedRect
+        password.layer.shadowOpacity = 0.2
+        password.layer.shadowRadius = 3.5
+        password.layer.shadowColor = UIColor.blackColor().CGColor;
+        password.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        password.clipsToBounds = false
     }
 
     

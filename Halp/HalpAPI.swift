@@ -50,9 +50,8 @@ class HalpAPI {
                 println("error=\(error)")
                 return
             }
-            
+
             let json = JSON(data: data)
-            
             if json["code"] == "success" {
                 completionHandler!(true, json)
             } else if json["code"] == "email_taken" {
