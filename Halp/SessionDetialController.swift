@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate {
     @IBOutlet var universityField: UITextField!
     @IBOutlet var courseField: UITextField!
     @IBOutlet var timeField: UITextField!
@@ -161,10 +161,15 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         addPhoto.backgroundColor = UIColor.clearColor()
         addPhoto.layer.cornerRadius = 0.5 * addPhoto.bounds.size.width
         addPhoto.layer.borderWidth = 1
-        addPhoto.layer.borderColor = colorWithHexString("e0e0e0").CGColor
+        addPhoto.layer.borderColor = UIColor(red: 45, green: 188, blue: 188, alpha: 1).CGColor
         addPhoto.clipsToBounds = true
         
         sessDesc.returnKeyType = .Done
+        sessDesc.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
+        sessDesc.layer.borderWidth = 1.0
+        sessDesc.layer.cornerRadius = 5
+        sessDesc.textContainerInset = UIEdgeInsetsMake(12, 12, 12, 12)
+        sessDesc.textColor = UIColor.lightGrayColor()
         
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         timeField.addTarget(self, action: Selector("datePickerInit:"), forControlEvents: .EditingDidBegin)
@@ -303,5 +308,52 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
             println("returnString \(returnString)")
         }
     }
-
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        animateViewMoving(true, moveValue: 100)
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        animateViewMoving(false, moveValue: 100)
+        if textView.text.isEmpty {
+            textView.text = "Description of the problem you need help with."
+            textView.textColor = UIColor.lightGrayColor()
+        }
+    }
+    
+    // MARK: Text Field Usability
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == timeField || textField == skillsField {
+            animateViewMoving(true, moveValue: 180)
+        } else if textField != universityField && textField != courseField {
+            animateViewMoving(true, moveValue: 100)
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField == timeField || textField == skillsField {
+            animateViewMoving(false, moveValue: 180)
+        } else if textField != universityField && textField != courseField {
+            animateViewMoving(false, moveValue: 100)
+        }
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.3
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
+    }
 }

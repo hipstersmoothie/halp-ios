@@ -154,6 +154,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         orLabel.hidden = true
         
         username.borderStyle = .RoundedRect
+        username.layer.borderWidth = 0
         username.layer.shadowOpacity = 0.2
         username.layer.shadowRadius = 3.5
         username.layer.shadowColor = UIColor.blackColor().CGColor;
@@ -161,6 +162,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         username.clipsToBounds = false
         
         password.borderStyle = .RoundedRect
+        password.layer.borderWidth = 0
         password.layer.shadowOpacity = 0.2
         password.layer.shadowRadius = 3.5
         password.layer.shadowColor = UIColor.blackColor().CGColor;
@@ -186,9 +188,28 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        animateViewMoving(true, moveValue: 100)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        animateViewMoving(false, moveValue: 100)
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.3
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
     }
     
     // MARK: Only Portrait Mode

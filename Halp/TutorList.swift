@@ -12,9 +12,44 @@ var selectedTutor:UserPin!
 
 class TutorList: UITableViewController, UITableViewDelegate {
     @IBOutlet var nav: UINavigationItem!
+    let halpApi = HalpAPI()
+    
+    func toggleMode() {
+        if pinMode == "tutor" {
+            self.navigationItem.title = "Students in Area"
+        } else {
+            self.navigationItem.title = "Students in Area"
+        }
+        
+        let mode:NSString = pinMode == "student" ? "tutor" : "student"
+        var params = [
+            "pinMode": mode,
+            "lat1": northWest.latitude,
+            "lng1": northWest.longitude,
+            "lat2": southEast.latitude,
+            "lng2": southEast.longitude
+        ]
+        
+        pinsInArea = []
+        halpApi.getTutorsInArea(params, self.gotPins)
+    }
+    
+    func gotPins(success: Bool, json: JSON) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if success {
+                for (index: String, subJson: JSON) in json["pins"] {
+                    pinsInArea.append(UserPin(user: subJson))
+                }
+                self.tableView.reloadData()
+            } else {
+                //error getting pins
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode"), name: "SwitchMode", object: nil)
         // Do any additional setup after loading the view, typically from a nib.
         
         if pinMode == "tutor" {

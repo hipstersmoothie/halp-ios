@@ -30,6 +30,12 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBAction func TutorListButton(sender: AnyObject) {
         let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
         nav.backBarButtonItem = backItem
+        
+        let mRect = map.visibleMapRect
+        northWest = getCoordinateFromMapRectanglePoint(MKMapRectGetMinX(mRect), y: mRect.origin.y)
+        southEast = getCoordinateFromMapRectanglePoint(MKMapRectGetMaxX(mRect), y: MKMapRectGetMaxY(mRect))
+
+        
         self.performSegueWithIdentifier("toTutors", sender: self)
     }
     
@@ -56,6 +62,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 textField.inputView = self.datePicker
                 textField.textAlignment = .Center
                 self.dateField = textField
+                self.dateField?.addTarget(self, action: Selector("datePickerInit:"), forControlEvents: .EditingDidBegin)
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
@@ -74,6 +81,18 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             alertController.addAction(OKAction)
             
             self.presentViewController(alertController, animated: true) { }
+        }
+    }
+    
+    func datePickerInit(field:UITextField) {
+        if self.dateField?.text == "" {
+            var dateFormatter = NSDateFormatter()
+            
+            dateFormatter.dateStyle = .ShortStyle
+            dateFormatter.timeStyle = .ShortStyle
+            
+            var strDate = dateFormatter.stringFromDate(NSDate())
+            self.dateField?.text = strDate
         }
     }
     
@@ -180,7 +199,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     override func viewDidDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
+        //NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
         //NSNotificationCenter.defaultCenter().removeObserver(self, name: "SwitchMode", object: nil) doesnt work after a while
     }
     
@@ -242,13 +261,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
         
         self.navigationItem.hidesBackButton = true
-        navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
         if pinMode == "tutor" {
             self.navigationItem.rightBarButtonItem?.title = "Students"
         }
+        navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         map.showsUserLocation = true
         map.rotateEnabled = false

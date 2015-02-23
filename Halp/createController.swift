@@ -66,17 +66,20 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         addPhoto.backgroundColor = UIColor.clearColor()
         addPhoto.layer.cornerRadius = 0.5 * addPhoto.bounds.size.width
         addPhoto.layer.borderWidth = 1
-        addPhoto.layer.borderColor = colorWithHexString("e0e0e0").CGColor
+        addPhoto.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
         addPhoto.clipsToBounds = true
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         myBackButton.addTarget(self, action: "popToRoot:", forControlEvents: .TouchUpInside)
         myBackButton.setTitle("Back", forState: .Normal)
-        myBackButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        myBackButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         myBackButton.sizeToFit()
         var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
+        navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         let buttonColor = UIColor(red: 20/255, green: 140/255, blue: 139/255, alpha: 1)
         
@@ -85,6 +88,41 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         createButton.layer.borderWidth = 1
         createButton.layer.borderColor = buttonColor.CGColor
         createButton.clipsToBounds = true
+        
+        email.borderStyle = .RoundedRect
+        email.layer.shadowOpacity = 0.2
+        email.layer.shadowRadius = 3.5
+        email.layer.shadowColor = UIColor.blackColor().CGColor;
+        email.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        email.clipsToBounds = false
+        
+        firstname.borderStyle = .RoundedRect
+        firstname.layer.shadowOpacity = 0.2
+        firstname.layer.shadowRadius = 3.5
+        firstname.layer.shadowColor = UIColor.blackColor().CGColor;
+        firstname.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        firstname.clipsToBounds = false
+        
+        lastName.borderStyle = .RoundedRect
+        lastName.layer.shadowOpacity = 0.2
+        lastName.layer.shadowRadius = 3.5
+        lastName.layer.shadowColor = UIColor.blackColor().CGColor;
+        lastName.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        lastName.clipsToBounds = false
+        
+        password.borderStyle = .RoundedRect
+        password.layer.shadowOpacity = 0.2
+        password.layer.shadowRadius = 3.5
+        password.layer.shadowColor = UIColor.blackColor().CGColor;
+        password.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        password.clipsToBounds = false
+        
+        confirmPass.borderStyle = .RoundedRect
+        confirmPass.layer.shadowOpacity = 0.2
+        confirmPass.layer.shadowRadius = 3.5
+        confirmPass.layer.shadowColor = UIColor.blackColor().CGColor;
+        confirmPass.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        confirmPass.clipsToBounds = false
     }
     
     func popToRoot(sender:UIBarButtonItem){
