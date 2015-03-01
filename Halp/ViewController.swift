@@ -54,7 +54,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         logInSwitchButton.alpha = 1.0
         logInSwitchButton.setBackgroundImage(UIImage(named: "point.png"), forState: .Normal)
         signUpSwitchButton.alpha = 0.6
-        signUpSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal)
+        signUpSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal) 
     }
     
     @IBAction func signUpShow(sender: AnyObject) {
