@@ -652,7 +652,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dze-Nh-XUW">
+                            <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dze-Nh-XUW">
                                 <rect key="frame" x="79" y="249" width="62" height="59"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="SIGN UP">
@@ -825,15 +825,7 @@
                                     <!--2037-12-31 11:00:00 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="University" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6zX-JZ-bd4">
-                                <rect key="frame" x="58" y="236" width="273" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uK6-rC-NoG" id="0Ym-xM-h7h"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnM-tR-e9O">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnM-tR-e9O" customClass="MPGTextField_Swift" customModule="Halp" customModuleProvider="target">
                                 <rect key="frame" x="58" y="289" width="273" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -841,18 +833,6 @@
                                     <outlet property="delegate" destination="uK6-rC-NoG" id="Llo-zR-tPH"/>
                                 </connections>
                             </textField>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2km-EK-eAg">
-                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uK6-rC-NoG" id="fI9-9S-oWW"/>
-                                </connections>
-                            </pickerView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZk-f2-SIu">
-                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uK6-rC-NoG" id="z8n-f3-B3Z"/>
-                                </connections>
-                            </pickerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description of the problem you need help with." translatesAutoresizingMaskIntoConstraints="NO" id="rYH-wR-BR9">
                                 <rect key="frame" x="58" y="345" width="273" height="107"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -880,14 +860,6 @@
                                     <action selector="addPhotoButton:" destination="uK6-rC-NoG" eventType="touchUpInside" id="Xd2-il-Z5e"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Skills (comma seperated)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sVE-7P-XUG">
-                                <rect key="frame" x="58" y="475" width="273" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uK6-rC-NoG" id="Egu-4v-SP2"/>
-                                </connections>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsB-sk-mFs">
                                 <rect key="frame" x="109" y="583" width="170" height="43"/>
                                 <state key="normal" title="Search!">
@@ -898,6 +870,15 @@
                                     <action selector="search:" destination="uK6-rC-NoG" eventType="touchUpInside" id="L8Y-H0-wCI"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vvg-qz-UOx" customClass="KSTokenView" customModule="Halp" customModuleProvider="target">
+                                <rect key="frame" x="58" y="475" width="273" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Cal Poly" borderStyle="roundedRect" placeholder="University" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJE-4I-3N8" customClass="MPGTextField_Swift" customModule="Halp" customModuleProvider="target">
+                                <rect key="frame" x="58" y="238" width="273" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -905,17 +886,15 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="addPhoto" destination="RJ6-8g-Gjr" id="5a0-eI-BYk"/>
-                        <outlet property="courseField" destination="bnM-tR-e9O" id="YYK-WN-dq7"/>
-                        <outlet property="coursePicker" destination="SZk-f2-SIu" id="HP7-lz-Rsx"/>
+                        <outlet property="courseField" destination="bnM-tR-e9O" id="Nxw-qM-POZ"/>
                         <outlet property="datePicker" destination="xE1-4r-dtF" id="kHS-cO-tcM"/>
                         <outlet property="nav" destination="8iG-J6-egt" id="EVB-FI-KPX"/>
                         <outlet property="searchButton" destination="fsB-sk-mFs" id="gyq-kk-upG"/>
                         <outlet property="sessDesc" destination="rYH-wR-BR9" id="aey-zS-NIZ"/>
-                        <outlet property="skillsField" destination="sVE-7P-XUG" id="Whf-L2-acb"/>
+                        <outlet property="skillsView" destination="vvg-qz-UOx" id="6NM-fj-jd7"/>
                         <outlet property="timeField" destination="vlb-jQ-51t" id="520-JQ-XOZ"/>
                         <outlet property="toolbar" destination="dO7-5O-7qZ" id="Ihs-pM-x4o"/>
-                        <outlet property="uniPicker" destination="2km-EK-eAg" id="LJT-ah-ofX"/>
-                        <outlet property="universityField" destination="6zX-JZ-bd4" id="d6N-nd-95L"/>
+                        <outlet property="universityField" destination="DJE-4I-3N8" id="uT7-Pi-9xS"/>
                         <segue destination="IQw-MT-eGb" kind="show" identifier="toMapNewSession" id="jMr-h5-ryh"/>
                     </connections>
                 </viewController>
@@ -1553,8 +1532,8 @@
         <image name="student.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4gX-RO-JUP"/>
-        <segue reference="jMr-h5-ryh"/>
+        <segue reference="OZU-QR-Khw"/>
+        <segue reference="6IL-E7-WHO"/>
         <segue reference="Si0-xB-Xr5"/>
         <segue reference="Ea1-tJ-ubP"/>
     </inferredMetricsTieBreakers>

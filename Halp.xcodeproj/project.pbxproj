@@ -41,6 +41,11 @@
 		C278E3821A79FE170006BCBD /* TutorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278E3811A79FE170006BCBD /* TutorList.swift */; };
 		C294ECE91A9B018900CFBB0D /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECE71A9B018900CFBB0D /* blank.png */; };
 		C294ECEF1A9B084D00CFBB0D /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECEE1A9B084D00CFBB0D /* point.png */; };
+		C294ECFD1A9BC7D500CFBB0D /* KSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294ECF51A9BC7D500CFBB0D /* KSToken.swift */; };
+		C294ECFE1A9BC7D500CFBB0D /* KSTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294ECF61A9BC7D500CFBB0D /* KSTokenField.swift */; };
+		C294ECFF1A9BC7D500CFBB0D /* KSTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294ECF71A9BC7D500CFBB0D /* KSTokenView.swift */; };
+		C294ED001A9BC7D500CFBB0D /* KSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294ECF81A9BC7D500CFBB0D /* KSUtils.swift */; };
+		C2AC27081A9E683A00262621 /* MPGTextField-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AC27071A9E683A00262621 /* MPGTextField-Swift.swift */; };
 		C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */; };
 		C2B0FB421A840782003DE861 /* UserPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB411A840782003DE861 /* UserPin.swift */; };
 		C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B0FB4B1A842E75003DE861 /* Main.storyboard */; };
@@ -121,6 +126,11 @@
 		C278E3811A79FE170006BCBD /* TutorList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorList.swift; sourceTree = "<group>"; };
 		C294ECE71A9B018900CFBB0D /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = ../../../blank.png; sourceTree = "<group>"; };
 		C294ECEE1A9B084D00CFBB0D /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = point.png; path = ../../../point.png; sourceTree = "<group>"; };
+		C294ECF51A9BC7D500CFBB0D /* KSToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSToken.swift; sourceTree = "<group>"; };
+		C294ECF61A9BC7D500CFBB0D /* KSTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenField.swift; sourceTree = "<group>"; };
+		C294ECF71A9BC7D500CFBB0D /* KSTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenView.swift; sourceTree = "<group>"; };
+		C294ECF81A9BC7D500CFBB0D /* KSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSUtils.swift; sourceTree = "<group>"; };
+		C2AC27071A9E683A00262621 /* MPGTextField-Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPGTextField-Swift.swift"; sourceTree = "<group>"; };
 		C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalpAPI.swift; sourceTree = "<group>"; };
 		C2B0FB411A840782003DE861 /* UserPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPin.swift; sourceTree = "<group>"; };
 		C2B0FB4C1A842E75003DE861 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Halp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -310,6 +320,11 @@
 		C2C298B41A81D6E60010C475 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C294ECF51A9BC7D500CFBB0D /* KSToken.swift */,
+				C2AC27071A9E683A00262621 /* MPGTextField-Swift.swift */,
+				C294ECF61A9BC7D500CFBB0D /* KSTokenField.swift */,
+				C294ECF71A9BC7D500CFBB0D /* KSTokenView.swift */,
+				C294ECF81A9BC7D500CFBB0D /* KSUtils.swift */,
 				C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */,
 				C24391CD1A7D79B800A3AC58 /* FBHelper.swift */,
 				C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */,
@@ -480,8 +495,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2AC27081A9E683A00262621 /* MPGTextField-Swift.swift in Sources */,
 				C24392131A7F485D00A3AC58 /* reviewList.swift in Sources */,
 				C243921A1A802B5E00A3AC58 /* FloatRatingView.swift in Sources */,
+				C294ECFD1A9BC7D500CFBB0D /* KSToken.swift in Sources */,
 				C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */,
 				C2BBA70F1A8D2C060023A5EF /* bioCell.swift in Sources */,
 				C2C2989B1A805CD20010C475 /* SessionCounterController.swift in Sources */,
@@ -497,10 +514,12 @@
 				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
 				C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */,
 				C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */,
+				C294ECFE1A9BC7D500CFBB0D /* KSTokenField.swift in Sources */,
 				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
 				C2BBA7151A8D2D300023A5EF /* experienceCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
+				C294ECFF1A9BC7D500CFBB0D /* KSTokenView.swift in Sources */,
 				C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */,
 				C2C298931A80455B0010C475 /* BumpController.swift in Sources */,
 				C24597581A946E7500CBA227 /* studentProfile.swift in Sources */,
@@ -513,6 +532,7 @@
 				C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */,
 				C2BBA70D1A8C7B6F0023A5EF /* basicInfo.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
+				C294ED001A9BC7D500CFBB0D /* KSUtils.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,

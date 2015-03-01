@@ -8,17 +8,17 @@
 
 import UIKit
 
-class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate {
-    @IBOutlet var universityField: UITextField!
-    @IBOutlet var courseField: UITextField!
+class SessionDetialController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate, KSTokenViewDelegate, MPGTextFieldDelegate {
+    @IBOutlet var universityField: MPGTextField_Swift!
+    @IBOutlet var courseField: MPGTextField_Swift!
     @IBOutlet var timeField: UITextField!
-    @IBOutlet var uniPicker: UIPickerView!
     @IBOutlet var coursePicker: UIPickerView!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var addPhoto: UIButton!
     @IBOutlet var sessDesc: UITextView!
-    @IBOutlet var skillsField: UITextField!
+    @IBOutlet var skillsView: KSTokenView!
     @IBOutlet var nav: UINavigationItem!
+    var skillsArr: [String] = []
     var pickedImage:UIImage!
     let halpApi = HalpAPI()
     
@@ -39,15 +39,23 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         pickedImage = image
     }
     
-    var universities:[String]!
-    var courses:[String]!
+    var universities:[Dictionary<String, AnyObject>]!
+    var courses:[Dictionary<String, AnyObject>]!
     
-    func getUniversities() -> [String] {
-        return ["Cal Poly"]
+    func getUniversities() -> [Dictionary<String, AnyObject>] {
+        let calPoly = ["DisplayText":"Cal Poly","CustomObject":[]]
+        let cuesta = ["DisplayText":"Cuesta","CustomObject":[]]
+        return [calPoly, cuesta]
     }
     
-    func getCourses() -> [String] {
-        return ["CPE 101", "PSY 252", "ENGL 149", "CSC 103"]
+    func getCourses() -> [Dictionary<String, AnyObject>] {
+        let one = ["DisplayText":"CPE 101","CustomObject":[]]
+        let two = ["DisplayText":"CPE 102","CustomObject":[]]
+        let three = ["DisplayText":"CPE 103","CustomObject":[]]
+        let four = ["DisplayText":"PSY 252","CustomObject":[]]
+        let five = ["DisplayText":"ENGL 149","CustomObject":[]]
+        let six = ["DisplayText":"CSC 141","CustomObject":[]]
+        return [one, two, three, four, five, six]
     }
     
     func configureDatePicker() {
@@ -81,7 +89,6 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
             self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.backBarButtonItem = nil
             var course = split(courseField.text) {$0 == " "}
-            var skillsArr = split(skillsField.text) {$0 == ","}
             skillsArr = skillsArr.map({ skill in
                 skill.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             })
@@ -128,8 +135,6 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     func afterPostPin(success: Bool, json: JSON) {
-        println("posted Pin")
-        println(json)
         start(self.view)
     }
     
@@ -138,20 +143,12 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        uniPicker.removeFromSuperview()
         toolbar.removeFromSuperview()
         universities = getUniversities()
-        universityField.inputView = uniPicker
-        universityField.inputAccessoryView = toolbar
-        uniPicker.tag = 0
-        universityField.addTarget(self, action: Selector("enterUni:"), forControlEvents: .EditingDidBegin)
+        universityField.mDelegate = self
         
-        coursePicker.removeFromSuperview()
         courses = getCourses()
-        courseField.inputView = coursePicker
-        courseField.inputAccessoryView = toolbar
-        coursePicker.tag = 1
-        courseField.addTarget(self, action: Selector("enterCourse:"), forControlEvents: .EditingDidBegin)
+        courseField.mDelegate = self
         
         datePicker.removeFromSuperview()
         configureDatePicker()
@@ -161,7 +158,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         addPhoto.backgroundColor = UIColor.clearColor()
         addPhoto.layer.cornerRadius = 0.5 * addPhoto.bounds.size.width
         addPhoto.layer.borderWidth = 1
-        addPhoto.layer.borderColor = UIColor(red: 45, green: 188, blue: 188, alpha: 1).CGColor
+        addPhoto.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
         addPhoto.clipsToBounds = true
         
         sessDesc.returnKeyType = .Done
@@ -181,6 +178,20 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         searchButton.layer.borderWidth = 1
         searchButton.layer.borderColor = buttonColor.CGColor
         searchButton.clipsToBounds = true
+        
+        setUpTokenView(skillsView, title: "Skills", placeHolder: "Search", limit: -1)
+    }
+    
+    func setUpTokenView(view: KSTokenView, title: String, placeHolder: String, limit: Int) {
+        view.delegate = self
+        view.promptText = title + ":"
+        view.placeholder = placeHolder
+        view.descriptionText = title
+        view.maxTokenLimit = limit
+        view.style = .Rounded
+        view.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
+        view.layer.borderWidth = 1.0
+        view.layer.cornerRadius = 5
     }
     
     @IBAction func donePicker(sender: AnyObject) {
@@ -199,13 +210,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     
     func enterUni(field:UITextField) {
         if universityField.text == "" {
-            universityField.text = universities[0]
-        }
-    }
-    
-    func enterCourse(field:UITextField) {
-        if courseField.text == "" {
-            courseField.text = courses[0]
+            universityField.text = "Cal Poly"
         }
     }
     
@@ -221,93 +226,12 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         }
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int  {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 0 {
-            return universities.count
-        } else if pickerView.tag == 1 {
-            return courses.count
-        } else if pickerView.tag == 2 {
-            return  0
-        } else if  pickerView.tag == 3 {
-            return 0
-        }
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        if pickerView.tag == 0 {
-            return universities[row]
-        } else if pickerView.tag == 1 {
-            return courses[row]
-        } else if pickerView.tag == 2 {
-            return ""
-        } else if pickerView.tag == 3 {
-            return ""
-        }
-        
-        return ""
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
-        if pickerView.tag == 0 {
-            universityField.text = universities[row]
-        } else if pickerView.tag == 1 {
-            courseField.text = courses[row]
-        } else if pickerView.tag == 2 {
-            universityField.text = ""
-        } else if pickerView.tag == 3 {
-            universityField.text = ""
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.view.endEditing(true);
-    }
-    
-    func uploadImageOne(){
-        var imageData = UIImagePNGRepresentation(pickedImage)
-        
-        if imageData != nil{
-            var request = NSMutableURLRequest(URL: NSURL(string:"Enter Your URL")!)
-            var session = NSURLSession.sharedSession()
-            
-            request.HTTPMethod = "POST"
-            
-            var boundary = NSString(format: "---------------------------14737809831466499882746641449")
-            var contentType = NSString(format: "multipart/form-data; boundary=%@",boundary)
-            //  println("Content Type \(contentType)")
-            request.addValue(contentType, forHTTPHeaderField: "Content-Type")
-            
-            var body = NSMutableData.alloc()
-            
-            // Title
-            body.appendData(NSString(format: "\r\n--%@\r\n",boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
-            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"title\"\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-            body.appendData("Hello World".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
-            
-            // Image
-            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
-            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"profile_img\"; filename=\"img.jpg\"\\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-            body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-            body.appendData(imageData)
-            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
-            
-            request.HTTPBody = body
-            
-            var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
-            var returnString = NSString(data: returnData!, encoding: NSUTF8StringEncoding)
-            println("returnString \(returnString)")
-        }
-    }
+    // MARK: Text Field Usability
     
     func textViewDidBeginEditing(textView: UITextView) {
         animateViewMoving(true, moveValue: 100)
@@ -325,14 +249,13 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         }
     }
     
-    // MARK: Text Field Usability
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        if textField == timeField || textField == skillsField {
+        if textField == timeField {
             animateViewMoving(true, moveValue: 180)
         } else if textField != universityField && textField != courseField {
             animateViewMoving(true, moveValue: 100)
@@ -340,7 +263,7 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        if textField == timeField || textField == skillsField {
+        if textField == timeField {
             animateViewMoving(false, moveValue: 180)
         } else if textField != universityField && textField != courseField {
             animateViewMoving(false, moveValue: 100)
@@ -355,5 +278,58 @@ class SessionDetialController: UIViewController, UIPickerViewDelegate, UIImagePi
         UIView.setAnimationDuration(movementDuration )
         self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
         UIView.commitAnimations()
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    var names = ["a", "b", "aa"]
+    // MARK: Skills 
+    func tokenView(token: KSTokenView, performSearchWithString string: String, completion: ((results: Array<AnyObject>) -> Void)?) {
+        var data: Array<String> = []
+        for value: String in names {
+            if value.lowercaseString.rangeOfString(string.lowercaseString) != nil {
+                data.append(value)
+            }
+        }
+        completion!(results: data)
+    }
+    
+    func tokenView(token: KSTokenView, displayTitleForObject object: AnyObject) -> String {
+        return object as String
+    }
+    
+    var shifted = false
+    func tokenViewDidEndEditing(tokenView: KSTokenView) {
+        for token:KSToken in tokenView.tokens() {
+            skillsArr.append(token.title)
+        }
+        animateViewMoving(false, moveValue: 180)
+        shifted = false
+    }
+    
+    func tokenViewDidBeginEditing(tokenView: KSTokenView) {
+        if shifted == false {
+            animateViewMoving(true, moveValue: 180)
+            shifted = true
+        }
+    }
+    
+    //MARK: uni picker
+    func dataForPopoverInTextField(textfield: MPGTextField_Swift) -> [Dictionary<String, AnyObject>] {
+        if textfield == universityField {
+            return universities
+        } else {
+            return courses
+        }
+    }
+    
+    func textFieldShouldSelect(textField: MPGTextField_Swift) -> Bool {
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: MPGTextField_Swift, withSelection data: Dictionary<String,AnyObject>){
+        println("Dictionary received = \(data)")
     }
 }

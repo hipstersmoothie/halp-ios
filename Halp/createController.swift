@@ -11,6 +11,7 @@ import UIKit
 class createController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate {
     @IBOutlet var addPhoto: UIButton!
     let halpApi = HalpAPI()
+    var pickedImage:UIImage!
     
     @IBOutlet var email: UITextField!
     @IBOutlet var firstname: UITextField!
@@ -34,13 +35,18 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
             createAlert(self, "Error Creating Account", "Passwords didn't match.")
         } else {
             //Send new account to backend
-            let request = NSMutableURLRequest(URL: NSURL(string: "http://api.halp.me/register")!)
-            request.HTTPMethod = "POST"
+            var base64String:String = ""
+            if pickedImage != nil {
+                let imageData = UIImagePNGRepresentation(pickedImage)
+                base64String = imageData.base64EncodedStringWithOptions(nil)
+            }
+            
             var params = [
                 "firstname": firstname.text,
                 "lastname": lastName.text,
                 "email": email.text,
-                "passwordHash":"\(password.text.md5)"
+                "passwordHash":"\(password.text.md5)",
+                "image": base64String
             ] as Dictionary<String, String>
             
             pause(self.view)
@@ -49,6 +55,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
     }
     
     func afterCreate(success: Bool, json: JSON) {
+        println(json)
         dispatch_async(dispatch_get_main_queue()) {
             start(self.view)
             if success {
@@ -161,6 +168,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         addPhoto.frame = CGRectMake(100, 100, 100, 100)
         addPhoto.setBackgroundImage(image, forState: .Normal)
         addPhoto.setTitle("", forState: .Normal)
+        pickedImage = image
     }
     
     @IBAction func addPhotoButton(sender: AnyObject) {
