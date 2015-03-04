@@ -19,9 +19,11 @@ class HalpAPI {
         var newUrl = "\(oldUrl)?"
         var tuples:[String] = []
         for (key, val) in params {
-            tuples.append("\(key)=\(val)")
+            var str = "\(val)"
+            var escaped = str.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            tuples.append("\(key)=\(escaped!)")
         }
-        
+
         return NSURL(string: newUrl + "&".join(tuples))!
     }
     
@@ -95,15 +97,25 @@ class HalpAPI {
         halpRequest("/pin", method: "DELETE", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
+    func getUniversities(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
+        halpRequest("/enum/universities", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func getCourses(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
+        halpRequest("/enum/courses", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func getSkills(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
+        halpRequest("/enum/skills", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
     // Get information about the currently logged in user.
     func getProfile(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()
-        println(sessionId.stringValue)
         halpRequest("/profile", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
     func updateProfile(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
-        println(params)
         halpRequest("/profile", method: "PUT", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
 }

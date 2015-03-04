@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -802,97 +803,182 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dO7-5O-7qZ">
-                                <rect key="frame" x="0.0" y="461" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZFN-rr-sUa"/>
-                                    <barButtonItem title="Done" id="DxB-Q9-lSS">
-                                        <connections>
-                                            <action selector="donePicker:" destination="uK6-rC-NoG" id="nqa-XB-uHp"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xE1-4r-dtF">
-                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="444461083.094437">
-                                    <!--2015-02-01 05:24:43 +0000-->
-                                </date>
-                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
-                                    <!--1970-01-01 11:00:00 +0000-->
-                                </date>
-                                <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
-                                    <!--2037-12-31 11:00:00 +0000-->
-                                </date>
-                            </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnM-tR-e9O" customClass="MPGTextField_Swift" customModule="Halp" customModuleProvider="target">
-                                <rect key="frame" x="58" y="289" width="273" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uK6-rC-NoG" id="Llo-zR-tPH"/>
-                                </connections>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description of the problem you need help with." translatesAutoresizingMaskIntoConstraints="NO" id="rYH-wR-BR9">
-                                <rect key="frame" x="58" y="345" width="273" height="107"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uK6-rC-NoG" id="ASR-dB-Fai"/>
-                                </connections>
-                            </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time to Live" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vlb-jQ-51t">
-                                <rect key="frame" x="58" y="526" width="273" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="uK6-rC-NoG" id="djP-Wa-xC9"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJ6-8g-Gjr">
-                                <rect key="frame" x="133" y="85" width="122" height="122"/>
-                                <state key="normal" title="Add Photo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addPhotoButton:" destination="uK6-rC-NoG" eventType="touchUpInside" id="Xd2-il-Z5e"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsB-sk-mFs">
-                                <rect key="frame" x="109" y="583" width="170" height="43"/>
-                                <state key="normal" title="Search!">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="search:" destination="uK6-rC-NoG" eventType="touchUpInside" id="L8Y-H0-wCI"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vvg-qz-UOx" customClass="KSTokenView" customModule="Halp" customModuleProvider="target">
-                                <rect key="frame" x="58" y="475" width="273" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Cal Poly" borderStyle="roundedRect" placeholder="University" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJE-4I-3N8" customClass="MPGTextField_Swift" customModule="Halp" customModuleProvider="target">
-                                <rect key="frame" x="58" y="238" width="273" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3td-5I-lEE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0L-Nd-Bp6" customClass="SessionDetailContents" customModule="Halp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dO7-5O-7qZ">
+                                                <rect key="frame" x="2" y="461" width="375" height="44"/>
+                                                <items>
+                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZFN-rr-sUa"/>
+                                                    <barButtonItem title="Done" id="DxB-Q9-lSS">
+                                                        <connections>
+                                                            <action selector="donePicker:" destination="uK6-rC-NoG" id="nqa-XB-uHp"/>
+                                                        </connections>
+                                                    </barButtonItem>
+                                                </items>
+                                            </toolbar>
+                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xE1-4r-dtF">
+                                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="444461083.094437">
+                                                    <!--2015-02-01 05:24:43 +0000-->
+                                                </date>
+                                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                                    <!--1970-01-01 11:00:00 +0000-->
+                                                </date>
+                                                <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                                                    <!--2037-12-31 11:00:00 +0000-->
+                                                </date>
+                                            </datePicker>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJ6-8g-Gjr">
+                                                <rect key="frame" x="120" y="20" width="122" height="122"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="122" id="Nde-8B-Lno"/>
+                                                    <constraint firstAttribute="height" constant="122" id="hwg-db-9VL"/>
+                                                </constraints>
+                                                <state key="normal" title="Add Photo">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addPhotoButton:" destination="uK6-rC-NoG" eventType="touchUpInside" id="Xd2-il-Z5e"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="University" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJE-4I-3N8" customClass="MPGTextField_Swift" customModule="Halp" customModuleProvider="target">
+                                                <rect key="frame" x="52" y="171" width="273" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="hDc-ew-mk8"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="uK6-rC-NoG" id="CT2-Z8-ofY"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bnM-tR-e9O" customClass="MPGTextField_Swift" customModule="Halp" customModuleProvider="target">
+                                                <rect key="frame" x="52" y="221" width="273" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="hcm-YX-GZY"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="uK6-rC-NoG" id="Llo-zR-tPH"/>
+                                                </connections>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description of the problem you need help with." translatesAutoresizingMaskIntoConstraints="NO" id="rYH-wR-BR9">
+                                                <rect key="frame" x="52" y="271" width="273" height="115"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="rYH-wR-BR9" secondAttribute="height" multiplier="273:115" id="zqR-En-nuy"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="uK6-rC-NoG" id="ASR-dB-Fai"/>
+                                                </connections>
+                                            </textView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time to Live" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vlb-jQ-51t">
+                                                <rect key="frame" x="52" y="476" width="273" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="uK6-rC-NoG" id="djP-Wa-xC9"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsB-sk-mFs">
+                                                <rect key="frame" x="103" y="526" width="170" height="43"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="43" id="jj4-zF-veO"/>
+                                                </constraints>
+                                                <state key="normal" title="Search!">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="search:" destination="uK6-rC-NoG" eventType="touchUpInside" id="L8Y-H0-wCI"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvg-qz-UOx" customClass="AutoToke" customModule="Halp" customModuleProvider="target">
+                                                <rect key="frame" x="50" y="406" width="273" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Cra-2H-Pfj"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ISQ-wF-RMd"/>
+                                                    <constraint firstAttribute="height" constant="50" id="JwF-pa-acf"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="fAZ-yj-vTM"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Cra-2H-Pfj"/>
+                                                        <exclude reference="ISQ-wF-RMd"/>
+                                                        <exclude reference="fAZ-yj-vTM"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="vvg-qz-UOx" firstAttribute="leading" secondItem="X0L-Nd-Bp6" secondAttribute="leading" constant="50" id="3ke-WU-gcI"/>
+                                            <constraint firstItem="fsB-sk-mFs" firstAttribute="top" secondItem="vlb-jQ-51t" secondAttribute="bottom" constant="20" id="6xl-6e-S2d"/>
+                                            <constraint firstItem="vlb-jQ-51t" firstAttribute="leading" secondItem="X0L-Nd-Bp6" secondAttribute="leading" constant="52" id="8bq-Wk-LZ9"/>
+                                            <constraint firstItem="vvg-qz-UOx" firstAttribute="top" secondItem="rYH-wR-BR9" secondAttribute="bottom" constant="20" id="Bf5-JN-jHm"/>
+                                            <constraint firstItem="vlb-jQ-51t" firstAttribute="top" secondItem="vvg-qz-UOx" secondAttribute="bottom" constant="20" id="H9q-dX-ZA5"/>
+                                            <constraint firstItem="RJ6-8g-Gjr" firstAttribute="top" secondItem="X0L-Nd-Bp6" secondAttribute="top" constant="20" id="OBE-CK-om8"/>
+                                            <constraint firstItem="bnM-tR-e9O" firstAttribute="leading" secondItem="X0L-Nd-Bp6" secondAttribute="leading" constant="52" id="OMu-jK-AiS"/>
+                                            <constraint firstAttribute="trailing" secondItem="bnM-tR-e9O" secondAttribute="trailing" constant="50" id="SjB-mn-Y9W"/>
+                                            <constraint firstItem="rYH-wR-BR9" firstAttribute="leading" secondItem="X0L-Nd-Bp6" secondAttribute="leading" constant="52" id="WJ9-dn-Rn2"/>
+                                            <constraint firstItem="fsB-sk-mFs" firstAttribute="leading" secondItem="X0L-Nd-Bp6" secondAttribute="leading" constant="103" id="WWc-OE-sAf"/>
+                                            <constraint firstAttribute="trailing" secondItem="rYH-wR-BR9" secondAttribute="trailing" constant="50" id="Zam-ZC-AkI"/>
+                                            <constraint firstAttribute="trailing" secondItem="DJE-4I-3N8" secondAttribute="trailing" constant="50" id="adP-1K-LYI"/>
+                                            <constraint firstItem="DJE-4I-3N8" firstAttribute="top" secondItem="RJ6-8g-Gjr" secondAttribute="bottom" constant="29" id="dcb-QG-yDN"/>
+                                            <constraint firstAttribute="trailing" secondItem="vvg-qz-UOx" secondAttribute="trailing" constant="52" id="gR5-ca-EP5"/>
+                                            <constraint firstItem="DJE-4I-3N8" firstAttribute="leading" secondItem="X0L-Nd-Bp6" secondAttribute="leading" constant="52" id="h9n-Hw-eYJ"/>
+                                            <constraint firstItem="bnM-tR-e9O" firstAttribute="top" secondItem="DJE-4I-3N8" secondAttribute="bottom" constant="20" id="hAb-aW-NjZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="vlb-jQ-51t" secondAttribute="trailing" constant="50" id="hRr-Y7-RBP"/>
+                                            <constraint firstAttribute="trailing" secondItem="fsB-sk-mFs" secondAttribute="trailing" constant="102" id="ieR-Bw-iG3"/>
+                                            <constraint firstItem="rYH-wR-BR9" firstAttribute="top" secondItem="bnM-tR-e9O" secondAttribute="bottom" constant="20" id="ijx-3r-0wG"/>
+                                            <constraint firstAttribute="trailing" secondItem="RJ6-8g-Gjr" secondAttribute="trailing" constant="133" id="x5C-Z9-410"/>
+                                            <constraint firstItem="RJ6-8g-Gjr" firstAttribute="leading" secondItem="X0L-Nd-Bp6" secondAttribute="leading" constant="120" id="xsq-Zh-Epr"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="X0L-Nd-Bp6" firstAttribute="top" secondItem="3td-5I-lEE" secondAttribute="top" id="CSO-Jh-1LO"/>
+                                    <constraint firstAttribute="trailing" secondItem="X0L-Nd-Bp6" secondAttribute="trailing" id="gy7-bV-Jsf"/>
+                                    <constraint firstAttribute="bottom" secondItem="X0L-Nd-Bp6" secondAttribute="bottom" id="lCK-Cn-eC8"/>
+                                    <constraint firstItem="X0L-Nd-Bp6" firstAttribute="leading" secondItem="3td-5I-lEE" secondAttribute="leading" id="zql-bg-SRj"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="K6o-bY-Z4P" firstAttribute="top" secondItem="3td-5I-lEE" secondAttribute="bottom" id="6Sp-YP-TCK"/>
+                            <constraint firstItem="3td-5I-lEE" firstAttribute="top" secondItem="0Zl-bW-Ru5" secondAttribute="topMargin" id="8Kf-m8-VdK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3td-5I-lEE" secondAttribute="trailing" constant="-16" id="ElZ-X7-oe1"/>
+                            <constraint firstItem="X0L-Nd-Bp6" firstAttribute="height" secondItem="0Zl-bW-Ru5" secondAttribute="height" id="T5d-Ra-Yha"/>
+                            <constraint firstItem="X0L-Nd-Bp6" firstAttribute="width" secondItem="0Zl-bW-Ru5" secondAttribute="width" id="Xc8-gv-8OG"/>
+                            <constraint firstItem="3td-5I-lEE" firstAttribute="leading" secondItem="0Zl-bW-Ru5" secondAttribute="leadingMargin" constant="-16" id="djn-HJ-vhh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Session Details" id="8iG-J6-egt"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="addPhoto" destination="RJ6-8g-Gjr" id="5a0-eI-BYk"/>
+                        <outlet property="container" destination="0Zl-bW-Ru5" id="Zbp-hu-uXH"/>
+                        <outlet property="content" destination="X0L-Nd-Bp6" id="6J0-sc-Pzg"/>
+                        <outlet property="contentHeight" destination="T5d-Ra-Yha" id="G6o-Xl-VIP"/>
                         <outlet property="courseField" destination="bnM-tR-e9O" id="Nxw-qM-POZ"/>
                         <outlet property="datePicker" destination="xE1-4r-dtF" id="kHS-cO-tcM"/>
                         <outlet property="nav" destination="8iG-J6-egt" id="EVB-FI-KPX"/>
+                        <outlet property="scrollView" destination="3td-5I-lEE" id="rWt-29-J7T"/>
                         <outlet property="searchButton" destination="fsB-sk-mFs" id="gyq-kk-upG"/>
                         <outlet property="sessDesc" destination="rYH-wR-BR9" id="aey-zS-NIZ"/>
-                        <outlet property="skillsView" destination="vvg-qz-UOx" id="6NM-fj-jd7"/>
                         <outlet property="timeField" destination="vlb-jQ-51t" id="520-JQ-XOZ"/>
+                        <outlet property="tokenField" destination="vvg-qz-UOx" id="qcW-lp-5pC"/>
+                        <outlet property="tokenHeight" destination="JwF-pa-acf" id="DOr-3b-xzj"/>
                         <outlet property="toolbar" destination="dO7-5O-7qZ" id="Ihs-pM-x4o"/>
                         <outlet property="universityField" destination="DJE-4I-3N8" id="uT7-Pi-9xS"/>
                         <segue destination="IQw-MT-eGb" kind="show" identifier="toMapNewSession" id="jMr-h5-ryh"/>
@@ -1384,7 +1470,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Rgq-lP-x5d"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JRM-Qe-ugc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="372"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MB-8T-zQq">
@@ -1532,9 +1618,9 @@
         <image name="student.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OZU-QR-Khw"/>
-        <segue reference="6IL-E7-WHO"/>
+        <segue reference="jMr-h5-ryh"/>
         <segue reference="Si0-xB-Xr5"/>
         <segue reference="Ea1-tJ-ubP"/>
+        <segue reference="4gX-RO-JUP"/>
     </inferredMetricsTieBreakers>
 </document>
