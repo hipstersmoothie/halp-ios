@@ -402,6 +402,9 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1V-d2-gQ1" customClass="AutoToke" customModule="Halp" customModuleProvider="target">
                                             <rect key="frame" x="31" y="69" width="313" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="sL8-NO-B0N"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -411,7 +414,6 @@
                                         <constraint firstItem="F1V-d2-gQ1" firstAttribute="top" secondItem="vSv-B3-Qh6" secondAttribute="bottom" constant="20" id="Zcm-Hq-DgK"/>
                                         <constraint firstAttribute="trailing" secondItem="F1V-d2-gQ1" secondAttribute="trailing" constant="31" id="a0W-Fk-yOt"/>
                                         <constraint firstItem="vSv-B3-Qh6" firstAttribute="leading" secondItem="xHZ-iv-jRH" secondAttribute="leading" constant="31" id="dqI-uU-dST"/>
-                                        <constraint firstAttribute="bottom" secondItem="F1V-d2-gQ1" secondAttribute="bottom" constant="19.5" id="o14-3y-5Bb"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

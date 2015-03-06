@@ -11,11 +11,16 @@ import UIKit
 class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate {
     var courseRow = 1
     let halpApi = HalpAPI()
-    var tokens:NSMutableArray!
     var selectedRow = -1
+    var cellInfos:[Dictionary<String, AnyObject>]!
     
     @IBAction func addAnother(sender: AnyObject) {
         courseRow++;
+        cellInfos.append([
+            "height": 139,
+            "tokens": NSMutableArray(),
+            "tokenHeight": 50
+        ])
         selectedRow = -1
         self.tableView.reloadData()
     }
@@ -25,7 +30,12 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
         let next = UIBarButtonItem(title: "Next", style: .Bordered, target: self, action: "nextScreen")
         self.navigationItem.rightBarButtonItem = next
         
-        tokens = NSMutableArray()
+        cellInfos = []
+        cellInfos.append([
+            "height": 139,
+            "tokens": NSMutableArray(),
+            "tokenHeight": 50
+        ])
     }
     
     @IBOutlet var table: UITableView!
@@ -113,10 +123,14 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == selectedRow {
-            return 400
-        } else if indexPath.row == 0 || indexPath.row < courseRow {
-            return 139
+        if indexPath.row == 0 || indexPath.row < courseRow {
+            let height = cellInfos[indexPath.row]["height"] as CGFloat
+            let tokenHeight = cellInfos[indexPath.row]["tokenHeight"] as CGFloat
+            println("\(selectedRow) \(indexPath.row)")
+            if selectedRow == indexPath.row {
+                return height + tokenHeight + 175
+            }
+            return height + tokenHeight - 50
         } else {
             return 66
         }
@@ -154,7 +168,6 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
 
     // Course list Autocomplete Tokenizer
     func tokenFieldDidBeginEditing(tokenField: ZFTokenField!) {
-        
         //this will be diff in diff ios ver
         let cell = tokenField.superview?.superview as experienceCell
         if selectedRow != cell.row {
@@ -169,7 +182,12 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     }
     
     func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
-        tokens.removeObjectAtIndex(Int(index))
+        if let cell = tokenField.superview?.superview as? experienceCell {
+            var newTokens = cellInfos[cell.row]["tokens"] as NSMutableArray
+            newTokens.removeObjectAtIndex(Int(index))
+            cellInfos[cell.row].updateValue(newTokens, forKey: "tokens")
+            table.reloadData()
+        }
     }
     
     func tokenFieldShouldEndEditing(textField: ZFTokenField!) -> Bool {
@@ -177,7 +195,11 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     }
     
     func numberOfTokenInField(tokenField: ZFTokenField!) -> UInt {
-        return UInt(tokens.count)
+        if let cell = tokenField.superview?.superview as? experienceCell {
+            var tokens = cellInfos[cell.row]["tokens"] as NSMutableArray
+            return UInt(tokens.count)
+        }
+        return 0
     }
     
     func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: UInt) -> UIView! {
@@ -188,10 +210,14 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
         
         button.addTarget(self, action: Selector("tokenDeleteButtonPressed:"), forControlEvents: .TouchUpInside)
         
-        label.text = tokens[Int(index)] as NSString;
+        if let cell = tokenField.superview?.superview as? experienceCell {
+            var tokens = cellInfos[cell.row]["tokens"] as NSMutableArray
+            label.text = tokens[Int(index)] as NSString;
+        }
+        
         var size:CGSize = label.sizeThatFits(CGSizeMake(1000, 40))
-        view.frame = CGRectMake(0, 0, size.width + 50, 40);
-        return view;
+        view.frame = CGRectMake(0, 0, size.width + 50, 40)
+        return view
     }
     
     func lineHeightForTokenInField(tokenField: ZFTokenField!) -> CGFloat {
@@ -199,8 +225,13 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     }
     
     func tokenField(tokenField: ZFTokenField!, didReturnWithText text: String!) {
-        tokens.addObject(text)
+        if let cell = tokenField.superview?.superview as? experienceCell {
+            var tokens = cellInfos[cell.row]["tokens"] as NSMutableArray
+            tokens.addObject(text)
+            cellInfos[cell.row].updateValue(tokens, forKey: "tokens")
+        }
         tokenField.reloadData(true)
+        updateTokenFieldHeight(tokenField, increment: true)
     }
     
     func tokenDeleteButtonPressed(tokenButton: UIButton) {
@@ -212,8 +243,11 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
                 var index:Int = Int(uniCell.courseList.indexOfTokenView(tokenButton.superview))
                 
                 if index != NSNotFound {
+                    var tokens = cellInfos[uniCell.row]["tokens"] as NSMutableArray
                     tokens.removeObjectAtIndex(index)
+                    cellInfos[uniCell.row].updateValue(tokens, forKey: "tokens")
                     uniCell.courseList.reloadData(false)
+                    updateTokenFieldHeight(uniCell.courseList, increment: false)
                     break
                 }
             }
@@ -231,5 +265,40 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     
     func textFieldShouldSelect(textField: AutoToke) -> Bool {
         return true
+    }
+    
+    func updateTokenFieldHeight(tokenField: ZFTokenField!, increment:Bool) {
+        let val = CGFloat(50)
+        if let cell = tokenField.superview?.superview as? experienceCell {
+            var tokenFieldHeight = cellInfos[cell.row]["tokenHeight"] as UInt
+            
+            if increment == false {
+                if tokenFieldHeight > tokenField.height {
+                    cellInfos[cell.row].updateValue(tokenField.height, forKey: "tokenHeight")
+                    
+                    for constraint in tokenField.constraints() {
+                        let tokenHeight = constraint as NSLayoutConstraint
+                        if tokenHeight.firstAttribute == .Height && tokenHeight.constant - val >= 50 {
+                            tokenField.removeConstraint(tokenHeight)
+                            tokenHeight.constant -= val
+                            tokenField.addConstraint(tokenHeight)
+                        }
+                    }
+                }
+            } else {
+                if tokenFieldHeight < tokenField.height {
+                    cellInfos[cell.row].updateValue(tokenField.height, forKey: "tokenHeight")
+                    
+                    for constraint in tokenField.constraints() {
+                        let tokenHeight = constraint as NSLayoutConstraint
+                        if tokenHeight.firstAttribute == .Height {
+                            tokenField.removeConstraint(tokenHeight)
+                            tokenHeight.constant += val
+                            tokenField.addConstraint(tokenHeight)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
