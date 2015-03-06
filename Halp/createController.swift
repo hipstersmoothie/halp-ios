@@ -59,7 +59,10 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         dispatch_async(dispatch_get_main_queue()) {
             start(self.view)
             if success {
-                self.performSegueWithIdentifier("toLogin", sender: self)
+                loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
+                sessionId = json["sessionId"]
+                self.performSegueWithIdentifier("toMap", sender: self)
+                getInitData()
             } else {
                 createAlert(self, "Problem Creating Account", "Someone is already using that email!")
             }

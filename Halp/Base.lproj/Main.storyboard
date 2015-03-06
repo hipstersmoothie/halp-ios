@@ -1510,7 +1510,7 @@
                         <outlet property="firstname" destination="XOd-5L-1NX" id="haZ-is-R4Y"/>
                         <outlet property="lastName" destination="0m3-rL-hYR" id="FEM-Hc-dhW"/>
                         <outlet property="password" destination="0Bs-VI-6Z6" id="dPJ-l6-slI"/>
-                        <segue destination="vXZ-lx-hvc" kind="show" identifier="toLogin" id="4gX-RO-JUP"/>
+                        <segue destination="IQw-MT-eGb" kind="show" identifier="toMap" id="Dm7-Lu-mGU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hk-6F-6TZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1526,7 +1526,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Rgq-lP-x5d"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JRM-Qe-ugc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MB-8T-zQq">
@@ -1674,9 +1674,8 @@
         <image name="student.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jMr-h5-ryh"/>
-        <segue reference="Si0-xB-Xr5"/>
+        <segue reference="Dm7-Lu-mGU"/>
         <segue reference="Ea1-tJ-ubP"/>
-        <segue reference="4gX-RO-JUP"/>
+        <segue reference="Si0-xB-Xr5"/>
     </inferredMetricsTieBreakers>
 </document>
