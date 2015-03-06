@@ -54,11 +54,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/ViewController.swift"
-            timestampString = "446368693.569126"
+            timestampString = "447287722.63224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "login(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -429,22 +429,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Halp/BioAndSkillsController.swift"
-            timestampString = "445834515.314569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "nextScreen()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Halp/SetRateController.swift"
             timestampString = "445850897.322236"
             startingColumnNumber = "9223372036854775807"
@@ -462,11 +446,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionDetialController.swift"
-            timestampString = "447201807.856379"
+            timestampString = "447289892.722805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "configureDatePicker()"
             landmarkType = "5">
          </BreakpointContent>
@@ -706,43 +690,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionDetialController.swift"
-            timestampString = "447201807.856379"
+            timestampString = "447289892.722805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "getUniversities(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Halp/SessionDetialController.swift"
-            timestampString = "447201807.856379"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
-            landmarkName = "dataForPopoverInTextField(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Halp/SessionDetialController.swift"
-            timestampString = "447201807.856379"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "dataForPopoverInTextField(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -770,7 +722,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionDetialController.swift"
-            timestampString = "447033422.435532"
+            timestampString = "447287722.63224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "11"
@@ -786,11 +738,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/AutoToke.swift"
-            timestampString = "447142321.294376"
+            timestampString = "447293641.578594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251">
+            startingLineNumber = "258"
+            endingLineNumber = "258">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -800,11 +752,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/ZFTokenField.m"
-            timestampString = "447194882.12585"
+            timestampString = "447207027.946073"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-addToken:"
             landmarkType = "5">
          </BreakpointContent>
@@ -816,11 +768,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionDetialController.swift"
-            timestampString = "447201807.856379"
+            timestampString = "447293641.578594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "textFieldShouldSelect(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -832,13 +784,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionDetialController.swift"
-            timestampString = "447201807.856379"
+            timestampString = "447289892.722805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "search(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Halp/SessionDetialController.swift"
+            timestampString = "447293641.578594"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "textFieldDidEndEditing(_:withSelection:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.SessionDetialController.textFieldDidEndEditing (Halp.SessionDetialController)(Halp.MPGTextField_Swift, withSelection : Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;) -&gt; ()"
+                  moduleName = "Halp"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/Halp/SessionDetialController.swift"
+                  timestampString = "447287159.351516"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "323"
+                  endingLineNumber = "323"
+                  offsetFromSymbolStart = "1416">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.SessionDetialController.(textFieldDidEndEditing (Halp.SessionDetialController) -&gt; (Halp.MPGTextField_Swift, withSelection : Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "Halp"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/Halp/SessionDetialController.swift"
+                  timestampString = "447287159.351694"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "323"
+                  endingLineNumber = "323"
+                  offsetFromSymbolStart = "21">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -10,7 +10,6 @@ import UIKit
 
 class SessionDetailContents: UIView {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        println("content touched")
         self.endEditing(true);
     }
 }

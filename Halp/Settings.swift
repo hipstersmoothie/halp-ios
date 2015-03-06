@@ -158,7 +158,7 @@ class Settings: UITableViewController {
                     courseArr.append("\(course.subject) \(course.number)")
                 }
                 
-                expCell.courseList.text = ", ".join(courseArr)
+                //expCell.courseList.text = ", ".join(courseArr)
                 expCell.selectionStyle = .None
                 return expCell
             } else {

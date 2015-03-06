@@ -9,6 +9,7 @@
 import UIKit
 
 class experienceCell: UITableViewCell {
-    @IBOutlet var university: UITextField!
-    @IBOutlet var courseList: UITextField!
+    @IBOutlet var university: MPGTextField_Swift!
+    @IBOutlet var courseList: AutoToke!
+    var row:Int!
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SessionDetialController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate, MPGTextFieldDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate, AutoTokeDelegate, UIGestureRecognizerDelegate {
+class SessionDetialController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate, MPGTextFieldDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate, AutoTokeDelegate {
     @IBOutlet var universityField: MPGTextField_Swift!
     @IBOutlet var courseField: MPGTextField_Swift!
     @IBOutlet var timeField: UITextField!
@@ -20,19 +20,18 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet var contentHeight: NSLayoutConstraint!
     @IBOutlet var tokenHeight: NSLayoutConstraint!
     @IBOutlet var container: UIView!
+    
     func tokenField(tokenField: ZFTokenField!, didReturnWithText text: String!) {
         tokens.addObject(text)
         tokenField.reloadData(true)
         updateTokenFieldHeight(tokenField, increment: true)
-        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
-        scrollView.setContentOffset(bottomOffset, animated: true)d
-        f
+        scrollToBottom()
     }
+    
     var skillsArr: [String] = []
     var pickedImage:UIImage!
     let halpApi = HalpAPI()
     var tokens:NSMutableArray!
-    var tap:UIGestureRecognizer!
     
     @IBAction func addPhotoButton(sender: AnyObject) {
         var image = UIImagePickerController()
@@ -49,25 +48,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         addPhoto.setBackgroundImage(image, forState: .Normal)
         addPhoto.setTitle("", forState: .Normal)
         pickedImage = image
-    }
-    
-    var universities:[Dictionary<String, AnyObject>]!
-    var courses:[Dictionary<String, AnyObject>]!
-    
-    func getUniversities(filter:String) -> [Dictionary<String, AnyObject>] {
-        let calPoly = ["DisplayText":"Cal Poly","CustomObject":[]]
-        let cuesta = ["DisplayText":"Cuesta","CustomObject":[]]
-        return [calPoly, cuesta]
-    }
-    
-    func getCourses(filter:String) -> [Dictionary<String, AnyObject>] {
-        let one = ["DisplayText":"CPE 101","CustomObject":[]]
-        let two = ["DisplayText":"CPE 102","CustomObject":[]]
-        let three = ["DisplayText":"CPE 103","CustomObject":[]]
-        let four = ["DisplayText":"PSY 252","CustomObject":[]]
-        let five = ["DisplayText":"ENGL 149","CustomObject":[]]
-        let six = ["DisplayText":"CSC 141","CustomObject":[]]
-        return [one, two, three, four, five, six]
     }
     
     func configureDatePicker() {
@@ -155,8 +135,8 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
 
         toolbar.removeFromSuperview()
-        universities = getUniversities("")
         universityField.mDelegate = self
+        
         tokens = NSMutableArray()
         tokenField.delegate = self
         tokenField.dataSource = self
@@ -164,7 +144,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         tokenField.reloadData(false)
         tokenField.mDelegate = self
         
-        courses = getCourses("")
         courseField.mDelegate = self
         
         datePicker.removeFromSuperview()
@@ -198,7 +177,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func donePicker(sender: AnyObject) {
-        
         self.view.endEditing(true);
     }
     
@@ -273,8 +251,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet var scrollView: UIScrollView!
     func tokenFieldDidBeginEditing(tokenField:ZFTokenField) {
         animateViewMoving(true, moveValue: 180)
-        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
-        scrollView.setContentOffset(bottomOffset, animated: true)
+        scrollToBottom()
     }
     
     func tokenFieldDidEndEditing(tokenField:ZFTokenField) {
@@ -300,107 +277,45 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     }
 
     
-    //MARK: uni picker
+    //MARK: uni and course picker
     func dataForPopoverInTextField(textfield: MPGTextField_Swift) -> [Dictionary<String, AnyObject>] {
         if textfield == universityField {
-            if textfield.text != "" {
-                var params = [
-                    "substring": textfield.text
-                ]
-                halpApi.getUniversities(params) { success, json in
-                    self.universities.removeAll(keepCapacity: false)
-                    let unis = json["universities"].arrayValue
-                    for uni in unis {
-                        self.universities.append([
-                            "DisplayText": uni.stringValue,
-                            "CustomObject":[]
-                        ])
-                    }
-                    self.universityField.data = self.universities
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.universityField.provideSuggestions()
-                    }
-                }
-
-            }
-            return getUniversities("")
+            return universities
         } else {
-            if textfield.text != "" {
-                let courseText = textfield.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                var tokens = split(courseText) {$0 == " "}
-                var params = Dictionary<String, AnyObject>()
-                
-                if tokens.count == 1 {
-                    params = [
-                        "subject": courseText,
-                        "university": universityField.text
-                    ]
-                } else if tokens.count == 2 {
-                    params = [
-                        "subject": tokens[0],
-                        "number": tokens[1],
-                        "university": universityField.text
-                    ]
-                }
-                
-                halpApi.getCourses(params) { success, json in
-                    self.courses.removeAll(keepCapacity: false)
-                    println(json)
-                    let courses = json["courses"].arrayValue
-                    for course in courses {
-                        let courseText = course["subject"].stringValue + " " + course["number"].stringValue
-                        self.courses.append([
-                            "DisplayText": courseText,
-                            "CustomObject": Course(course: course)
-                        ])
-                    }
-                    self.courseField.data = self.courses
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.courseField.provideSuggestions()
-                    }
-                }
-                
-            }
-            return [Dictionary<String, String>()]
+            return courses
         }
     }
     
-    // Autocomplete fields
     func textFieldShouldSelect(textField: MPGTextField_Swift) -> Bool {
         return true
     }
     
     func textFieldDidEndEditing(textField: MPGTextField_Swift, withSelection data: Dictionary<String,AnyObject>){
-        courseField.enabled = true
-        println("Dictionary received = \(data)")
+        if textField == universityField {
+            let uni = data["DisplayText"] as String
+            var params = [
+                "university": uni
+            ]
+            
+            halpApi.getCourses(params) { success, json in
+                courses = []
+                let courseList = json["courses"].arrayValue
+                for course in courseList {
+                    let courseText = course["subject"].stringValue + " " + course["number"].stringValue
+                    courses.append([
+                        "DisplayText": courseText,
+                        "CustomObject": Course(course: course)
+                    ])
+                }
+            }
+            courseField.enabled = true
+        }        
     }
     
     //token field
     
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>] {
-        if tokenField.textField.text != "" {
-            var params = [
-                "substring": tokenField.textField.text
-            ]
-            halpApi.getSkills(params) { success, json in
-                var skillsArr:[Dictionary<String, AnyObject>] = []
-                let skills = json["skills"].arrayValue
-                
-                for skill in skills {
-                    skillsArr.append([
-                        "DisplayText": skill.stringValue,
-                        "CustomObject":[]
-                    ])
-                }
-                
-                self.tokenField.data = skillsArr
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tokenField.provideSuggestions()
-                }
-            }
-            
-        }
-        return [Dictionary<String, AnyObject>()]
+        return skills
     }
     
     @IBOutlet var content: UIView!
@@ -443,14 +358,22 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     func updateTokenFieldHeight(tokenField: ZFTokenField!, increment:Bool) {
         var val = CGFloat(50)
         if increment == false {
-            val = CGFloat(-50)
+            if myRows > tokenField.height {
+                myRows = tokenField.height
+                
+                if tokenHeight.constant - val >= 50 {
+                    tokenHeight.constant -= val
+                    contentHeight.constant -= val
+                }
+            }
+        } else {
+            if myRows < tokenField.height {
+                myRows = tokenField.height
+                tokenHeight.constant += val
+                contentHeight.constant += val
+            }
         }
-        
-        if myRows != tokenField.height {
-            myRows = tokenField.height
-            tokenHeight.constant += val
-            contentHeight.constant += val
-        }
+        println("rows: \(myRows) Height:\(tokenField.height)")
     }
     
     func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
@@ -468,7 +391,13 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         if index != NSNotFound {
             tokens.removeObjectAtIndex(index)
             tokenField.reloadData(false)
+            
             updateTokenFieldHeight(tokenField, increment: false)
         }
+    }
+    
+    func scrollToBottom() {
+        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
+        scrollView.setContentOffset(bottomOffset, animated: true)
     }
 }

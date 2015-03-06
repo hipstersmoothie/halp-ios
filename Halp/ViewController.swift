@@ -12,6 +12,35 @@ var sessionId:JSON!
 var loggedInUser:User!
 let fbHelper = FBHelper()
 
+var universities:[Dictionary<String, AnyObject>]!
+var courses:[Dictionary<String, AnyObject>]!
+var skills:[Dictionary<String, AnyObject>]!
+
+func getInitData() {
+    let halpApi = HalpAPI()
+    halpApi.getUniversities() { success, json in
+        universities = []
+        let unis = json["universities"].arrayValue
+        for uni in unis {
+            universities.append([
+                "DisplayText": uni.stringValue,
+                "CustomObject":[]
+                ])
+        }
+    }
+    halpApi.getSkills() { success, json in
+        skills = []
+        let skillsList = json["skills"].arrayValue
+        
+        for skill in skillsList {
+            skills.append([
+                "DisplayText": skill.stringValue,
+                "CustomObject":[]
+                ])
+        }
+    }
+}
+
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
     let halpApi = HalpAPI()
     
@@ -83,6 +112,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
                 loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
                 sessionId = json["sessionId"]
                 self.performSegueWithIdentifier("toApp", sender: self)
+                getInitData()
             } else {
                 createAlert(self, "Error Logging In", "Please provide valid credentials.")
             }

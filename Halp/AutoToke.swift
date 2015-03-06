@@ -42,12 +42,16 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        runAutoComplete()
+    }
+    
+    func runAutoComplete() {
         let str : String = self.textField.text
-        
         if (countElements(str) > 0) && (self.isFirstResponder())
         {
             if (mDelegate != nil){
-                mDelegate!.skillAutoComplete(self)
+                data = mDelegate!.skillAutoComplete(self)
+                self.provideSuggestions()
             }
             else{
                 println("<MPGTextField> WARNING: You have not implemented the requred methods of the MPGTextField protocol.")
@@ -64,7 +68,10 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
     }
     
     override func textFieldDidChange(textField: ZFTokenTextField!) {
-        mDelegate!.skillAutoComplete(self)
+        if (mDelegate != nil){
+            data = mDelegate!.skillAutoComplete(self)
+            self.provideSuggestions()
+        }
     }
     
     override func resignFirstResponder() -> Bool{

@@ -97,7 +97,8 @@ class HalpAPI {
         halpRequest("/pin", method: "DELETE", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
-    func getUniversities(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
+    func getUniversities(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = Dictionary<String,String>()
         halpRequest("/enum/universities", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
@@ -105,7 +106,8 @@ class HalpAPI {
         halpRequest("/enum/courses", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
-    func getSkills(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
+    func getSkills(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = Dictionary<String,String>()
         halpRequest("/enum/skills", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     

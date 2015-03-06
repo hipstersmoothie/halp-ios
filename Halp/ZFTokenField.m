@@ -134,13 +134,11 @@
             [self.tokenViews addObject:tokenView];
         }
     }
-    
+
     [self.tokenViews addObject:self.textField];
     [self addSubview:self.textField];
     self.textField.frame = (CGRect) {0,0,50,[self.dataSource lineHeightForTokenInField:self]};
     [self invalidateIntrinsicContentSize];
-    CGRect rect = [self frame];
-    printf("width:%f height:%f\n", rect.size.width, rect.size.height);
 
     [self.textField setText:@""];
     if (returnKey) {

@@ -59,9 +59,8 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
         if (countElements(str) > 0) && (self.isFirstResponder())
         {
             if (mDelegate != nil){
-                //data = mDelegate!.dataForPopoverInTextField(self)
-                mDelegate!.dataForPopoverInTextField(self)
-                //self.provideSuggestions()
+                data = mDelegate!.dataForPopoverInTextField(self)
+                self.provideSuggestions()
             }
             else{
                 println("<MPGTextField> WARNING: You have not implemented the requred methods of the MPGTextField protocol.")
@@ -78,7 +77,6 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
     }
     
     override func resignFirstResponder() -> Bool{
-        println("popop")
         if tableViewController != nil {
             UIView.animateWithDuration(0.3,
                 animations: ({
@@ -236,6 +234,5 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
                 mDelegate?.textFieldDidEndEditing?(self, withSelection: ["DisplayText":self.text, "CustomObject":"NEW"])
             }
         }
-
     }
 }
