@@ -9,5 +9,5 @@
 import UIKit
 
 class rateCell: UITableViewCell {
-    @IBOutlet var rate: UITextField!
+    @IBOutlet var rate: UITextField! 
 }
