@@ -69,7 +69,7 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
                 courses.updateValue(interpCourses, forKey: school)
             }
         }
-        println(courses)
+
         setUpTutorParams.updateValue(courses, forKey: "courses")
         self.performSegueWithIdentifier("toSetRate", sender: self)
     }
@@ -90,7 +90,6 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("throw down")
         if indexPath.row == 0 || indexPath.row < courseRow {
             var expCell = self.tableView.dequeueReusableCellWithIdentifier("uniAndCourse") as experienceCell
             
@@ -114,7 +113,6 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
             
             let school = cellInfos[indexPath.row]["school"] as String
             if school != "" {
-                println("setting school")
                 expCell.university.text = school
                 expCell.courseList.enabled = true
             } else {
@@ -125,9 +123,7 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
             let height = cellInfos[indexPath.row]["tokenHeight"] as CGFloat
             for constraint in expCell.courseList.constraints() {
                 let tokenHeight = constraint as NSLayoutConstraint
-                println(tokenHeight)
                 if tokenHeight.firstAttribute == .Height {
-                    println("did it")
                     expCell.courseList.removeConstraint(tokenHeight)
                     tokenHeight.constant = height + 50
                     expCell.courseList.addConstraint(tokenHeight)
@@ -191,8 +187,6 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
         ]
         
         cellInfos[cell.indexPath.row].updateValue(uni, forKey: "school")
-        println("getting courses \(data)")
-        println(textField)
         halpApi.getCourses(params) { success, json in
             var courses:[Dictionary<String, AnyObject>] = []
             let courseList = json["courses"].arrayValue
@@ -264,11 +258,9 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
             tokens.addObject(text)
             cellInfos[cell.indexPath.row].updateValue(tokens, forKey: "tokens")
             tokenField.reloadData(true)
-            println("tokenadded")
             updateTokenFieldHeight(tokenField, increment: true)
             table.reloadRowsAtIndexPaths([cell.indexPath], withRowAnimation: .None)
             if let focus = table.cellForRowAtIndexPath(cell.indexPath) as? experienceCell {
-                println("trying to focus")
                 focus.courseList.textField.becomeFirstResponder()
             }
         }
@@ -299,7 +291,6 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     }
     
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>] {
-        println("completing")
         if let cell = textfield.superview?.superview as? experienceCell {
             return cellInfos[cell.indexPath.row]["courses"] as [Dictionary<String, AnyObject>]
         }
