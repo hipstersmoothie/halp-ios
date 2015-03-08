@@ -11,7 +11,7 @@ import UIKit
 @objc protocol AutoTokeDelegate{
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>]
     
-    optional func textFieldDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String,AnyObject>)
+    optional func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String,AnyObject>)
     optional func textFieldShouldSelect(textField: AutoToke) -> Bool
     optional func tokenSelected(textField: AutoToke)
 }
@@ -229,11 +229,11 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
                 let selectedData = self.applyFilterWithSearchQuery(self.textField.text)[0]
                 let displayText : AnyObject? = selectedData["DisplayText"]
                 self.textField.text = displayText as String
-                mDelegate?.textFieldDidEndEditing?(self, withSelection: selectedData)
+                mDelegate?.autoTokeDidEndEditing?(self, withSelection: selectedData)
                 mDelegate?.tokenSelected!(self)
             }
             else{
-                mDelegate?.textFieldDidEndEditing?(self, withSelection: ["DisplayText":self.textField.text, "CustomObject":"NEW"])
+                mDelegate?.autoTokeDidEndEditing?(self, withSelection: ["DisplayText":self.textField.text, "CustomObject":"NEW"])
             }
         }
         

@@ -290,6 +290,10 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         return true
     }
     
+    func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String, AnyObject>) {
+        
+    }
+    
     func textFieldDidEndEditing(textField: MPGTextField_Swift, withSelection data: Dictionary<String,AnyObject>){
         if textField == universityField {
             let uni = data["DisplayText"] as String
@@ -376,16 +380,16 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         println("rows: \(myRows) Height:\(tokenField.height)")
     }
     
-    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
-        tokens.removeObjectAtIndex(Int(index))
-    }
+//    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
+//        tokens.removeObjectAtIndex(Int(index))
+//    }
     
     func tokenFieldShouldEndEditing(textField: ZFTokenField!) -> Bool {
         return true
     }
     
     func tokenDeleteButtonPressed(tokenButton: UIButton) {
-        tokenField.indexOfTokenView(tokenButton.superview)
+        //tokenField.indexOfTokenView(tokenButton.superview) needed?
         var index:Int = Int(tokenField.indexOfTokenView(tokenButton.superview))
         
         if index != NSNotFound {

@@ -11,5 +11,5 @@ import UIKit
 class experienceCell: UITableViewCell {
     @IBOutlet var university: MPGTextField_Swift!
     @IBOutlet var courseList: AutoToke!
-    var row:Int!
+    var indexPath:NSIndexPath!
 }
