@@ -8,12 +8,11 @@
 
 import UIKit
 
-var cellInfos:[Dictionary<String, AnyObject>]!
-
 class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate {
     var courseRow = 1
     let halpApi = HalpAPI()
     var selectedRow = -1
+    var cellInfos:[Dictionary<String, AnyObject>]!
     
     @IBAction func addAnother(sender: AnyObject) {
         courseRow++;
@@ -46,33 +45,32 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     @IBOutlet var table: UITableView!
     func nextScreen() {
         var courses = Dictionary<String,[Dictionary<String, String>]>()
-        let cells = table.visibleCells()
-        
-//        for cell in cells {
-//            if let uniCell = cell as? experienceCell {
-//                if uniCell.university.text == "" {
-//                    return createAlert(self, "Error!", "Please provide at least one university.")
-//                } else if uniCell.courseList.text == "" {
-//                    return createAlert(self, "Error!", "Please provide at least one course.")
-//                } else {
-//                    let uni = uniCell.university.text
-//                    let coursesText = split(uniCell.courseList.text) {$0 == ","}
-//                    var courseArr:[Dictionary<String, String>] = []
-//                    
-//                    for course in coursesText {
-//                        let nameNum = split(course) {$0 == " "}
-//                        courseArr.append([
-//                            "subject" : nameNum[0],
-//                            "number" : nameNum[1]
-//                            ])
-//                    }
-//                    
-//                    courses.updateValue(courseArr, forKey: uni)
-//                }
-//            }
-//        }
-//        setUpTutorParams.updateValue(courses, forKey: "courses")
-//        println(setUpTutorParams)
+        for info in cellInfos {
+            let school = info["school"] as String
+            let courseArr = info["tokens"] as NSMutableArray
+    
+            if school == "" {
+                return createAlert(self, "Error!", "Please provide at least one university.")
+            } else if courseArr.count == 0 {
+                return createAlert(self, "Error!", "Please provide at least one course.")
+            } else {
+                var interpCourses:[Dictionary<String, String>] = []
+                for course in courseArr {
+                    let nameNum = split(course as String) {$0 == " "}
+                    if nameNum.count < 2 {
+                        return createAlert(self, "Error!", "Please format classes correctly (eg CPE 101, not CPE101).")
+                    }
+                    interpCourses.append([
+                        "subject": nameNum[0],
+                        "number": nameNum[1]
+                    ])
+                }
+                
+                courses.updateValue(interpCourses, forKey: school)
+            }
+        }
+        println(courses)
+        setUpTutorParams.updateValue(courses, forKey: "courses")
         self.performSegueWithIdentifier("toSetRate", sender: self)
     }
     
@@ -116,8 +114,12 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
             
             let school = cellInfos[indexPath.row]["school"] as String
             if school != "" {
+                println("setting school")
                 expCell.university.text = school
                 expCell.courseList.enabled = true
+            } else {
+                expCell.university.text = ""
+                expCell.courseList.enabled = false
             }
             
             let height = cellInfos[indexPath.row]["tokenHeight"] as CGFloat
@@ -161,7 +163,19 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
 
     // Uni AutoComplete
     func dataForPopoverInTextField(textfield: MPGTextField_Swift) -> [Dictionary<String, AnyObject>] {
-        return universities
+        var selectedSchools:[Dictionary<String, AnyObject>] = []
+        for info in cellInfos {
+            let title = info["school"] as String
+            if title != "" {
+                selectedSchools.append([
+                    "DisplayText": title,
+                    "CustomObject": []
+                ])
+            }
+        }
+        var all = NSMutableArray(array: universities)
+        all.removeObjectsInArray(selectedSchools)
+        return all as AnyObject as [Dictionary<String, AnyObject>]
     }
     
     func textFieldShouldSelect(textField: MPGTextField_Swift) -> Bool {
@@ -191,7 +205,7 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
             }
             if let cell = textField.superview?.superview as? experienceCell {
                 cell.courseList.enabled = true
-                cellInfos[cell.indexPath.row].updateValue(courses, forKey: "courses")
+                self.cellInfos[cell.indexPath.row].updateValue(courses, forKey: "courses")
             }
         }
     }
@@ -209,19 +223,6 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
     func tokenSelected(textField: AutoToke) {
         updateTokenFieldHeight(textField, increment: true)
     }
-    
-//    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
-//        if let cell = tokenField.superview?.superview as? experienceCell {
-//            var newTokens = cellInfos[cell.indexPath.row]["tokens"] as NSMutableArray
-//            newTokens.removeObjectAtIndex(Int(index))
-//            cellInfos[cell.indexPath.row].updateValue(newTokens, forKey: "tokens")
-//            
-//            tokenField.reloadData(true)
-//            updateTokenFieldHeight(tokenField, increment: true)
-//            table.reloadData()
-//            //table.reloadData()
-//        }
-//    }
     
     func tokenFieldShouldEndEditing(textField: ZFTokenField!) -> Bool {
         return true
