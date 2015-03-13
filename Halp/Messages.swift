@@ -12,16 +12,17 @@ class Messages: UITableViewController {
     var chats: [Chat]!
     var chatType:String!
     let halpApi = HalpAPI()
+    var loggedIn:User!
     
     override func viewWillAppear(animated: Bool) {
         if pinMode == "student" {
             self.navigationItem.title = "Chats with Tutors"
-            if chatType != "student" {
+            if chatType != "student" || loggedInUser != loggedIn {
                 getConversations()
             }
         } else {
             self.navigationItem.title = "Chats with Students"
-            if chatType != "tutor" {
+            if chatType != "tutor" || loggedInUser != loggedIn {
                 getConversations()
             }
         }
@@ -48,6 +49,7 @@ class Messages: UITableViewController {
         }
         
         chatType = pinMode
+        loggedIn = loggedInUser
     }
     
     override func viewDidLoad() {
@@ -82,6 +84,6 @@ class Messages: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 72
+        return chatCellHeight
     }
 }

@@ -1,9 +1,10 @@
 import UIKit
 
-let chatCellHeight: CGFloat = 72
-let chatCellInsetLeft = chatCellHeight + 8
+let chatCellHeight: CGFloat = 75
+let chatCellInsetLeft = chatCellHeight + 24
 
 class ChatCell: UITableViewCell {
+    let unreadNotification:UIImageView
     let userPictureImageView: UIImageView
     let userNameLabel: UILabel
     let lastMessageTextLabel: UILabel
@@ -12,7 +13,17 @@ class ChatCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         let pictureSize: CGFloat = 64
-        userPictureImageView = UIImageView(frame: CGRect(x: 8, y: (chatCellHeight-pictureSize)/2, width: pictureSize, height: pictureSize))
+        
+        unreadNotification = UIImageView(frame: CGRectMake(0, 0, 20, 20))
+        unreadNotification.image = UIImage(named: "unreadDot.png")
+        unreadNotification.layer.borderWidth = 1.0
+        unreadNotification.layer.masksToBounds = false
+        unreadNotification.layer.borderColor = UIColor.whiteColor().CGColor
+        unreadNotification.layer.cornerRadius = unreadNotification.frame.size.height/2
+        unreadNotification.clipsToBounds = true
+        unreadNotification.hidden = true
+
+        userPictureImageView = UIImageView(frame: CGRect(x: 26, y: 6, width: pictureSize, height: pictureSize))
         userPictureImageView.backgroundColor = UIColor(red: 199/255.0, green: 199/255.0, blue: 204/255.0, alpha: 1)
         userPictureImageView.layer.cornerRadius = pictureSize/2
         userPictureImageView.layer.masksToBounds = true
@@ -39,6 +50,7 @@ class ChatCell: UITableViewCell {
         userNameInitialsLabel.textColor = UIColor.whiteColor()
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(unreadNotification)
         contentView.addSubview(userPictureImageView)
         contentView.addSubview(userNameLabel)
         contentView.addSubview(lastMessageTextLabel)
@@ -63,6 +75,10 @@ class ChatCell: UITableViewCell {
         userNameInitialsLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         userPictureImageView.addConstraint(NSLayoutConstraint(item: userNameInitialsLabel, attribute: .CenterX, relatedBy: .Equal, toItem: userPictureImageView, attribute: .CenterX, multiplier: 1, constant: 0))
         userPictureImageView.addConstraint(NSLayoutConstraint(item: userNameInitialsLabel, attribute: .CenterY, relatedBy: .Equal, toItem: userPictureImageView, attribute: .CenterY, multiplier: 1, constant: -1))
+        
+        unreadNotification.setTranslatesAutoresizingMaskIntoConstraints(false)
+        contentView.addConstraint(NSLayoutConstraint(item: unreadNotification, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 3))
+        contentView.addConstraint(NSLayoutConstraint(item: unreadNotification, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1, constant: 29))
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -79,6 +95,11 @@ class ChatCell: UITableViewCell {
         } else {
             userNameInitialsLabel.hidden = true
         }
+        
+        if chat.unreadMessageCount > 0 {
+            unreadNotification.hidden = false
+        }
+        
         userNameLabel.text = user["firstname"] as? String
         lastMessageTextLabel.text = chat.lastMessageText
         lastMessageSentDateLabel.text = chat.lastMessageSentDateString

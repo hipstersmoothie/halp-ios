@@ -43,7 +43,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
-        
+        println("refresh")
         self.tableView.registerCellClass(BaseTableViewCell.self)
         
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -58,9 +58,19 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         self.messagesController = UINavigationController(rootViewController: messages)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if pinMode == "student" {
+            modeLabel.text = "Tutor Mode"
+        } else {
+            modeLabel.text = "Student Mode"
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
+
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let menu = LeftMenu(rawValue: indexPath.item) {
@@ -119,6 +129,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             nvc.pushViewController(login, animated: true)
             self.slideMenuController()?.closeLeft()
             fbHelper.logout()
+            pinMode = "student"
             break
         case .Messages:
             nvc.pushViewController(self.messagesController, animated: true)
