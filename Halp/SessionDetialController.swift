@@ -174,6 +174,13 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         searchButton.layer.borderWidth = 1
         searchButton.layer.borderColor = buttonColor.CGColor
         searchButton.clipsToBounds = true
+        
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.contentSize = content.frame.size;
     }
     
     @IBAction func donePicker(sender: AnyObject) {

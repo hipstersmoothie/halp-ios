@@ -69,9 +69,12 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         }
     }
     
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var content: UIView!
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addPhoto.layer.cornerRadius = 0.5 * addPhoto.bounds.size.width
+        scrollView.contentSize = content.frame.size;
     }
     
     @IBOutlet var createButton: UIButton!
