@@ -69,12 +69,16 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addPhoto.layer.cornerRadius = 0.5 * addPhoto.bounds.size.width
+    }
+    
     @IBOutlet var createButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         addPhoto.backgroundColor = UIColor.clearColor()
-        addPhoto.layer.cornerRadius = 0.5 * addPhoto.bounds.size.width
         addPhoto.layer.borderWidth = 1
         addPhoto.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
         addPhoto.clipsToBounds = true
