@@ -38,8 +38,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
         
+        //application.registerForRemoteNotificationTypes(.Alert | .Badge | .Sound)
+        
         return true
     }
+//    
+//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+//        println("device token: \(deviceToken)")
+//    }
+//    
+//    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+//        println("Failed to register for remote notifcations")
+//        println(error.localizedDescription)
+//    }
+//    
+//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+//        // Notification RECIEVED
+//    }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
         var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)

@@ -111,6 +111,27 @@ class HalpAPI {
         halpRequest("/enum/skills", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
+    func getConversations(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "mode":pinMode
+        ]
+        halpRequest("/conversations", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func getMessages(uID:Int, completionHandler: ((Bool, JSON) -> Void)?) {
+        let id = uID as NSNumber
+        var params = [
+            "mode":pinMode,
+            "otherUserId": id
+        ]
+        
+        halpRequest("/messages", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func sendMessage(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
+        halpRequest("/message", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
     // Get information about the currently logged in user.
     func getProfile(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()

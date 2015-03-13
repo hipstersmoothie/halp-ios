@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4F704BE42A123D20AA3CC8 /* libPods-Halp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B210B0313569DC1971D8D7 /* libPods-Halp.a */; };
 		C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */; };
 		C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */; };
 		C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22B6C4C1A905CCF009729AD /* SetRateController.swift */; };
@@ -34,6 +35,8 @@
 		C26646EC1A78452E008B396C /* facebook-login.png in Resources */ = {isa = PBXBuildFile; fileRef = C26646EB1A78452E008B396C /* facebook-login.png */; };
 		C26646EE1A784576008B396C /* Red-signin_Long_base_44dp.png in Resources */ = {isa = PBXBuildFile; fileRef = C26646ED1A784576008B396C /* Red-signin_Long_base_44dp.png */; };
 		C26646F01A7849CA008B396C /* createController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646EF1A7849CA008B396C /* createController.swift */; };
+		C267606F1AAFD31F00D46084 /* googleplus.png in Resources */ = {isa = PBXBuildFile; fileRef = C267606D1AAFD31F00D46084 /* googleplus.png */; };
+		C26760701AAFD31F00D46084 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C267606E1AAFD31F00D46084 /* facebook.png */; };
 		C278E36F1A79E51B0006BCBD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C278E36E1A79E51B0006BCBD /* MapKit.framework */; };
 		C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3751A79EFB90006BCBD /* location-alt-512.png */; };
 		C278E3781A79F04B0006BCBD /* student.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3771A79F04B0006BCBD /* student.png */; };
@@ -52,6 +55,10 @@
 		C2B0FB4F1A8443B0003DE861 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B0FB4E1A8443B0003DE861 /* cancel.png */; };
 		C2B0FB511A844A10003DE861 /* StudentAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */; };
 		C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */; };
+		C2B8B8E21AB2184200CFB6C8 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8B8E11AB2184200CFB6C8 /* ConversationView.swift */; };
+		C2B8B8E51AB218CC00CFB6C8 /* MessageSentDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8B8E31AB218CC00CFB6C8 /* MessageSentDateCell.swift */; };
+		C2B8B8E61AB218CC00CFB6C8 /* MessageBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8B8E41AB218CC00CFB6C8 /* MessageBubbleCell.swift */; };
+		C2B8B8E81AB2196600CFB6C8 /* MessageBubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B8B8E71AB2196600CFB6C8 /* MessageBubble@2x.png */; };
 		C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */; };
 		C2BBA70D1A8C7B6F0023A5EF /* basicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBA70C1A8C7B6F0023A5EF /* basicInfo.swift */; };
 		C2BBA70F1A8D2C060023A5EF /* bioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBA70E1A8D2C060023A5EF /* bioCell.swift */; };
@@ -73,6 +80,11 @@
 		C2C298AE1A81A9390010C475 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AD1A81A9390010C475 /* cog.png */; };
 		C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AF1A81A97F0010C475 /* power-off2-hi.png */; };
 		C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298B11A81B7BE0010C475 /* ReviewController.swift */; };
+		C2E9854F1AAD48E200054C19 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E9854E1AAD48E200054C19 /* message.png */; };
+		C2E985511AAD4AA800054C19 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E985501AAD4AA800054C19 /* Messages.swift */; };
+		C2E985541AAD4C3C00054C19 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E985531AAD4C3C00054C19 /* ChatCell.swift */; };
+		C2E985561AAD4C7700054C19 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E985551AAD4C7700054C19 /* Chat.swift */; };
+		C2E985581AAD4C8A00054C19 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E985571AAD4C8A00054C19 /* Message.swift */; };
 		C2F8E93B1A89576F003ED69D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8E93A1A89576F003ED69D /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +99,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E486282370EF96A6E469B98 /* Pods-Halp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Halp/Pods-Halp.release.xcconfig"; sourceTree = "<group>"; };
+		87B210B0313569DC1971D8D7 /* libPods-Halp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Halp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8954359439165D33478E3921 /* Pods-Halp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Halp/Pods-Halp.debug.xcconfig"; sourceTree = "<group>"; };
 		C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioAndSkillsController.swift; sourceTree = "<group>"; };
 		C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorSetupCourses.swift; sourceTree = "<group>"; };
 		C22B6C4C1A905CCF009729AD /* SetRateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRateController.swift; sourceTree = "<group>"; };
@@ -118,6 +133,8 @@
 		C26646EB1A78452E008B396C /* facebook-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login.png"; sourceTree = "<group>"; };
 		C26646ED1A784576008B396C /* Red-signin_Long_base_44dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red-signin_Long_base_44dp.png"; sourceTree = "<group>"; };
 		C26646EF1A7849CA008B396C /* createController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createController.swift; sourceTree = "<group>"; };
+		C267606D1AAFD31F00D46084 /* googleplus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleplus.png; sourceTree = "<group>"; };
+		C267606E1AAFD31F00D46084 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		C278E36B1A79E0C20006BCBD /* Halp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Halp-Bridging-Header.h"; sourceTree = "<group>"; };
 		C278E36E1A79E51B0006BCBD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C278E3751A79EFB90006BCBD /* location-alt-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-alt-512.png"; sourceTree = "<group>"; };
@@ -138,6 +155,10 @@
 		C2B0FB4E1A8443B0003DE861 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAnnotation.swift; sourceTree = "<group>"; };
 		C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorHelper.swift; sourceTree = "<group>"; };
+		C2B8B8E11AB2184200CFB6C8 /* ConversationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
+		C2B8B8E31AB218CC00CFB6C8 /* MessageSentDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSentDateCell.swift; sourceTree = "<group>"; };
+		C2B8B8E41AB218CC00CFB6C8 /* MessageBubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubbleCell.swift; sourceTree = "<group>"; };
+		C2B8B8E71AB2196600CFB6C8 /* MessageBubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageBubble@2x.png"; sourceTree = "<group>"; };
 		C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C2BBA70C1A8C7B6F0023A5EF /* basicInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = basicInfo.swift; sourceTree = "<group>"; };
 		C2BBA70E1A8D2C060023A5EF /* bioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bioCell.swift; sourceTree = "<group>"; };
@@ -159,6 +180,11 @@
 		C2C298AD1A81A9390010C475 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
 		C2C298AF1A81A97F0010C475 /* power-off2-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-off2-hi.png"; sourceTree = "<group>"; };
 		C2C298B11A81B7BE0010C475 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		C2E9854E1AAD48E200054C19 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
+		C2E985501AAD4AA800054C19 /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		C2E985531AAD4C3C00054C19 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		C2E985551AAD4C7700054C19 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		C2E985571AAD4C8A00054C19 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C2F8E93A1A89576F003ED69D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +195,7 @@
 			files = (
 				C278E36F1A79E51B0006BCBD /* MapKit.framework in Frameworks */,
 				C24391CC1A7C425000A3AC58 /* FacebookSDK.framework in Frameworks */,
+				0D4F704BE42A123D20AA3CC8 /* libPods-Halp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +209,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		163660C37D23BE4C6630A7C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8954359439165D33478E3921 /* Pods-Halp.debug.xcconfig */,
+				3E486282370EF96A6E469B98 /* Pods-Halp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B014717B269FAFF0EC927847 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				87B210B0313569DC1971D8D7 /* libPods-Halp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C2001CF91A93282700C0A0EC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +254,10 @@
 			isa = PBXGroup;
 			children = (
 				C24391FC1A7E2C7900A3AC58 /* Lobster 1.4.otf */,
+				C2E9854E1AAD48E200054C19 /* message.png */,
+				C267606D1AAFD31F00D46084 /* googleplus.png */,
+				C267606E1AAFD31F00D46084 /* facebook.png */,
+				C2B8B8E71AB2196600CFB6C8 /* MessageBubble@2x.png */,
 				C2B0FB4E1A8443B0003DE861 /* cancel.png */,
 				C2C298AF1A81A97F0010C475 /* power-off2-hi.png */,
 				C2C298AD1A81A9390010C475 /* cog.png */,
@@ -237,6 +285,8 @@
 				C26646DE1A7843B0008B396C /* HalpTests */,
 				C26646C71A7843B0008B396C /* Products */,
 				C278E36B1A79E0C20006BCBD /* Halp-Bridging-Header.h */,
+				163660C37D23BE4C6630A7C7 /* Pods */,
+				B014717B269FAFF0EC927847 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -256,6 +306,7 @@
 				C26646CB1A7843B0008B396C /* AppDelegate.swift */,
 				C29874CC1AA5317200B6BC90 /* TokenView.xib */,
 				C2B0FB4B1A842E75003DE861 /* Main.storyboard */,
+				C2E985521AAD4C1900054C19 /* Messaging */,
 				C2001CFA1A93287900C0A0EC /* Settings */,
 				C2C298B31A81D6AA0010C475 /* Profile */,
 				C2C298B81A81D8BA0010C475 /* Login */,
@@ -381,6 +432,20 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		C2E985521AAD4C1900054C19 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				C2E985501AAD4AA800054C19 /* Messages.swift */,
+				C2B8B8E11AB2184200CFB6C8 /* ConversationView.swift */,
+				C2B8B8E31AB218CC00CFB6C8 /* MessageSentDateCell.swift */,
+				C2B8B8E41AB218CC00CFB6C8 /* MessageBubbleCell.swift */,
+				C2E985531AAD4C3C00054C19 /* ChatCell.swift */,
+				C2E985551AAD4C7700054C19 /* Chat.swift */,
+				C2E985571AAD4C8A00054C19 /* Message.swift */,
+			);
+			name = Messaging;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,9 +453,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C26646E51A7843B0008B396C /* Build configuration list for PBXNativeTarget "Halp" */;
 			buildPhases = (
+				0F510A66AE05170D9708A772 /* Check Pods Manifest.lock */,
 				C26646C21A7843B0008B396C /* Sources */,
 				C26646C31A7843B0008B396C /* Frameworks */,
 				C26646C41A7843B0008B396C /* Resources */,
+				58C1E25642B7E63DAEE801D3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -469,18 +536,22 @@
 				C26646EE1A784576008B396C /* Red-signin_Long_base_44dp.png in Resources */,
 				C29874CD1AA5317200B6BC90 /* TokenView.xib in Resources */,
 				C24391FD1A7E2C7900A3AC58 /* Lobster 1.4.otf in Resources */,
+				C2E9854F1AAD48E200054C19 /* message.png in Resources */,
 				C2B0FB4F1A8443B0003DE861 /* cancel.png in Resources */,
+				C2B8B8E81AB2196600CFB6C8 /* MessageBubble@2x.png in Resources */,
 				C243921C1A802C6800A3AC58 /* StarEmpty@2x.png in Resources */,
 				C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */,
 				C26646D61A7843B0008B396C /* LaunchScreen.xib in Resources */,
 				C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */,
 				C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */,
 				C294ECEF1A9B084D00CFBB0D /* point.png in Resources */,
+				C267606F1AAFD31F00D46084 /* googleplus.png in Resources */,
 				C294ECE91A9B018900CFBB0D /* blank.png in Resources */,
 				C24392171A802A1900A3AC58 /* Images.xcassets in Resources */,
 				C2C298AC1A81A7320010C475 /* logout.png in Resources */,
 				C243920F1A7F3A3100A3AC58 /* tutor.jpeg in Resources */,
 				C278E3781A79F04B0006BCBD /* student.png in Resources */,
+				C26760701AAFD31F00D46084 /* facebook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +564,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0F510A66AE05170D9708A772 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		58C1E25642B7E63DAEE801D3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Halp/Pods-Halp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C26646C21A7843B0008B396C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -503,10 +607,12 @@
 				C243921A1A802B5E00A3AC58 /* FloatRatingView.swift in Sources */,
 				C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */,
 				C2BBA70F1A8D2C060023A5EF /* bioCell.swift in Sources */,
+				C2B8B8E51AB218CC00CFB6C8 /* MessageSentDateCell.swift in Sources */,
 				C29874D11AA5546600B6BC90 /* AutoToke.swift in Sources */,
 				C2C2989B1A805CD20010C475 /* SessionCounterController.swift in Sources */,
 				C26646CE1A7843B0008B396C /* ViewController.swift in Sources */,
 				C2B0FB511A844A10003DE861 /* StudentAnnotation.swift in Sources */,
+				C2E985541AAD4C3C00054C19 /* ChatCell.swift in Sources */,
 				C2C2989D1A8197FF0010C475 /* SlideMenuController.swift in Sources */,
 				C24392111A7F430D00A3AC58 /* TutorDetails.swift in Sources */,
 				C2C298A41A819CC80010C475 /* UITableViewExtension.swift in Sources */,
@@ -518,6 +624,7 @@
 				C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */,
 				C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */,
 				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
+				C2B8B8E21AB2184200CFB6C8 /* ConversationView.swift in Sources */,
 				C2BBA7151A8D2D300023A5EF /* experienceCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
@@ -527,6 +634,8 @@
 				C2BBA7131A8D2CE40023A5EF /* rateCell.swift in Sources */,
 				C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */,
 				C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */,
+				C2B8B8E61AB218CC00CFB6C8 /* MessageBubbleCell.swift in Sources */,
+				C2E985561AAD4C7700054C19 /* Chat.swift in Sources */,
 				C2C298971A8046A70010C475 /* LGSimpleChat.swift in Sources */,
 				C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,
@@ -535,11 +644,13 @@
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
 				C2AE9A511AA7BF410052311D /* SessionDetailContents.swift in Sources */,
 				C29874CB1AA52EC500B6BC90 /* ZFTokenField.m in Sources */,
+				C2E985511AAD4AA800054C19 /* Messages.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,
 				C2B0FB421A840782003DE861 /* UserPin.swift in Sources */,
 				C2C298A51A819CC80010C475 /* UIViewControllerExtension.swift in Sources */,
+				C2E985581AAD4C8A00054C19 /* Message.swift in Sources */,
 				C2C298A81A819CED0010C475 /* StringExtension.swift in Sources */,
 				C2C2989F1A8199CE0010C475 /* LeftViewController.swift in Sources */,
 			);
@@ -663,6 +774,7 @@
 		};
 		C26646E61A7843B0008B396C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8954359439165D33478E3921 /* Pods-Halp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -680,6 +792,7 @@
 		};
 		C26646E71A7843B0008B396C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E486282370EF96A6E469B98 /* Pods-Halp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -21,6 +21,19 @@ class User: NSObject {
     var skills: [String]
     var courses: Dictionary<String, [Course]>
     
+    init(ID: Int, username: String, firstName: String, lastName: String) {
+        userId = ID
+        self.firstname = firstName
+        self.lastname = lastName
+        self.ratings = 0
+        self.rating = 0
+        self.rate = 0
+        self.image = ""
+        self.bio = ""
+        self.skills = []
+        self.courses = Dictionary<String, [Course]>()
+    }
+    
     init(user:JSON, courses:JSON) {
         self.userId = user["userId"].intValue
         self.firstname = user["firstname"].stringValue

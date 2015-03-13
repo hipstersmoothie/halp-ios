@@ -27,6 +27,18 @@ extension String  {
     static func className(aClass: AnyClass) -> String {
         return NSStringFromClass(aClass).componentsSeparatedByString(".").last!
     }
+    
+    subscript (i: Int) -> Character {
+        return self[advance(self.startIndex, i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        return substringWithRange(Range(start: advance(startIndex, r.startIndex), end: advance(startIndex, r.endIndex)))
+    }
 }
 
 // Creates a UIColor from a Hex string.

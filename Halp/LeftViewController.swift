@@ -10,6 +10,7 @@ import UIKit
 enum LeftMenu: Int {
     case Search = 0
     case TutorMode
+    case Messages
     case RemovePin
     case Settings
     case Logout
@@ -27,6 +28,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var settingsViewController: UIViewController!
     var tutorSetupController: UIViewController!
+    var messagesController: UIViewController!
     var halpApi = HalpAPI()
     var delegate:LeftViewControllerDelegate? = nil
     
@@ -45,10 +47,15 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         self.tableView.registerCellClass(BaseTableViewCell.self)
         
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         let settings = storyboard.instantiateViewControllerWithIdentifier("Settings") as Settings
         self.settingsViewController = UINavigationController(rootViewController: settings)
+        
         let setup = storyboard.instantiateViewControllerWithIdentifier("PageContentController") as BioAndSkillsController
         self.tutorSetupController = UINavigationController(rootViewController: setup)
+        
+        let messages = storyboard.instantiateViewControllerWithIdentifier("Messages") as Messages
+        self.messagesController = UINavigationController(rootViewController: messages)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -112,6 +119,10 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             nvc.pushViewController(login, animated: true)
             self.slideMenuController()?.closeLeft()
             fbHelper.logout()
+            break
+        case .Messages:
+            nvc.pushViewController(self.messagesController, animated: true)
+            self.slideMenuController()?.closeLeft()
             break
         default:
             break
