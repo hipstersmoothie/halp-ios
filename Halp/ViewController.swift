@@ -56,7 +56,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
             var params = [
                 "email": username.text,
                 "passwordHash":"\(password.text.md5)",
-                "type":"halp"
+                "type":"halp",
+                "pushType": "apn",
+                "pushToken": thisDeviceToken.hexString()
             ] as Dictionary<String, String>
             
             pause(self.view)
@@ -130,7 +132,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     func executeHandle(notification:NSNotification){
         let params = [
             "accessToken" : notification.object as String,
-            "type" : "facebook"
+            "type" : "facebook",
+            "pushType": "apn",
+            "pushToken": thisDeviceToken.hexString()
             ] as Dictionary <String, String>
         
         pause(self.view)

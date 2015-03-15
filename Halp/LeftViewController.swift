@@ -31,6 +31,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var messagesController: UIViewController!
     var halpApi = HalpAPI()
     var delegate:LeftViewControllerDelegate? = nil
+    var notificationCounts:Dictionary<NSObject, AnyObject>!
     
     override init() {
         super.init()
@@ -56,21 +57,90 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         
         let messages = storyboard.instantiateViewControllerWithIdentifier("Messages") as Messages
         self.messagesController = UINavigationController(rootViewController: messages)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
+    }
+    
+    func messageClicked(notification: NSNotification) {
+        let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
+        let val = data["decrementValue"] as NSInteger
+        let current = messageCount.text?.toInt()
+        if current != nil {
+            let newCount  = current! - val
+            if newCount <= 0 {
+                messageCount.text = ""
+                messageImage.image = UIImage(named: "message.png")!
+            } else {
+                messageCount.text = "\(newCount)"
+            }
+        }
+        
+        var key:String
+        if pinMode == "student" {
+            key = "studentUnreadMessages"
+        } else {
+            key = "tutorUnreadMessages"
+        }
+        
+        if notificationCounts != nil {
+            let messageCountNum = notificationCounts[key] as NSInteger
+            notificationCounts.updateValue(messageCountNum - val, forKey: key)
+        }
+        
+        var numberOfBadges = UIApplication.sharedApplication().applicationIconBadgeNumber
+        if numberOfBadges > 0 {
+            numberOfBadges -= val
+            UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
+        }
+    }
+    
+    @IBOutlet var otherCount: UILabel!
+    @IBOutlet var messageCount: UILabel!
+    @IBOutlet var switchModeImage: UIImageView!
+    @IBOutlet var messageImage: UIImageView!
+    func gotNotifications(notification: NSNotification) {
+        notificationCounts = notification.userInfo
+        updateNotificationCounts()
+    }
+    
+    func updateNotificationCounts() {
+        println("trying to update")
+        if notificationCounts != nil {
+            var key:String
+            var otherKey:String
+            if pinMode == "student" {
+                key = "studentUnreadMessages"
+                otherKey = "tutorUnreadMessages"
+            } else {
+                key = "tutorUnreadMessages"
+                otherKey = "studentUnreadMessages"
+            }
+            
+            let count = notificationCounts[key]! as NSInteger
+            let otherCountNum = notificationCounts[otherKey]! as NSInteger
+            if count > 0 {
+                messageCount.text = "\(count)"
+                messageImage.image = UIImage(named: "message-red.png")!
+            }
+            if otherCountNum > 0 {
+                otherCount.text = "\(otherCountNum)"
+                switchModeImage.image = UIImage(named: "logout-red.png")!
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if pinMode == "student" {
-            modeLabel.text = "Tutor Mode"
-        } else {
-            modeLabel.text = "Student Mode"
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
-
+    
+    override func viewDidDisappear(animated: Bool) {
+        //NSNotificationCenter.defaultCenter().removeObserver(self, name: "notificationsRecieved", object: nil)
+    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let menu = LeftMenu(rawValue: indexPath.item) {
@@ -107,7 +177,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
                     pinMode = "student"
                     modeLabel.text = "Tutor Mode"
                 }
-
+                otherCount.text = ""
+                switchModeImage.image = UIImage(named: "logout.png")!
+                updateNotificationCounts()
                 NSNotificationCenter.defaultCenter().postNotificationName("SwitchMode", object: nil, userInfo: nil)
                 self.slideMenuController()?.closeLeft()
             } else {
@@ -130,10 +202,13 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             self.slideMenuController()?.closeLeft()
             fbHelper.logout()
             pinMode = "student"
+            modeLabel.text = "Tutor Mode"
+            
             break
         case .Messages:
             nvc.pushViewController(self.messagesController, animated: true)
             self.slideMenuController()?.closeLeft()
+            
             break
         default:
             break

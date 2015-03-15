@@ -8,7 +8,7 @@
 
 import UIKit
 
-class tutorProfile: UIViewController, FloatRatingViewDelegate, LGChatControllerDelegate {
+class tutorProfile: UIViewController, FloatRatingViewDelegate {
     
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var price: UILabel!
@@ -33,11 +33,20 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate, LGChatControllerD
     
     @IBOutlet var rOSButton: UIButton!
     @IBAction func requestOrStart(sender: AnyObject) {
-        if rOSButton.titleLabel?.text == "Request Session" {
+        let chat = Chat(rootMessage: JSON([
+            "otherUser" : [
+                "userId" : selectedTutor.user.userId,
+                "firstname" : selectedTutor.user.firstname
+            ],
+            "lastMessage": [
+                "body" : "",
+                "timestamp" :  NSDate().timeIntervalSince1970
+            ],
+            "unreadMessages" : 0
+        ]))
             
-        } else if rOSButton.titleLabel?.text == "Start Session" {
-            launchChatController()
-        }
+        let chatViewController = ConversationViewController(chat: chat)
+        navigationController?.pushViewController(chatViewController, animated: true)
     }
     
     @IBOutlet var rating: FloatRatingView!
@@ -61,10 +70,6 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate, LGChatControllerD
         profilePic.layer.cornerRadius = profilePic.frame.size.height/2
         profilePic.clipsToBounds = true
         
-//        if selectedTutor.interestedInTutoringYou == true {
-//            rOSButton.setTitle("Start Session", forState: .Normal)
-//        }
-        
         rOSButton.backgroundColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
         rOSButton.layer.cornerRadius = 12
         rOSButton.layer.borderWidth = 1
@@ -85,36 +90,6 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate, LGChatControllerD
     
     func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
 
-    }
-    
-    
-    // MARK: Launch Chat Controller
-    
-    func launchChatController() {
-        let chatController = LGChatController()
-        chatController.opponentImage = UIImage(named: "tutor.jpeg")
-        chatController.title = "Chat"
-        let helloWorld = LGChatMessage(content: "Hello World!", sentBy: .Opponent)
-        chatController.messages = [helloWorld]
-        chatController.delegate = self
-        
-        LGChatMessageCell.Appearance.opponentColor = UIColor.lightGrayColor()
-        LGChatMessageCell.Appearance.userColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
-        
-        self.navigationController?.pushViewController(chatController, animated: true)
-    }
-    
-    // MARK: LGChatControllerDelegate
-    
-    func chatController(chatController: LGChatController, didAddNewMessage message: LGChatMessage) {
-        println("Did Add Message: \(message.content)")
-    }
-    
-    func shouldChatController(chatController: LGChatController, addMessage message: LGChatMessage) -> Bool {
-        /*
-        Use this space to prevent sending a message, or to alter a message.  For example, you might want to hold a message until its successfully uploaded to a server.
-        */
-        return true
     }
 }
 

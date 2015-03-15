@@ -98,6 +98,8 @@ class ChatCell: UITableViewCell {
         
         if chat.unreadMessageCount > 0 {
             unreadNotification.hidden = false
+        } else {
+            unreadNotification.hidden = true
         }
         
         userNameLabel.text = user["firstname"] as? String

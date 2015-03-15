@@ -43,7 +43,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tutor Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVK-0a-CiR">
-                                                    <rect key="frame" x="22" y="11" width="161" height="21"/>
+                                                    <rect key="frame" x="22" y="11" width="118" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -51,6 +51,12 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logout.png" translatesAutoresizingMaskIntoConstraints="NO" id="qPP-c2-cGU">
                                                     <rect key="frame" x="227" y="8" width="27" height="27"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQe-HM-8Ze">
+                                                    <rect key="frame" x="148" y="11" width="71" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -69,6 +75,12 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="message.png" translatesAutoresizingMaskIntoConstraints="NO" id="dO1-9d-WLN">
                                                     <rect key="frame" x="227" y="8" width="27" height="27"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPV-Ni-mvz">
+                                                    <rect key="frame" x="148" y="11" width="71" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -136,7 +148,11 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="messageCount" destination="hPV-Ni-mvz" id="T26-Ek-kvN"/>
+                        <outlet property="messageImage" destination="dO1-9d-WLN" id="h71-KI-LUO"/>
                         <outlet property="modeLabel" destination="HVK-0a-CiR" id="3fd-ip-S0M"/>
+                        <outlet property="otherCount" destination="KQe-HM-8Ze" id="d1u-1a-ENx"/>
+                        <outlet property="switchModeImage" destination="qPP-c2-cGU" id="Xm2-dB-Qyb"/>
                         <segue destination="vXZ-lx-hvc" kind="show" identifier="logout" id="6IL-E7-WHO"/>
                         <segue destination="IQw-MT-eGb" kind="show" identifier="toMap" id="0E0-GV-I3n"/>
                     </connections>
@@ -1031,6 +1047,7 @@
                                 <rect key="frame" x="33" y="570" width="308" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XlY-0K-KwX"/>
                                     <constraint firstAttribute="width" constant="308" id="nrM-GB-fRk"/>
                                     <constraint firstAttribute="width" secondItem="cTa-lS-yyM" secondAttribute="height" multiplier="154:25" id="rjy-Fn-Jr0"/>
                                     <constraint firstAttribute="height" constant="50" id="wgk-eZ-E1e"/>
@@ -1082,6 +1099,7 @@
                                 <exclude reference="aIZ-Go-wLS"/>
                                 <exclude reference="gON-el-qI8"/>
                                 <exclude reference="qT7-hK-KWa"/>
+                                <exclude reference="NjS-wp-aOT"/>
                                 <exclude reference="xrM-A4-QMP"/>
                             </mask>
                         </variation>
@@ -1105,6 +1123,7 @@
                         <segue destination="zg9-bm-efp" kind="show" identifier="toProfile" id="2u0-A8-9Wo"/>
                         <segue destination="uK6-rC-NoG" kind="show" identifier="toDetail" id="sFe-05-7EP"/>
                         <segue destination="acS-z9-eTA" kind="show" identifier="toStudentProfile" id="uWa-UL-RZP"/>
+                        <segue destination="CIj-3t-toH" kind="show" identifier="toNotifications" id="t11-3D-NaN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j59-5D-fAt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1550,7 +1569,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PvP-sm-hRO">
                                 <rect key="frame" x="189" y="182" width="162" height="36"/>
-                                <state key="normal" title="Request Session">
+                                <state key="normal" title="Chat">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1926,6 +1945,52 @@
             </objects>
             <point key="canvasLocation" x="670.5" y="984.5"/>
         </scene>
+        <!--Notification Tray-->
+        <scene sceneID="bu7-0j-cf9">
+            <objects>
+                <tableViewController id="CIj-3t-toH" customClass="NotificationTray" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="RrF-8l-Gf7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageNotification" rowHeight="70" id="ys0-uS-SJO">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ys0-uS-SJO" id="TpV-VN-M3O">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="79t-Yk-wN3">
+                                            <rect key="frame" x="15" y="5" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="BSQ-bh-tWL"/>
+                                                <constraint firstAttribute="width" constant="60" id="CdW-er-9rH"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u16-wb-snv">
+                                            <rect key="frame" x="92" y="24" width="252" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="79t-Yk-wN3" secondAttribute="centerY" id="3Za-Da-vde"/>
+                                        <constraint firstItem="79t-Yk-wN3" firstAttribute="leading" secondItem="TpV-VN-M3O" secondAttribute="leadingMargin" constant="7" id="Rak-0E-hKq"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CIj-3t-toH" id="wJi-b3-INP"/>
+                            <outlet property="delegate" destination="CIj-3t-toH" id="QCH-GT-4rW"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H4f-4M-1d2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1699.5" y="984.5"/>
+        </scene>
         <!--Tutor Details-->
         <scene sceneID="t4K-Bh-7aa">
             <objects>
@@ -2084,8 +2149,8 @@
         <image name="student.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dm7-Lu-mGU"/>
-        <segue reference="uWa-UL-RZP"/>
         <segue reference="2u0-A8-9Wo"/>
+        <segue reference="0E0-GV-I3n"/>
+        <segue reference="uWa-UL-RZP"/>
     </inferredMetricsTieBreakers>
 </document>

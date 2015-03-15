@@ -46,7 +46,9 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
                 "lastname": lastName.text,
                 "email": email.text,
                 "passwordHash":"\(password.text.md5)",
-                "image": base64String
+                "image": base64String,
+                "pushType": "apn",
+                "pushToken": thisDeviceToken.hexString()
             ] as Dictionary<String, String>
             
             pause(self.view)

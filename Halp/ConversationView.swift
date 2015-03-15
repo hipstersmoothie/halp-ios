@@ -177,10 +177,14 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(MessageSentDateCell), forIndexPath: indexPath) as MessageSentDateCell
-            let message = chat.loadedMessages[indexPath.section][0]
-            dateFormatter.dateStyle = .ShortStyle
-            dateFormatter.timeStyle = .ShortStyle
-            cell.sentDateLabel.text = dateFormatter.stringFromDate(message.sentDate)
+            
+            if chat.loadedMessages[indexPath.section].count > 0 {
+                let message = chat.loadedMessages[indexPath.section][0]
+                dateFormatter.dateStyle = .ShortStyle
+                dateFormatter.timeStyle = .ShortStyle
+                cell.sentDateLabel.text = dateFormatter.stringFromDate(message.sentDate)
+            }
+            
             return cell
         } else {
             let cellIdentifier = NSStringFromClass(MessageBubbleCell)

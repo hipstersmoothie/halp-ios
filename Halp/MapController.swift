@@ -35,8 +35,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         northWest = getCoordinateFromMapRectanglePoint(MKMapRectGetMinX(mRect), y: mRect.origin.y)
         southEast = getCoordinateFromMapRectanglePoint(MKMapRectGetMaxX(mRect), y: MKMapRectGetMaxY(mRect))
 
-        
-        self.performSegueWithIdentifier("toTutors", sender: self)
+        println("here")
+        //self.performSegueWithIdentifier("toTutors", sender: self)
     }
     
     func getCoordinateFromMapRectanglePoint(x:Double, y:Double) -> CLLocationCoordinate2D {
@@ -237,11 +237,32 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         getPins()
     }
     
+    func gotNotifications(notification: NSNotification) {
+        setRightBarButton("tray-red.png")
+    }
+    
+    func notificationTrayTapped() {
+        println("tap dat tray")
+    }
+    
+    func setRightBarButton(image: String) {
+        var notificationTray = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        notificationTray.addTarget(self, action: Selector("notificationTrayTapped"), forControlEvents: .TouchUpInside)
+        notificationTray.showsTouchWhenHighlighted = true
+        
+        let trayImage = UIImage(named: image)
+        notificationTray.setImage(trayImage, forState: .Normal)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: notificationTray)
+    }
+    
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("removeMyPin"), name: "DeleteMyPin", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode"), name: "SwitchMode", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
+        
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -249,7 +270,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+        var authorizationStatus = CLLocationManager.authorizationStatus()
+        
+        if authorizationStatus == CLAuthorizationStatus.Authorized ||
+            authorizationStatus == CLAuthorizationStatus.AuthorizedWhenInUse {
+                manager.startUpdatingLocation()
+                map.showsUserLocation = true
+        }
+        
         configureDatePicker()
         
         findTutorButton.layer.cornerRadius = 0.5
@@ -262,14 +290,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         self.navigationItem.hidesBackButton = true
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
-        if pinMode == "tutor" {
-            self.navigationItem.rightBarButtonItem?.title = "Students"
-        }
+        
+        // add the notification tray to the toolbar
+        setRightBarButton("tray.png")
+        
         navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        map.showsUserLocation = true
         map.rotateEnabled = false
         datePicker.removeFromSuperview()
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)

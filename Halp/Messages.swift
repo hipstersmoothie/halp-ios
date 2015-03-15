@@ -17,15 +17,16 @@ class Messages: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         if pinMode == "student" {
             self.navigationItem.title = "Chats with Tutors"
-            if chatType != "student" || loggedInUser != loggedIn {
-                getConversations()
-            }
+//            if chatType != "student" || loggedInUser != loggedIn {
+//                getConversations()
+//            }
         } else {
             self.navigationItem.title = "Chats with Students"
-            if chatType != "tutor" || loggedInUser != loggedIn {
-                getConversations()
-            }
+//            if chatType != "tutor" || loggedInUser != loggedIn {
+//                getConversations()
+//            }
         }
+        getConversations()
     }
     
     func getConversations() {
@@ -54,10 +55,21 @@ class Messages: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getConversations()
+        //getConversations()
         
         tableView.rowHeight = chatCellHeight
         tableView.registerClass(ChatCell.self, forCellReuseIdentifier: NSStringFromClass(ChatCell))
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "GetNewMessages", object: nil)
+    }
+    
+    func gotNotifications(notification: NSNotification) {
+        getConversations()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "notificationsRecieved", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,6 +83,14 @@ class Messages: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var chat = chats[indexPath.row]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("MessageClicked", object: nil, userInfo: [
+                "decrementValue": chat.unreadMessageCount
+            ])
+        chat.unreadMessageCount = 0
+        chats[indexPath.row] = chat
+        
+        
         let chatViewController = ConversationViewController(chat: chat)
         navigationController?.pushViewController(chatViewController, animated: true)
     }
