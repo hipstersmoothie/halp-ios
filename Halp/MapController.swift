@@ -16,7 +16,7 @@ var userLocation:CLLocationCoordinate2D!
 var northWest:CLLocationCoordinate2D!
 var southEast:CLLocationCoordinate2D!
 
-class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var map: MKMapView!
     var manager:CLLocationManager!
     var center = false, findMe = false
@@ -34,9 +34,21 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let mRect = map.visibleMapRect
         northWest = getCoordinateFromMapRectanglePoint(MKMapRectGetMinX(mRect), y: mRect.origin.y)
         southEast = getCoordinateFromMapRectanglePoint(MKMapRectGetMaxX(mRect), y: MKMapRectGetMaxY(mRect))
-
-        println("here")
         //self.performSegueWithIdentifier("toTutors", sender: self)
+    }
+    @IBOutlet var listView: UIView!
+    @IBOutlet var list: UITableView!
+    @IBAction func toggleMapList(sender: AnyObject) {
+        if listView.hidden == true {
+            map.hidden = true
+            findTutorButton.hidden = true
+            list.reloadData()
+            listView.hidden = false
+        } else {
+            map.hidden = false
+            findTutorButton.hidden = false
+            listView.hidden = true
+        }
     }
     
     func getCoordinateFromMapRectanglePoint(x:Double, y:Double) -> CLLocationCoordinate2D {
@@ -232,28 +244,29 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             self.navigationItem.rightBarButtonItem?.title = "Students"
         }
         map.removeAnnotations(map.annotations)
+
         pinsInArea = []
         findMe = false
         getPins()
     }
     
     func gotNotifications(notification: NSNotification) {
-        setRightBarButton("tray-red.png")
+        let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
+        println(data)
+        let count = data["count"] as NSInteger
+        if count > 0 {
+            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
+        }
     }
     
-    func notificationTrayTapped() {
-        println("tap dat tray")
-    }
-    
-    func setRightBarButton(image: String) {
-        var notificationTray = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        notificationTray.addTarget(self, action: Selector("notificationTrayTapped"), forControlEvents: .TouchUpInside)
-        notificationTray.showsTouchWhenHighlighted = true
-        
-        let trayImage = UIImage(named: image)
-        notificationTray.setImage(trayImage, forState: .Normal)
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: notificationTray)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if notificationCounts != nil {
+            println(notificationCounts)
+            let count = notificationCounts["count"] as NSInteger
+            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
+        }
+       
     }
     
     @IBOutlet var findTutorButton: UIButton!
@@ -291,8 +304,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.navigationItem.hidesBackButton = true
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
         
+        self.navigationItem.rightBarButtonItem = nil
+        
         // add the notification tray to the toolbar
-        setRightBarButton("tray.png")
+        //setRightBarButton("tray.png")
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -324,6 +339,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func getPins() {
         let mRect = map.visibleMapRect
         let mode:NSString = (pinMode == "student") ? "tutor" : "student"
+        println(pinMode)
         northWest = getCoordinateFromMapRectanglePoint(MKMapRectGetMinX(mRect), y: mRect.origin.y)
         southEast = getCoordinateFromMapRectanglePoint(MKMapRectGetMaxX(mRect), y: MKMapRectGetMaxY(mRect))
         var params = [
@@ -460,6 +476,49 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
         
         return false
+    }
+    
+    // tutor list shit
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pinsInArea.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedTutor = pinsInArea[indexPath.row]
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if pinMode == "student" {
+            var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as tutorRow
+            
+            let user = pinsInArea[indexPath.row].user
+            cell.myLabel.text = user.firstname
+            cell.rating.rating = user.rating
+            
+            return cell
+        } else {
+            var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as studentCell
+            
+            let user = pinsInArea[indexPath.row].user
+            cell.name.text = user.firstname
+            for (university, courseList) in pinsInArea[indexPath.row].courses {
+                for course in courseList {
+                    cell.course.text = "\(course.subject) \(course.number)"
+                }
+            }
+            
+            cell.skills.text = ", ".join(pinsInArea[indexPath.row].skills)
+            
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if pinsInArea[indexPath.row].pinDescription != "" {
+            return 61
+        }
+        
+        return 44
     }
 }
 

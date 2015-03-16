@@ -24,6 +24,8 @@ protocol LeftViewControllerDelegate{
     func refreshMyPin(controller:LeftViewController)
 }
 
+var notificationCounts:Dictionary<NSObject, AnyObject>!
+
 class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var settingsViewController: UIViewController!
@@ -31,7 +33,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var messagesController: UIViewController!
     var halpApi = HalpAPI()
     var delegate:LeftViewControllerDelegate? = nil
-    var notificationCounts:Dictionary<NSObject, AnyObject>!
     
     override init() {
         super.init()
@@ -86,6 +87,8 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         if notificationCounts != nil {
             let messageCountNum = notificationCounts[key] as NSInteger
             notificationCounts.updateValue(messageCountNum - val, forKey: key)
+            let currCount = notificationCounts["count"] as NSInteger
+            notificationCounts.updateValue(currCount - val, forKey: "count")
         }
         
         var numberOfBadges = UIApplication.sharedApplication().applicationIconBadgeNumber
@@ -122,10 +125,16 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             if count > 0 {
                 messageCount.text = "\(count)"
                 messageImage.image = UIImage(named: "message-red.png")!
+            } else {
+                messageCount.text = ""
+                messageImage.image = UIImage(named: "message.png")!
             }
             if otherCountNum > 0 {
                 otherCount.text = "\(otherCountNum)"
                 switchModeImage.image = UIImage(named: "logout-red.png")!
+            } else {
+                otherCount.text = ""
+                switchModeImage.image = UIImage(named: "logout.png")!
             }
         }
     }
@@ -170,6 +179,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             break
         case .TutorMode:
             if loggedInUser.rate > 0 {
+                self.slideMenuController()?.closeLeft()
                 if modeLabel.text == "Tutor Mode" {
                     pinMode = "tutor"
                     modeLabel.text = "Student Mode"
@@ -177,11 +187,11 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
                     pinMode = "student"
                     modeLabel.text = "Tutor Mode"
                 }
+                NSNotificationCenter.defaultCenter().postNotificationName("SwitchMode", object: nil, userInfo: nil)
                 otherCount.text = ""
                 switchModeImage.image = UIImage(named: "logout.png")!
                 updateNotificationCounts()
-                NSNotificationCenter.defaultCenter().postNotificationName("SwitchMode", object: nil, userInfo: nil)
-                self.slideMenuController()?.closeLeft()
+                
             } else {
                 nvc.pushViewController(self.tutorSetupController, animated: true)
                 self.slideMenuController()?.closeLeft()

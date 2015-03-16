@@ -858,7 +858,9 @@ extension UIViewController {
     
     func addLeftBarButtonWithImage(buttonImage: UIImage) {
         var leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItemStyle.Bordered, target: self, action: "toggleLeft")
-        self.navigationItem.leftBarButtonItem = leftButton;
+        self.navigationItem.leftBarButtonItem = leftButton
+        self.navigationItem.leftBarButtonItem?.badgeValue = "0"
+        self.navigationItem.leftBarButtonItem?.badgeBGColor = UIColor(red: 254/255, green: 57/255, blue: 57/255, alpha: 1)
     }
     
     func addRightBarButtonWithImage(buttonImage: UIImage) {

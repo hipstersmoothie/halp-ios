@@ -17,6 +17,7 @@
 		C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */; };
 		C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */; };
 		C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22B6C4C1A905CCF009729AD /* SetRateController.swift */; };
+		C2353ABF1AB67A8D00B0616F /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = C2353ABE1AB67A8D00B0616F /* UIBarButtonItem+Badge.m */; };
 		C24391CC1A7C425000A3AC58 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */; };
 		C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391CD1A7D79B800A3AC58 /* FBHelper.swift */; };
 		C24391E41A7D816800A3AC58 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391E31A7D816800A3AC58 /* MapController.swift */; };
@@ -117,6 +118,8 @@
 		C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioAndSkillsController.swift; sourceTree = "<group>"; };
 		C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorSetupCourses.swift; sourceTree = "<group>"; };
 		C22B6C4C1A905CCF009729AD /* SetRateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRateController.swift; sourceTree = "<group>"; };
+		C2353ABD1AB67A8D00B0616F /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
+		C2353ABE1AB67A8D00B0616F /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
 		C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		C24391CD1A7D79B800A3AC58 /* FBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBHelper.swift; sourceTree = "<group>"; };
 		C24391E31A7D816800A3AC58 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */,
 				C24391CD1A7D79B800A3AC58 /* FBHelper.swift */,
 				C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */,
+				C2353ABD1AB67A8D00B0616F /* UIBarButtonItem+Badge.h */,
+				C2353ABE1AB67A8D00B0616F /* UIBarButtonItem+Badge.m */,
 				C29874C91AA52EC500B6BC90 /* ZFTokenField.h */,
 				C29874CA1AA52EC500B6BC90 /* ZFTokenField.m */,
 				C24392191A802B5E00A3AC58 /* FloatRatingView.swift */,
@@ -652,6 +657,7 @@
 				C2B8B8E21AB2184200CFB6C8 /* ConversationView.swift in Sources */,
 				C2BBA7151A8D2D300023A5EF /* experienceCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
+				C2353ABF1AB67A8D00B0616F /* UIBarButtonItem+Badge.m in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
 				C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */,
 				C2C298931A80455B0010C475 /* BumpController.swift in Sources */,

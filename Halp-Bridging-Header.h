@@ -5,3 +5,4 @@
 #import <CommonCrypto/CommonCrypto.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "ZFTokenField.h"
+#import "UIBarButtonItem+Badge.h"
