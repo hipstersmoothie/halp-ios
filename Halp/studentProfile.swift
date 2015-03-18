@@ -15,6 +15,22 @@ class studentProfile: UIViewController {
     @IBOutlet var skills: UILabel!
     @IBOutlet var pinDesc: UITextView!
     @IBOutlet var rOSButton: UIButton!
+    @IBAction func startChat(sender: AnyObject) {
+        let chat = Chat(rootMessage: JSON([
+            "otherUser" : [
+                "userId" : selectedTutor.user.userId,
+                "firstname" : selectedTutor.user.firstname
+            ],
+            "lastMessage": [
+                "body" : "",
+                "timestamp" :  NSDate().timeIntervalSince1970
+            ],
+            "unreadMessages" : 0
+            ]))
+        
+        let chatViewController = ConversationViewController(chat: chat)
+        navigationController?.pushViewController(chatViewController, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

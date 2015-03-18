@@ -11,6 +11,7 @@ enum LeftMenu: Int {
     case Search = 0
     case TutorMode
     case Messages
+    case Matches
     case RemovePin
     case Settings
     case Logout
@@ -31,6 +32,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var settingsViewController: UIViewController!
     var tutorSetupController: UIViewController!
     var messagesController: UIViewController!
+    var matchController: UIViewController!
     var halpApi = HalpAPI()
     var delegate:LeftViewControllerDelegate? = nil
     
@@ -58,6 +60,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         
         let messages = storyboard.instantiateViewControllerWithIdentifier("Messages") as Messages
         self.messagesController = UINavigationController(rootViewController: messages)
+        
+        let matches = storyboard.instantiateViewControllerWithIdentifier("Matches") as MatchList
+        self.matchController = UINavigationController(rootViewController: matches)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
@@ -107,21 +112,31 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         updateNotificationCounts()
     }
     
+    @IBOutlet var matchCountLabel: UILabel!
+    @IBOutlet var matchImage: UIImageView!
     func updateNotificationCounts() {
         println("trying to update")
         if notificationCounts != nil {
             var key:String
+            var matchKey:String
             var otherKey:String
+            var otherMatchKey:String
             if pinMode == "student" {
                 key = "studentUnreadMessages"
+                matchKey = "studentNewMatches"
                 otherKey = "tutorUnreadMessages"
+                otherMatchKey = "tutorNewMatches"
             } else {
                 key = "tutorUnreadMessages"
+                matchKey = "tutorNewMatches"
                 otherKey = "studentUnreadMessages"
+                otherMatchKey = "studentNewMatches"
             }
             
             let count = notificationCounts[key]! as NSInteger
             let otherCountNum = notificationCounts[otherKey]! as NSInteger
+            let matchCount = notificationCounts[matchKey]! as NSInteger
+            let otherMatchCountNum = notificationCounts[otherMatchKey]! as NSInteger
             if count > 0 {
                 messageCount.text = "\(count)"
                 messageImage.image = UIImage(named: "message-red.png")!
@@ -129,8 +144,23 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
                 messageCount.text = ""
                 messageImage.image = UIImage(named: "message.png")!
             }
-            if otherCountNum > 0 {
+            
+            if matchCount > 0 {
+                matchCountLabel.text = "\(matchCount)"
+                matchImage.image = UIImage(named: "message-red.png")!
+            } else {
+                matchCountLabel.text = ""
+                matchImage.image = UIImage(named: "message.png")!
+            }
+            
+            if otherCountNum > 0 && otherMatchCountNum > 0 {
+                otherCount.text = "\(otherCountNum)/\(otherMatchCountNum)"
+                switchModeImage.image = UIImage(named: "logout-red.png")!
+            } else if otherCountNum > 0 {
                 otherCount.text = "\(otherCountNum)"
+                switchModeImage.image = UIImage(named: "logout-red.png")!
+            } else if otherMatchCountNum > 0 {
+                otherCount.text = "\(otherMatchCountNum)"
                 switchModeImage.image = UIImage(named: "logout-red.png")!
             } else {
                 otherCount.text = ""
@@ -218,7 +248,12 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         case .Messages:
             nvc.pushViewController(self.messagesController, animated: true)
             self.slideMenuController()?.closeLeft()
-            
+            break
+        case .Matches:
+//            nvc.pushViewController(self.matchController, animated: true)
+//
+             NSNotificationCenter.defaultCenter().postNotificationName("GetMatches", object: nil, userInfo: nil)
+             self.slideMenuController()?.closeLeft()
             break
         default:
             break

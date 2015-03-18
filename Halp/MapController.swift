@@ -23,6 +23,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     let halpApi = HalpAPI()
     var dateField: UITextField?
     var myPinAnn:UserPinAnnotation!
+    var matches:[UserPin]!
 
     @IBOutlet var nav: UINavigationItem!
     @IBOutlet var datePicker: UIDatePicker!
@@ -235,7 +236,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
-    func toggleMode() {
+    func toggleMode(notification: NSNotification) {
         if pinMode == "student" {
             self.findTutorButton.setTitle("Find Tutor!", forState: .Normal)
             self.navigationItem.rightBarButtonItem?.title = "Tutors"
@@ -244,10 +245,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             self.navigationItem.rightBarButtonItem?.title = "Students"
         }
         map.removeAnnotations(map.annotations)
-
         pinsInArea = []
+        matches = []
         findMe = false
         getPins()
+        if list.hidden == false {
+            toggleMapList(self)
+        }
     }
     
     func gotNotifications(notification: NSNotification) {
@@ -269,13 +273,39 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
        
     }
     
+    func gotMatches(notification: NSNotification) {
+        matches = []
+        pause(self.view)
+        halpApi.getMatches() { success, json in
+            println(json)
+            if success {
+                let matchArr = json["matches"].arrayValue
+                for match in matchArr {
+                    self.matches.append(UserPin(user: match))
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    start(self.view)
+                    if matchArr.count == 0 {
+                        createAlert(self, "No Matches!", "There are currently no matches on your pin")
+                    } else {
+                        self.map.removeAnnotations(self.map.annotations)
+                        pinsInArea = []
+                        self.getPins()
+                    }
+                }
+            }
+        }
+    }
+    
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("removeMyPin"), name: "DeleteMyPin", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode"), name: "SwitchMode", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
         
+        matches = []
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -285,7 +315,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         manager.requestWhenInUseAuthorization()
         var authorizationStatus = CLLocationManager.authorizationStatus()
         
-        if authorizationStatus == CLAuthorizationStatus.Authorized ||
+        if authorizationStatus == CLAuthorizationStatus.AuthorizedAlways ||
             authorizationStatus == CLAuthorizationStatus.AuthorizedWhenInUse {
                 manager.startUpdatingLocation()
                 map.showsUserLocation = true
@@ -424,9 +454,32 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     pinView.canShowCallout = true
                     pinView.pinColor = .Red
                     pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
+                    if matches.count > 0 {
+                        pinView.alpha = 0.5
+                        
+                        for match in matches {
+                            if match.user.userId == myPin.pin.user.userId {
+                                pinView.alpha = 1.0
+                                break
+                            }
+                        }
+                    }
+                    println("name \(myPin.pin.user.firstname)")
                     return pinView
                 } else {
                     anView.annotation = annotation
+                    println("asdfasdfa name \(myPin.pin.user.firstname)")
+                    if matches.count > 0 {
+                        anView.alpha = 0.5
+                        
+                        for match in matches {
+                            if match.user.userId == myPin.pin.user.userId {
+                                anView.alpha = 1.0
+                                break
+                            }
+                        }
+                    }
+                    
                     return anView
                 }
             }
@@ -494,6 +547,17 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             let user = pinsInArea[indexPath.row].user
             cell.myLabel.text = user.firstname
             cell.rating.rating = user.rating
+
+            if matches.count > 0 {
+                cell.contentView.alpha = 0.5
+                
+                for match in matches {
+                    if match.user.userId == user.userId {
+                        cell.contentView.alpha = 1.0
+                        break
+                    }
+                }
+            }
             
             return cell
         } else {
@@ -506,6 +570,17 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     cell.course.text = "\(course.subject) \(course.number)"
                 }
             }
+
+            if matches.count > 0 {
+                cell.contentView.alpha = 0.5
+                
+                for match in matches {
+                    if match.user.userId == user.userId {
+                        cell.contentView.alpha = 1.0
+                        break
+                    }
+                }
+            }
             
             cell.skills.text = ", ".join(pinsInArea[indexPath.row].skills)
             
@@ -514,7 +589,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if pinsInArea[indexPath.row].pinDescription != "" {
+        if pinsInArea[indexPath.row].pinDescription != "" && pinsInArea[indexPath.row].skills.count > 0 {
             return 61
         }
         

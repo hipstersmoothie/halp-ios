@@ -132,6 +132,14 @@ class HalpAPI {
         halpRequest("/message", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
+    func getMatches(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "mode":pinMode,
+        ]
+        
+        halpRequest("/matches", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
     // Get information about the currently logged in user.
     func getProfile(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()

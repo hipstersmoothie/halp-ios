@@ -16,6 +16,8 @@ class UserPin: NSObject {
     var skills:[String]
     var pinDescription:String
     var images:[String]
+    var newMatch:Bool
+    var endTime:Int
     
     init(user:JSON) {
         self.user = User(user: user["user"], courses: user["courses"])
@@ -35,8 +37,16 @@ class UserPin: NSObject {
             self.images = []
         }
         
+        if user["new"] != nil {
+            self.newMatch = user["new"].boolValue
+        } else {
+            self.newMatch = false
+        }
+        
         var unis =  user["courses"].dictionaryValue
         self.courses = Dictionary<String, [Course]>()
+        
+        self.endTime = user["endTime"].intValue
         
         super.init()
         

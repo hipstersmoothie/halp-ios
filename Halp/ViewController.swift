@@ -53,6 +53,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         } else if password.text == "" {
             createAlert(self, "Error Logging In", "Please provide a password.")
         } else {
+            
             var params = [
                 "email": username.text,
                 "passwordHash":"\(password.text.md5)",
@@ -109,6 +110,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     // MARK: Login Functions
     func afterLogin(success: Bool, json: JSON) {
         dispatch_async(dispatch_get_main_queue()) {
+            println(json)
             start(self.view)
             if success {
                 loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])

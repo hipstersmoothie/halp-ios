@@ -41,6 +41,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
                 base64String = imageData.base64EncodedStringWithOptions(nil)
             }
             
+            
             var params = [
                 "firstname": firstname.text,
                 "lastname": lastName.text,
