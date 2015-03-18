@@ -223,7 +223,15 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         dispatch_async(dispatch_get_main_queue()) {
             myPin = nil
             self.tutorIcon.hidden = false
-            //self.map.removeAnnotations([self.myPinAnn])
+            
+            
+            if self.matches.count > 0 {
+                self.matches = []
+                pinsInArea = []
+                self.map.removeAnnotations(self.map.annotations)
+                self.halpApi.getTutorsInArea(self.createMapSquareParams(), self.gotPins)
+            }
+            
             for annotation in self.map.annotations {
                 if let pin = annotation as? UserPinAnnotation {
                     if pin.myPin == true {
@@ -280,6 +288,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func gotMatches(notification: NSNotification) {
         matches = []
         pause(self.view)
+        if notificationCounts != nil {
+            let count = notificationCounts["count"] as NSInteger
+            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
+        }
         halpApi.getMatches() { success, json in
             if success {
                 let matchArr = json["matches"].arrayValue
@@ -459,6 +471,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     pinView.canShowCallout = true
                     pinView.pinColor = .Red
                     pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
+                    pinView.alpha = 1.0
                     if matches.count > 0 {
                         pinView.alpha = 0.5
                         
@@ -472,6 +485,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     return pinView
                 } else {
                     anView.annotation = annotation
+                    anView.alpha = 1.0
                     if matches.count > 0 {
                         anView.alpha = 0.5
                         

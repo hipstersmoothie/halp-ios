@@ -68,7 +68,41 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
     }
     
+//    func matchesClicked() {
+//        let current = messageCount.text?.toInt()
+//        if current != nil {
+//            let newCount  = current! - 1
+//            if newCount <= 0 {
+//                messageCount.text = ""
+//                messageImage.image = UIImage(named: "message.png")!
+//            } else {
+//                messageCount.text = "\(newCount)"
+//            }
+//        }
+//        
+//        var key:String
+//        if pinMode == "student" {
+//            key = "studentNewMatches"
+//        } else {
+//            key = "tutorNewMatches"
+//        }
+//        
+//        if notificationCounts != nil {
+//            let messageCountNum = notificationCounts[key] as NSInteger
+//            notificationCounts.updateValue(messageCountNum - 1, forKey: key)
+//            let currCount = notificationCounts["count"] as NSInteger
+//            notificationCounts.updateValue(currCount - 1, forKey: "count")
+//        }
+//        
+//        var numberOfBadges = UIApplication.sharedApplication().applicationIconBadgeNumber
+//        if numberOfBadges > 0 {
+//            numberOfBadges -= 1
+//            UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
+//        }
+//    }
+    
     func messageClicked(notification: NSNotification) {
+        println("message click")
         let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
         let val = data["decrementValue"] as NSInteger
         let current = messageCount.text?.toInt()
@@ -115,7 +149,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     @IBOutlet var matchCountLabel: UILabel!
     @IBOutlet var matchImage: UIImageView!
     func updateNotificationCounts() {
-        println("trying to update")
         if notificationCounts != nil {
             var key:String
             var matchKey:String
@@ -251,9 +284,15 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             break
         case .Matches:
 //            nvc.pushViewController(self.matchController, animated: true)
-//
-             NSNotificationCenter.defaultCenter().postNotificationName("GetMatches", object: nil, userInfo: nil)
-             self.slideMenuController()?.closeLeft()
+//      
+            if notificationCounts != nil {
+                let messageCountNum = notificationCounts["tutorNewMatches"] as NSInteger
+                let currCount = notificationCounts["count"] as NSInteger
+                notificationCounts.updateValue(currCount - messageCountNum, forKey: "count")
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName("GetMatches", object: nil, userInfo: nil)
+        
+            self.slideMenuController()?.closeLeft()
             break
         default:
             break

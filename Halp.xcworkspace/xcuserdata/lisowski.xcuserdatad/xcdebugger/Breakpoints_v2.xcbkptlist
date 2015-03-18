@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/LeftViewController.swift"
-            timestampString = "448344214.212339"
+            timestampString = "448392731.324218"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "afterDeletePin(_:json:)"
             landmarkType = "5">
          </BreakpointContent>
