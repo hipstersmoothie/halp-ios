@@ -110,7 +110,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     // MARK: Login Functions
     func afterLogin(success: Bool, json: JSON) {
         dispatch_async(dispatch_get_main_queue()) {
-            println(json)
             start(self.view)
             if success {
                 loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])

@@ -195,6 +195,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             } else if pinMode == "tutor" && json["tutor"] != nil {
                 myPin = UserPin(user: json["tutor"])
             } else {
+                self.halpApi.getTutorsInArea(self.createMapSquareParams(), self.gotPins)
+                self.tutorIcon.hidden = false
                 return
             }
             
@@ -207,6 +209,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             if self.findMe == false {
                 self.map.setRegion(self.focusRegion(CLLocation(latitude: myPin.latitude, longitude: myPin.longitude)), animated: false)
                 self.findMe = true
+                self.halpApi.getTutorsInArea(self.createMapSquareParams(), self.gotPins)
             }
         }
     }
@@ -236,6 +239,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
+    @IBOutlet var mapSwitch: UISegmentedControl!
+    @IBOutlet var marker: UIImageView!
     func toggleMode(notification: NSNotification) {
         if pinMode == "student" {
             self.findTutorButton.setTitle("Find Tutor!", forState: .Normal)
@@ -249,14 +254,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         matches = []
         findMe = false
         getPins()
-        if list.hidden == false {
+        if mapSwitch.selectedSegmentIndex == 1 {
             toggleMapList(self)
+            mapSwitch.selectedSegmentIndex = 0
         }
     }
     
     func gotNotifications(notification: NSNotification) {
         let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
-        println(data)
         let count = data["count"] as NSInteger
         if count > 0 {
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
@@ -266,7 +271,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if notificationCounts != nil {
-            println(notificationCounts)
             let count = notificationCounts["count"] as NSInteger
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
@@ -277,7 +281,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         matches = []
         pause(self.view)
         halpApi.getMatches() { success, json in
-            println(json)
             if success {
                 let matchArr = json["matches"].arrayValue
                 for match in matchArr {
@@ -366,22 +369,24 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         datePicker.maximumDate = sevenDaysFromNow
     }
     
-    func getPins() {
+    func createMapSquareParams() -> Dictionary<String, AnyObject> {
         let mRect = map.visibleMapRect
         let mode:NSString = (pinMode == "student") ? "tutor" : "student"
-        println(pinMode)
+        
         northWest = getCoordinateFromMapRectanglePoint(MKMapRectGetMinX(mRect), y: mRect.origin.y)
         southEast = getCoordinateFromMapRectanglePoint(MKMapRectGetMaxX(mRect), y: MKMapRectGetMaxY(mRect))
-        var params = [
+        return [
             "pinMode": mode,
             "lat1": northWest.latitude,
             "lng1": northWest.longitude,
             "lat2": southEast.latitude,
             "lng2": southEast.longitude
         ]
-
+    }
+    
+    func getPins() {
         halpApi.getMyPins(self.gotMyPins)
-        halpApi.getTutorsInArea(params, self.gotPins)
+        halpApi.getTutorsInArea(createMapSquareParams(), self.gotPins)
     }
     
     func refreshMyPin(controller: LeftViewController) {
@@ -464,11 +469,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                             }
                         }
                     }
-                    println("name \(myPin.pin.user.firstname)")
                     return pinView
                 } else {
                     anView.annotation = annotation
-                    println("asdfasdfa name \(myPin.pin.user.firstname)")
                     if matches.count > 0 {
                         anView.alpha = 0.5
                         

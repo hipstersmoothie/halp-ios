@@ -1064,35 +1064,6 @@
                                     <outlet property="delegate" destination="IQw-MT-eGb" id="hTW-9M-bwg"/>
                                 </connections>
                             </mapView>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WYq-fV-YOP">
-                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="445839573.83060998">
-                                    <!--2015-02-17 04:19:33 +0000-->
-                                </date>
-                            </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTa-lS-yyM">
-                                <rect key="frame" x="33" y="570" width="308" height="50"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="XlY-0K-KwX"/>
-                                    <constraint firstAttribute="width" constant="308" id="nrM-GB-fRk"/>
-                                    <constraint firstAttribute="width" secondItem="cTa-lS-yyM" secondAttribute="height" multiplier="154:25" id="rjy-Fn-Jr0"/>
-                                    <constraint firstAttribute="height" constant="50" id="wgk-eZ-E1e"/>
-                                </constraints>
-                                <state key="normal" title="Find Tutor!">
-                                    <color key="titleColor" red="0.015686274510000001" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="nrM-GB-fRk"/>
-                                        <exclude reference="wgk-eZ-E1e"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="findTutorButton:" destination="IQw-MT-eGb" eventType="touchUpInside" id="IDz-3I-rqG"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student.png" translatesAutoresizingMaskIntoConstraints="NO" id="y4g-HQ-Eik">
                                 <rect key="frame" x="177" y="350" width="20" height="27"/>
                                 <constraints>
@@ -1100,20 +1071,6 @@
                                     <constraint firstAttribute="height" constant="27" id="upd-Sn-qmj"/>
                                 </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="B2h-qs-xq8">
-                                <rect key="frame" x="128" y="76" width="119" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="119" id="cZG-D0-kRl"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Map"/>
-                                    <segment title="List"/>
-                                </segments>
-                                <color key="tintColor" red="0.1764705882" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="toggleMapList:" destination="IQw-MT-eGb" eventType="valueChanged" id="26E-vx-OWX"/>
-                                </connections>
-                            </segmentedControl>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOC-bH-bSV">
                                 <rect key="frame" x="0.0" y="128" width="375" height="539"/>
                                 <subviews>
@@ -1230,6 +1187,49 @@
                                     <constraint firstAttribute="trailing" secondItem="YHu-3y-AgP" secondAttribute="trailing" id="cRH-zY-J2K"/>
                                 </constraints>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="B2h-qs-xq8">
+                                <rect key="frame" x="128" y="76" width="119" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="119" id="cZG-D0-kRl"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="List"/>
+                                </segments>
+                                <color key="tintColor" red="0.1764705882" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="toggleMapList:" destination="IQw-MT-eGb" eventType="valueChanged" id="26E-vx-OWX"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTa-lS-yyM">
+                                <rect key="frame" x="33" y="570" width="308" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XlY-0K-KwX"/>
+                                    <constraint firstAttribute="width" constant="308" id="nrM-GB-fRk"/>
+                                    <constraint firstAttribute="width" secondItem="cTa-lS-yyM" secondAttribute="height" multiplier="154:25" id="rjy-Fn-Jr0"/>
+                                    <constraint firstAttribute="height" constant="50" id="wgk-eZ-E1e"/>
+                                </constraints>
+                                <state key="normal" title="Find Tutor!">
+                                    <color key="titleColor" red="0.015686274510000001" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="nrM-GB-fRk"/>
+                                        <exclude reference="wgk-eZ-E1e"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="findTutorButton:" destination="IQw-MT-eGb" eventType="touchUpInside" id="IDz-3I-rqG"/>
+                                </connections>
+                            </button>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WYq-fV-YOP">
+                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="445839573.83060998">
+                                    <!--2015-02-17 04:19:33 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1286,6 +1286,8 @@
                         <outlet property="list" destination="YHu-3y-AgP" id="IMl-2o-SlB"/>
                         <outlet property="listView" destination="eOC-bH-bSV" id="3pu-sz-Q6m"/>
                         <outlet property="map" destination="6c7-zj-uyJ" id="bhb-AL-bY0"/>
+                        <outlet property="mapSwitch" destination="B2h-qs-xq8" id="Zmg-XL-t5M"/>
+                        <outlet property="marker" destination="y4g-HQ-Eik" id="8F0-B8-SZe"/>
                         <outlet property="nav" destination="Zhb-nI-cX2" id="axH-13-TXw"/>
                         <outlet property="tutorIcon" destination="y4g-HQ-Eik" id="cyl-tJ-NiM"/>
                         <segue destination="uK6-rC-NoG" kind="show" identifier="toDetail" id="sFe-05-7EP"/>
@@ -2262,7 +2264,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0E0-GV-I3n"/>
-        <segue reference="avV-v9-7Z2"/>
-        <segue reference="vte-Ec-L3X"/>
+        <segue reference="S0h-4g-6Vi"/>
+        <segue reference="Po8-wj-Htr"/>
     </inferredMetricsTieBreakers>
 </document>

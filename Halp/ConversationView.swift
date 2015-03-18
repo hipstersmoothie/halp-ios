@@ -128,7 +128,10 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidAppear(animated: Bool)  {
         super.viewDidAppear(animated)
-        tableViewScrollToBottomAnimated(true)
+        if chat.loadedMessages.count > 0 {
+            tableViewScrollToBottomAnimated(true)
+        }
+    
         self.tableView.contentOffset.y += self.tableView.contentInset.bottom
         tableView.flashScrollIndicators()
     }
