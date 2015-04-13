@@ -21,7 +21,7 @@ class SetRateController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let save = UIBarButtonItem(title: "Save!", style: .Bordered, target: self, action: "saveInfo")
+        let save = UIBarButtonItem(title: "Save!", style: .Plain, target: self, action: "saveInfo")
         self.navigationItem.rightBarButtonItem = save
     }
     

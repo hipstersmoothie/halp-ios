@@ -16,7 +16,7 @@ class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFToken
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let next = UIBarButtonItem(title: "Next", style: .Bordered, target: self, action: "nextScreen")
+        let next = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextScreen")
         self.navigationItem.rightBarButtonItem = next
         
         tokens = NSMutableArray()
@@ -61,13 +61,13 @@ class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFToken
     
     func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: UInt) -> UIView! {
         var nibContents = NSBundle.mainBundle().loadNibNamed("TokenView", owner: nil, options: nil)
-        var view: UIView = nibContents[0] as UIView
-        var label:UILabel = view.viewWithTag(2) as UILabel
-        var button:UIButton = view.viewWithTag(3) as UIButton
+        var view: UIView = nibContents[0] as! UIView
+        var label:UILabel = view.viewWithTag(2) as! UILabel
+        var button:UIButton = view.viewWithTag(3) as! UIButton
         
         button.addTarget(self, action: Selector("tokenDeleteButtonPressed:"), forControlEvents: .TouchUpInside)
         
-        label.text = tokens[Int(index)] as NSString;
+        label.text = tokens[Int(index)] as! NSString as String;
         var size:CGSize = label.sizeThatFits(CGSizeMake(1000, 40))
         view.frame = CGRectMake(0, 0, size.width + 50, 40);
         return view;

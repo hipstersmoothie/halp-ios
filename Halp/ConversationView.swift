@@ -32,7 +32,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                 textView.textContainerInset = UIEdgeInsetsMake(4, 3, 3, 3)
                 toolBar.addSubview(textView)
                 
-                sendButton = UIButton.buttonWithType(.System) as UIButton
+                sendButton = UIButton.buttonWithType(.System) as! UIButton
                 sendButton.enabled = false
                 sendButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
                 sendButton.setTitle("Send", forState: .Normal)
@@ -70,9 +70,12 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         return true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        halpApi.getMessages(chat.otherUser["userId"] as Int) {sucess, json in
+    func gotNotifications(notification: NSNotification) {
+        loadMessages()
+    }
+    
+    func loadMessages() {
+        halpApi.getMessages(chat.otherUser["userId"] as! Int) {sucess, json in
             var messageArr:[Message] = []
             if sucess == true {
                 let messages = json["messages"].arrayValue.reverse()
@@ -81,7 +84,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                     let body = message["body"].stringValue
                     let timestamp = message["timestamp"].intValue
                     messageArr.append(Message(incoming: !incomingBool, text: body,
-                            sentDate:  NSDate(timeIntervalSince1970: NSTimeInterval(timestamp))))
+                        sentDate:  NSDate(timeIntervalSince1970: NSTimeInterval(timestamp))))
                 }
                 
                 dispatch_async(dispatch_get_main_queue()) {
@@ -90,6 +93,13 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                 }
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadMessages()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "GetNewMessages", object: nil)
         
         let whiteColor = UIColor.whiteColor()
         view.backgroundColor = whiteColor // smooths push animation
@@ -153,23 +163,23 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     //    // #iOS7.1
-    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willAnimateRotationToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        
-        if UIInterfaceOrientationIsLandscape(toInterfaceOrientation) {
-            if toolBar.frame.height > textViewMaxHeight.landscape {
-                toolBar.frame.size.height = textViewMaxHeight.landscape+8*2-0.5
-            }
-        } else { // portrait
-            updateTextViewHeight()
-        }
-    }
+//    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+//        super.willAnimateRotationToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+//        
+//        if UIInterfaceOrientationIsLandscape(toInterfaceOrientation) {
+//            if toolBar.frame.height > textViewMaxHeight.landscape {
+//                toolBar.frame.size.height = textViewMaxHeight.landscape+8*2-0.5
+//            }
+//        } else { // portrait
+//            updateTextViewHeight()
+//        }
+//    }
     //    // #iOS8
-    //    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
-    //        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    //    }
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+            super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    }
     
-    func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return chat.loadedMessages.count
     }
     
@@ -179,7 +189,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(MessageSentDateCell), forIndexPath: indexPath) as MessageSentDateCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(MessageSentDateCell), forIndexPath: indexPath) as! MessageSentDateCell
             
             if chat.loadedMessages[indexPath.section].count > 0 {
                 let message = chat.loadedMessages[indexPath.section][0]
@@ -191,7 +201,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             return cell
         } else {
             let cellIdentifier = NSStringFromClass(MessageBubbleCell)
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MessageBubbleCell!
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleCell!
             if cell == nil {
                 cell = MessageBubbleCell(style: .Default, reuseIdentifier: cellIdentifier)
                 
@@ -209,24 +219,24 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // Reserve row selection #CopyMessage
-    func tableView(tableView: UITableView!, willSelectRowAtIndexPath indexPath: NSIndexPath!) -> NSIndexPath! {
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         return nil
     }
     
-    func textViewDidChange(textView: UITextView!) {
+    func textViewDidChange(textView: UITextView) {
         updateTextViewHeight()
         sendButton.enabled = textView.hasText()
     }
     
     func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo as NSDictionary!
-        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
+        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         let insetNewBottom = tableView.convertRect(frameNew, fromView: nil).height
         let insetOld = tableView.contentInset
         let insetChange = insetNewBottom - insetOld.bottom
         let overflow = tableView.contentSize.height - (tableView.frame.height-insetOld.top-insetOld.bottom)
         
-        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber).doubleValue
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         let animations: (() -> Void) = {
             if !(self.tableView.tracking || self.tableView.decelerating) {
                 // Move content with keyboard
@@ -241,7 +251,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
         if duration > 0 {
-            let options = UIViewAnimationOptions(UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber).integerValue << 16)) // http://stackoverflow.com/a/18873820/242933
+            let options = UIViewAnimationOptions(UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16)) // http://stackoverflow.com/a/18873820/242933
             UIView.animateWithDuration(duration, delay: 0, options: options, animations: animations, completion: nil)
         } else {
             animations()
@@ -250,7 +260,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     func keyboardDidShow(notification: NSNotification) {
         let userInfo = notification.userInfo as NSDictionary!
-        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
+        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         let insetNewBottom = tableView.convertRect(frameNew, fromView: nil).height
         
         // Inset `tableView` with keyboard
@@ -265,7 +275,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     func updateTextViewHeight() {
         let oldHeight = textView.frame.height
-        let maxHeight = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
+        let maxHeight = UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
         var newHeight = min(textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)).height, maxHeight)
         #if arch(x86_64) || arch(arm64)
             newHeight = ceil(newHeight)
@@ -283,7 +293,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         
         chat.loadedMessages.append([Message(incoming: false, text: textView.text, sentDate: NSDate())])
         let message = [
-            "recipient" : chat.otherUser["userId"] as Int,
+            "recipient" : chat.otherUser["userId"] as! Int,
             "body" : textView.text as NSString,
             "senderMode" : pinMode
         ]
@@ -344,7 +354,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         if let selectedIndexPath = tableView.indexPathForSelectedRow() {
             tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
         }
-        (notification.object as UIMenuController).menuItems = nil
+        (notification.object as! UIMenuController).menuItems = nil
     }
 }
 
@@ -358,7 +368,7 @@ func createMessageSoundOutgoing() -> SystemSoundID {
 // Only show "Copy" when editing `textView` #CopyMessage
 class InputTextView: UITextView {
     override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
-        if (delegate as ConversationViewController).tableView.indexPathForSelectedRow() != nil {
+        if (delegate as! ConversationViewController).tableView.indexPathForSelectedRow() != nil {
             return action == "messageCopyTextAction:"
         } else {
             return super.canPerformAction(action, withSender: sender)
@@ -367,6 +377,6 @@ class InputTextView: UITextView {
     
     // More specific than implementing `nextResponder` to return `delegate`, which might cause side effects?
     func messageCopyTextAction(menuController: UIMenuController) {
-        (delegate as ConversationViewController).messageCopyTextAction(menuController)
+        (delegate as! ConversationViewController).messageCopyTextAction(menuController)
     }
 }

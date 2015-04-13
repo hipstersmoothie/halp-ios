@@ -50,7 +50,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
                 "image": base64String,
                 "pushType": "apn",
                 "pushToken": thisDeviceToken.hexString()
-            ] as Dictionary<String, String>
+            ]
             
             pause(self.view)
             halpApi.register(params, completionHandler: self.afterCreate)
@@ -90,7 +90,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         addPhoto.clipsToBounds = true
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         myBackButton.addTarget(self, action: "popToRoot:", forControlEvents: .TouchUpInside)
         myBackButton.setTitle("Back", forState: .Normal)
         myBackButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -160,13 +160,12 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         
         var emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        let result = emailTest?.evaluateWithObject(testStr)
-        return result!
+        let result = emailTest.evaluateWithObject(testStr)
+        return result
     }
     
-    // MARK: Text Field Usability
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.view.endEditing(true);
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -175,7 +174,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
     }
     
     // MARK: Image Picker functions
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         self.dismissViewControllerAnimated(true, completion: nil)
         
         addPhoto.frame = CGRectMake(100, 100, 100, 100)

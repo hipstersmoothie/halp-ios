@@ -3,7 +3,7 @@ platform :ios, '7.0'
 
 target 'Halp' do
 
-pod 'JSQMessagesViewController' 
+pod 'JSQMessagesViewController'
 
 end
 

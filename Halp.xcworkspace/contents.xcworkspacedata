@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Halp/white-plus.png">
+   </FileRef>
+   <FileRef
       location = "group:Halp.xcodeproj">
    </FileRef>
    <FileRef

@@ -37,7 +37,7 @@ class reviewList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:reviewRow = tableView.dequeueReusableCellWithIdentifier("reviewCell") as reviewRow
+        let cell:reviewRow = tableView.dequeueReusableCellWithIdentifier("reviewCell") as! reviewRow
         
         cell.title.text = "No Reviews :("
         cell.rating?.rating = 0

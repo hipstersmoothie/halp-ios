@@ -14,11 +14,12 @@ class SessionCounterController: UIViewController {
     @IBOutlet var time: UILabel!
     var timer = NSTimer()
     var totTime = 0
+    let halpApi = HalpAPI()
     
     @IBOutlet var hold: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        rate.text = "$\(selectedTutor.user.rate)/hour"
+        rate.text = "$\(sessionRate)/hour"
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increment"), userInfo: nil, repeats: true)
         
         var btn_LongPress_gesture = UILongPressGestureRecognizer(target: self, action: "handleBtnLongPressgesture:")
@@ -38,12 +39,27 @@ class SessionCounterController: UIViewController {
         self.navigationItem.title = "Details"
     }
     
+    @IBAction func endAction(sender: AnyObject) {
+        var alert = UIAlertController(title: "Do you want to end the session?", message: "The session has run for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+            self.halpApi.endSession(self.totTime) { success, json in
+                if success == true{
+                    self.endAlert()
+                    self.timer.invalidate()
+                } else {
+                    createAlert(self, "Couldn't end session", "")
+                }
+            }
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func handleBtnLongPressgesture(gestureRecognizer:UIGestureRecognizer) {
         if gestureRecognizer.state == .Began {
             timer.invalidate()
             
             var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var chat:ReviewController = storyboard.instantiateViewControllerWithIdentifier("review") as ReviewController
+            var chat:ReviewController = storyboard.instantiateViewControllerWithIdentifier("review") as! ReviewController
             self.navigationController?.pushViewController(chat, animated: true)
         }
     }
@@ -58,13 +74,31 @@ class SessionCounterController: UIViewController {
             time.text = "\(minutes):\(seconds)"
         }
         
-        var price = Float(selectedTutor.user.rate)
+        var price = Float(sessionRate)
         var timeF = Float(totTime)
         price =  (price / (60 * 60)) * timeF
         
         
         var str = NSString(format: "$%.2f", price)
-        cost.text = str
+        cost.text = str as String
+        
+        halpApi.hasSessionEnded() { success, json in
+            if success == true {
+                let complete = json["ended"].boolValue
+                if complete == true {
+                    self.endAlert()
+                    self.timer.invalidate()
+                }
+            }
+        }
+    }
+    
+    func endAlert() {
+        var alert = UIAlertController(title: "Session has Ended", message: "The session ran for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+            self.performSegueWithIdentifier("toMap", sender: self)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

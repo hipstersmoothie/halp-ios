@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SessionDetailContents: UIView {
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.endEditing(true);
+class SessionDetailContents: UIView {    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.endEditing(true)
     }
 }

@@ -140,6 +140,38 @@ class HalpAPI {
         halpRequest("/matches", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
+    func startSession(otherUserId:Int, completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "mode":pinMode,
+            "otherUserId" : String(otherUserId)
+        ]
+        
+        halpRequest("/session/start", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func isSessionStarted(otherUserId:Int, completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "mode":pinMode,
+            "otherUserId" : String(otherUserId)
+        ]
+        
+        halpRequest("/session/started", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func endSession(duration:Int, completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "duration":duration
+        ]
+        
+        halpRequest("/session/end", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func hasSessionEnded(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = Dictionary<String, String>()
+        
+        halpRequest("/session/ended", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
     // Get information about the currently logged in user.
     func getProfile(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()

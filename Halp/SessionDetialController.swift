@@ -41,7 +41,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         self.presentViewController(image, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         self.dismissViewControllerAnimated(true, completion: nil)
         
         addPhoto.frame = CGRectMake(100, 100, 100, 100)
@@ -81,6 +81,10 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
             self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.backBarButtonItem = nil
             var course = split(courseField.text) {$0 == " "}
+            if course.count < 2 {
+                createAlert(self, "Invalid Class", "Must be formatted like CPE 123(name num)")
+                return
+            }
 
             skillsArr = tokenField.getTokens()
             var base64String:String = ""
@@ -118,7 +122,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         if NSJSONSerialization.isValidJSONObject(value) {
             if let data = NSJSONSerialization.dataWithJSONObject(value, options: options, error: nil) {
                 if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
-                    return string
+                    return string as String
                 }
             }
         }
@@ -243,7 +247,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         return true
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
 
@@ -303,7 +307,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     func textFieldDidEndEditing(textField: MPGTextField_Swift, withSelection data: Dictionary<String,AnyObject>){
         if textField == universityField {
-            let uni = data["DisplayText"] as String
+            let uni = data["DisplayText"] as! String
             var params = [
                 "university": uni
             ]
@@ -331,7 +335,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     @IBOutlet var content: UIView!
     var myRows:UInt = 0
-    func textFieldShouldSelect(textField: AutoToke) -> Bool {
+    func autoFieldShouldSelect(textField: AutoToke) -> Bool {
         return true
     }
     
@@ -350,13 +354,13 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: UInt) -> UIView! {
         var nibContents = NSBundle.mainBundle().loadNibNamed("TokenView", owner: nil, options: nil)
-        var view: UIView = nibContents[0] as UIView
-        var label:UILabel = view.viewWithTag(2) as UILabel
-        var button:UIButton = view.viewWithTag(3) as UIButton
+        var view: UIView = nibContents[0] as! UIView
+        var label:UILabel = view.viewWithTag(2) as! UILabel
+        var button:UIButton = view.viewWithTag(3) as! UIButton
         
         button.addTarget(self, action: Selector("tokenDeleteButtonPressed:"), forControlEvents: .TouchUpInside)
         
-        label.text = tokens[Int(index)] as NSString;
+        label.text = tokens[Int(index)] as! NSString as String
         var size:CGSize = label.sizeThatFits(CGSizeMake(1000, 40))
         view.frame = CGRectMake(0, 0, size.width + 50, 40);
         return view;

@@ -53,14 +53,13 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         } else if password.text == "" {
             createAlert(self, "Error Logging In", "Please provide a password.")
         } else {
-            
             var params = [
                 "email": username.text,
                 "passwordHash":"\(password.text.md5)",
                 "type":"halp",
                 "pushType": "apn",
                 "pushToken": thisDeviceToken.hexString()
-            ] as Dictionary<String, String>
+            ]
             
             pause(self.view)
             halpApi.login(params, completionHandler: self.afterLogin)
@@ -114,6 +113,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
             if success {
                 loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
                 sessionId = json["sessionId"]
+                println(json)
+//                var userInfo:[NSObject : AnyObject] = json.dictionaryValue
+//                
+//                NSNotificationCenter.defaultCenter().postNotificationName("notificationsRecieved", object: nil, userInfo: )
                 self.performSegueWithIdentifier("toApp", sender: self)
                 getInitData()
             } else {
@@ -132,11 +135,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     
     func executeHandle(notification:NSNotification){
         let params = [
-            "accessToken" : notification.object as String,
+            "accessToken" : notification.object as! String,
             "type" : "facebook",
             "pushType": "apn",
             "pushToken": thisDeviceToken.hexString()
-            ] as Dictionary <String, String>
+        ] 
         
         pause(self.view)
         halpApi.login(params, completionHandler: self.afterLogin)
@@ -219,11 +222,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Text Field Usability
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true);
+
     }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

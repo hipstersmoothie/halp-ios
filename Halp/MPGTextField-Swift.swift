@@ -56,7 +56,7 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
         super.layoutSubviews()
         let str : String = self.text
         
-        if (countElements(str) > 0) && (self.isFirstResponder())
+        if (count(str) > 0) && (self.isFirstResponder())
         {
             if (mDelegate != nil){
                 data = mDelegate!.dataForPopoverInTextField(self)
@@ -197,8 +197,8 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
         return cell!
     }
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
-        self.text = self.applyFilterWithSearchQuery(self.text)[indexPath.row]["DisplayText"] as String
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        self.text = self.applyFilterWithSearchQuery(self.text)[indexPath.row]["DisplayText"] as! String
         self.resignFirstResponder()
     }
     
@@ -210,7 +210,7 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
         var lower = (filter as NSString).lowercaseString
         var filteredData = data.filter({
                 if let match : AnyObject  = $0["DisplayText"]{
-                    return (match as NSString).lowercaseString.hasPrefix(lower)
+                    return (match as! NSString).lowercaseString.hasPrefix(lower)
                 }
                 else {
                     return false
@@ -227,7 +227,7 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
             if self.applyFilterWithSearchQuery(self.text).count > 0 {
                 let selectedData = self.applyFilterWithSearchQuery(self.text)[0]
                 let displayText : AnyObject? = selectedData["DisplayText"]
-                self.text = displayText as String
+                self.text = displayText as! String
                 mDelegate?.textFieldDidEndEditing?(self, withSelection: selectedData)
             }
             else{

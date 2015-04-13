@@ -15,6 +15,7 @@ class studentProfile: UIViewController {
     @IBOutlet var skills: UILabel!
     @IBOutlet var pinDesc: UITextView!
     @IBOutlet var rOSButton: UIButton!
+    @IBOutlet var startSessionButton: UIButton!
     @IBAction func startChat(sender: AnyObject) {
         let chat = Chat(rootMessage: JSON([
             "otherUser" : [
@@ -31,6 +32,7 @@ class studentProfile: UIViewController {
         let chatViewController = ConversationViewController(chat: chat)
         navigationController?.pushViewController(chatViewController, animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +67,12 @@ class studentProfile: UIViewController {
         rOSButton.layer.borderWidth = 1
         rOSButton.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
         rOSButton.clipsToBounds = true
+        
+        startSessionButton.backgroundColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        startSessionButton.layer.cornerRadius = 12
+        startSessionButton.layer.borderWidth = 1
+        startSessionButton.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
+        startSessionButton.clipsToBounds = true
     }
     
     override func didReceiveMemoryWarning() {

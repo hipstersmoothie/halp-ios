@@ -65,7 +65,7 @@ class MatchList: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("matchCell") as matchCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("matchCell") as! matchCell
         
         let matchData = matches[indexPath.row]
         cell.pic.image = UIImage(named: "tutor.jpeg")

@@ -12,17 +12,12 @@ enum LeftMenu: Int {
     case TutorMode
     case Messages
     case Matches
-    case RemovePin
     case Settings
     case Logout
 }
 
 protocol LeftMenuProtocol : class {
     func changeViewController(menu: LeftMenu)
-}
-
-protocol LeftViewControllerDelegate{
-    func refreshMyPin(controller:LeftViewController)
 }
 
 var notificationCounts:Dictionary<NSObject, AnyObject>!
@@ -33,12 +28,12 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var tutorSetupController: UIViewController!
     var messagesController: UIViewController!
     var matchController: UIViewController!
+    var sessionController: UIViewController!
     var halpApi = HalpAPI()
-    var delegate:LeftViewControllerDelegate? = nil
     
-    override init() {
-        super.init()
-    }
+//    override init() {
+//        super.init()
+//    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,20 +47,37 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let settings = storyboard.instantiateViewControllerWithIdentifier("Settings") as Settings
+        let settings = storyboard.instantiateViewControllerWithIdentifier("Settings") as! Settings
         self.settingsViewController = UINavigationController(rootViewController: settings)
         
-        let setup = storyboard.instantiateViewControllerWithIdentifier("PageContentController") as BioAndSkillsController
+        let setup = storyboard.instantiateViewControllerWithIdentifier("PageContentController") as! BioAndSkillsController
         self.tutorSetupController = UINavigationController(rootViewController: setup)
         
-        let messages = storyboard.instantiateViewControllerWithIdentifier("Messages") as Messages
+        let messages = storyboard.instantiateViewControllerWithIdentifier("Messages") as! Messages
         self.messagesController = UINavigationController(rootViewController: messages)
         
-        let matches = storyboard.instantiateViewControllerWithIdentifier("Matches") as MatchList
+        let matches = storyboard.instantiateViewControllerWithIdentifier("Matches") as! MatchList
         self.matchController = UINavigationController(rootViewController: matches)
+        
+        let session = storyboard.instantiateViewControllerWithIdentifier("SessionCounter") as! SessionCounterController
+        self.sessionController = UINavigationController(rootViewController: session)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("launchSession:"), name: "inSession", object: nil)
+
+    }
+    
+    func launchSession(notification: NSNotification) {
+        let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
+        if let session = data["session"] as? Dictionary<String, AnyObject> {
+            if sessionStartTime == 0 {
+                sessionStartTime = session["startTimestamp"] as! NSInteger
+                sessionRate = session["rate"] as! Double
+                otherUserId = session["otherUserId"] as! NSInteger
+                nvc.pushViewController(self.sessionController, animated: true)
+            }
+        }
     }
     
 //    func matchesClicked() {
@@ -104,7 +116,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     func messageClicked(notification: NSNotification) {
         println("message click")
         let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
-        let val = data["decrementValue"] as NSInteger
+        let val = data["decrementValue"] as! NSInteger
         let current = messageCount.text?.toInt()
         if current != nil {
             let newCount  = current! - val
@@ -124,9 +136,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         }
         
         if notificationCounts != nil {
-            let messageCountNum = notificationCounts[key] as NSInteger
+            let messageCountNum = notificationCounts[key] as! NSInteger
             notificationCounts.updateValue(messageCountNum - val, forKey: key)
-            let currCount = notificationCounts["count"] as NSInteger
+            let currCount = notificationCounts["count"] as! NSInteger
             notificationCounts.updateValue(currCount - val, forKey: "count")
         }
         
@@ -166,10 +178,10 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
                 otherMatchKey = "studentNewMatches"
             }
             
-            let count = notificationCounts[key]! as NSInteger
-            let otherCountNum = notificationCounts[otherKey]! as NSInteger
-            let matchCount = notificationCounts[matchKey]! as NSInteger
-            let otherMatchCountNum = notificationCounts[otherMatchKey]! as NSInteger
+            let count = notificationCounts[key]! as! NSInteger
+            let otherCountNum = notificationCounts[otherKey]! as! NSInteger
+            let matchCount = notificationCounts[matchKey]! as! NSInteger
+            let otherMatchCountNum = notificationCounts[otherMatchKey]! as! NSInteger
             if count > 0 {
                 messageCount.text = "\(count)"
                 messageImage.image = UIImage(named: "message-red.png")!
@@ -220,21 +232,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             self.changeViewController(menu)
         }
     }
-    
-    func afterDeletePin(success:Bool, json:JSON) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.slideMenuController()?.closeLeft()
-            if success {
-                createAlert(self, "Success", "Removed Pin")
-                self.slideMenuController()?.closeLeft()
-            } else if json["code"] == "no_pin" {
-                createAlert(self, "Couldn't remove pin.", "Because you dont have a pin down!")
-            } else {
-                createAlert(self, "Error", "Couldn't remove pin.")
-            }
-        }
-    }
-    
+
     @IBOutlet var modeLabel: UILabel!
     func changeViewController(menu: LeftMenu) {
         switch menu {
@@ -264,13 +262,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             nvc.pushViewController(self.settingsViewController, animated: true)
             self.slideMenuController()?.closeLeft()
             break
-        case .RemovePin:
-            halpApi.deletePin(self.afterDeletePin)
-            NSNotificationCenter.defaultCenter().postNotificationName("DeleteMyPin", object: nil, userInfo: nil)
-            break
         case .Logout:
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let login = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
+            let login = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
             nvc.pushViewController(login, animated: true)
             self.slideMenuController()?.closeLeft()
             fbHelper.logout()
@@ -286,8 +280,8 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
 //            nvc.pushViewController(self.matchController, animated: true)
 //      
             if notificationCounts != nil {
-                let messageCountNum = notificationCounts["tutorNewMatches"] as NSInteger
-                let currCount = notificationCounts["count"] as NSInteger
+                let messageCountNum = notificationCounts["tutorNewMatches"] as! NSInteger
+                let currCount = notificationCounts["count"] as! NSInteger
                 notificationCounts.updateValue(currCount - messageCountNum, forKey: "count")
             }
             NSNotificationCenter.defaultCenter().postNotificationName("GetMatches", object: nil, userInfo: nil)

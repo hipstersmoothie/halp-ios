@@ -12,7 +12,7 @@ import UIKit
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>]
     
     optional func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String,AnyObject>)
-    optional func textFieldShouldSelect(textField: AutoToke) -> Bool
+    optional func autoFieldShouldSelect(textField: AutoToke) -> Bool
     optional func tokenSelected(textField: AutoToke)
 }
 
@@ -47,7 +47,7 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
     
     func runAutoComplete() {
         let str : String = self.textField.text
-        if (countElements(str) > 0) && (self.isFirstResponder())
+        if (count(str) > 0) && (self.isFirstResponder())
         {
             if (mDelegate != nil){
                 data = mDelegate!.skillAutoComplete(self)
@@ -195,8 +195,8 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
         return cell!
     }
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
-        self.textField.text = self.applyFilterWithSearchQuery(self.textField.text)[indexPath.row]["DisplayText"] as String
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        self.textField.text = self.applyFilterWithSearchQuery(self.textField.text)[indexPath.row]["DisplayText"] as! String
         
         self.textFieldShouldReturn(self.textField)
         mDelegate?.tokenSelected!(self)
@@ -211,7 +211,7 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
         var lower = (filter as NSString).lowercaseString
         var filteredData = data.filter({
             if let match : AnyObject  = $0["DisplayText"]{
-                return (match as NSString).lowercaseString.hasPrefix(lower)
+                return (match as! NSString).lowercaseString.hasPrefix(lower)
             }
             else {
                 return false
@@ -224,11 +224,11 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
         if let table = self.tableViewController{
             table.tableView.removeFromSuperview()
         }
-        if (mDelegate?.textFieldShouldSelect?(self) != nil){
+        if (mDelegate?.autoFieldShouldSelect?(self) != nil){
             if self.applyFilterWithSearchQuery(self.textField.text).count > 0 {
                 let selectedData = self.applyFilterWithSearchQuery(self.textField.text)[0]
                 let displayText : AnyObject? = selectedData["DisplayText"]
-                self.textField.text = displayText as String
+                self.textField.text = displayText as! String
                 mDelegate?.autoTokeDidEndEditing?(self, withSelection: selectedData)
                 mDelegate?.tokenSelected!(self)
             }

@@ -29,7 +29,7 @@ class NotificationTray: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if pinMode == "student" {
-            var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as tutorRow
+            var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as! tutorRow
             
             let user = pinsInArea[indexPath.row].user
             cell.myLabel.text = user.firstname
@@ -37,7 +37,7 @@ class NotificationTray: UITableViewController {
             
             return cell
         } else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as studentCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as! studentCell
             
             let user = pinsInArea[indexPath.row].user
             cell.name.text = user.firstname

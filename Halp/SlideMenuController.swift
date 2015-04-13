@@ -65,10 +65,10 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     var rightTapGesture: UITapGestureRecognizer?
     var options = SlideMenuOption()
 
-    
-    override init() {
-        super.init()
-    }
+//    
+//    override init() {
+//        super.init()
+//    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -145,27 +145,30 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         self.addRightGestures()
     }
     
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        
-        self.mainContainerView.transform = CGAffineTransformMakeScale(1.0, 1.0)
-        self.leftContainerView.hidden = true
-        self.rightContainerView.hidden = true
-    }
     
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        super.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
-        
-        self.closeLeftNonAnimation()
-        self.closeRightNonAnimation()
-        self.leftContainerView.hidden = false
-        self.rightContainerView.hidden = false
-
-        self.removeLeftGestures()
-        self.removeRightGestures()
-        self.addLeftGestures()
-        self.addRightGestures()
-    }
+    
+//    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+//        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+//        
+//        
+//        self.mainContainerView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+//        self.leftContainerView.hidden = true
+//        self.rightContainerView.hidden = true
+//    }
+//    
+//    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+//        super.didRotateFromInterfaceOrientation(fromInterfaceOrientation)
+//        
+//        self.closeLeftNonAnimation()
+//        self.closeRightNonAnimation()
+//        self.leftContainerView.hidden = false
+//        self.rightContainerView.hidden = false
+//
+//        self.removeLeftGestures()
+//        self.removeRightGestures()
+//        self.addLeftGestures()
+//        self.addRightGestures()
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -798,8 +801,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     private func slideLeftForGestureRecognizer( gesture: UIGestureRecognizer, point:CGPoint) -> Bool{
         
-        var slide = self.isLeftOpen()
-        slide |= self.options.panFromBezel && self.isLeftPointContainedWithinBezelRect(point)
+        var slide =  self.isLeftOpen() || (self.options.panFromBezel && self.isLeftPointContainedWithinBezelRect(point))
         return slide
     }
     
@@ -820,8 +822,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     private func slideRightViewForGestureRecognizer(gesture: UIGestureRecognizer, withTouchPoint point: CGPoint) -> Bool {
         
-        var slide: Bool = self.isRightOpen()
-        slide |= self.options.rightPanFromBezel && self.isRightPointContainedWithinBezelRect(point)
+        var slide = self.isRightOpen() || (self.options.rightPanFromBezel && self.isRightPointContainedWithinBezelRect(point))
         return slide
     }
     
@@ -857,14 +858,14 @@ extension UIViewController {
     }
     
     func addLeftBarButtonWithImage(buttonImage: UIImage) {
-        var leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItemStyle.Bordered, target: self, action: "toggleLeft")
+        var leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: .Plain, target: self, action: "toggleLeft")
         self.navigationItem.leftBarButtonItem = leftButton
         self.navigationItem.leftBarButtonItem?.badgeValue = "0"
         self.navigationItem.leftBarButtonItem?.badgeBGColor = UIColor(red: 254/255, green: 57/255, blue: 57/255, alpha: 1)
     }
     
     func addRightBarButtonWithImage(buttonImage: UIImage) {
-        var rightButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItemStyle.Bordered, target: self, action: "toggleRight")
+        var rightButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: .Plain, target: self, action: "toggleRight")
         self.navigationItem.rightBarButtonItem = rightButton;
     }
     
@@ -895,7 +896,7 @@ extension UIViewController {
     func addPriorityToMenuGesuture(targetScrollView: UIScrollView) {
         if let slideControlelr = self.slideMenuController() {
             let recognizers =  slideControlelr.view.gestureRecognizers
-            for recognizer in recognizers as [UIGestureRecognizer] {
+            for recognizer in recognizers as! [UIGestureRecognizer] {
                 if recognizer is UIPanGestureRecognizer {
                     targetScrollView.panGestureRecognizer.requireGestureRecognizerToFail(recognizer)
                 }

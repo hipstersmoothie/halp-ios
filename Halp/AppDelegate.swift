@@ -23,12 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBLoginView.self
         FBProfilePictureView.self
         
-        
         // create viewController code...
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as ViewController
-        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as LeftViewController
+        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
+        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
         nvc = UINavigationController(rootViewController: mainViewController)
         
         leftViewController.mainViewController = nvc
@@ -58,11 +57,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         // Notification RECIEVED
+        println(userInfo)
         NSNotificationCenter.defaultCenter().postNotificationName("notificationsRecieved", object: nil, userInfo: userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName("GetNewMessages", object: nil, userInfo: userInfo)
+        if (userInfo["session"] != nil) {
+            NSNotificationCenter.defaultCenter().postNotificationName("inSession", object: nil, userInfo: userInfo)
+        } else {
+            NSNotificationCenter.defaultCenter().postNotificationName("GetNewMessages", object: nil, userInfo: userInfo)
+        }
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
         return wasHandled
     }

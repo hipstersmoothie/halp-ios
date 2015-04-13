@@ -110,7 +110,7 @@ class Settings: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            infoCell = self.tableView.dequeueReusableCellWithIdentifier("basicInfo") as basicInfo
+            infoCell = self.tableView.dequeueReusableCellWithIdentifier("basicInfo") as! basicInfo
             
             infoCell.firstName.text = loggedInUser.firstname
             infoCell.lastName.text = loggedInUser.lastname
@@ -119,7 +119,7 @@ class Settings: UITableViewController {
             return infoCell
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
-                bio = self.tableView.dequeueReusableCellWithIdentifier("bio") as bioCell
+                bio = self.tableView.dequeueReusableCellWithIdentifier("bio") as! bioCell
                 
                 if loggedInUser.bio != "" {
                      bio.bio.text = loggedInUser.bio
@@ -130,14 +130,14 @@ class Settings: UITableViewController {
                 bio.selectionStyle = .None
                 return bio
             } else if indexPath.row == 1 {
-                skills = self.tableView.dequeueReusableCellWithIdentifier("skills") as skillsCell
+                skills = self.tableView.dequeueReusableCellWithIdentifier("skills") as! skillsCell
                 
                 skills.skills.text = ", ".join(loggedInUser.skills)
                 
                 skills.selectionStyle = .None
                 return skills
             } else {
-                rate = self.tableView.dequeueReusableCellWithIdentifier("rate") as rateCell
+                rate = self.tableView.dequeueReusableCellWithIdentifier("rate") as! rateCell
                 
                 if loggedInUser.rate > 0 {
                     rate.rate.text = "\(loggedInUser.rate)"
@@ -150,7 +150,7 @@ class Settings: UITableViewController {
             }
         } else {
             if indexPath.row == 0 || indexPath.row < courseRow {
-                var expCell = self.tableView.dequeueReusableCellWithIdentifier("uniAndCourse") as experienceCell
+                var expCell = self.tableView.dequeueReusableCellWithIdentifier("uniAndCourse") as! experienceCell
                 
                 expCell.university.text = universities[indexPath.row]
                 var courseArr:[String] = []
@@ -162,7 +162,7 @@ class Settings: UITableViewController {
                 expCell.selectionStyle = .None
                 return expCell
             } else {
-                var addUni = self.tableView.dequeueReusableCellWithIdentifier("addAnother") as UITableViewCell
+                var addUni = self.tableView.dequeueReusableCellWithIdentifier("addAnother") as! UITableViewCell
                 
                 addUni.selectionStyle = .None
                 return addUni

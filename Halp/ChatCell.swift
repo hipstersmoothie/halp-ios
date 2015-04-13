@@ -89,7 +89,7 @@ class ChatCell: UITableViewCell {
         let user:Dictionary<String, AnyObject> = chat.otherUser
         userPictureImageView.image = UIImage(named: "tutor.jpeg")
         if userPictureImageView.image == nil {
-            let initials = user["firstname"] as String
+            let initials = user["firstname"] as! String
             userNameInitialsLabel.text = initials[0]
             userNameInitialsLabel.hidden = false
         } else {

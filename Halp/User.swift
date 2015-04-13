@@ -61,7 +61,7 @@ class User: NSObject {
             self.rating = 0
             self.ratings = 0
             if user["tutor"]["skills"].arrayObject?.count > 0 {
-                self.skills = user["tutor"]["skills"].arrayObject as [String]
+                self.skills = user["tutor"]["skills"].arrayObject as! [String]
             }
         
             var unis = user["tutor"]["courses"].dictionaryValue

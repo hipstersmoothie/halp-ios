@@ -25,30 +25,79 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     var myPinAnn:UserPinAnnotation!
     var matches:[UserPin]!
 
+    @IBOutlet var whitePlus: UIImageView!
+    @IBOutlet var goPinButton: UIButton!
+    @IBOutlet var deletePinButton: UIButton!
     @IBOutlet var nav: UINavigationItem!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var tutorIcon: UIImageView!
-    @IBAction func TutorListButton(sender: AnyObject) {
-        let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
-        nav.backBarButtonItem = backItem
-        
-        let mRect = map.visibleMapRect
-        northWest = getCoordinateFromMapRectanglePoint(MKMapRectGetMinX(mRect), y: mRect.origin.y)
-        southEast = getCoordinateFromMapRectanglePoint(MKMapRectGetMaxX(mRect), y: MKMapRectGetMaxY(mRect))
-        //self.performSegueWithIdentifier("toTutors", sender: self)
-    }
     @IBOutlet var listView: UIView!
     @IBOutlet var list: UITableView!
     @IBAction func toggleMapList(sender: AnyObject) {
         if listView.hidden == true {
             map.hidden = true
             findTutorButton.hidden = true
+            goPinButton.hidden = true
+            deletePinButton.hidden = true
+            whitePlus.hidden = true
+            
             list.reloadData()
             listView.hidden = false
         } else {
+            toggleMapControls()
             map.hidden = false
-            findTutorButton.hidden = false
             listView.hidden = true
+        }
+    }
+    
+    @IBAction func goToMyPinAction(sender: AnyObject) {
+            map.setRegion(focusRegion(CLLocation(latitude: myPin.latitude, longitude: myPin.longitude)), animated: true)
+    }
+    
+    @IBAction func deletePinAction(sender: AnyObject) {
+        //Prompt for Time
+        let alertController = UIAlertController(title: "Are you sure you want to delet your pin?", message: "You will no longer recieve notifications.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            // ...
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Delete", style: .Default) { (action) in
+            self.halpApi.deletePin(self.afterDeletePin)
+            self.removeMyPin()
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.presentViewController(alertController, animated: true) { }
+    }
+    
+    func toggleMapControls() {
+        if myPin != nil {
+            findTutorButton.hidden = true
+            goPinButton.hidden = false
+            deletePinButton.hidden = false
+            whitePlus.hidden = true
+        } else {
+            findTutorButton.hidden = false
+            whitePlus.hidden = false
+            goPinButton.hidden = true
+            deletePinButton.hidden = true
+        }
+    }
+    
+    func afterDeletePin(success:Bool, json:JSON) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.slideMenuController()?.closeLeft()
+            if success {
+                createAlert(self, "Success", "Removed Pin")
+                self.slideMenuController()?.closeLeft()
+            } else if json["code"] == "no_pin" {
+                createAlert(self, "Couldn't remove pin.", "Because you dont have a pin down!")
+            } else {
+                createAlert(self, "Error", "Couldn't remove pin.")
+            }
         }
     }
     
@@ -58,10 +107,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     @IBAction func findTutorButton(sender: AnyObject) {
-        if findTutorButton.titleLabel?.text == "Go to my Pin" {
-            map.setRegion(focusRegion(CLLocation(latitude: myPin.latitude, longitude: myPin.longitude)), animated: true)
-        } else if pinMode == "student" {
-            let backItem = UIBarButtonItem(title: "Map", style: .Bordered, target: nil, action: nil)
+        if pinMode == "student" {
+            let backItem = UIBarButtonItem(title: "Map", style: .Plain, target: nil, action: nil)
             
             nav.backBarButtonItem = backItem
             userLocation = map.region.center
@@ -195,8 +242,12 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             } else if pinMode == "tutor" && json["tutor"] != nil {
                 myPin = UserPin(user: json["tutor"])
             } else {
-                self.halpApi.getTutorsInArea(self.createMapSquareParams(), self.gotPins)
+                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
                 self.tutorIcon.hidden = false
+                self.goPinButton.hidden = true
+                self.deletePinButton.hidden = true
+                self.findTutorButton.hidden = false
+                self.whitePlus.hidden = false
                 return
             }
             
@@ -205,11 +256,16 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
                         
             self.addPin(myPin, myPin: true)
-            self.findTutorButton.setTitle("Go to my Pin", forState: .Normal)
+
+            self.goPinButton.hidden = false
+            self.deletePinButton.hidden = false
+            self.findTutorButton.hidden = true
+            self.whitePlus.hidden = true
+            
             if self.findMe == false {
                 self.map.setRegion(self.focusRegion(CLLocation(latitude: myPin.latitude, longitude: myPin.longitude)), animated: false)
                 self.findMe = true
-                self.halpApi.getTutorsInArea(self.createMapSquareParams(), self.gotPins)
+                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
             }
         }
     }
@@ -222,14 +278,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func removeMyPin() {
         dispatch_async(dispatch_get_main_queue()) {
             myPin = nil
+            self.toggleMapControls()
             self.tutorIcon.hidden = false
-            
             
             if self.matches.count > 0 {
                 self.matches = []
                 pinsInArea = []
                 self.map.removeAnnotations(self.map.annotations)
-                self.halpApi.getTutorsInArea(self.createMapSquareParams(), self.gotPins)
+                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
             }
             
             for annotation in self.map.annotations {
@@ -240,9 +296,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 }
             }
             if pinMode == "tutor" {
-                self.findTutorButton.setTitle("Place Tutor Pin", forState: .Normal)
+                self.findTutorButton.setTitle("Tutor Pin", forState: .Normal)
             } else {
-                self.findTutorButton.setTitle("Find Tutor!", forState: .Normal)
+                self.findTutorButton.setTitle("Student Pin", forState: .Normal)
             }
         }
     }
@@ -251,11 +307,11 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBOutlet var marker: UIImageView!
     func toggleMode(notification: NSNotification) {
         if pinMode == "student" {
-            self.findTutorButton.setTitle("Find Tutor!", forState: .Normal)
-            self.navigationItem.rightBarButtonItem?.title = "Tutors"
+            self.findTutorButton.setTitle("Student Pin", forState: .Normal)
+//            self.navigationItem.rightBarButtonItem?.title = "Tutors"
         } else {
-            self.findTutorButton.setTitle("Place Tutor Pin", forState: .Normal)
-            self.navigationItem.rightBarButtonItem?.title = "Students"
+            self.findTutorButton.setTitle("Tutor Pin", forState: .Normal)
+//            self.navigationItem.rightBarButtonItem?.title = "Students"
         }
         map.removeAnnotations(map.annotations)
         pinsInArea = []
@@ -270,7 +326,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func gotNotifications(notification: NSNotification) {
         let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
-        let count = data["count"] as NSInteger
+        let count = data["count"] as! NSInteger
         if count > 0 {
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
@@ -279,7 +335,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if notificationCounts != nil {
-            let count = notificationCounts["count"] as NSInteger
+            let count = notificationCounts["count"] as! NSInteger
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
        
@@ -289,7 +345,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         matches = []
         pause(self.view)
         if notificationCounts != nil {
-            let count = notificationCounts["count"] as NSInteger
+            let count = notificationCounts["count"] as! NSInteger
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
         halpApi.getMatches() { success, json in
@@ -315,7 +371,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("removeMyPin"), name: "DeleteMyPin", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
@@ -338,22 +393,21 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         configureDatePicker()
         
-        findTutorButton.layer.cornerRadius = 0.5
-        findTutorButton.layer.borderWidth = 1
-        findTutorButton.layer.borderColor = UIColor.whiteColor().CGColor
+        findTutorButton.layer.cornerRadius = 12
         findTutorButton.clipsToBounds = true
         if pinMode == "tutor" {
-            findTutorButton.setTitle("Place Tutor Pin", forState: .Normal)
+            findTutorButton.setTitle("Tutor Pin", forState: .Normal)
         }
+        self.goPinButton.hidden = true
+        self.deletePinButton.hidden = true
+        findTutorButton.hidden = true
+        whitePlus.hidden = true
         
         self.navigationItem.hidesBackButton = true
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
         
         self.navigationItem.rightBarButtonItem = nil
-        
-        // add the notification tray to the toolbar
-        //setRightBarButton("tray.png")
-        
+
         navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
@@ -398,12 +452,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func getPins() {
         halpApi.getMyPins(self.gotMyPins)
-        halpApi.getTutorsInArea(createMapSquareParams(), self.gotPins)
-    }
-    
-    func refreshMyPin(controller: LeftViewController) {
-        removeMyPin()
-        halpApi.getMyPins(self.gotMyPins)
+        halpApi.getTutorsInArea(createMapSquareParams(), completionHandler: self.gotPins)
     }
     
     func focusRegion(userLocation:CLLocation) -> MKCoordinateRegion {
@@ -422,7 +471,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             if userLocation != nil {
                 map.setRegion(focusRegion(CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)), animated: true)
             } else {
-                map.setRegion(focusRegion(locations[0] as CLLocation), animated: false)
+                map.setRegion(focusRegion(locations[0] as! CLLocation), animated: false)
             }
             
             getPins()
@@ -456,7 +505,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     pinView.canShowCallout = true
                     pinView.image = UIImage(named: "student.png")
                     pinView.frame = CGRectMake(0, 0, 20, 27)
-                    pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
+                    pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as! UIButton
                     return pinView
                 } else {
                     anView.annotation = annotation
@@ -470,7 +519,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                     pinView.canShowCallout = true
                     pinView.pinColor = .Red
-                    pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as UIButton
+                    pinView.rightCalloutAccessoryView = UIButton.buttonWithType(.InfoDark) as! UIButton
                     pinView.alpha = 1.0
                     if matches.count > 0 {
                         pinView.alpha = 0.5
@@ -537,9 +586,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     func mapViewRegionDidChangeFromUserInteraction() -> Bool {
-        var view:UIView = map.subviews.first as UIView
+        var view:UIView = map.subviews.first as! UIView
         
-        for recognizer in view.gestureRecognizers as [UIGestureRecognizer] {
+        for recognizer in view.gestureRecognizers as! [UIGestureRecognizer] {
             if recognizer.state == UIGestureRecognizerState.Began || recognizer.state == UIGestureRecognizerState.Ended {
                 return true
             }
@@ -559,7 +608,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if pinMode == "student" {
-            var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as tutorRow
+            var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as! tutorRow
             
             let user = pinsInArea[indexPath.row].user
             cell.myLabel.text = user.firstname
@@ -578,7 +627,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             
             return cell
         } else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as studentCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as! studentCell
             
             let user = pinsInArea[indexPath.row].user
             cell.name.text = user.firstname

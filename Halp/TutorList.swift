@@ -31,7 +31,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
         ]
         
         pinsInArea = []
-        halpApi.getTutorsInArea(params, self.gotPins)
+        halpApi.getTutorsInArea(params, completionHandler: self.gotPins)
     }
     
     func gotPins(success: Bool, json: JSON) {
@@ -72,7 +72,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if pinMode == "student" {
-            var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as tutorRow
+            var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as! tutorRow
             
             let user = pinsInArea[indexPath.row].user
             cell.myLabel.text = user.firstname
@@ -80,7 +80,7 @@ class TutorList: UITableViewController, UITableViewDelegate {
             
             return cell
         } else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as studentCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as! studentCell
             
             let user = pinsInArea[indexPath.row].user
             cell.name.text = user.firstname

@@ -21,7 +21,7 @@ extension String  {
         
         result.dealloc(digestLen)
         
-        return String(format: hash)
+        return String(format: hash as String)
     }
     
     static func className(aClass: AnyClass) -> String {
@@ -49,7 +49,7 @@ func colorWithHexString (hex:String) -> UIColor {
         cString = cString.substringFromIndex(advance(cString.startIndex, 1))
     }
     
-    if (countElements(cString) != 6) {
+    if (count(cString) != 6) {
         return UIColor.grayColor()
     }
     
