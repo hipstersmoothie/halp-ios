@@ -10,7 +10,7 @@ import UIKit
 
 var setUpTutorParams = Dictionary<String, AnyObject>()
 
-class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFTokenFieldDelegate, AutoTokeDelegate {
+class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFTokenFieldDelegate, AutoTokeDelegate, UITextViewDelegate, UITextFieldDelegate {
     var tokens:NSMutableArray!
     
     override func viewDidLoad() {
@@ -100,11 +100,58 @@ class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFToken
         return skills
     }
     
+    func autoFieldShouldSelect(textField: AutoToke) -> Bool {
+        return true
+    }
+    
+    func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String, AnyObject>) {
+        
+    }
+    
     func textFieldShouldSelect(textField: AutoToke) -> Bool {
         return true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        animateViewMoving(true, moveValue: 100)
+        textView.text = nil
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        animateViewMoving(false, moveValue: 100)
+        if textView.text == "" {
+            textView.text = "Write a bio about yourself. This helps student get to know you before you meet."
+        }
+    }
+        
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+
+    func tokenFieldDidBeginEditing(tokenField:ZFTokenField) {
+        animateViewMoving(true, moveValue: 180)
+    }
+    
+    func tokenFieldDidEndEditing(tokenField:ZFTokenField) {
+        animateViewMoving(false, moveValue: 180)
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.3
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
     }
 }

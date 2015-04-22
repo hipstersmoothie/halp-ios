@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Settings: UITableViewController {
+class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
     var courseRow = 1
     var firstname:String!
     let halpApi = HalpAPI()
@@ -87,6 +87,7 @@ class Settings: UITableViewController {
     // MARK: Table View Functions
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        println(loggedInUser)
         if loggedInUser.rate > 0 {
             return 3
         }
@@ -113,7 +114,9 @@ class Settings: UITableViewController {
             infoCell = self.tableView.dequeueReusableCellWithIdentifier("basicInfo") as! basicInfo
             
             infoCell.firstName.text = loggedInUser.firstname
+            infoCell.firstName.delegate = self
             infoCell.lastName.text = loggedInUser.lastname
+            infoCell.lastName.delegate = self
     
             infoCell.selectionStyle = .None
             return infoCell
@@ -128,6 +131,9 @@ class Settings: UITableViewController {
                 }
                 
                 bio.selectionStyle = .None
+                bio.bio.delegate = self
+                //bio.bio.becomeFirstResponder()
+                
                 return bio
             } else if indexPath.row == 1 {
                 skills = self.tableView.dequeueReusableCellWithIdentifier("skills") as! skillsCell
@@ -199,4 +205,53 @@ class Settings: UITableViewController {
             }
         }
     }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        
+        if textField.tag != 0 && textField.tag != 1 {
+            var pointInTable:CGPoint = textField.superview!.convertPoint(textField.frame.origin, toView:self.tableView)
+            var contentOffset:CGPoint = self.tableView.contentOffset
+            contentOffset.y  = pointInTable.y
+            if let accessoryView = textField.inputAccessoryView {
+                contentOffset.y -= accessoryView.frame.size.height
+            }
+            
+            contentOffset.y -= 150
+            self.tableView.contentOffset = contentOffset
+        }
+        
+        return true;
+    }
+//    
+//    func textViewDidBeginEditing(textView: UITextView) {
+//        animateViewMoving(true, moveValue: 100)
+//        textView.text = nil
+//    }
+    
+//    func textViewDidEndEditing(textView: UITextView) {
+//        animateViewMoving(false, moveValue: 100)
+//        if textView.text == "" {
+//            textView.text = "Write a bio about yourself. This helps student get to know you before you meet."
+//        }
+//    }
+//    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.3
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
+    }
+
 }
