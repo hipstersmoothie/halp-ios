@@ -1874,6 +1874,7 @@
                         <outlet property="rate" destination="tqL-q7-eWP" id="Uuh-rh-YkM"/>
                         <outlet property="time" destination="g2A-yc-n8o" id="ldD-FG-4kz"/>
                         <segue destination="bki-HQ-hu7" kind="show" identifier="writeReviewForTutor" id="HwK-Oc-pQu"/>
+                        <segue destination="71b-uu-0Xm" kind="show" identifier="writeReviewForStudent" id="pNW-9J-fV3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBz-sM-Ydy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1892,6 +1893,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyv-hK-c5g">
+                                <rect key="frame" x="111" y="484" width="152" height="45"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitAction:" destination="bki-HQ-hu7" eventType="touchUpInside" id="y5f-A1-ToM"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCv-bP-4Dk" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
                                 <rect key="frame" x="93" y="212" width="188" height="27"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1938,16 +1949,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyv-hK-c5g">
-                                <rect key="frame" x="111" y="484" width="152" height="45"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="submitAction:" destination="bki-HQ-hu7" eventType="touchUpInside" id="y5f-A1-ToM"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Did you like tutoring this student?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfY-ZD-oSp">
+                                <rect key="frame" x="67" y="401" width="258" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1964,6 +1971,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBX-mp-fNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3468.5" y="223.5"/>
+        </scene>
+        <!--Tutor Rating Controller-->
+        <scene sceneID="k0R-ep-tIk">
+            <objects>
+                <viewController id="71b-uu-0Xm" customClass="tutorRatingController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cPY-9l-5eX"/>
+                        <viewControllerLayoutGuide type="bottom" id="btG-f8-Ljl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kam-KJ-9LP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Did you like tutoring this student?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXL-M8-hrZ">
+                                <rect key="frame" x="66" y="173" width="260" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhG-Xh-w8G">
+                                <rect key="frame" x="120" y="386" width="152" height="45"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitAction:" destination="bki-HQ-hu7" eventType="touchUpInside" id="bT5-99-QXi"/>
+                                    <action selector="submitAction:" destination="71b-uu-0Xm" eventType="touchUpInside" id="h9f-Ez-ddv"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sq5-uh-y4T" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                <rect key="frame" x="182" y="275" width="28" height="27"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="approval" destination="Sq5-uh-y4T" id="LM7-XN-fMd"/>
+                        <outlet property="submit" destination="yhG-Xh-w8G" id="0JZ-Qv-Llv"/>
+                        <segue destination="IQw-MT-eGb" kind="show" identifier="toMap" id="EmT-AN-78P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wmg-tc-p3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3926.5" y="223.5"/>
         </scene>
         <!--Register-->
         <scene sceneID="suz-8K-Wf2">
@@ -2356,9 +2423,9 @@
         <image name="white-plus.png" width="297" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GZ7-YG-r8C"/>
-        <segue reference="qCc-FV-0fJ"/>
         <segue reference="S0h-4g-6Vi"/>
+        <segue reference="EmT-AN-78P"/>
+        <segue reference="qCc-FV-0fJ"/>
         <segue reference="Po8-wj-Htr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -96,7 +96,11 @@ class SessionCounterController: UIViewController {
     func endAlert() {
         var alert = UIAlertController(title: "Session has Ended", message: "The session ran for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Rate!", style: .Default, handler: { action in
-            self.performSegueWithIdentifier("writeReviewForTutor", sender: self)
+            if pinMode == "student" {
+                self.performSegueWithIdentifier("writeReviewForTutor", sender: self)
+            } else {
+                self.performSegueWithIdentifier("writeReviewForStudent", sender: self)
+            }
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }

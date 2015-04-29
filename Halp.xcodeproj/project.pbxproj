@@ -33,6 +33,7 @@
 		C243921C1A802C6800A3AC58 /* StarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C243921B1A802C6800A3AC58 /* StarEmpty@2x.png */; };
 		C243921E1A802C7300A3AC58 /* StarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C243921D1A802C7300A3AC58 /* StarFull@2x.png */; };
 		C243CCE71AF17D4100F82379 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243CCE61AF17D4100F82379 /* FloatRatingView.swift */; };
+		C243CCE91AF1901600F82379 /* tutorRatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243CCE81AF1901600F82379 /* tutorRatingController.swift */; };
 		C24597561A94620800CBA227 /* studentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24597551A94620800CBA227 /* studentCell.swift */; };
 		C24597581A946E7500CBA227 /* studentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24597571A946E7500CBA227 /* studentProfile.swift */; };
 		C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2605A0E1A897D6700AEBBFE /* Settings.swift */; };
@@ -139,6 +140,7 @@
 		C243921B1A802C6800A3AC58 /* StarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarEmpty@2x.png"; sourceTree = "<group>"; };
 		C243921D1A802C7300A3AC58 /* StarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarFull@2x.png"; sourceTree = "<group>"; };
 		C243CCE61AF17D4100F82379 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
+		C243CCE81AF1901600F82379 /* tutorRatingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorRatingController.swift; sourceTree = "<group>"; };
 		C24597551A94620800CBA227 /* studentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentCell.swift; sourceTree = "<group>"; };
 		C24597571A946E7500CBA227 /* studentProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentProfile.swift; sourceTree = "<group>"; };
 		C2605A0E1A897D6700AEBBFE /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				C2C298A01A819A190010C475 /* BaseTableViewCell.swift */,
 				C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */,
 				C2C2989E1A8199CE0010C475 /* LeftViewController.swift */,
+				C243CCE81AF1901600F82379 /* tutorRatingController.swift */,
 			);
 			name = "Side Menu";
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				C2C2989D1A8197FF0010C475 /* SlideMenuController.swift in Sources */,
 				C24392111A7F430D00A3AC58 /* TutorDetails.swift in Sources */,
 				C2C298A41A819CC80010C475 /* UITableViewExtension.swift in Sources */,
+				C243CCE91AF1901600F82379 /* tutorRatingController.swift in Sources */,
 				C20F5FD61AB502FA0093FAAC /* NotificationTray.swift in Sources */,
 				C2F8E93B1A89576F003ED69D /* User.swift in Sources */,
 				C2BBA7111A8D2C890023A5EF /* skillsCell.swift in Sources */,
