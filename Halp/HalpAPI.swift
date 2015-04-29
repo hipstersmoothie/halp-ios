@@ -172,6 +172,14 @@ class HalpAPI {
         halpRequest("/session/ended", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
+    func postReview(ratings: Dictionary<String, Int>,completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "ratings" : ratings
+        ]
+        
+        halpRequest("/session/rate", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
     // Get information about the currently logged in user.
     func getProfile(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()

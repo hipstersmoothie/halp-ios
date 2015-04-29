@@ -95,8 +95,8 @@ class SessionCounterController: UIViewController {
     
     func endAlert() {
         var alert = UIAlertController(title: "Session has Ended", message: "The session ran for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-            self.performSegueWithIdentifier("toMap", sender: self)
+        alert.addAction(UIAlertAction(title: "Rate!", style: .Default, handler: { action in
+            self.performSegueWithIdentifier("writeReviewForTutor", sender: self)
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
