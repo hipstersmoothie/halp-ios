@@ -270,7 +270,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             fbHelper.logout()
             pinMode = "student"
             modeLabel.text = "Tutor Mode"
-            
             break
         case .Messages:
             nvc.pushViewController(self.messagesController, animated: true)

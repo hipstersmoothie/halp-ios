@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -590,7 +590,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eVq-3x-DNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1699.5" y="-542.5"/>
+            <point key="canvasLocation" x="1693.5" y="-542.5"/>
         </scene>
         <!--Student Profile-->
         <scene sceneID="XcP-mC-YYu">
@@ -1069,18 +1069,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WYq-fV-YOP">
-                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="445839573.83060998">
-                                    <!--2015-02-17 04:19:33 +0000-->
-                                </date>
-                            </datePicker>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-zj-uyJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <outlet property="delegate" destination="IQw-MT-eGb" id="hTW-9M-bwg"/>
                                 </connections>
                             </mapView>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WYq-fV-YOP">
+                                <rect key="frame" x="0.0" y="505" width="375" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="445839573.83060998">
+                                    <!--2015-02-17 04:19:33 +0000-->
+                                </date>
+                            </datePicker>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student.png" translatesAutoresizingMaskIntoConstraints="NO" id="y4g-HQ-Eik">
                                 <rect key="frame" x="177" y="350" width="20" height="27"/>
                                 <constraints>
@@ -1100,6 +1100,23 @@
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e2a-cG-QWj" id="YDF-qc-MSO">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYl-fM-wbY" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                                            <rect key="frame" x="162" y="8" width="188" height="27"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                                                <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                                    <integer key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                                    <integer key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                                    <real key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMF-do-KVL">
                                                             <rect key="frame" x="25" y="11" width="134" height="21"/>
                                                             <constraints>
@@ -1110,10 +1127,6 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYl-fM-wbY" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
-                                                            <rect key="frame" x="162" y="8" width="188" height="27"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="zMF-do-KVL" firstAttribute="leading" secondItem="YDF-qc-MSO" secondAttribute="leading" constant="25" id="EIk-2X-16u"/>
@@ -1907,7 +1920,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aZ-k9-2Yk">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cs9-bo-cyV">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cs9-bo-cyV" customClass="RegisterContents" customModule="Halp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="580"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ktz-j9-3J4">
@@ -1919,7 +1932,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="CZN-Nd-4Jb"/>
+                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="TI8-cH-yeb"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XOd-5L-1NX">
@@ -1931,7 +1944,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="hIX-0J-mV5"/>
+                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="hzn-2v-Nzp"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0m3-rL-hYR">
@@ -1943,7 +1956,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="sad-bP-tYJ"/>
+                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="UYr-EE-sFs"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Bs-VI-6Z6">
@@ -1955,7 +1968,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="2Gg-eE-fDH"/>
+                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="fW0-hB-yXZ"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9V-7d-Als">
@@ -2005,7 +2018,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="Oaf-vt-2Id"/>
+                                                    <outlet property="delegate" destination="X3Z-g7-FKU" id="f7f-zS-5pK"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -2250,7 +2263,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="StarEmpty" width="512" height="512"/>
         <image name="StarEmpty.png" width="22" height="22"/>
+        <image name="StarFull" width="512" height="512"/>
         <image name="bump.png" width="667" height="740"/>
         <image name="cog.png" width="512" height="512"/>
         <image name="facebook.png" width="106" height="104"/>
@@ -2263,9 +2278,9 @@
         <image name="white-plus.png" width="297" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Po8-wj-Htr"/>
-        <segue reference="jMr-h5-ryh"/>
         <segue reference="S0h-4g-6Vi"/>
+        <segue reference="cEC-EW-O1x"/>
         <segue reference="eTj-Ly-RbU"/>
+        <segue reference="Po8-wj-Htr"/>
     </inferredMetricsTieBreakers>
 </document>

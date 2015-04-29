@@ -16,7 +16,7 @@ var userLocation:CLLocationCoordinate2D!
 var northWest:CLLocationCoordinate2D!
 var southEast:CLLocationCoordinate2D!
 
-class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, FloatRatingViewDelegate {
     @IBOutlet var map: MKMapView!
     var manager:CLLocationManager!
     var center = false, findMe = false
@@ -242,7 +242,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             } else if pinMode == "tutor" && json["tutor"] != nil {
                 myPin = UserPin(user: json["tutor"])
             } else {
-                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
+                println("yoyoyo")
+//                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
                 self.tutorIcon.hidden = false
                 self.goPinButton.hidden = true
                 self.deletePinButton.hidden = true
@@ -268,11 +269,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
             }
         }
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        //NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
-        //NSNotificationCenter.defaultCenter().removeObserver(self, name: "SwitchMode", object: nil) doesnt work after a while
     }
     
     func removeMyPin() {
@@ -308,15 +304,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func toggleMode(notification: NSNotification) {
         if pinMode == "student" {
             self.findTutorButton.setTitle("Student Pin", forState: .Normal)
-//            self.navigationItem.rightBarButtonItem?.title = "Tutors"
         } else {
             self.findTutorButton.setTitle("Tutor Pin", forState: .Normal)
-//            self.navigationItem.rightBarButtonItem?.title = "Students"
         }
         map.removeAnnotations(map.annotations)
         pinsInArea = []
         matches = []
         findMe = false
+        println("toggel")
         getPins()
         if mapSwitch.selectedSegmentIndex == 1 {
             toggleMapList(self)
@@ -334,11 +329,19 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
+        
         if notificationCounts != nil {
             let count = notificationCounts["count"] as! NSInteger
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
-       
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        //NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "SwitchMode", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "GetMatches", object: nil)
     }
     
     func gotMatches(notification: NSNotification) {
@@ -371,10 +374,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
-        
         matches = []
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location
@@ -473,7 +473,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             } else {
                 map.setRegion(focusRegion(locations[0] as! CLLocation), animated: false)
             }
-            
+            println("center")
             getPins()
             center = true
         }
@@ -612,7 +612,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             
             let user = pinsInArea[indexPath.row].user
             cell.myLabel.text = user.firstname
-            cell.rating.rating = user.rating
+            cell.rating.editable = false
+            cell.rating.rating = user.rating            
 
             if matches.count > 0 {
                 cell.contentView.alpha = 0.5
@@ -660,6 +661,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
         
         return 44
+    }
+    
+    func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
+        
+    }
+    
+    func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
+
     }
 }
 

@@ -23,7 +23,7 @@ import UIKit
 /**
 A simple rating view that can set whole, half or floating point ratings.
 */
-//@IBDesignable
+@IBDesignable
 public class FloatRatingView: UIView {
     
     // MARK: Float Rating View properties
