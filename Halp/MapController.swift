@@ -242,7 +242,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             } else if pinMode == "tutor" && json["tutor"] != nil {
                 myPin = UserPin(user: json["tutor"])
             } else {
-                println("yoyoyo")
 //                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
                 self.tutorIcon.hidden = false
                 self.goPinButton.hidden = true
@@ -311,7 +310,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         pinsInArea = []
         matches = []
         findMe = false
-        println("toggel")
         getPins()
         if mapSwitch.selectedSegmentIndex == 1 {
             toggleMapList(self)
@@ -473,7 +471,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             } else {
                 map.setRegion(focusRegion(locations[0] as! CLLocation), animated: false)
             }
-            println("center")
             getPins()
             center = true
         }
@@ -650,7 +647,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
             
             cell.skills.text = ", ".join(pinsInArea[indexPath.row].skills)
-            
+            println(pinsInArea[indexPath.row].skills)
             return cell
         }
     }

@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "452035904.838613"
+            timestampString = "452036212.723261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "476"
-            endingLineNumber = "476"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -576,11 +576,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "452035904.838613"
+            timestampString = "452036212.723261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "461"
-            endingLineNumber = "461"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
             landmarkName = "focusRegion(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -592,11 +592,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "452035904.838613"
+            timestampString = "452036212.723261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
+            startingLineNumber = "554"
+            endingLineNumber = "554"
             landmarkName = "mapView(_:annotationView:calloutAccessoryControlTapped:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -608,11 +608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "452035904.838613"
+            timestampString = "452036212.723261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "598"
-            endingLineNumber = "598"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
             landmarkName = "mapViewRegionDidChangeFromUserInteraction()"
             landmarkType = "5">
          </BreakpointContent>
@@ -624,11 +624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "452035904.838613"
+            timestampString = "452036212.723261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
+            startingLineNumber = "590"
+            endingLineNumber = "590"
             landmarkName = "mapViewRegionDidChangeFromUserInteraction()"
             landmarkType = "5">
          </BreakpointContent>

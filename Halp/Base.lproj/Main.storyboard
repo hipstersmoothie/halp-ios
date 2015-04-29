@@ -1725,6 +1725,23 @@
                                     <segue destination="wKt-Yw-obD" kind="show" id="qCc-FV-0fJ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SMB-hX-QeW" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                <rect key="frame" x="176" y="82" width="188" height="27"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1735,6 +1752,7 @@
                         <outlet property="price" destination="EYo-J0-BRK" id="9hG-C1-ivL"/>
                         <outlet property="profilePic" destination="2mt-hs-ad0" id="QgY-5s-jI7"/>
                         <outlet property="rOSButton" destination="PvP-sm-hRO" id="LIn-n8-Z2v"/>
+                        <outlet property="rating" destination="SMB-hX-QeW" id="z8G-kj-lup"/>
                         <outlet property="second" destination="T00-cr-TBb" id="x8x-NC-Ig8"/>
                         <outlet property="segmentedControl" destination="wax-pc-Aq1" id="HsD-3D-lVR"/>
                         <outlet property="startSessionButton" destination="KZi-5a-dCx" id="S2c-tH-eWY"/>
@@ -2235,9 +2253,27 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHi-Vt-dPl" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
+                                                    <rect key="frame" x="182" y="11" width="165" height="21"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                            <real key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="rating" destination="VHi-Vt-dPl" id="sGT-7o-NAp"/>
                                             <outlet property="reviewBody" destination="bwo-c3-Swv" id="jvh-xh-WPO"/>
                                             <outlet property="title" destination="Gkm-CG-fqY" id="PyJ-d1-FLh"/>
                                         </connections>
@@ -2278,9 +2314,9 @@
         <image name="white-plus.png" width="297" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S0h-4g-6Vi"/>
         <segue reference="cEC-EW-O1x"/>
-        <segue reference="eTj-Ly-RbU"/>
+        <segue reference="qCc-FV-0fJ"/>
+        <segue reference="S0h-4g-6Vi"/>
         <segue reference="Po8-wj-Htr"/>
     </inferredMetricsTieBreakers>
 </document>

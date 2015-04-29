@@ -50,12 +50,12 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate {
         navigationController?.pushViewController(chatViewController, animated: true)
     }
     
-    //@IBOutlet var rating: FloatRatingView!
+    @IBOutlet var rating: FloatRatingView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = selectedTutor.user.firstname
         println(selectedTutor.user.rating)
-        //rating.rating = selectedTutor.user.rating
+        rating.rating = selectedTutor.user.rating
         var rateString = NSString(format:"%.2f", selectedTutor.user.rate)
         price.text = "$\(rateString)/hour"
         
