@@ -23,12 +23,9 @@ class BumpController: UIViewController {
     @IBAction func startSession(sender: AnyObject) {
         startSessionButton.setTitle("Waiting", forState: .Normal)
         halpApi.startSession(selectedTutor.user.userId) { success, json in
-            println(json)
             if success == true {
                 let complete = json["complete"].boolValue
                 if complete == true {
-                    println("mockaina")
-
                     sessionStartTime = json["startTimestamp"].intValue
                     sessionRate = json["rate"].doubleValue
                     otherUserId = selectedTutor.user.userId
@@ -59,7 +56,6 @@ class BumpController: UIViewController {
         var label = startSessionButton.titleLabel?.text
         startSessionButton.setTitle("\(label!).", forState: .Normal)
         halpApi.isSessionStarted(selectedTutor.user.userId) { success, json in
-            println(json)
             if success == true {
                 dispatch_async(dispatch_get_main_queue()) {
                     let complete = json["complete"].boolValue

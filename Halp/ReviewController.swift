@@ -37,16 +37,16 @@ class ReviewController: UIViewController, FloatRatingViewDelegate {
         } else if metric2.rating == 0 {
             createAlert(self, "Review not complete!", "Please provide a rating for \(metric2Label.text)")
         } else {
-            let m1 = Int(metric1.rating)
-            let m2 = Int(metric2.rating)
             let ratings = [
-                metric1Label.text! as String : m1,
-                metric2Label.text! as String : m2
+                "friendliness" : Int(metric1.rating),
+                "knowledge" : Int(metric2.rating)
             ] as Dictionary<String, Int>
             
             halpApi.postReview(ratings) { success, json in
                 if success {
-                    self.performSegueWithIdentifier("toMap", sender: nil)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.performSegueWithIdentifier("toMap", sender: nil)
+                    }
                 } else {
                     println(json)
                 }

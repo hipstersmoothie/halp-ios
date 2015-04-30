@@ -388,7 +388,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
                 contentHeight.constant += val
             }
         }
-        println("rows: \(myRows) Height:\(tokenField.height)")
     }
     
 //    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {

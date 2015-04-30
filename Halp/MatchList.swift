@@ -16,7 +16,6 @@ class MatchList: UITableViewController {
         matches = []
         pause(self.view)
         halpApi.getMatches() { success, json in
-            println(json)
             if success {
                 let matchArr = json["matches"].arrayValue
                 for match in matchArr {

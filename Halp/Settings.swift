@@ -54,7 +54,6 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
     }
     
     func updatedProfile(success:Bool, json:JSON) {
-        println(json)
         dispatch_async(dispatch_get_main_queue()) {
             if success {
                 createAlert(self, "Success!", "Account details changed.")
@@ -87,7 +86,6 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
     // MARK: Table View Functions
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        println(loggedInUser)
         if loggedInUser.rate > 0 {
             return 3
         }

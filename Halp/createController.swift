@@ -58,7 +58,6 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
     }
     
     func afterCreate(success: Bool, json: JSON) {
-        println(json)
         dispatch_async(dispatch_get_main_queue()) {
             start(self.view)
             if success {

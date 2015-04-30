@@ -30,12 +30,14 @@ class tutorRatingController: UIViewController, FloatRatingViewDelegate {
     @IBAction func submitAction(sender: AnyObject) {
         let appVal = Int(approval.rating)
         let ratings = [
-            "approval" : appVal,
+            "approval" : appVal == 1 ? appVal : -1,
         ] as Dictionary<String, Int>
             
         halpApi.postReview(ratings) { success, json in
             if success {
-                self.performSegueWithIdentifier("toMap", sender: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.performSegueWithIdentifier("toMap", sender: nil)
+                }
             } else {
                 println(json)
             }

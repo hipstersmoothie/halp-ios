@@ -113,10 +113,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
             if success {
                 loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
                 sessionId = json["sessionId"]
-                println(json)
-//                var userInfo:[NSObject : AnyObject] = json.dictionaryValue
-//                
-//                NSNotificationCenter.defaultCenter().postNotificationName("notificationsRecieved", object: nil, userInfo: )
+
                 self.performSegueWithIdentifier("toApp", sender: self)
                 getInitData()
             } else {

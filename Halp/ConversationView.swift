@@ -297,8 +297,13 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             "body" : textView.text as NSString,
             "senderMode" : pinMode
         ]
+        
         halpApi.sendMessage(message) { success, json in
-            println(json)
+            if success {
+                
+            } else {
+                println(json)
+            }
         }
         
         textView.text = nil

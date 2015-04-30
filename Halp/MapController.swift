@@ -647,7 +647,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
             
             cell.skills.text = ", ".join(pinsInArea[indexPath.row].skills)
-            println(pinsInArea[indexPath.row].skills)
             return cell
         }
     }
