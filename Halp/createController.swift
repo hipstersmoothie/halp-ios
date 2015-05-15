@@ -41,13 +41,12 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
                 base64String = imageData.base64EncodedStringWithOptions(nil)
             }
             
-            
             var params = [
                 "firstname": firstname.text,
                 "lastname": lastName.text,
                 "email": email.text,
                 "passwordHash":"\(password.text.md5)",
-                //"image": base64String,
+                "image": base64String,
                 "pushType": "apn",
                 "pushToken": thisDeviceToken.hexString()
             ]
@@ -96,7 +95,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         myBackButton.sizeToFit()
         var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
-        navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
@@ -193,7 +192,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         addPhoto.frame = CGRectMake(100, 100, 100, 100)
         addPhoto.setBackgroundImage(image, forState: .Normal)
         addPhoto.setTitle("", forState: .Normal)
-        pickedImage = image
+        pickedImage = RBSquareImageTo(image, CGSize(width: 100, height: 100))
     }
     
     @IBAction func addPhotoButton(sender: AnyObject) {

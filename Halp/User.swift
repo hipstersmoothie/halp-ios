@@ -38,7 +38,7 @@ class User: NSObject {
         self.userId = user["userId"].intValue
         self.firstname = user["firstname"].stringValue
         self.lastname = user["lastname"].stringValue
-        self.image = user["image"].stringValue
+        self.image = user["image"]["original"].stringValue
         self.skills = []
 
         // Tutor Stuff

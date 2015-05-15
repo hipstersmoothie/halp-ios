@@ -16,6 +16,7 @@
 		C20F5FD61AB502FA0093FAAC /* NotificationTray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */; };
 		C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */; };
 		C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */; };
+		C21EA2BB1AFB0DDA0029A119 /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21EA2BA1AFB0DDA0029A119 /* Payments.swift */; };
 		C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22B6C4C1A905CCF009729AD /* SetRateController.swift */; };
 		C22B73C61AF032FC008231A4 /* RegisterContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22B73C51AF032FC008231A4 /* RegisterContents.swift */; };
 		C2353ABF1AB67A8D00B0616F /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = C2353ABE1AB67A8D00B0616F /* UIBarButtonItem+Badge.m */; };
@@ -89,6 +90,12 @@
 		C2C298AE1A81A9390010C475 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AD1A81A9390010C475 /* cog.png */; };
 		C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AF1A81A97F0010C475 /* power-off2-hi.png */; };
 		C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298B11A81B7BE0010C475 /* ReviewController.swift */; };
+		C2CD51851B05934B0022FB55 /* TabSessionCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD51841B05934B0022FB55 /* TabSessionCreate.swift */; };
+		C2CD51871B05987C0022FB55 /* SchoolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD51861B05987C0022FB55 /* SchoolPicker.swift */; };
+		C2CD51891B059D9B0022FB55 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2CD51881B059D9B0022FB55 /* ButtonCell.xib */; };
+		C2CD518B1B05AB4E0022FB55 /* MoreDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */; };
+		C2CD518D1B05E6870022FB55 /* SessionDetailTabSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */; };
+		C2E5E6D91AFAB3290030A0EE /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */; };
 		C2E835C81AB911ED00A4E340 /* matchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E835C71AB911ED00A4E340 /* matchCell.swift */; };
 		C2E835CA1AB9264300A4E340 /* MatchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E835C91AB9264300A4E340 /* MatchList.swift */; };
 		C2E9854F1AAD48E200054C19 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E9854E1AAD48E200054C19 /* message.png */; };
@@ -122,6 +129,7 @@
 		C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTray.swift; sourceTree = "<group>"; };
 		C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioAndSkillsController.swift; sourceTree = "<group>"; };
 		C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorSetupCourses.swift; sourceTree = "<group>"; };
+		C21EA2BA1AFB0DDA0029A119 /* Payments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		C22B6C4C1A905CCF009729AD /* SetRateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRateController.swift; sourceTree = "<group>"; };
 		C22B73C51AF032FC008231A4 /* RegisterContents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterContents.swift; sourceTree = "<group>"; };
 		C2353ABD1AB67A8D00B0616F /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
@@ -202,6 +210,12 @@
 		C2C298AD1A81A9390010C475 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
 		C2C298AF1A81A97F0010C475 /* power-off2-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-off2-hi.png"; sourceTree = "<group>"; };
 		C2C298B11A81B7BE0010C475 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		C2CD51841B05934B0022FB55 /* TabSessionCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSessionCreate.swift; sourceTree = "<group>"; };
+		C2CD51861B05987C0022FB55 /* SchoolPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolPicker.swift; sourceTree = "<group>"; };
+		C2CD51881B059D9B0022FB55 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreDetails.swift; path = ../MoreDetails.swift; sourceTree = "<group>"; };
+		C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailTabSwitch.swift; sourceTree = "<group>"; };
+		C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		C2E835C71AB911ED00A4E340 /* matchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = matchCell.swift; sourceTree = "<group>"; };
 		C2E835C91AB9264300A4E340 /* MatchList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchList.swift; sourceTree = "<group>"; };
 		C2E9854E1AAD48E200054C19 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
@@ -275,6 +289,14 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		C21EA2BC1AFB0DE40029A119 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				C21EA2BA1AFB0DDA0029A119 /* Payments.swift */,
+			);
+			name = Payments;
+			sourceTree = "<group>";
+		};
 		C24392181A802AA000A3AC58 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +360,7 @@
 				C29874CC1AA5317200B6BC90 /* TokenView.xib */,
 				C2B0FB4B1A842E75003DE861 /* Main.storyboard */,
 				C2E835C91AB9264300A4E340 /* MatchList.swift */,
+				C21EA2BC1AFB0DE40029A119 /* Payments */,
 				C2E985521AAD4C1900054C19 /* Messaging/Matches */,
 				C2001CFA1A93287900C0A0EC /* Settings */,
 				C2C298B31A81D6AA0010C475 /* Profile */,
@@ -413,6 +436,7 @@
 				C2353ABD1AB67A8D00B0616F /* UIBarButtonItem+Badge.h */,
 				C243CCE61AF17D4100F82379 /* FloatRatingView.swift */,
 				C2353ABE1AB67A8D00B0616F /* UIBarButtonItem+Badge.m */,
+				C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */,
 				C29874C91AA52EC500B6BC90 /* ZFTokenField.h */,
 				C29874CA1AA52EC500B6BC90 /* ZFTokenField.m */,
 				C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */,
@@ -426,6 +450,11 @@
 			isa = PBXGroup;
 			children = (
 				C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */,
+				C2CD51841B05934B0022FB55 /* TabSessionCreate.swift */,
+				C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */,
+				C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */,
+				C2CD51861B05987C0022FB55 /* SchoolPicker.swift */,
+				C2CD51881B059D9B0022FB55 /* ButtonCell.xib */,
 				C2AE9A501AA7BF410052311D /* SessionDetailContents.swift */,
 				C24391E31A7D816800A3AC58 /* MapController.swift */,
 				C2B0FB411A840782003DE861 /* UserPin.swift */,
@@ -595,6 +624,7 @@
 				C26646D61A7843B0008B396C /* LaunchScreen.xib in Resources */,
 				C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */,
 				C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */,
+				C2CD51891B059D9B0022FB55 /* ButtonCell.xib in Resources */,
 				C208479C1AB51733003BCCEA /* logout-red.png in Resources */,
 				C294ECEF1A9B084D00CFBB0D /* point.png in Resources */,
 				C267606F1AAFD31F00D46084 /* googleplus.png in Resources */,
@@ -675,6 +705,7 @@
 				C2F8E93B1A89576F003ED69D /* User.swift in Sources */,
 				C2BBA7111A8D2C890023A5EF /* skillsCell.swift in Sources */,
 				C24391E41A7D816800A3AC58 /* MapController.swift in Sources */,
+				C2CD518D1B05E6870022FB55 /* SessionDetailTabSwitch.swift in Sources */,
 				C24597561A94620800CBA227 /* studentCell.swift in Sources */,
 				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
 				C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */,
@@ -692,9 +723,11 @@
 				C24597581A946E7500CBA227 /* studentProfile.swift in Sources */,
 				C2BBA7131A8D2CE40023A5EF /* rateCell.swift in Sources */,
 				C2C298911A8041BD0010C475 /* tutorProfile.swift in Sources */,
+				C2CD51871B05987C0022FB55 /* SchoolPicker.swift in Sources */,
 				C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */,
 				C2B8B8E61AB218CC00CFB6C8 /* MessageBubbleCell.swift in Sources */,
 				C2E985561AAD4C7700054C19 /* Chat.swift in Sources */,
+				C2CD518B1B05AB4E0022FB55 /* MoreDetails.swift in Sources */,
 				C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,
 				C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */,
@@ -702,7 +735,10 @@
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
 				C2E835C81AB911ED00A4E340 /* matchCell.swift in Sources */,
 				C2AE9A511AA7BF410052311D /* SessionDetailContents.swift in Sources */,
+				C21EA2BB1AFB0DDA0029A119 /* Payments.swift in Sources */,
+				C2CD51851B05934B0022FB55 /* TabSessionCreate.swift in Sources */,
 				C29874CB1AA52EC500B6BC90 /* ZFTokenField.m in Sources */,
+				C2E5E6D91AFAB3290030A0EE /* ImageResizer.swift in Sources */,
 				C2E985511AAD4AA800054C19 /* Messages.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,
@@ -837,6 +873,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Halp",
@@ -857,6 +894,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Halp",

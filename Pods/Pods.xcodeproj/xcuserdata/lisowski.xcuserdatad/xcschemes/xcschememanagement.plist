@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Braintree-Drop-In-Localization.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Braintree-UI-Localization.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Halp-Braintree.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Halp-JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-Halp-JSQSystemSoundPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Halp-XLPagerTabStrip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B78D6C27CA5F1666450324B2</key>
+		<key>150EE84BA4F1CD37DA49AC74</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C67273DFAB7A5CCD5B143A13</key>
+		<key>233DD5B8064219012D4656DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D78F0BCD3B2CB96C12C2C347</key>
+		<key>24DE4BD2D082062F4035010B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4903EA4B562779A163135689</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A0FFA2A4EA1A6BA119CC429</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C721CF2A8F602C81AF037EEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB3F7A27D4693E14E9690872</key>
 		<dict>
 			<key>primary</key>
 			<true/>

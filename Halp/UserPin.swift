@@ -31,7 +31,8 @@ class UserPin: NSObject {
             self.skills = []
         }
         
-        if let images = user["images"].arrayObject as? [String] {    
+        println(user)
+        if let images = user["images"].arrayObject as? [String] {
             self.images = images
         } else {
             self.images = []

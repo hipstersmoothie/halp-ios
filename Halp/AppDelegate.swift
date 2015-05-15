@@ -42,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(setting)
         UIApplication.sharedApplication().registerForRemoteNotifications()
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+        Braintree.setReturnURLScheme("halp.Halp.payments")
         
         return true
     }
@@ -67,7 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+        var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication) && Braintree.handleOpenURL(url, sourceApplication: sourceApplication)
+
         return wasHandled
     }
 

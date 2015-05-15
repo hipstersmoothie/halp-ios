@@ -20,7 +20,7 @@ class studentProfile: UIViewController {
         let chat = Chat(rootMessage: JSON([
             "otherUser" : [
                 "userId" : selectedTutor.user.userId,
-                "firstname" : selectedTutor.user.firstname
+                "firstname" : "\(selectedTutor.user.firstname) \(selectedTutor.user.lastname[selectedTutor.user.lastname.startIndex])"
             ],
             "lastMessage": [
                 "body" : "",
@@ -35,11 +35,13 @@ class studentProfile: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        println(selectedTutor)
         // Name and Image
-        name.text = selectedTutor.user.firstname
+        name.text = "\(selectedTutor.user.firstname) \(selectedTutor.user.lastname[selectedTutor.user.lastname.startIndex])"
         if selectedTutor.user.image != "" {
-            profilePic.image = UIImage(named: selectedTutor.user.image)
+            let url = NSURL(string: selectedTutor.user.image)
+            let data = NSData(contentsOfURL: url!)
+            profilePic.image = UIImage(data: data!)
         } else {
             profilePic.image = UIImage(named: "tutor.jpeg")
         }

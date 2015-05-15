@@ -11,4 +11,6 @@ import UIKit
 class basicInfo: UITableViewCell {
     @IBOutlet var firstName: UITextField!
     @IBOutlet var lastName: UITextField!
+    @IBOutlet var profilePic: UIImageView!
+    @IBOutlet weak var editPic: UIButton!
 }

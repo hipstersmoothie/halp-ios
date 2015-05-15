@@ -4,6 +4,8 @@ platform :ios, '7.0'
 target 'Halp' do
 
 pod 'JSQMessagesViewController'
+pod 'Braintree'
+pod 'XLPagerTabStrip', '~> 1.0'
 
 end
 

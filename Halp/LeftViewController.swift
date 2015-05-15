@@ -12,6 +12,7 @@ enum LeftMenu: Int {
     case TutorMode
     case Messages
     case Matches
+//    case Payments
     case Settings
     case Logout
 }
@@ -28,6 +29,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var tutorSetupController: UIViewController!
     var messagesController: UIViewController!
     var matchController: UIViewController!
+    var paymentsController: UIViewController!
     var sessionController: UIViewController!
     var halpApi = HalpAPI()
     
@@ -56,6 +58,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         
         let session = storyboard.instantiateViewControllerWithIdentifier("SessionCounter") as! SessionCounterController
         self.sessionController = UINavigationController(rootViewController: session)
+        
+        let payments = storyboard.instantiateViewControllerWithIdentifier("Payments") as! Payments
+        self.paymentsController = UINavigationController(rootViewController: payments)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
@@ -269,11 +274,18 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             nvc.pushViewController(self.messagesController, animated: true)
             self.slideMenuController()?.closeLeft()
             break
+//        case .Payments:
+//            nvc.pushViewController(self.paymentsController, animated: true)
+//            self.slideMenuController()?.closeLeft()
+//            break
         case .Matches:
-//            nvc.pushViewController(self.matchController, animated: true)
-//      
             if notificationCounts != nil {
-                let messageCountNum = notificationCounts["tutorNewMatches"] as! NSInteger
+                var messageCountNum:NSInteger!
+                if (pinMode == "student") {
+                    messageCountNum = notificationCounts["studentNewMatches"] as! NSInteger
+                } else {
+                    messageCountNum = notificationCounts["tutorNewMatches"] as! NSInteger
+                }
                 let currCount = notificationCounts["count"] as! NSInteger
                 notificationCounts.updateValue(currCount - messageCountNum, forKey: "count")
             }

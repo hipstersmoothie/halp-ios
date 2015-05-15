@@ -8,12 +8,24 @@
 
 import UIKit
 
-class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
+class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var courseRow = 1
     var firstname:String!
     let halpApi = HalpAPI()
     var universities:[String] = []
     var courses:[[Course]] = []
+    var newPic:UIImage!
+    var image = UIImagePickerController()
+    
+    func pickPhoto(sender: AnyObject) {
+        self.presentViewController(image, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        newPic = RBSquareImageTo(image, CGSize(width: 100, height: 100))
+        tableView.reloadData()
+    }
     
     @IBAction func addUniRow(sender: AnyObject) {
         courseRow++
@@ -31,6 +43,13 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
             params.updateValue(infoCell.lastName.text, forKey: "lastname")
         }
         
+        if newPic != nil {
+            let imageData = UIImagePNGRepresentation(newPic)
+            let base64String = imageData.base64EncodedStringWithOptions(nil)
+            
+            params.updateValue(base64String, forKey: "image")
+        }
+        
         //Tutor Settings
         var tutor = Dictionary<String, AnyObject>()
         if bio.bio.text != loggedInUser.bio {
@@ -41,9 +60,9 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
         if skillsArr.count != loggedInUser.skills.count {
             tutor.updateValue(skillsArr, forKey: "skills")
         }
-        
-        if rate.rate.text.toInt() != Int(loggedInUser.rate) {
-            tutor.updateValue(rate.rate.text.toInt()!, forKey: "rate")
+
+        if rate.rate.text != "" && (rate.rate.text as NSString).doubleValue != loggedInUser.rate {
+            tutor.updateValue( (rate.rate.text as NSString).doubleValue, forKey: "rate")
         }
         
         if tutor.count > 0 {
@@ -65,17 +84,20 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for (university, courseList) in loggedInUser.courses {
-            universities.append(university)
-            courses.append(courseList)
-        }
+        image.delegate = self
+        image.sourceType = .PhotoLibrary
+        image.allowsEditing = false
         
         courseRow = universities.count
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.title = "Account Settings"
+        for (university, courseList) in loggedInUser.courses {
+            universities.append(university)
+            courses.append(courseList)
+        }
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,7 +137,23 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate {
             infoCell.firstName.delegate = self
             infoCell.lastName.text = loggedInUser.lastname
             infoCell.lastName.delegate = self
-    
+            
+            infoCell.editPic.tag = indexPath.row
+            infoCell.editPic.addTarget(self, action: "pickPhoto:", forControlEvents: .TouchUpInside)
+            
+            infoCell.profilePic.clipsToBounds = true
+            infoCell.profilePic.layer.masksToBounds = true
+            infoCell.profilePic.layer.borderWidth = 1
+            infoCell.profilePic.layer.borderColor =  UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
+            infoCell.profilePic.layer.cornerRadius = infoCell.profilePic.frame.height/2
+
+            if newPic != nil {
+                infoCell.profilePic.image = newPic
+            } else if loggedInUser.image != "" {
+                let url = NSURL(string: loggedInUser.image)
+                let data = NSData(contentsOfURL: url!)
+                infoCell.profilePic.image = RBSquareImageTo(UIImage(data: data!)!, CGSize(width: 100, height: 100))
+            }
             infoCell.selectionStyle = .None
             return infoCell
         } else if indexPath.section == 1 {

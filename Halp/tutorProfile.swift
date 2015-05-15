@@ -37,7 +37,7 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate {
         let chat = Chat(rootMessage: JSON([
             "otherUser" : [
                 "userId" : selectedTutor.user.userId,
-                "firstname" : selectedTutor.user.firstname
+                "firstname" : "\(selectedTutor.user.firstname) \(selectedTutor.user.lastname[selectedTutor.user.lastname.startIndex])"
             ],
             "lastMessage": [
                 "body" : "",
@@ -54,12 +54,17 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = selectedTutor.user.firstname
+        
         rating.rating = selectedTutor.user.rating
+        rating.userInteractionEnabled = false
+        
         var rateString = NSString(format:"%.2f", selectedTutor.user.rate)
         price.text = "$\(rateString)/hour"
-        
+
         if selectedTutor.user.image != "" {
-            profilePic.image = UIImage(named: selectedTutor.user.image)
+            let url = NSURL(string: selectedTutor.user.image)
+            let data = NSData(contentsOfURL: url!)
+            profilePic.image = UIImage(data: data!)
         } else {
             profilePic.image = UIImage(named: "tutor.jpeg")
         }

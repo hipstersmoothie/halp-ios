@@ -109,7 +109,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     @IBAction func findTutorButton(sender: AnyObject) {
         if pinMode == "student" {
-            let backItem = UIBarButtonItem(title: "Map", style: .Plain, target: nil, action: nil)
+            let backItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
             
             nav.backBarButtonItem = backItem
             userLocation = map.region.center
@@ -192,7 +192,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         annotation.coordinate = location
         
         if (pinMode == "tutor" && myPin == true) || (pinMode == "student" && myPin == false) {
-            annotation.title = pin.user.firstname
+            annotation.title = "\(pin.user.firstname) \(pin.user.lastname[pin.user.lastname.startIndex])"
         } else {
             for (university, courseList) in pin.courses {
                 for course in courseList {
@@ -325,19 +325,18 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
     }
-    
-    override func viewWillAppear(animated: Bool) {
+
+    override func viewDidAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "checkForNewPins", userInfo: nil, repeats: true)
-        
+        timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "checkForNewPins", userInfo: nil, repeats: true)
+        checkForNewPins()
         if notificationCounts != nil {
             let count = notificationCounts["count"] as! NSInteger
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
     }
-    
     override func viewDidDisappear(animated: Bool) {
         //NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "SwitchMode", object: nil)
@@ -409,7 +408,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         self.navigationItem.rightBarButtonItem = nil
 
-        navigationController?.navigationBar.barTintColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
@@ -573,13 +572,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     var mapChangedFromUserInteraction:Bool = false
     
-    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
-        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
-        
-        if mapChangedFromUserInteraction == true {
-            getPins()
-        }
-    }
+//    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
+//        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+//        
+//        if mapChangedFromUserInteraction == true {
+//            getPins()
+//        }
+//    }
     
     func mapViewRegionDidChangeFromUserInteraction() -> Bool {
         var view:UIView = map.subviews.first as! UIView
@@ -607,7 +606,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             var cell = tableView.dequeueReusableCellWithIdentifier("tutorCell") as! tutorRow
             
             let user = pinsInArea[indexPath.row].user
-            cell.myLabel.text = user.firstname
+            cell.myLabel.text = "\(user.firstname) \(user.lastname[user.lastname.startIndex])"
             cell.rating.editable = false
             cell.rating.rating = user.rating            
 
@@ -627,7 +626,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             var cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as! studentCell
             
             let user = pinsInArea[indexPath.row].user
-            cell.name.text = user.firstname
+            cell.name.text = "\(user.firstname) \(user.lastname[user.lastname.startIndex])"
             for (university, courseList) in pinsInArea[indexPath.row].courses {
                 for course in courseList {
                     cell.course.text = "\(course.subject) \(course.number)"

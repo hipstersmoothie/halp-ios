@@ -254,4 +254,5 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     override func supportedInterfaceOrientations() -> Int {
         return UIInterfaceOrientation.Portrait.rawValue
     }
+    
 }

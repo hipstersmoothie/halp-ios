@@ -47,7 +47,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         addPhoto.frame = CGRectMake(100, 100, 100, 100)
         addPhoto.setBackgroundImage(image, forState: .Normal)
         addPhoto.setTitle("", forState: .Normal)
-        pickedImage = image
+        pickedImage = RBSquareImageTo(image, CGSize(width: 100, height: 100))
     }
     
     func configureDatePicker() {
@@ -92,7 +92,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
                 let imageData = UIImagePNGRepresentation(pickedImage)
                 base64String = imageData.base64EncodedStringWithOptions(nil)
             }
-            
+            println("slow")
             var params = [
                 "pinMode": pinMode,
                 "latitude": "\(userLocation.latitude)",
@@ -113,7 +113,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
             
             pause(self.view)
             halpApi.postPin(params, completionHandler: self.afterPostPin)
-            self.performSegueWithIdentifier("toMapNewSession", sender: nil)
         }
     }
     
@@ -131,6 +130,14 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     func afterPostPin(success: Bool, json: JSON) {
         start(self.view)
+        if success {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("toMapNewSession", sender: nil)
+            }
+        } else {
+            println(json)
+        }
+        println(json)
     }
     
     @IBOutlet var toolbar: UIToolbar!
@@ -179,7 +186,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         searchButton.layer.borderColor = buttonColor.CGColor
         searchButton.clipsToBounds = true
         
-        
+        self.navigationItem.title = "Halp"
     }
     
     override func viewDidLayoutSubviews() {
