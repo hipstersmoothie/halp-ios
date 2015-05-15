@@ -14,7 +14,6 @@ class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewCon
         super.viewDidLoad()
         self.barView.selectedBar.backgroundColor = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
         self.barView.backgroundColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
-         self.navigationItem.title = "Halp"
     }
 
     override func childViewControllersForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> [AnyObject]! {

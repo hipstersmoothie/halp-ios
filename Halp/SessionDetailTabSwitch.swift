@@ -23,6 +23,7 @@ class SessionDetailTabSwitch: UIViewController {
         super.viewDidLoad()
         self.delegate = self.childViewControllers[0] as? SessionDetailDelegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("switchTab:"), name: "SessionTabSwitch", object: nil)
+        self.navigationItem.title = "Halp"
     }
     
     override func viewDidDisappear(animated: Bool) {
