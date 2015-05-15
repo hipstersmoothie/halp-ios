@@ -8,14 +8,20 @@
 
 import UIKit
 
+protocol SessionDetailDelegate {
+    func switchTab(index:UInt)
+}
+
 class SessionDetailTabSwitch: UIViewController {
     @IBOutlet var schoolDetailsButton: UIButton!
     @IBOutlet var problemButton: UIButton!
     let teal = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
     let gray = UIColor(red: 181/255, green: 183/255, blue: 183/255, alpha: 1)
+    var delegate: SessionDetailDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self.childViewControllers[0] as? SessionDetailDelegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("switchTab:"), name: "SessionTabSwitch", object: nil)
     }
     
@@ -31,17 +37,16 @@ class SessionDetailTabSwitch: UIViewController {
     @IBAction func schoolDetailsAction(sender: AnyObject) {
         schoolDetailsButton.setTitleColor(teal, forState: .Normal)
         problemButton.setTitleColor(gray, forState: .Normal)
-        NSNotificationCenter.defaultCenter().postNotificationName("TabSwitch", object: "SchoolPicker", userInfo: nil)
+        self.delegate?.switchTab(0)
     }
     
     @IBAction func problemAction(sender: AnyObject) {
         schoolDetailsButton.setTitleColor(gray, forState: .Normal)
         problemButton.setTitleColor(teal, forState: .Normal)
-        NSNotificationCenter.defaultCenter().postNotificationName("TabSwitch", object: "MoreDetails", userInfo: nil)
+        self.delegate?.switchTab(1)
     }
     
     func switchTab(notification: NSNotification) {
-        println(notification)
         let string = notification.object as! String
         if(string == "SchoolPicker") {
             schoolDetailsButton.setTitleColor(teal, forState: .Normal)

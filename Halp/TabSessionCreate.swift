@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewControllerDataSource {
+class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewControllerDataSource, XLPagerTabStripViewControllerDelegate, SessionDetailDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,16 +16,7 @@ class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewCon
         self.barView.backgroundColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
          self.navigationItem.title = "Halp"
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("switchTab:"), name: "TabSwitch", object: nil)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "TabSwitch", object: nil)
-    }
-    
+
     override func childViewControllersForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> [AnyObject]! {
         // create child view controllers that will be managed by XLPagerTabStripViewController
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -34,13 +25,16 @@ class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewCon
         return [child_1, child_2]
     }
     
-    func switchTab(notification: NSNotification) {
-        println("here")
-        let type = notification.object as! String
-        if (type == "SchoolPicker") {
-            self.moveToViewControllerAtIndex(0)
+    override func pagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!, updateIndicatorFromIndex fromIndex: Int, toIndex: Int) {
+        self.barView.moveToIndex(UInt(toIndex), animated: true)
+        if (toIndex == 1) {
+            NSNotificationCenter.defaultCenter().postNotificationName("SessionTabSwitch", object: "MoreDetails", userInfo: nil)
         } else {
-            self.moveToViewControllerAtIndex(1)
+            NSNotificationCenter.defaultCenter().postNotificationName("SessionTabSwitch", object: "SchoolPicker", userInfo: nil)
         }
+    }
+    
+    func switchTab(index: UInt) {
+        self.moveToViewControllerAtIndex(index)
     }
 }

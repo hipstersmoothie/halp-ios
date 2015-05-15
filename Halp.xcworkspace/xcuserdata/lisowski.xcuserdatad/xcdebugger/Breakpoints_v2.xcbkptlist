@@ -294,12 +294,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionDetailTabSwitch.swift"
-            timestampString = "453374439.810586"
+            timestampString = "453420770.34382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "switchTab(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/XLPagerTabStrip/XLPagerTabStrip/XL/Controllers/XLBarPagerTabStripViewController.m"
+            timestampString = "453419135.691786"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-barView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

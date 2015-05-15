@@ -19,12 +19,7 @@ class SchoolPicker: UIViewController, XLPagerTabStripChildItem {
         nextButton.layer.borderColor = teal.CGColor
         nextButton.clipsToBounds = true
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    NSNotificationCenter.defaultCenter().postNotificationName("SessionTabSwitch", object: "SchoolPicker", userInfo: nil)
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

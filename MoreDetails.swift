@@ -17,11 +17,6 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    NSNotificationCenter.defaultCenter().postNotificationName("SessionTabSwitch", object: "MoreDetails", userInfo: nil)
-    }
-    
     func titleForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> String! {
         return "what's the problem?";
     }
