@@ -11,6 +11,7 @@ import UIKit
 var nvc: UINavigationController!
 var pinMode = "student"
 var thisDeviceToken:NSData!
+let teal = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

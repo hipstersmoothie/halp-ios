@@ -9,6 +9,17 @@
 import UIKit
 
 class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewControllerDataSource, XLPagerTabStripViewControllerDelegate, SessionDetailDelegate {
+    var params = [
+        "pinMode": pinMode,
+        "latitude": "\(userLocation.latitude)",
+        "longitude": "\(userLocation.longitude)",
+        "duration": "",
+        "description": "",
+        "skills": "",
+        "images": "",
+        "courses" : ""
+    ] as Dictionary<String, AnyObject>
+    let halpApi = HalpAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,5 +46,21 @@ class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewCon
     
     func switchTab(index: UInt) {
         self.moveToViewControllerAtIndex(index)
+    }
+    
+    func submitNewPin() {
+        pause(self.view)
+        halpApi.postPin(params, completionHandler: self.afterPostPin)
+    }
+    
+    func afterPostPin(success: Bool, json: JSON) {
+        start(self.view)
+        if success {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("toMapNewSession", sender: nil)
+            }
+        } else {
+            println(json)
+        }
     }
 }

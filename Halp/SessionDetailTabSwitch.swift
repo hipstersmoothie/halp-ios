@@ -15,7 +15,6 @@ protocol SessionDetailDelegate {
 class SessionDetailTabSwitch: UIViewController {
     @IBOutlet var schoolDetailsButton: UIButton!
     @IBOutlet var problemButton: UIButton!
-    let teal = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
     let gray = UIColor(red: 181/255, green: 183/255, blue: 183/255, alpha: 1)
     var delegate: SessionDetailDelegate?
     

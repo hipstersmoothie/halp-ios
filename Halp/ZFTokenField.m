@@ -139,8 +139,10 @@
     [self addSubview:self.textField];
     self.textField.frame = (CGRect) {0,0,50,[self.dataSource lineHeightForTokenInField:self]};
     [self invalidateIntrinsicContentSize];
-
-    [self.textField setText:@""];
+    if(self.tokenViews.count > 2) {
+        [self.textField setText:@""];
+    }
+    
     if (returnKey) {
         [self focusOnTextField];
     }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D4F704BE42A123D20AA3CC8 /* libPods-Halp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B210B0313569DC1971D8D7 /* libPods-Halp.a */; };
+		C2039CFA1B0972F900304D14 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = C2039CF91B0972F900304D14 /* camera.png */; };
+		C2039CFC1B09BE0E00304D14 /* describe-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C2039CFB1B09BE0E00304D14 /* describe-icon.png */; };
 		C20847991AB515A8003BCCEA /* tray-red.png in Resources */ = {isa = PBXBuildFile; fileRef = C20847981AB515A8003BCCEA /* tray-red.png */; };
 		C208479C1AB51733003BCCEA /* logout-red.png in Resources */ = {isa = PBXBuildFile; fileRef = C208479A1AB51733003BCCEA /* logout-red.png */; };
 		C208479D1AB51733003BCCEA /* message-red.png in Resources */ = {isa = PBXBuildFile; fileRef = C208479B1AB51733003BCCEA /* message-red.png */; };
@@ -96,6 +98,8 @@
 		C2CD518B1B05AB4E0022FB55 /* MoreDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */; };
 		C2CD518D1B05E6870022FB55 /* SessionDetailTabSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */; };
 		C2E5E6D91AFAB3290030A0EE /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */; };
+		C2E745BF1B0A5F4500BB0BD2 /* list-skills-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E745BE1B0A5F4500BB0BD2 /* list-skills-icon.png */; };
+		C2E745C11B0A73CA00BB0BD2 /* calendar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E745C01B0A73CA00BB0BD2 /* calendar-icon.png */; };
 		C2E835C81AB911ED00A4E340 /* matchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E835C71AB911ED00A4E340 /* matchCell.swift */; };
 		C2E835CA1AB9264300A4E340 /* MatchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E835C91AB9264300A4E340 /* MatchList.swift */; };
 		C2E9854F1AAD48E200054C19 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E9854E1AAD48E200054C19 /* message.png */; };
@@ -121,6 +125,8 @@
 		3E486282370EF96A6E469B98 /* Pods-Halp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Halp/Pods-Halp.release.xcconfig"; sourceTree = "<group>"; };
 		87B210B0313569DC1971D8D7 /* libPods-Halp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Halp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8954359439165D33478E3921 /* Pods-Halp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Halp/Pods-Halp.debug.xcconfig"; sourceTree = "<group>"; };
+		C2039CF91B0972F900304D14 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		C2039CFB1B09BE0E00304D14 /* describe-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "describe-icon.png"; sourceTree = "<group>"; };
 		C20847981AB515A8003BCCEA /* tray-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tray-red.png"; sourceTree = "<group>"; };
 		C208479A1AB51733003BCCEA /* logout-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-red.png"; sourceTree = "<group>"; };
 		C208479B1AB51733003BCCEA /* message-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-red.png"; sourceTree = "<group>"; };
@@ -216,6 +222,8 @@
 		C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreDetails.swift; path = ../MoreDetails.swift; sourceTree = "<group>"; };
 		C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailTabSwitch.swift; sourceTree = "<group>"; };
 		C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		C2E745BE1B0A5F4500BB0BD2 /* list-skills-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-skills-icon.png"; sourceTree = "<group>"; };
+		C2E745C01B0A73CA00BB0BD2 /* calendar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-icon.png"; sourceTree = "<group>"; };
 		C2E835C71AB911ED00A4E340 /* matchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = matchCell.swift; sourceTree = "<group>"; };
 		C2E835C91AB9264300A4E340 /* MatchList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchList.swift; sourceTree = "<group>"; };
 		C2E9854E1AAD48E200054C19 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
@@ -301,6 +309,10 @@
 			isa = PBXGroup;
 			children = (
 				C24391FC1A7E2C7900A3AC58 /* Lobster 1.4.otf */,
+				C2E745C01B0A73CA00BB0BD2 /* calendar-icon.png */,
+				C2039CF91B0972F900304D14 /* camera.png */,
+				C2E745BE1B0A5F4500BB0BD2 /* list-skills-icon.png */,
+				C2039CFB1B09BE0E00304D14 /* describe-icon.png */,
 				C20F5FD31AB4F6000093FAAC /* tray.png */,
 				C2FEE4231AC8BD5F0080ABC6 /* white-plus.png */,
 				C2B8B8E91AB2979000CFB6C8 /* unreadDot.png */,
@@ -610,6 +622,7 @@
 				C2B8B8EA1AB2979000CFB6C8 /* unreadDot.png in Resources */,
 				C2C298991A805A490010C475 /* bump.png in Resources */,
 				C243921E1A802C7300A3AC58 /* StarFull@2x.png in Resources */,
+				C2039CFA1B0972F900304D14 /* camera.png in Resources */,
 				C26646EC1A78452E008B396C /* facebook-login.png in Resources */,
 				C278E37E1A79F9AF0006BCBD /* timeline-list-grid-list-icon.png in Resources */,
 				C20847991AB515A8003BCCEA /* tray-red.png in Resources */,
@@ -618,12 +631,15 @@
 				C24391FD1A7E2C7900A3AC58 /* Lobster 1.4.otf in Resources */,
 				C2E9854F1AAD48E200054C19 /* message.png in Resources */,
 				C2B0FB4F1A8443B0003DE861 /* cancel.png in Resources */,
+				C2E745C11B0A73CA00BB0BD2 /* calendar-icon.png in Resources */,
 				C2B8B8E81AB2196600CFB6C8 /* MessageBubble@2x.png in Resources */,
 				C243921C1A802C6800A3AC58 /* StarEmpty@2x.png in Resources */,
 				C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */,
 				C26646D61A7843B0008B396C /* LaunchScreen.xib in Resources */,
 				C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */,
 				C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */,
+				C2039CFC1B09BE0E00304D14 /* describe-icon.png in Resources */,
+				C2E745BF1B0A5F4500BB0BD2 /* list-skills-icon.png in Resources */,
 				C2CD51891B059D9B0022FB55 /* ButtonCell.xib in Resources */,
 				C208479C1AB51733003BCCEA /* logout-red.png in Resources */,
 				C294ECEF1A9B084D00CFBB0D /* point.png in Resources */,

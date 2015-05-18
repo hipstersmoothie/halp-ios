@@ -9,12 +9,8 @@
 import UIKit
 
 class SessionDetialController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate, MPGTextFieldDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate, AutoTokeDelegate {
-    @IBOutlet var universityField: MPGTextField_Swift!
-    @IBOutlet var courseField: MPGTextField_Swift!
     @IBOutlet var timeField: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
-    @IBOutlet var addPhoto: UIButton!
-    @IBOutlet var sessDesc: UITextView!
     @IBOutlet var tokenField: AutoToke!
     @IBOutlet var nav: UINavigationItem!
     @IBOutlet var contentHeight: NSLayoutConstraint!
@@ -32,24 +28,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     var pickedImage:UIImage!
     let halpApi = HalpAPI()
     var tokens:NSMutableArray!
-    
-    @IBAction func addPhotoButton(sender: AnyObject) {
-        var image = UIImagePickerController()
-        image.delegate = self
-        image.sourceType = .PhotoLibrary
-        image.allowsEditing = false
-        self.presentViewController(image, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        addPhoto.frame = CGRectMake(100, 100, 100, 100)
-        addPhoto.setBackgroundImage(image, forState: .Normal)
-        addPhoto.setTitle("", forState: .Normal)
-        pickedImage = RBSquareImageTo(image, CGSize(width: 100, height: 100))
-    }
-    
+   
     func configureDatePicker() {
         // Set min/max date for the date picker.
         // As an example we will limit the date between now and 7 days from now.
@@ -68,23 +47,12 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func search(sender: AnyObject) {
-        if universityField.text == "" {
-            createAlert(self, "Error Creating Sesson", "Please provide a university.")
-        } else if courseField.text == "" {
-            createAlert(self, "Error Creating Sesson", "Please provide a course.")
-        } else if sessDesc.text == "" || sessDesc.text == "Description of the problem you need help with." {
-            createAlert(self, "Error Creating Sesson", "Please provide a description.")
-        } else if timeField.text == "" {
+        if timeField.text == "" {
             createAlert(self, "Error Creating Sesson", "Please provide a desired time.")
         } else {
             //send request
             self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.backBarButtonItem = nil
-            var course = split(courseField.text) {$0 == " "}
-            if course.count < 2 {
-                createAlert(self, "Invalid Class", "Must be formatted like CPE 123(name num)")
-                return
-            }
 
             skillsArr = tokenField.getTokens()
             var base64String:String = ""
@@ -92,27 +60,26 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
                 let imageData = UIImagePNGRepresentation(pickedImage)
                 base64String = imageData.base64EncodedStringWithOptions(nil)
             }
-            println("slow")
-            var params = [
-                "pinMode": pinMode,
-                "latitude": "\(userLocation.latitude)",
-                "longitude": "\(userLocation.longitude)",
-                "duration": datePicker.date.timeIntervalSinceNow,
-                "description": sessDesc.text!,
-                "skills": skillsArr,
-                "images": base64String != "" ? [base64String] : [],
-                "courses" : [
-                    universityField.text!: [
-                        [
-                            "subject": course[0],
-                            "number": course[1]
-                        ]
-                    ]
-                ]
-            ]
-            
-            pause(self.view)
-            halpApi.postPin(params, completionHandler: self.afterPostPin)
+//            var params = [
+//                "pinMode": pinMode,
+//                "latitude": "\(userLocation.latitude)",
+//                "longitude": "\(userLocation.longitude)",
+//                "duration": datePicker.date.timeIntervalSinceNow,
+//                "description": sessDesc.text!,
+//                "skills": skillsArr,
+//                "images": base64String != "" ? [base64String] : [],
+//                "courses" : [
+//                    universityField.text!: [
+//                        [
+//                            "subject": course[0],
+//                            "number": course[1]
+//                        ]
+//                    ]
+//                ]
+//            ]
+//            
+//            pause(self.view)
+//            halpApi.postPin(params, completionHandler: self.afterPostPin)
         }
     }
     
@@ -146,7 +113,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
 
         toolbar.removeFromSuperview()
-        universityField.mDelegate = self
         
         tokens = NSMutableArray()
         tokenField.delegate = self
@@ -155,25 +121,11 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         tokenField.reloadData(false)
         tokenField.mDelegate = self
         
-        courseField.mDelegate = self
         
         datePicker.removeFromSuperview()
         configureDatePicker()
         timeField.inputView = datePicker
         timeField.inputAccessoryView = toolbar
-        
-        addPhoto.backgroundColor = UIColor.clearColor()
-        addPhoto.layer.cornerRadius = 0.5 * addPhoto.bounds.size.width
-        addPhoto.layer.borderWidth = 1
-        addPhoto.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
-        addPhoto.clipsToBounds = true
-        
-        sessDesc.returnKeyType = .Done
-        sessDesc.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
-        sessDesc.layer.borderWidth = 1.0
-        sessDesc.layer.cornerRadius = 5
-        sessDesc.textContainerInset = UIEdgeInsetsMake(12, 12, 12, 12)
-        sessDesc.textColor = UIColor.lightGrayColor()
         
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         timeField.addTarget(self, action: Selector("datePickerInit:"), forControlEvents: .EditingDidBegin)
@@ -206,12 +158,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
         timeField.text = strDate
-    }
-    
-    func enterUni(field:UITextField) {
-        if universityField.text == "" {
-            universityField.text = "Cal Poly"
-        }
     }
     
     func datePickerInit(field:UITextField) {
@@ -257,14 +203,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
-
-    func textFieldDidBeginEditing(textField: UITextField) {
-        if textField == timeField {
-            animateViewMoving(true, moveValue: 180)
-        } else if textField != universityField && textField != courseField {
-            animateViewMoving(true, moveValue: 100)
-        }
-    }
     
     @IBOutlet var scrollView: UIScrollView!
     func tokenFieldDidBeginEditing(tokenField:ZFTokenField) {
@@ -276,13 +214,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         animateViewMoving(false, moveValue: 180)
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
-        if textField == timeField {
-            animateViewMoving(false, moveValue: 180)
-        } else if textField != universityField && textField != courseField {
-            animateViewMoving(false, moveValue: 100)
-        }
-    }
     
     func animateViewMoving (up:Bool, moveValue :CGFloat){
         var movementDuration:NSTimeInterval = 0.3
@@ -297,11 +228,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     //MARK: uni and course picker
     func dataForPopoverInTextField(textfield: MPGTextField_Swift) -> [Dictionary<String, AnyObject>] {
-        if textfield == universityField {
-            return universities
-        } else {
-            return courses
-        }
+        return []
     }
     
     func textFieldShouldSelect(textField: MPGTextField_Swift) -> Bool {
@@ -310,28 +237,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String, AnyObject>) {
         
-    }
-    
-    func textFieldDidEndEditing(textField: MPGTextField_Swift, withSelection data: Dictionary<String,AnyObject>){
-        if textField == universityField {
-            let uni = data["DisplayText"] as! String
-            var params = [
-                "university": uni
-            ]
-            
-            halpApi.getCourses(params) { success, json in
-                courses = []
-                let courseList = json["courses"].arrayValue
-                for course in courseList {
-                    let courseText = course["subject"].stringValue + " " + course["number"].stringValue
-                    courses.append([
-                        "DisplayText": courseText,
-                        "CustomObject": Course(course: course)
-                    ])
-                }
-            }
-            courseField.enabled = true
-        }        
     }
     
     //token field
@@ -352,7 +257,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     //token field Functions
     func lineHeightForTokenInField(tokenField: ZFTokenField!) -> CGFloat {
-        return 40
+        return 50
     }
     
     func numberOfTokenInField(tokenField: ZFTokenField!) -> UInt {
@@ -369,8 +274,11 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         
         label.text = tokens[Int(index)] as! NSString as String
         var size:CGSize = label.sizeThatFits(CGSizeMake(1000, 40))
-        view.frame = CGRectMake(0, 0, size.width + 50, 40);
-        return view;
+        view.frame = CGRectMake(0, 5, size.width + 50, 40);
+        let position = UIView(frame: CGRectMake(0, 0, size.width + 50, 40))
+        position.addSubview(view)
+        
+        return position;
     }
     
     func tokenMarginInTokenInField(tokenField: ZFTokenField!) -> CGFloat {
@@ -396,10 +304,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
             }
         }
     }
-    
-//    func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {
-//        tokens.removeObjectAtIndex(Int(index))
-//    }
     
     func tokenFieldShouldEndEditing(textField: ZFTokenField!) -> Bool {
         return true
