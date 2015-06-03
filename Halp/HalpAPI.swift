@@ -189,5 +189,19 @@ class HalpAPI {
     func updateProfile(params: Dictionary<String, AnyObject>, completionHandler: ((Bool, JSON) -> Void)?) {
         halpRequest("/profile", method: "PUT", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
+    
+    // Payments
+    func getClientToken(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = Dictionary<String, String>()
+        halpRequest("/payments/clientToken", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func createPaymentMethod(nonce:String, completionHandler: ((Bool, JSON) -> Void)?) {
+        println(nonce);
+        var params = [
+            "nonce" : nonce
+        ]
+        halpRequest("/payments/paymentMethod", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
 }
 

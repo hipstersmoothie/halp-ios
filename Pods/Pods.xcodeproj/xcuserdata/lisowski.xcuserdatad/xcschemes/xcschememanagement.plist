@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Halp-CardIO.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Halp-JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Halp-coinbase-official.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Halp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>150EE84BA4F1CD37DA49AC74</key>
+		<key>0B04D4328EC48F8ED8A8ABE4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>233DD5B8064219012D4656DF</key>
+		<key>2C70AD1E37A092858F5D0CF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>24DE4BD2D082062F4035010B</key>
+		<key>51E866D867D0D31060D641EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4903EA4B562779A163135689</key>
+		<key>866B371781C12AEFFC88F854</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A0FFA2A4EA1A6BA119CC429</key>
+		<key>AF116549A7D4E535FD798672</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C721CF2A8F602C81AF037EEE</key>
+		<key>AFE8940876963C97E2D2CBE1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB3F7A27D4693E14E9690872</key>
+		<key>D6DA5623EE02C9DC1E60C8D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9D8901D209598AFC37E187F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DD317C00F8D2DBD50132A867</key>
 		<dict>
 			<key>primary</key>
 			<true/>

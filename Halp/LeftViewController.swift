@@ -12,7 +12,7 @@ enum LeftMenu: Int {
     case TutorMode
     case Messages
     case Matches
-//    case Payments
+    case Payments
     case Settings
     case Logout
 }
@@ -28,7 +28,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     var settingsViewController: UIViewController!
     var tutorSetupController: UIViewController!
     var messagesController: UIViewController!
-    var matchController: UIViewController!
     var paymentsController: UIViewController!
     var sessionController: UIViewController!
     var halpApi = HalpAPI()
@@ -53,9 +52,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         let messages = storyboard.instantiateViewControllerWithIdentifier("Messages") as! Messages
         self.messagesController = UINavigationController(rootViewController: messages)
         
-        let matches = storyboard.instantiateViewControllerWithIdentifier("Matches") as! MatchList
-        self.matchController = UINavigationController(rootViewController: matches)
-        
         let session = storyboard.instantiateViewControllerWithIdentifier("SessionCounter") as! SessionCounterController
         self.sessionController = UINavigationController(rootViewController: session)
         
@@ -79,39 +75,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             }
         }
     }
-    
-//    func matchesClicked() {
-//        let current = messageCount.text?.toInt()
-//        if current != nil {
-//            let newCount  = current! - 1
-//            if newCount <= 0 {
-//                messageCount.text = ""
-//                messageImage.image = UIImage(named: "message.png")!
-//            } else {
-//                messageCount.text = "\(newCount)"
-//            }
-//        }
-//        
-//        var key:String
-//        if pinMode == "student" {
-//            key = "studentNewMatches"
-//        } else {
-//            key = "tutorNewMatches"
-//        }
-//        
-//        if notificationCounts != nil {
-//            let messageCountNum = notificationCounts[key] as NSInteger
-//            notificationCounts.updateValue(messageCountNum - 1, forKey: key)
-//            let currCount = notificationCounts["count"] as NSInteger
-//            notificationCounts.updateValue(currCount - 1, forKey: "count")
-//        }
-//        
-//        var numberOfBadges = UIApplication.sharedApplication().applicationIconBadgeNumber
-//        if numberOfBadges > 0 {
-//            numberOfBadges -= 1
-//            UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
-//        }
-//    }
     
     func messageClicked(notification: NSNotification) {
         let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
@@ -274,10 +237,10 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             nvc.pushViewController(self.messagesController, animated: true)
             self.slideMenuController()?.closeLeft()
             break
-//        case .Payments:
-//            nvc.pushViewController(self.paymentsController, animated: true)
-//            self.slideMenuController()?.closeLeft()
-//            break
+        case .Payments:
+            nvc.pushViewController(self.paymentsController, animated: true)
+            self.slideMenuController()?.closeLeft()
+            break
         case .Matches:
             if notificationCounts != nil {
                 var messageCountNum:NSInteger!

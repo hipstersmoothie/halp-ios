@@ -4,6 +4,7 @@
 #import "BTMutableCardPaymentMethod.h"
 #import "BTMutablePayPalPaymentMethod.h"
 #import "BTMutableApplePayPaymentMethod.h"
+#import "BTCoinbasePaymentMethod_Internal.h"
 
 @implementation BTClientPaymentMethodValueTransformer
 
@@ -34,7 +35,10 @@
         card.lastTwo = [[responseParser responseParserForKey:@"details"] stringForKey:@"lastTwo"];
         card.challengeQuestions = [responseParser setForKey:@"securityQuestions"];
         card.nonce = [responseParser stringForKey:@"nonce"];
-
+        NSDictionary *threeDSecureInfoDict = [responseParser dictionaryForKey:@"threeDSecureInfo"];
+        if (threeDSecureInfoDict) {
+            card.threeDSecureInfoDictionary = threeDSecureInfoDict;
+        }
         paymentMethod = card;
     } else if ([type isEqualToString:@"PayPalAccount"]) {
         BTMutablePayPalPaymentMethod *payPal = [[BTMutablePayPalPaymentMethod alloc] init];
@@ -63,6 +67,12 @@
 
         paymentMethod = card;
 #endif
+    } else if ([type isEqualToString:@"CoinbaseAccount"]) {
+        BTCoinbasePaymentMethod *coinbaseAccount = [[BTCoinbasePaymentMethod alloc] init];
+        coinbaseAccount.nonce = [responseParser stringForKey:@"nonce"];
+        coinbaseAccount.email = [[responseParser responseParserForKey:@"details"] stringForKey:@"email"];
+        coinbaseAccount.description = coinbaseAccount.email;
+        paymentMethod = coinbaseAccount;
     } else {
         BTMutablePaymentMethod *genericPaymentMethod = [[BTMutablePaymentMethod alloc] init];
 

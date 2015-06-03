@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CB3F7A27D4693E14E9690872"
+               BlueprintIdentifier = "AFE8940876963C97E2D2CBE1"
                BuildableName = "Braintree-Drop-In-Localization.bundle"
                BlueprintName = "Braintree-Drop-In-Localization"
                ReferencedContainer = "container:Pods.xcodeproj">

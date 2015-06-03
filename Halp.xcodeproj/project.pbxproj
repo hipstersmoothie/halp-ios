@@ -39,6 +39,9 @@
 		C243CCE91AF1901600F82379 /* tutorRatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243CCE81AF1901600F82379 /* tutorRatingController.swift */; };
 		C24597561A94620800CBA227 /* studentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24597551A94620800CBA227 /* studentCell.swift */; };
 		C24597581A946E7500CBA227 /* studentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24597571A946E7500CBA227 /* studentProfile.swift */; };
+		C25C06811B1EA188007B0D26 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C06801B1EA188007B0D26 /* KeychainWrapper.m */; };
+		C25C06831B1EA77B007B0D26 /* PaymentTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C06821B1EA77B007B0D26 /* PaymentTypeCell.swift */; };
+		C25C06851B1EC8FC007B0D26 /* AddPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C06841B1EC8FC007B0D26 /* AddPaymentMethod.swift */; };
 		C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2605A0E1A897D6700AEBBFE /* Settings.swift */; };
 		C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646CB1A7843B0008B396C /* AppDelegate.swift */; };
 		C26646CE1A7843B0008B396C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646CD1A7843B0008B396C /* ViewController.swift */; };
@@ -157,6 +160,10 @@
 		C243CCE81AF1901600F82379 /* tutorRatingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorRatingController.swift; sourceTree = "<group>"; };
 		C24597551A94620800CBA227 /* studentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentCell.swift; sourceTree = "<group>"; };
 		C24597571A946E7500CBA227 /* studentProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentProfile.swift; sourceTree = "<group>"; };
+		C25C067F1B1EA188007B0D26 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		C25C06801B1EA188007B0D26 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
+		C25C06821B1EA77B007B0D26 /* PaymentTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentTypeCell.swift; sourceTree = "<group>"; };
+		C25C06841B1EC8FC007B0D26 /* AddPaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentMethod.swift; sourceTree = "<group>"; };
 		C2605A0E1A897D6700AEBBFE /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C26646C61A7843B0008B396C /* Halp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Halp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26646CA1A7843B0008B396C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -301,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				C21EA2BA1AFB0DDA0029A119 /* Payments.swift */,
+				C25C06841B1EC8FC007B0D26 /* AddPaymentMethod.swift */,
+				C25C06821B1EA77B007B0D26 /* PaymentTypeCell.swift */,
 			);
 			name = Payments;
 			sourceTree = "<group>";
@@ -441,6 +450,8 @@
 		C2C298B41A81D6E60010C475 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C25C067F1B1EA188007B0D26 /* KeychainWrapper.h */,
+				C25C06801B1EA188007B0D26 /* KeychainWrapper.m */,
 				C2AC27071A9E683A00262621 /* MPGTextField-Swift.swift */,
 				C2B0FB521A845568003DE861 /* ActivityIndicatorHelper.swift */,
 				C24391CD1A7D79B800A3AC58 /* FBHelper.swift */,
@@ -744,9 +755,11 @@
 				C2B8B8E61AB218CC00CFB6C8 /* MessageBubbleCell.swift in Sources */,
 				C2E985561AAD4C7700054C19 /* Chat.swift in Sources */,
 				C2CD518B1B05AB4E0022FB55 /* MoreDetails.swift in Sources */,
+				C25C06851B1EC8FC007B0D26 /* AddPaymentMethod.swift in Sources */,
 				C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,
 				C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */,
+				C25C06831B1EA77B007B0D26 /* PaymentTypeCell.swift in Sources */,
 				C2BBA70D1A8C7B6F0023A5EF /* basicInfo.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
 				C2E835C81AB911ED00A4E340 /* matchCell.swift in Sources */,
@@ -758,6 +771,7 @@
 				C2E985511AAD4AA800054C19 /* Messages.swift in Sources */,
 				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,
+				C25C06811B1EA188007B0D26 /* KeychainWrapper.m in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,
 				C2B0FB421A840782003DE861 /* UserPin.swift in Sources */,
 				C2C298A51A819CC80010C475 /* UIViewControllerExtension.swift in Sources */,

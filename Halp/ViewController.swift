@@ -49,6 +49,7 @@ func styleButton(button: UIButton) {
 }
 
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
+    let MyKeychainWrapper = KeychainWrapper()
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
     @IBOutlet var diffAccountLabel: UILabel!
