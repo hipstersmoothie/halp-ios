@@ -14,7 +14,6 @@ var otherUserId:Int = 0
 
 class BumpController: UIViewController {
     @IBOutlet var startSessionButton: UIButton!
-    let halpApi = HalpAPI()
     var timer = NSTimer()
     var totTime = 0
     var interval:Int!
@@ -84,10 +83,10 @@ class BumpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startSessionButton.backgroundColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
+        startSessionButton.backgroundColor = teal
         startSessionButton.layer.cornerRadius = 12
         startSessionButton.layer.borderWidth = 1
-        startSessionButton.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
+        startSessionButton.layer.borderColor = teal.CGColor
         startSessionButton.clipsToBounds = true
     }
     

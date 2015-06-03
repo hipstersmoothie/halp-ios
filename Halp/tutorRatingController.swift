@@ -11,19 +11,11 @@ import UIKit
 class tutorRatingController: UIViewController, FloatRatingViewDelegate {
     @IBOutlet var submit: UIButton!
     @IBOutlet var approval: FloatRatingView!
-    let halpApi = HalpAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let buttonColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
-        
-        submit.backgroundColor = buttonColor
-        submit.layer.cornerRadius = 12
-        submit.layer.borderWidth = 1
-        submit.layer.borderColor = buttonColor.CGColor
-        submit.clipsToBounds = true
-        
+    
+        styleButton(submit)
         approval.floatRatings = false
     }
     

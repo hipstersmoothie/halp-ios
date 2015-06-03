@@ -20,7 +20,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBOutlet var map: MKMapView!
     var manager:CLLocationManager!
     var center = false, findMe = false
-    let halpApi = HalpAPI()
     var dateField: UITextField?
     var myPinAnn:UserPinAnnotation!
     var matches:[UserPin]!
@@ -65,7 +64,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         alertController.addAction(cancelAction)
         
         let OKAction = UIAlertAction(title: "Delete", style: .Default) { (action) in
-            self.halpApi.deletePin(self.afterDeletePin)
+            halpApi.deletePin(self.afterDeletePin)
             self.removeMyPin()
         }
         
@@ -132,7 +131,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             alertController.addAction(cancelAction)
             
             let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                self.halpApi.postPin([
+                halpApi.postPin([
                     "pinMode": pinMode,
                     "duration": self.datePicker.date.timeIntervalSinceNow,
                     "latitude": self.map.region.center.latitude,
@@ -160,7 +159,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func tutorPinPosted(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
             if success {
-                self.halpApi.getMyPins(self.gotMyPins)
+                halpApi.getMyPins(self.gotMyPins)
                 createAlert(self, "Success!", "You will now be notified when students post pins that match your profile.")
             } else {
                 createAlert(self, "Error!", "Couldn't place pin. You might already have a pin down")
@@ -266,7 +265,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             if self.findMe == false {
                 self.map.setRegion(self.focusRegion(CLLocation(latitude: myPin.latitude, longitude: myPin.longitude)), animated: false)
                 self.findMe = true
-                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
+                halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
             }
         }
     }
@@ -281,7 +280,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 self.matches = []
                 pinsInArea = []
                 self.map.removeAnnotations(self.map.annotations)
-                self.halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
+                halpApi.getTutorsInArea(self.createMapSquareParams(), completionHandler: self.gotPins)
             }
             
             for annotation in self.map.annotations {
@@ -393,8 +392,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         configureDatePicker()
         
-        findTutorButton.layer.cornerRadius = 12
-        findTutorButton.clipsToBounds = true
+        styleButton(findTutorButton)
         if pinMode == "tutor" {
             findTutorButton.setTitle("Tutor Pin", forState: .Normal)
         }
@@ -408,7 +406,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         self.navigationItem.rightBarButtonItem = nil
 
-        navigationController?.navigationBar.barTintColor = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = teal
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         

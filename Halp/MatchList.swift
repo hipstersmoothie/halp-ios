@@ -9,7 +9,6 @@
 import UIKit
 
 class MatchList: UITableViewController {
-    let halpApi = HalpAPI()
     var matches:[UserPin]!
     
     func updateMatches() {

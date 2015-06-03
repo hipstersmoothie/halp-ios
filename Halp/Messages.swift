@@ -11,7 +11,6 @@ import UIKit
 class Messages: UITableViewController {
     var chats: [Chat]!
     var chatType:String!
-    let halpApi = HalpAPI()
     var loggedIn:User!
     
     override func viewWillAppear(animated: Bool) {

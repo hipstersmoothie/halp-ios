@@ -93,7 +93,7 @@ func bubbleImageMake() -> (incoming: UIImage, incomingHighlighed: UIImage, outgo
 
     let incoming = coloredImage(maskIncoming, 229/255.0, 229/255.0, 234/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
     let incomingHighlighted = coloredImage(maskIncoming, 206/255.0, 206/255.0, 210/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
-    let outgoing = coloredImage(maskOutgoing, 45/255.0, 188/255.0, 188/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
+    let outgoing = coloredImage(maskOutgoing, 136/255.0, 205/255.0, 202/255.0,1).resizableImageWithCapInsets(capInsetsOutgoing)
     let outgoingHighlighted = coloredImage(maskOutgoing, 38/255.0, 163/255.0, 158/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
 
     return (incoming, incomingHighlighted, outgoing, outgoingHighlighted)

@@ -10,7 +10,6 @@ import UIKit
 
 class createController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate {
     @IBOutlet var addPhoto: UIButton!
-    let halpApi = HalpAPI()
     var pickedImage:UIImage!
     
     @IBOutlet var email: UITextField!
@@ -84,7 +83,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         // Do any additional setup after loading the view, typically from a nib.
         addPhoto.backgroundColor = UIColor.clearColor()
         addPhoto.layer.borderWidth = 1
-        addPhoto.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
+        addPhoto.layer.borderColor = teal.CGColor
         addPhoto.clipsToBounds = true
         
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -95,7 +94,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         myBackButton.sizeToFit()
         var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
-        navigationController?.navigationBar.barTintColor = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = teal
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         

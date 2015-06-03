@@ -14,17 +14,13 @@ class ReviewController: UIViewController, FloatRatingViewDelegate {
     @IBOutlet var metric1Label: UILabel!
     @IBOutlet var metric2: FloatRatingView!
     @IBOutlet var metric2Label: UILabel!
-    let halpApi = HalpAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let buttonColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
-        
-        submit.backgroundColor = buttonColor
+        submit.backgroundColor = teal
         submit.layer.cornerRadius = 12
         submit.layer.borderWidth = 1
-        submit.layer.borderColor = buttonColor.CGColor
+        submit.layer.borderColor = teal.CGColor
         submit.clipsToBounds = true
         
         metric1.floatRatings = false

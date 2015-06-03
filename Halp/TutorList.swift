@@ -12,7 +12,6 @@ var selectedTutor:UserPin!
 
 class TutorList: UITableViewController, UITableViewDelegate {
     @IBOutlet var nav: UINavigationItem!
-    let halpApi = HalpAPI()
     
     func toggleMode() {
         if pinMode == "tutor" {

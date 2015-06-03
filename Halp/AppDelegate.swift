@@ -11,6 +11,7 @@ import UIKit
 var nvc: UINavigationController!
 var pinMode = "student"
 var thisDeviceToken:NSData!
+let halpApi = HalpAPI()
 let teal = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
 
 @UIApplicationMain
@@ -35,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
         
-        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+        self.window?.backgroundColor = teal
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
         
@@ -61,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         // Notification RECIEVED
-        println(userInfo)
         NSNotificationCenter.defaultCenter().postNotificationName("notificationsRecieved", object: nil, userInfo: userInfo)
         if (userInfo["session"] != nil) {
             NSNotificationCenter.defaultCenter().postNotificationName("inSession", object: nil, userInfo: userInfo)

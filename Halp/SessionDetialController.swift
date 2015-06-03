@@ -26,7 +26,6 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
     
     var skillsArr: [String] = []
     var pickedImage:UIImage!
-    let halpApi = HalpAPI()
     var tokens:NSMutableArray!
    
     func configureDatePicker() {
@@ -130,13 +129,7 @@ class SessionDetialController: UIViewController, UIImagePickerControllerDelegate
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         timeField.addTarget(self, action: Selector("datePickerInit:"), forControlEvents: .EditingDidBegin)
         
-        let buttonColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
-        
-        searchButton.backgroundColor = buttonColor
-        searchButton.layer.cornerRadius = 12
-        searchButton.layer.borderWidth = 1
-        searchButton.layer.borderColor = buttonColor.CGColor
-        searchButton.clipsToBounds = true
+        styleButton(searchButton)
         
         self.navigationItem.title = "Halp"
     }

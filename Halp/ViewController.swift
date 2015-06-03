@@ -17,7 +17,6 @@ var courses:[Dictionary<String, AnyObject>]!
 var skills:[Dictionary<String, AnyObject>]!
 
 func getInitData() {
-    let halpApi = HalpAPI()
     halpApi.getUniversities() { success, json in
         universities = []
         let unis = json["universities"].arrayValue
@@ -41,9 +40,15 @@ func getInitData() {
     }
 }
 
+func styleButton(button: UIButton) {
+    button.backgroundColor = teal
+    button.layer.cornerRadius = 12
+    button.layer.borderWidth = 1
+    button.layer.borderColor = teal.CGColor
+    button.clipsToBounds = true
+}
+
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
-    let halpApi = HalpAPI()
-    
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
     @IBOutlet var diffAccountLabel: UILabel!
@@ -71,39 +76,38 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     @IBOutlet var forgotLoginButton: UIButton!
     @IBOutlet var orLabel: UILabel!
     @IBAction func logInSwitch(sender: AnyObject) {
-        fbButton.hidden = true
-        gPlusButton.hidden = true
-        signLabel.hidden = true
-        registerButton.hidden = true
-        orLabel.hidden = true
-        
-        username.hidden = false
-        password.hidden = false
-        loginButton.hidden = false
-        forgotLoginButton.hidden = false
-        
-        logInSwitchButton.alpha = 1.0
-        logInSwitchButton.setBackgroundImage(UIImage(named: "point.png"), forState: .Normal)
-        signUpSwitchButton.alpha = 0.6
-        signUpSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal) 
+        show("login")
     }
     
     @IBAction func signUpShow(sender: AnyObject) {
-        username.hidden = true
-        password.hidden = true
-        loginButton.hidden = true
-        forgotLoginButton.hidden = true
+        show("sign up")
+    }
+    
+    func show(mode:String) {
+        var hideState = mode == "login";
         
-        fbButton.hidden = false
-        gPlusButton.hidden = false
-        signLabel.hidden = false
-        registerButton.hidden = false
-        orLabel.hidden = false
+        username.hidden = !hideState
+        password.hidden = !hideState
+        loginButton.hidden = !hideState
+        forgotLoginButton.hidden = !hideState
         
-        signUpSwitchButton.alpha = 1.0
-        signUpSwitchButton.setBackgroundImage(UIImage(named: "point.png"), forState: .Normal)
-        logInSwitchButton.alpha = 0.6
-        logInSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal)
+        fbButton.hidden = hideState
+        gPlusButton.hidden = hideState
+        signLabel.hidden = hideState
+        registerButton.hidden = hideState
+        orLabel.hidden = hideState
+        
+        if(hideState) {
+            logInSwitchButton.alpha = 1.0
+            logInSwitchButton.setBackgroundImage(UIImage(named: "point.png"), forState: .Normal)
+            signUpSwitchButton.alpha = 0.6
+            signUpSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal)
+        } else {
+            signUpSwitchButton.alpha = 1.0
+            signUpSwitchButton.setBackgroundImage(UIImage(named: "point.png"), forState: .Normal)
+            logInSwitchButton.alpha = 0.6
+            logInSwitchButton.setBackgroundImage(UIImage(named: "blank"), forState: .Normal)
+        }
     }
     
     // MARK: Login Functions
@@ -152,8 +156,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     @IBOutlet var signLabel: UILabel!
     @IBOutlet var gPlusButton: UIButton!
     override func viewDidLoad() {
-       // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("executeHandle:"), name: "PostData", object: nil);
-
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var border = CALayer()
@@ -165,20 +167,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         diffAccountLabel.layer.addSublayer(border)
         diffAccountLabel.layer.masksToBounds = true
         
-        let buttonColor = UIColor(red: 20/255, green: 140/255, blue: 139/255, alpha: 1)
-        
-        loginButton.backgroundColor = buttonColor
-        loginButton.layer.cornerRadius = 12
-        loginButton.layer.borderWidth = 1
-        loginButton.layer.borderColor = buttonColor.CGColor
-        loginButton.clipsToBounds = true
-        
-        
-        registerButton.backgroundColor = buttonColor
-        registerButton.layer.cornerRadius = 12
-        registerButton.layer.borderWidth = 1
-        registerButton.layer.borderColor = buttonColor.CGColor
-        registerButton.clipsToBounds = true
+        styleButton(loginButton)
+        styleButton(registerButton)
 
         navigationController?.setNavigationBarHidden(true, animated: true)
         

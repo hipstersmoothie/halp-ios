@@ -21,7 +21,6 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
     
     var mDelegate : MPGTextFieldDelegate?
     var tableViewController : UITableViewController?
-    let halpApi = HalpAPI()
     var data = [Dictionary<String, AnyObject>]()
     
     //Set this to override the default color of suggestions popover. The default color is [UIColor colorWithWhite:0.8 alpha:0.9]

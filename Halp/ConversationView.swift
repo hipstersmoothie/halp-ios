@@ -13,7 +13,6 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     var textView: UITextView!
     var sendButton: UIButton!
     var rotating = false
-    let halpApi = HalpAPI()
     
     override var inputAccessoryView: UIView! {
         get {

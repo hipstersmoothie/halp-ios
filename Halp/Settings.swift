@@ -11,7 +11,6 @@ import UIKit
 class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var courseRow = 1
     var firstname:String!
-    let halpApi = HalpAPI()
     var universities:[String] = []
     var courses:[[Course]] = []
     var newPic:UIImage!
@@ -144,7 +143,7 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
             infoCell.profilePic.clipsToBounds = true
             infoCell.profilePic.layer.masksToBounds = true
             infoCell.profilePic.layer.borderWidth = 1
-            infoCell.profilePic.layer.borderColor =  UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
+            infoCell.profilePic.layer.borderColor =  teal.CGColor
             infoCell.profilePic.layer.cornerRadius = infoCell.profilePic.frame.height/2
 
             if newPic != nil {

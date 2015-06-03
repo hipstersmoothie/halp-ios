@@ -19,11 +19,10 @@ class TabSessionCreate: XLBarPagerTabStripViewController, XLPagerTabStripViewCon
         "images": "",
         "courses" : ""
     ] as Dictionary<String, AnyObject>
-    let halpApi = HalpAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.barView.selectedBar.backgroundColor = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
+        self.barView.selectedBar.backgroundColor = teal
         self.barView.backgroundColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
     }
 

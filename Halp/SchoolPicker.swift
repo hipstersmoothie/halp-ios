@@ -12,8 +12,6 @@ class SchoolPicker: UIViewController, XLPagerTabStripChildItem, MPGTextFieldDele
     @IBOutlet var universityField: MPGTextField_Swift!
     @IBOutlet var courseField: MPGTextField_Swift!
     @IBOutlet var nextButton: UIButton!
-    let teal = UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
-    let halpApi = HalpAPI()
     
     @IBAction func nextButtonAction(sender: AnyObject) {
         if(universityField.text == "") {

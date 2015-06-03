@@ -10,7 +10,6 @@ import UIKit
 
 class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate {
     var courseRow = 1
-    let halpApi = HalpAPI()
     var selectedRow = -1
     var cellInfos:[Dictionary<String, AnyObject>]!
     

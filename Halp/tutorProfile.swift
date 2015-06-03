@@ -76,17 +76,8 @@ class tutorProfile: UIViewController, FloatRatingViewDelegate {
         profilePic.layer.cornerRadius = profilePic.frame.size.height/2
         profilePic.clipsToBounds = true
         
-        rOSButton.backgroundColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
-        rOSButton.layer.cornerRadius = 12
-        rOSButton.layer.borderWidth = 1
-        rOSButton.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
-        rOSButton.clipsToBounds = true
-        
-        startSessionButton.backgroundColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1)
-        startSessionButton.layer.cornerRadius = 12
-        startSessionButton.layer.borderWidth = 1
-        startSessionButton.layer.borderColor = UIColor(red: 45/255, green: 188/255, blue: 188/255, alpha: 1).CGColor
-        startSessionButton.clipsToBounds = true
+        styleButton(rOSButton)
+        styleButton(startSessionButton)
     }
     
     override func didReceiveMemoryWarning() {

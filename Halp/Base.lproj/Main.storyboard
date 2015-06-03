@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -536,12 +536,34 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="table" destination="Cm0-X4-4h4" id="bcQ-EB-lMP"/>
-                        <segue destination="Yuh-8s-i7r" kind="show" identifier="toSetRate" id="V3k-dk-3Wp"/>
+                        <segue destination="ZaU-ls-Gye" kind="show" identifier="toTutorMoneyDetails" id="gUr-Un-eUa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="988-gD-gVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1212.5" y="-542.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uW3-u7-q5v">
+            <objects>
+                <viewController id="ZaU-ls-Gye" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5f4-SE-vTl"/>
+                        <viewControllerLayoutGuide type="bottom" id="3qk-Fv-sYk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FIE-4F-eMp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="Yuh-8s-i7r" kind="show" identifier="toSetRate" id="nym-W4-rJq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DBi-p0-X4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636.5" y="-542.5"/>
         </scene>
         <!--Set Rate Controller-->
         <scene sceneID="KWk-pq-qhc">
@@ -618,7 +640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eVq-3x-DNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1693.5" y="-542.5"/>
+            <point key="canvasLocation" x="2429.5" y="-542.5"/>
         </scene>
         <!--Student Profile-->
         <scene sceneID="XcP-mC-YYu">
@@ -703,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8v-GH-83I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153.5" y="-542.5"/>
+            <point key="canvasLocation" x="2804.5" y="-522.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -1231,7 +1253,7 @@
                                     <segment title="Map"/>
                                     <segment title="List"/>
                                 </segments>
-                                <color key="tintColor" red="0.1764705882" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.53333333329999999" green="0.80392156859999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="toggleMapList:" destination="IQw-MT-eGb" eventType="valueChanged" id="26E-vx-OWX"/>
                                 </connections>
@@ -1517,7 +1539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDP-FD-x0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1184.5" y="955.5"/>
+            <point key="canvasLocation" x="1207.5" y="971.5"/>
         </scene>
         <!--Conversations-->
         <scene sceneID="IF1-7a-qie">
@@ -2772,9 +2794,9 @@
         <image name="white-plus.png" width="297" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="FkZ-fb-a2G"/>
         <segue reference="S0h-4g-6Vi"/>
-        <segue reference="J5f-rp-eAR"/>
         <segue reference="Po8-wj-Htr"/>
-        <segue reference="qCc-FV-0fJ"/>
+        <segue reference="eTj-Ly-RbU"/>
     </inferredMetricsTieBreakers>
 </document>

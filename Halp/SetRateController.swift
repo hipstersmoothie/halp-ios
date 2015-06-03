@@ -11,7 +11,6 @@ import UIKit
 class SetRateController: UIViewController {
     @IBOutlet var rate: UILabel!
     @IBOutlet var rateSLider: UISlider!
-    let halpApi = HalpAPI()
     
     @IBAction func adjustRate(sender: AnyObject) {
         var str = NSString(format:"%.2f", rateSLider.value)

@@ -171,7 +171,7 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     }
     
     func colorForPagerTabStripViewController(pagerTabStripViewController: XLPagerTabStripViewController!) -> UIColor! {
-        return UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 1)
+        return teal
     }
     
     func textViewDidBeginEditing(textView: UITextView) {

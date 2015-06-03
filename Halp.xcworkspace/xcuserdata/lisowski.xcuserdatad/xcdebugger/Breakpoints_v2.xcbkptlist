@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/ConversationView.swift"
-            timestampString = "449362218.12606"
+            timestampString = "454989752.826283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/MapController.swift"
-            timestampString = "452140741.203648"
+            timestampString = "454989752.826283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "findTutorButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionCounterController.swift"
-            timestampString = "450658521.176524"
+            timestampString = "454991364.770701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "endAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/tutorRatingController.swift"
-            timestampString = "452045723.863598"
+            timestampString = "454991364.770701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "submitAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/createController.swift"
-            timestampString = "452638971.936651"
+            timestampString = "454989752.826283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "createController"
             landmarkType = "3">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/Settings.swift"
-            timestampString = "452649492.690407"
+            timestampString = "454989752.826283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/Settings.swift"
-            timestampString = "452649635.254937"
+            timestampString = "454989752.826283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "saveSettings(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -326,12 +326,90 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SchoolPicker.swift"
-            timestampString = "453601800.271678"
+            timestampString = "454989752.826283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "nextButtonAction(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Halp/ViewController.swift"
+            timestampString = "454991163.458151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Halp/ViewController.swift"
+            timestampString = "454989838.413431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "globalinit_33_0EE8BB577B0EAC0FF4A101C8B9CDCCB4_func0"
+                  moduleName = "Halp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/Halp/ViewController.swift"
+                  timestampString = "454989838.482629"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "8">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.sessionId.unsafeMutableAddressor : Swift.ImplicitlyUnwrappedOptional&lt;Halp.JSON&gt;"
+                  moduleName = "Halp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/Halp/ViewController.swift"
+                  timestampString = "454989838.482864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoreDetails.swift"
+            timestampString = "454990527.847911"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
