@@ -1,0 +1,54 @@
+PODS:
+  - Braintree (3.8.1):
+    - Braintree/API (= 3.8.1)
+    - Braintree/Coinbase (= 3.8.1)
+    - Braintree/Drop-In (= 3.8.1)
+    - Braintree/Payments (= 3.8.1)
+    - Braintree/PayPal (= 3.8.1)
+    - Braintree/UI (= 3.8.1)
+    - Braintree/Venmo (= 3.8.1)
+  - Braintree/API (3.8.1)
+  - Braintree/Coinbase (3.8.1):
+    - Braintree/API
+    - coinbase-official/OAuth (~> 2.1.1)
+  - Braintree/Drop-In (3.8.1):
+    - Braintree/API
+    - Braintree/Coinbase
+    - Braintree/Payments
+    - Braintree/PayPal
+    - Braintree/UI
+    - Braintree/Venmo
+  - Braintree/Payments (3.8.1):
+    - Braintree/API
+    - Braintree/Coinbase
+    - Braintree/PayPal
+    - Braintree/Venmo
+  - Braintree/PayPal (3.8.1):
+    - Braintree/API
+    - Braintree/UI
+  - Braintree/UI (3.8.1):
+    - Braintree/API
+  - Braintree/Venmo (3.8.1):
+    - Braintree/API
+  - CardIO (5.0.6)
+  - coinbase-official/OAuth (2.1.4)
+  - JSQMessagesViewController (7.1.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - XLPagerTabStrip (1.1.1)
+
+DEPENDENCIES:
+  - Braintree
+  - CardIO
+  - JSQMessagesViewController
+  - XLPagerTabStrip (~> 1.0)
+
+SPEC CHECKSUMS:
+  Braintree: 6c27eb7ad730538a5cc7f6c48ac4d07a42227603
+  CardIO: 3fb62d56651d80e8f98e9572bfbe589ebf13d706
+  coinbase-official: 4ad3ac862840657b4184345eb84af8166ab2b04e
+  JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  XLPagerTabStrip: 222995115ef0d3a7134073b02d38023592835c17
+
+COCOAPODS: 0.35.0
