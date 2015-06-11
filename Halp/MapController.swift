@@ -15,6 +15,7 @@ var myPin:UserPin!
 var userLocation:CLLocationCoordinate2D!
 var northWest:CLLocationCoordinate2D!
 var southEast:CLLocationCoordinate2D!
+var selectedTutor:UserPin!
 
 class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, FloatRatingViewDelegate {
     @IBOutlet var map: MKMapView!

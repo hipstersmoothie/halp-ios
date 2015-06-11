@@ -25,7 +25,6 @@
 		C24391CC1A7C425000A3AC58 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */; };
 		C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391CD1A7D79B800A3AC58 /* FBHelper.swift */; };
 		C24391E41A7D816800A3AC58 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391E31A7D816800A3AC58 /* MapController.swift */; };
-		C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */; };
 		C24391FD1A7E2C7900A3AC58 /* Lobster 1.4.otf in Resources */ = {isa = PBXBuildFile; fileRef = C24391FC1A7E2C7900A3AC58 /* Lobster 1.4.otf */; };
 		C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24391FE1A7EC6CA00A3AC58 /* tutorRow.swift */; };
 		C243920F1A7F3A3100A3AC58 /* tutor.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C243920E1A7F3A3100A3AC58 /* tutor.jpeg */; };
@@ -56,14 +55,12 @@
 		C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3751A79EFB90006BCBD /* location-alt-512.png */; };
 		C278E3781A79F04B0006BCBD /* student.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3771A79F04B0006BCBD /* student.png */; };
 		C278E37E1A79F9AF0006BCBD /* timeline-list-grid-list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */; };
-		C278E3821A79FE170006BCBD /* TutorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278E3811A79FE170006BCBD /* TutorList.swift */; };
 		C294ECE91A9B018900CFBB0D /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECE71A9B018900CFBB0D /* blank.png */; };
 		C294ECEF1A9B084D00CFBB0D /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECEE1A9B084D00CFBB0D /* point.png */; };
 		C29874CB1AA52EC500B6BC90 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = C29874CA1AA52EC500B6BC90 /* ZFTokenField.m */; };
 		C29874CD1AA5317200B6BC90 /* TokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29874CC1AA5317200B6BC90 /* TokenView.xib */; };
 		C29874D11AA5546600B6BC90 /* AutoToke.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29874D01AA5546600B6BC90 /* AutoToke.swift */; };
 		C2AC27081A9E683A00262621 /* MPGTextField-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AC27071A9E683A00262621 /* MPGTextField-Swift.swift */; };
-		C2AE9A511AA7BF410052311D /* SessionDetailContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE9A501AA7BF410052311D /* SessionDetailContents.swift */; };
 		C2B0FB401A83F640003DE861 /* HalpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */; };
 		C2B0FB421A840782003DE861 /* UserPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0FB411A840782003DE861 /* UserPin.swift */; };
 		C2B0FB4D1A842E75003DE861 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B0FB4B1A842E75003DE861 /* Main.storyboard */; };
@@ -149,7 +146,6 @@
 		C24391CB1A7C425000A3AC58 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		C24391CD1A7D79B800A3AC58 /* FBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBHelper.swift; sourceTree = "<group>"; };
 		C24391E31A7D816800A3AC58 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
-		C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetialController.swift; sourceTree = "<group>"; };
 		C24391FC1A7E2C7900A3AC58 /* Lobster 1.4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster 1.4.otf"; sourceTree = "<group>"; };
 		C24391FE1A7EC6CA00A3AC58 /* tutorRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorRow.swift; sourceTree = "<group>"; };
 		C243920E1A7F3A3100A3AC58 /* tutor.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutor.jpeg; sourceTree = "<group>"; };
@@ -186,7 +182,6 @@
 		C278E3751A79EFB90006BCBD /* location-alt-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-alt-512.png"; sourceTree = "<group>"; };
 		C278E3771A79F04B0006BCBD /* student.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student.png; sourceTree = "<group>"; };
 		C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-list-grid-list-icon.png"; sourceTree = "<group>"; };
-		C278E3811A79FE170006BCBD /* TutorList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorList.swift; sourceTree = "<group>"; };
 		C294ECE71A9B018900CFBB0D /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = ../../../blank.png; sourceTree = "<group>"; };
 		C294ECEE1A9B084D00CFBB0D /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = point.png; path = ../../../point.png; sourceTree = "<group>"; };
 		C29874C91AA52EC500B6BC90 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
@@ -194,7 +189,6 @@
 		C29874CC1AA5317200B6BC90 /* TokenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TokenView.xib; sourceTree = "<group>"; };
 		C29874D01AA5546600B6BC90 /* AutoToke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoToke.swift; sourceTree = "<group>"; };
 		C2AC27071A9E683A00262621 /* MPGTextField-Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPGTextField-Swift.swift"; sourceTree = "<group>"; };
-		C2AE9A501AA7BF410052311D /* SessionDetailContents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailContents.swift; sourceTree = "<group>"; };
 		C2B0FB3F1A83F640003DE861 /* HalpAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalpAPI.swift; sourceTree = "<group>"; };
 		C2B0FB411A840782003DE861 /* UserPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPin.swift; sourceTree = "<group>"; };
 		C2B0FB4C1A842E75003DE861 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Halp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -481,17 +475,14 @@
 		C2C298B51A81D72E0010C475 /* Map/List */ = {
 			isa = PBXGroup;
 			children = (
-				C24391FA1A7DE3FB00A3AC58 /* SessionDetialController.swift */,
 				C2CD51841B05934B0022FB55 /* TabSessionCreate.swift */,
 				C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */,
 				C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */,
 				C2CD51861B05987C0022FB55 /* SchoolPicker.swift */,
 				C2CD51881B059D9B0022FB55 /* ButtonCell.xib */,
-				C2AE9A501AA7BF410052311D /* SessionDetailContents.swift */,
 				C24391E31A7D816800A3AC58 /* MapController.swift */,
 				C2B0FB411A840782003DE861 /* UserPin.swift */,
 				C2F8E93A1A89576F003ED69D /* User.swift */,
-				C278E3811A79FE170006BCBD /* TutorList.swift */,
 				C2B0FB501A844A10003DE861 /* StudentAnnotation.swift */,
 				C24597551A94620800CBA227 /* studentCell.swift */,
 				C24391FE1A7EC6CA00A3AC58 /* tutorRow.swift */,
@@ -752,7 +743,6 @@
 				C2BBA7151A8D2D300023A5EF /* experienceCell.swift in Sources */,
 				C24392151A7F516100A3AC58 /* reviewRow.swift in Sources */,
 				C2353ABF1AB67A8D00B0616F /* UIBarButtonItem+Badge.m in Sources */,
-				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
 				C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */,
 				C2D5C8871B292B66006EA4F3 /* CreditCardCell.swift in Sources */,
 				C243CCE71AF17D4100F82379 /* FloatRatingView.swift in Sources */,
@@ -774,13 +764,11 @@
 				C2BBA70D1A8C7B6F0023A5EF /* basicInfo.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
 				C2E835C81AB911ED00A4E340 /* matchCell.swift in Sources */,
-				C2AE9A511AA7BF410052311D /* SessionDetailContents.swift in Sources */,
 				C21EA2BB1AFB0DDA0029A119 /* Payments.swift in Sources */,
 				C2CD51851B05934B0022FB55 /* TabSessionCreate.swift in Sources */,
 				C29874CB1AA52EC500B6BC90 /* ZFTokenField.m in Sources */,
 				C2E5E6D91AFAB3290030A0EE /* ImageResizer.swift in Sources */,
 				C2E985511AAD4AA800054C19 /* Messages.swift in Sources */,
-				C278E3821A79FE170006BCBD /* TutorList.swift in Sources */,
 				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,
 				C25C06811B1EA188007B0D26 /* KeychainWrapper.m in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,
