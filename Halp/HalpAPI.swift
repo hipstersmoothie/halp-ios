@@ -203,5 +203,10 @@ class HalpAPI {
         ]
         halpRequest("/payments/paymentMethod", method: "POST", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
+    
+    func getPaymentMethods(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = Dictionary<String, String>()
+        halpRequest("/payments/customer", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
 }
 

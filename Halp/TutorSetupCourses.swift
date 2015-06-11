@@ -70,7 +70,7 @@ class TutorSetupCourses: UITableViewController, MPGTextFieldDelegate, AutoTokeDe
         }
 
         setUpTutorParams.updateValue(courses, forKey: "courses")
-        self.performSegueWithIdentifier("toSetRate", sender: self)
+        self.performSegueWithIdentifier("toMerchantDetails", sender: self)
     }
     
     override func didReceiveMemoryWarning() {

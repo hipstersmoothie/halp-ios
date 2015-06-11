@@ -8,5 +8,5 @@
 import UIKit
 
 class PaymentTypeCell: UITableViewCell {
-    @IBOutlet var paymentTitle: UILabel!
+    @IBOutlet var payPalEmail: UILabel!
 }

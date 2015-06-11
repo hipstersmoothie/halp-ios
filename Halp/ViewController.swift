@@ -48,6 +48,16 @@ func styleButton(button: UIButton) {
     button.clipsToBounds = true
 }
 
+func styleField(field: UITextField) {
+    field.borderStyle = .RoundedRect
+    field.layer.borderWidth = 0
+    field.layer.shadowOpacity = 0.2
+    field.layer.shadowRadius = 3.5
+    field.layer.shadowColor = UIColor.blackColor().CGColor;
+    field.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+    field.clipsToBounds = false
+}
+
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
     let MyKeychainWrapper = KeychainWrapper()
     @IBOutlet var username: UITextField!
@@ -179,23 +189,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         registerButton.hidden = true
         orLabel.hidden = true
         
-        username.borderStyle = .RoundedRect
-        username.layer.borderWidth = 0
-        username.layer.shadowOpacity = 0.2
-        username.layer.shadowRadius = 3.5
-        username.layer.shadowColor = UIColor.blackColor().CGColor;
-        username.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-        username.clipsToBounds = false
-        
-        password.borderStyle = .RoundedRect
-        password.layer.borderWidth = 0
-        password.layer.shadowOpacity = 0.2
-        password.layer.shadowRadius = 3.5
-        password.layer.shadowColor = UIColor.blackColor().CGColor;
-        password.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-        password.clipsToBounds = false
+        styleField(username)
+        styleField(password)
     }
-
     
     override func prefersStatusBarHidden() -> Bool {
         return navigationController?.navigationBarHidden == true

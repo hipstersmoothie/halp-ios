@@ -98,48 +98,12 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        let buttonColor = UIColor(red: 20/255, green: 140/255, blue: 139/255, alpha: 1)
-        
-        createButton.backgroundColor = buttonColor
-        createButton.layer.cornerRadius = 12
-        createButton.layer.borderWidth = 1
-        createButton.layer.borderColor = buttonColor.CGColor
-        createButton.clipsToBounds = true
-        
-        email.borderStyle = .RoundedRect
-        email.layer.shadowOpacity = 0.2
-        email.layer.shadowRadius = 3.5
-        email.layer.shadowColor = UIColor.blackColor().CGColor;
-        email.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-        email.clipsToBounds = false
-        
-        firstname.borderStyle = .RoundedRect
-        firstname.layer.shadowOpacity = 0.2
-        firstname.layer.shadowRadius = 3.5
-        firstname.layer.shadowColor = UIColor.blackColor().CGColor;
-        firstname.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-        firstname.clipsToBounds = false
-        
-        lastName.borderStyle = .RoundedRect
-        lastName.layer.shadowOpacity = 0.2
-        lastName.layer.shadowRadius = 3.5
-        lastName.layer.shadowColor = UIColor.blackColor().CGColor;
-        lastName.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-        lastName.clipsToBounds = false
-        
-        password.borderStyle = .RoundedRect
-        password.layer.shadowOpacity = 0.2
-        password.layer.shadowRadius = 3.5
-        password.layer.shadowColor = UIColor.blackColor().CGColor;
-        password.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-        password.clipsToBounds = false
-        
-        confirmPass.borderStyle = .RoundedRect
-        confirmPass.layer.shadowOpacity = 0.2
-        confirmPass.layer.shadowRadius = 3.5
-        confirmPass.layer.shadowColor = UIColor.blackColor().CGColor;
-        confirmPass.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-        confirmPass.clipsToBounds = false
+        styleButton(createButton)
+        styleField(email)
+        styleField(firstname)
+        styleField(lastName)
+        styleField(password)
+        styleField(confirmPass)
     }
     
     func popToRoot(sender:UIBarButtonItem){

@@ -95,11 +95,14 @@
 		C2C298AE1A81A9390010C475 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AD1A81A9390010C475 /* cog.png */; };
 		C2C298B01A81A97F0010C475 /* power-off2-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C298AF1A81A97F0010C475 /* power-off2-hi.png */; };
 		C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C298B11A81B7BE0010C475 /* ReviewController.swift */; };
+		C2CB4F831B27B991008FBF41 /* MerchantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CB4F821B27B991008FBF41 /* MerchantDetails.swift */; };
+		C2CB4F851B27C486008FBF41 /* BankingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CB4F841B27C486008FBF41 /* BankingDetails.swift */; };
 		C2CD51851B05934B0022FB55 /* TabSessionCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD51841B05934B0022FB55 /* TabSessionCreate.swift */; };
 		C2CD51871B05987C0022FB55 /* SchoolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD51861B05987C0022FB55 /* SchoolPicker.swift */; };
 		C2CD51891B059D9B0022FB55 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2CD51881B059D9B0022FB55 /* ButtonCell.xib */; };
 		C2CD518B1B05AB4E0022FB55 /* MoreDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */; };
 		C2CD518D1B05E6870022FB55 /* SessionDetailTabSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */; };
+		C2D5C8871B292B66006EA4F3 /* CreditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D5C8861B292B66006EA4F3 /* CreditCardCell.swift */; };
 		C2E5E6D91AFAB3290030A0EE /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */; };
 		C2E745BF1B0A5F4500BB0BD2 /* list-skills-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E745BE1B0A5F4500BB0BD2 /* list-skills-icon.png */; };
 		C2E745C11B0A73CA00BB0BD2 /* calendar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E745C01B0A73CA00BB0BD2 /* calendar-icon.png */; };
@@ -223,11 +226,14 @@
 		C2C298AD1A81A9390010C475 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
 		C2C298AF1A81A97F0010C475 /* power-off2-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-off2-hi.png"; sourceTree = "<group>"; };
 		C2C298B11A81B7BE0010C475 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		C2CB4F821B27B991008FBF41 /* MerchantDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchantDetails.swift; sourceTree = "<group>"; };
+		C2CB4F841B27C486008FBF41 /* BankingDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankingDetails.swift; sourceTree = "<group>"; };
 		C2CD51841B05934B0022FB55 /* TabSessionCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSessionCreate.swift; sourceTree = "<group>"; };
 		C2CD51861B05987C0022FB55 /* SchoolPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolPicker.swift; sourceTree = "<group>"; };
 		C2CD51881B059D9B0022FB55 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		C2CD518A1B05AB4E0022FB55 /* MoreDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreDetails.swift; path = ../MoreDetails.swift; sourceTree = "<group>"; };
 		C2CD518C1B05E6870022FB55 /* SessionDetailTabSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailTabSwitch.swift; sourceTree = "<group>"; };
+		C2D5C8861B292B66006EA4F3 /* CreditCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardCell.swift; sourceTree = "<group>"; };
 		C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		C2E745BE1B0A5F4500BB0BD2 /* list-skills-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-skills-icon.png"; sourceTree = "<group>"; };
 		C2E745C01B0A73CA00BB0BD2 /* calendar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-icon.png"; sourceTree = "<group>"; };
@@ -298,6 +304,8 @@
 				C2605A0E1A897D6700AEBBFE /* Settings.swift */,
 				C2001CF91A93282700C0A0EC /* Cells */,
 				C22B6C4C1A905CCF009729AD /* SetRateController.swift */,
+				C2CB4F821B27B991008FBF41 /* MerchantDetails.swift */,
+				C2CB4F841B27C486008FBF41 /* BankingDetails.swift */,
 				C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */,
 				C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */,
 			);
@@ -309,6 +317,7 @@
 			children = (
 				C21EA2BA1AFB0DDA0029A119 /* Payments.swift */,
 				C25C06841B1EC8FC007B0D26 /* AddPaymentMethod.swift */,
+				C2D5C8861B292B66006EA4F3 /* CreditCardCell.swift */,
 				C25C06821B1EA77B007B0D26 /* PaymentTypeCell.swift */,
 			);
 			name = Payments;
@@ -735,6 +744,7 @@
 				C2CD518D1B05E6870022FB55 /* SessionDetailTabSwitch.swift in Sources */,
 				C24597561A94620800CBA227 /* studentCell.swift in Sources */,
 				C24391CE1A7D79B800A3AC58 /* FBHelper.swift in Sources */,
+				C2CB4F851B27C486008FBF41 /* BankingDetails.swift in Sources */,
 				C2B0FB531A845568003DE861 /* ActivityIndicatorHelper.swift in Sources */,
 				C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */,
 				C2C298A11A819A190010C475 /* BaseTableViewCell.swift in Sources */,
@@ -744,6 +754,7 @@
 				C2353ABF1AB67A8D00B0616F /* UIBarButtonItem+Badge.m in Sources */,
 				C24391FB1A7DE3FB00A3AC58 /* SessionDetialController.swift in Sources */,
 				C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */,
+				C2D5C8871B292B66006EA4F3 /* CreditCardCell.swift in Sources */,
 				C243CCE71AF17D4100F82379 /* FloatRatingView.swift in Sources */,
 				C2C298931A80455B0010C475 /* BumpController.swift in Sources */,
 				C20F5FD21AB3D65C0093FAAC /* NSDataExtension.swift in Sources */,
@@ -774,6 +785,7 @@
 				C25C06811B1EA188007B0D26 /* KeychainWrapper.m in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,
 				C2B0FB421A840782003DE861 /* UserPin.swift in Sources */,
+				C2CB4F831B27B991008FBF41 /* MerchantDetails.swift in Sources */,
 				C2C298A51A819CC80010C475 /* UIViewControllerExtension.swift in Sources */,
 				C2E985581AAD4C8A00054C19 /* Message.swift in Sources */,
 				C2C298A81A819CED0010C475 /* StringExtension.swift in Sources */,
