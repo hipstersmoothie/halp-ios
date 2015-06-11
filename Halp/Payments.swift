@@ -42,9 +42,12 @@ class Payments: UITableViewController {
         super.viewWillAppear(animated)
         halpApi.getPaymentMethods() { success, json in
             if success && self.paymentMethods.count != json["customer"]["paymentMethods"].count  {
+                self.paymentMethods = []
                 for method in json["customer"]["paymentMethods"] {
+                    println(method)
                     self.paymentMethods.append(paymentMethod(type: method.1["type"].stringValue, details: method.1.dictionaryObject!))
                 }
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                 }
@@ -65,9 +68,42 @@ class Payments: UITableViewController {
         return paymentMethods.count
     }
     
+    func deleteMethod(success:Bool, json:JSON) {
+        
+    }
+    
+    func deleteIt(token:AnyObject, indexPath:NSIndexPath) {
+        println(token, token.stringValue)
+        halpApi.deletePaymentMethod(token as! String) {success, json in
+            if success {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.paymentMethods.removeAtIndex(indexPath.row)
+                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                }
+            }
+        }
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            let alertController = UIAlertController(title: "Are you sure you want to delete this payment method?", message: "You will no longer be able to use this to pay.", preferredStyle: UIAlertControllerStyle.Alert)
             
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                // ...
+            }
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "Delete", style: .Default) { action in
+                let token: AnyObject? = self.paymentMethods[indexPath.row].details["token"]
+                self.deleteIt(token!, indexPath: indexPath)
+               // self.deleteIt(self.paymentMethods[indexPath.row].details["token"])
+               // halpApi.deletePaymentMethod(self.paymentMethods[indexPath.row].details["token"], self.deleteMethod)
+//                halpApi.deletePin(self.afterDeletePin)
+//                self.removeMyPin()
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true) { }
         }
     }
     
@@ -82,17 +118,15 @@ class Payments: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("CreditCardCell") as! CreditCardCell
-            println(currentMethod.details)
-            println(currentMethod.details["cardType"])
+
             let type: AnyObject? = currentMethod.details["cardType"]
             cell.cardType.text = "\(type!)"
-            
             let last: AnyObject? = currentMethod.details["last4"]
             cell.last4.text = "**** **** **** \(last!)"
-            
             let month: AnyObject? = currentMethod.details["expirationMonth"]
             let year: AnyObject? = currentMethod.details["expirationYear"]
             cell.expiration.text = "\(month!)/\(year!)"
+            
             return cell
         }
     }

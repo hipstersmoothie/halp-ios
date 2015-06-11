@@ -76,7 +76,6 @@ class BumpController: UIViewController {
             } else {
                 self.timer.invalidate()
                 self.startSessionButton.setTitle("Start!", forState: .Normal)
-                println(json)
             }
         }
     }

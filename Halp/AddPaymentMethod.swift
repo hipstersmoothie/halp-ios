@@ -17,7 +17,7 @@ class AddPaymentMethod: UIViewController, BTUICardFormViewDelegate, BTPaymentMet
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "save", style: .Plain, target: self, action: Selector("savePaymentMethod"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "save", style: .Plain, target: self, action: Selector("savePaymentMethod"))
         
         brainTree = Braintree(clientToken: brainTreeClientToken)
         cardFormView.optionalFields = nil

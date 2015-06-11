@@ -197,7 +197,6 @@ class HalpAPI {
     }
     
     func createPaymentMethod(nonce:String, completionHandler: ((Bool, JSON) -> Void)?) {
-        println(nonce);
         var params = [
             "nonce" : nonce
         ]
@@ -207,6 +206,13 @@ class HalpAPI {
     func getPaymentMethods(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()
         halpRequest("/payments/customer", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func deletePaymentMethod(token:String, completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = [
+            "token" : token
+        ]
+        halpRequest("/payments/paymentMethod", method: "DELETE", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
 }
 

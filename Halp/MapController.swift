@@ -329,7 +329,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
-        timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "checkForNewPins", userInfo: nil, repeats: true)
+        //timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "checkForNewPins", userInfo: nil, repeats: true)
         checkForNewPins()
         if notificationCounts != nil {
             let count = notificationCounts["count"] as! NSInteger
@@ -340,7 +340,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         //NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "GetMatches", object: nil)
-        timer.invalidate()
+        //timer.invalidate()
     }
     
     func gotMatches(notification: NSNotification) {
@@ -570,13 +570,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     var mapChangedFromUserInteraction:Bool = false
     
-//    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
-//        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
-//        
-//        if mapChangedFromUserInteraction == true {
-//            getPins()
-//        }
-//    }
+    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
+        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+        
+        if mapChangedFromUserInteraction == true {
+            getPins()
+        }
+    }
     
     func mapViewRegionDidChangeFromUserInteraction() -> Bool {
         var view:UIView = map.subviews.first as! UIView

@@ -13,7 +13,6 @@ func RBSquareImageTo(image: UIImage, size: CGSize) -> UIImage {
 }
 
 func RBSquareImage(image: UIImage) -> UIImage {
-    println(image)
     var originalWidth  = image.size.width
     var originalHeight = image.size.height
     

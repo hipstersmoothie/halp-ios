@@ -55,7 +55,6 @@ class BankingDetails: UIViewController {
                 "accountNumber": acctNumber.text,
                 "routingNumber": routingNumber.text,
             ], forKey: "funding")
-            println(setUpTutorParams)
             self.performSegueWithIdentifier("toSetRate", sender: nil)
         }
     }
