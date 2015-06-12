@@ -35,7 +35,6 @@ class studentProfile: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(selectedTutor)
         // Name and Image
         name.text = "\(selectedTutor.user.firstname) \(selectedTutor.user.lastname[selectedTutor.user.lastname.startIndex])"
         if selectedTutor.user.image != "" {

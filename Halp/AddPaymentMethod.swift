@@ -72,7 +72,7 @@ class AddPaymentMethod: UIViewController, BTUICardFormViewDelegate, BTPaymentMet
     // BTUICardFormViewDelegate
     func cardFormViewDidChange(cardFormView: BTUICardFormView!) {
         if cardFormView.valid {
-            println(cardFormView)
+            
         } else {
             //createAlert(self, "Card Invalid", "Something is wrong with your card.")
         }

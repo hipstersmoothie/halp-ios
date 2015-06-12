@@ -44,7 +44,6 @@ class Payments: UITableViewController {
             if success && self.paymentMethods.count != json["customer"]["paymentMethods"].count  {
                 self.paymentMethods = []
                 for method in json["customer"]["paymentMethods"] {
-                    println(method)
                     self.paymentMethods.append(paymentMethod(type: method.1["type"].stringValue, details: method.1.dictionaryObject!))
                 }
                 
@@ -73,7 +72,6 @@ class Payments: UITableViewController {
     }
     
     func deleteIt(token:AnyObject, indexPath:NSIndexPath) {
-        println(token, token.stringValue)
         halpApi.deletePaymentMethod(token as! String) {success, json in
             if success {
                 dispatch_async(dispatch_get_main_queue()) {

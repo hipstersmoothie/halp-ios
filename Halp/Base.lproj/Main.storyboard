@@ -2338,8 +2338,8 @@
                                     <constraint firstAttribute="width" secondItem="SMB-hX-QeW" secondAttribute="height" multiplier="175:24" id="mpb-DK-5kt"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty.png"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull.png"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="minRating">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
@@ -3063,8 +3063,8 @@
                                                     <rect key="frame" x="182" y="11" width="165" height="21"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty.png"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull.png"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="minRating">
                                                             <integer key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
@@ -3159,6 +3159,7 @@
         <image name="StarEmpty" width="512" height="512"/>
         <image name="StarEmpty.png" width="22" height="22"/>
         <image name="StarFull" width="512" height="512"/>
+        <image name="StarFull.png" width="22" height="22"/>
         <image name="bump.png" width="667" height="740"/>
         <image name="camera.png" width="103" height="90"/>
         <image name="cog.png" width="512" height="512"/>
