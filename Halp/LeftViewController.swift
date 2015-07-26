@@ -25,18 +25,21 @@ var notificationCounts:Dictionary<NSObject, AnyObject>!
 
 class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
+    var loginController: UIViewController!
     var settingsViewController: UIViewController!
     var tutorSetupController: UIViewController!
     var messagesController: UIViewController!
     var paymentsController: UIViewController!
     var sessionController: UIViewController!
     var halpApi = HalpAPI()
+    var nav:UINavigationController!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
    
     override func viewDidLoad() {
+        nav = self.mainViewController as! UINavigationController
         super.viewDidLoad()
         self.tableView.separatorColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
         self.tableView.registerCellClass(BaseTableViewCell.self)
@@ -58,10 +61,12 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         let payments = storyboard.instantiateViewControllerWithIdentifier("Payments") as! Payments
         self.paymentsController = UINavigationController(rootViewController: payments)
         
+        let login = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
+        self.loginController = UINavigationController(rootViewController: login)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("launchSession:"), name: "inSession", object: nil)
-
     }
     
     func launchSession(notification: NSNotification) {
@@ -71,7 +76,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
                 sessionStartTime = session["startTimestamp"] as! NSInteger
                 sessionRate = session["rate"] as! Double
                 otherUserId = session["otherUserId"] as! NSInteger
-                nvc.pushViewController(self.sessionController, animated: true)
+                nav.pushViewController(self.sessionController, animated: true)
             }
         }
     }
@@ -216,29 +221,27 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
                 updateNotificationCounts()
                 
             } else {
-                nvc.pushViewController(self.tutorSetupController, animated: true)
+                nav.pushViewController(self.tutorSetupController, animated: true)
                 self.slideMenuController()?.closeLeft()
             }
             break
         case .Settings:
-            nvc.pushViewController(self.settingsViewController, animated: true)
+            nav.pushViewController(self.settingsViewController, animated: true)
             self.slideMenuController()?.closeLeft()
             break
         case .Logout:
-            var storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let login = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
-            nvc.pushViewController(login, animated: true)
+            nav.popToRootViewControllerAnimated(true)
             self.slideMenuController()?.closeLeft()
             fbHelper.logout()
             pinMode = "student"
             modeLabel.text = "Tutor Mode"
             break
         case .Messages:
-            nvc.pushViewController(self.messagesController, animated: true)
+            nav.pushViewController(self.messagesController, animated: true)
             self.slideMenuController()?.closeLeft()
             break
         case .Payments:
-            nvc.pushViewController(self.paymentsController, animated: true)
+            nav.pushViewController(self.paymentsController, animated: true)
             self.slideMenuController()?.closeLeft()
             break
         case .Matches:

@@ -8,7 +8,6 @@
 
 import UIKit
 
-var nvc: UINavigationController!
 var pinMode = "student"
 var thisDeviceToken:NSData!
 let halpApi = HalpAPI()
@@ -30,11 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
         let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
-        nvc = UINavigationController(rootViewController: mainViewController)
+        let nvc = UINavigationController(rootViewController: mainViewController)
         
         leftViewController.mainViewController = nvc
+        leftViewController.nav = nvc
+
         
-        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+        let slideMenuController = SlideMenuController(mainViewController: nvc, leftMenuViewController: leftViewController)
         
         self.window?.backgroundColor = teal
         self.window?.rootViewController = slideMenuController
