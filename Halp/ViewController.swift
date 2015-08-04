@@ -158,7 +158,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("executeHandle:"), name: "PostData", object: nil);
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     @IBOutlet var loginButton: UIButton!

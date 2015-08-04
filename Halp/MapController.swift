@@ -1,6 +1,6 @@
 //
 //  MapController.swift
-//  Halp
+//  HalpUI
 //
 //  Created by Andrew Lisowski on 1/28/15.
 //  Copyright (c) 2015 Andrew Lisowski. All rights reserved.
@@ -26,6 +26,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     var matches:[UserPin]!
     var timer = NSTimer()
 
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var whitePlus: UIImageView!
     @IBOutlet var goPinButton: UIButton!
     @IBOutlet var deletePinButton: UIButton!
@@ -227,6 +228,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         dispatch_async(dispatch_get_main_queue()) {
             if success {
                 for (index: String, subJson: JSON) in json["pins"] {
+                    println(subJson)
                     self.addPin(UserPin(user: subJson), myPin: false)
                 }
             } else {
@@ -326,8 +328,15 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
 
+    
+    override func viewWillAppear(animated: Bool) {
+        if(self.tableView.indexPathForSelectedRow() != nil) {
+            self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow()!, animated: true)
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
 
@@ -393,6 +402,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         configureDatePicker()
         
         styleButton(findTutorButton)
+        styleButton(goPinButton)
+        styleButton(deletePinButton)
         if pinMode == "tutor" {
             findTutorButton.setTitle("Tutor Pin", forState: .Normal)
         }
@@ -414,6 +425,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         datePicker.removeFromSuperview()
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         pinsInArea = []
+        self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
     }
     
     func checkForNewPins() {
