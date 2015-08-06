@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionCounterController.swift"
-            timestampString = "454991364.770701"
+            timestampString = "460520037.326988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "endAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -505,8 +505,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "229"
             endingLineNumber = "229"
-            landmarkName = "textFieldShouldReturn(_:)"
-            landmarkType = "5">
+            landmarkName = "MoreDetails"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

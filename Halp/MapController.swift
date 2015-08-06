@@ -418,8 +418,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         var button: UIButton = UIButton()
         button.setImage(UIImage(named: "tray.png"), forState: .Normal)
         button.frame = CGRectMake(0, 0, 45, 45)
-        button.targetForAction(Selector("right"), withSender: nil)
-        
+        button.addTarget(self, action: Selector("right"), forControlEvents: .TouchUpInside)
         var rightItem:UIBarButtonItem = UIBarButtonItem()
         rightItem.customView = button
         self.navigationItem.rightBarButtonItem = rightItem
