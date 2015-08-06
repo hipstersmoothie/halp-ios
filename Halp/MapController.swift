@@ -415,8 +415,15 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.navigationItem.hidesBackButton = true
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
         
-        self.navigationItem.rightBarButtonItem = nil
-
+        var button: UIButton = UIButton()
+        button.setImage(UIImage(named: "tray.png"), forState: .Normal)
+        button.frame = CGRectMake(0, 0, 45, 45)
+        button.targetForAction(Selector("right"), withSender: nil)
+        
+        var rightItem:UIBarButtonItem = UIBarButtonItem()
+        rightItem.customView = button
+        self.navigationItem.rightBarButtonItem = rightItem
+        
         navigationController?.navigationBar.barTintColor = teal
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
@@ -426,6 +433,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         pinsInArea = []
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    }
+    
+    func right() {
+        self.slideMenuController()?.openRight()
     }
     
     func checkForNewPins() {

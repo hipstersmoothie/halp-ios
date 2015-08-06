@@ -30,12 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
         let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
         let nvc = UINavigationController(rootViewController: mainViewController)
+        let rightViewController = storyboard.instantiateViewControllerWithIdentifier("NotificationList") as! UIViewController
         
         leftViewController.mainViewController = nvc
         leftViewController.nav = nvc
 
         
-        let slideMenuController = SlideMenuController(mainViewController: nvc, leftMenuViewController: leftViewController)
+        let slideMenuController = SlideMenuController(mainViewController: nvc, leftMenuViewController: leftViewController, rightMenuViewController: rightViewController)
         
         self.window?.backgroundColor = teal
         self.window?.rootViewController = slideMenuController

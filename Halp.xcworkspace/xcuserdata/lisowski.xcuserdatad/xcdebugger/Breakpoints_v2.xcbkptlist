@@ -404,11 +404,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoreDetails.swift"
-            timestampString = "454990527.847911"
+            timestampString = "460445007.795642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -491,6 +491,147 @@
             endingLineNumber = "42"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoreDetails.swift"
+            timestampString = "460445007.795642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "textFieldShouldReturn(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoreDetails.swift"
+            timestampString = "460445007.795642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoreDetails.swift"
+            timestampString = "460445007.795642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoreDetails.swift"
+            timestampString = "460445007.795642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "MoreDetails"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.MoreDetails.sessionDescription.getter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITextField&gt;"
+                  moduleName = "Halp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/MoreDetails.swift"
+                  timestampString = "460444302.431342"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.MoreDetails.sessionDescription.setter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITextField&gt;"
+                  moduleName = "Halp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/MoreDetails.swift"
+                  timestampString = "460444302.431493"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.MoreDetails.sessionDescription.materializeForSet : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITextField&gt;"
+                  moduleName = "Halp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/MoreDetails.swift"
+                  timestampString = "460444302.431621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.MoreDetails.init (Halp.MoreDetails.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; Halp.MoreDetails"
+                  moduleName = "Halp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/MoreDetails.swift"
+                  timestampString = "460444302.431739"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Halp.MoreDetails.init (Halp.MoreDetails.Type)(coder : ObjectiveC.NSCoder) -&gt; Halp.MoreDetails"
+                  moduleName = "Halp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lisowski/Documents/IOS%20Apps/halp-ios/MoreDetails.swift"
+                  timestampString = "460444302.431847"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "292">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
