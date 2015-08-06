@@ -38,6 +38,7 @@ class SessionCounterController: UIViewController {
         currentAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
             halpApi.endSession(self.totTime) { success, json in
                 if success == true{
+                    self.currentAlert = nil
                     self.endAlert()
                     self.timer.invalidate()
                 } else {
@@ -103,8 +104,17 @@ class SessionCounterController: UIViewController {
                     self.presentViewController(self.currentAlert, animated: true, completion: nil)
                 }
             }
+        } else {
+            self.currentAlert = UIAlertController(title: "Session has Ended", message: "The session ran for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
+            self.currentAlert.addAction(UIAlertAction(title: "Rate!", style: .Default, handler: { action in
+                if pinMode == "student" {
+                    self.performSegueWithIdentifier("writeReviewForTutor", sender: self)
+                } else {
+                    self.performSegueWithIdentifier("writeReviewForStudent", sender: self)
+                }
+            }))
+            self.presentViewController(self.currentAlert, animated: true, completion: nil)
         }
-       
     }
     
     override func didReceiveMemoryWarning() {

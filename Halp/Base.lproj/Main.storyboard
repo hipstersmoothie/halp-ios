@@ -2736,6 +2736,17 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sq5-uh-y4T" firstAttribute="leading" secondItem="Kam-KJ-9LP" secondAttribute="leadingMargin" constant="166" id="3eA-Fb-joG"/>
+                            <constraint firstItem="yhG-Xh-w8G" firstAttribute="leading" secondItem="Kam-KJ-9LP" secondAttribute="leadingMargin" constant="104" id="7eX-A9-rMP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Sq5-uh-y4T" secondAttribute="trailing" constant="149" id="DEe-08-5Vr"/>
+                            <constraint firstItem="yhG-Xh-w8G" firstAttribute="top" secondItem="Sq5-uh-y4T" secondAttribute="bottom" constant="84" id="IOM-DC-OBY"/>
+                            <constraint firstItem="Sq5-uh-y4T" firstAttribute="top" secondItem="EXL-M8-hrZ" secondAttribute="bottom" constant="35" id="W4M-uD-EuF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EXL-M8-hrZ" secondAttribute="trailing" constant="33" id="d2W-KG-qGm"/>
+                            <constraint firstItem="EXL-M8-hrZ" firstAttribute="top" secondItem="cPY-9l-5eX" secondAttribute="bottom" constant="153" id="jfJ-a0-bbt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yhG-Xh-w8G" secondAttribute="trailing" constant="87" id="lUb-YK-rC4"/>
+                            <constraint firstItem="EXL-M8-hrZ" firstAttribute="leading" secondItem="Kam-KJ-9LP" secondAttribute="leadingMargin" constant="50" id="p62-g6-0sm"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -3192,9 +3203,9 @@
         <image name="white-plus.png" width="297" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sSu-AE-faT"/>
-        <segue reference="S0h-4g-6Vi"/>
-        <segue reference="Po8-wj-Htr"/>
         <segue reference="qCc-FV-0fJ"/>
+        <segue reference="S0h-4g-6Vi"/>
+        <segue reference="EmT-AN-78P"/>
+        <segue reference="Po8-wj-Htr"/>
     </inferredMetricsTieBreakers>
 </document>
