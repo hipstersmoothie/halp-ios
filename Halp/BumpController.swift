@@ -55,10 +55,10 @@ class BumpController: UIViewController {
         var label = startSessionButton.titleLabel?.text
         startSessionButton.setTitle("\(label!).", forState: .Normal)
         halpApi.isSessionStarted(selectedTutor.user.userId) { success, json in
-            if success == true {
+            if success == true && sessionRate == 0 {
                 dispatch_async(dispatch_get_main_queue()) {
                     let complete = json["complete"].boolValue
-                    if complete == true {
+                    if complete == true && sessionRate == 0 {
                         self.timer.invalidate()
                         sessionStartTime = json["startTimestamp"].intValue
                         sessionRate = selectedTutor.user.rate
