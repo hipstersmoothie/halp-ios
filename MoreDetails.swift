@@ -11,6 +11,7 @@ import UIKit
 class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate, AutoTokeDelegate {
     var pickedImage:UIImage!
     var tokens:NSMutableArray!
+    var offset:CGFloat = 0
     @IBOutlet var addPhotoView: UIButton!
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var datePicker: UIDatePicker!
@@ -64,6 +65,11 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         addPhotoView.setTitle("", forState: .Normal)
         cameraIcon.hidden = true
         pickedImage = RBSquareImageTo(image, CGSize(width: 100, height: 100))
+    }
+    
+    @IBOutlet var scrollView: UIScrollView!
+    override func viewDidLayoutSubviews() {
+        self.scrollView.contentSize = CGSizeMake(320, self.view.frame.size.height + self.skillsField.frame.size.height)
     }
     
     override func viewDidLoad() {
