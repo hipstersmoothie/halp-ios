@@ -181,7 +181,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="LeftViewController" id="uvz-dc-CdJ" customClass="LeftViewController" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OTM-Mz-teO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -340,7 +340,8 @@
                             <outlet property="delegate" destination="uvz-dc-CdJ" id="yS9-dD-m7a"/>
                         </connections>
                     </tableView>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="270" height="667"/>
                     <connections>
                         <outlet property="matchCountLabel" destination="cws-Fc-tGY" id="xsj-Oa-PJT"/>
                         <outlet property="matchImage" destination="0Ra-57-F65" id="e8h-EJ-d63"/>
@@ -353,7 +354,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hb8-VY-rdo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="177.5" y="-360.5"/>
+            <point key="canvasLocation" x="197" y="341.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="jpF-lj-Gs4">
@@ -1060,24 +1061,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eVq-3x-DNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2569.5" y="-1109.5"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="qW0-nU-vHO">
-            <objects>
-                <viewController storyboardIdentifier="NotificationList" id="JPE-JV-AxQ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rdk-1r-9Mi"/>
-                        <viewControllerLayoutGuide type="bottom" id="Orj-Ps-ulF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Zvj-I8-Mcu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pq9-si-vNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3228" y="-1082"/>
         </scene>
         <!--Student Profile-->
         <scene sceneID="XcP-mC-YYu">
@@ -3191,6 +3174,49 @@
             </objects>
             <point key="canvasLocation" x="1628" y="2104"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="zHt-CU-WDf">
+            <objects>
+                <tableViewController storyboardIdentifier="NotificationList" id="iUd-Me-uKo" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="zVp-6g-87O">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" rowHeight="56" id="iUJ-By-fuZ" customClass="notificationRow" customModule="Halp" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUJ-By-fuZ" id="b38-iN-b9m">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aia-YT-qNK">
+                                            <rect key="frame" x="51" y="17" width="211" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kc6-PL-XZZ">
+                                            <rect key="frame" x="15" y="17" width="28" height="22"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="icon" destination="Kc6-PL-XZZ" id="rEP-NX-BxR"/>
+                                    <outlet property="message" destination="Aia-YT-qNK" id="EgN-Un-Aw6"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iUd-Me-uKo" id="Fa1-HC-63o"/>
+                            <outlet property="delegate" destination="iUd-Me-uKo" id="ySO-sx-HH7"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="270" height="600"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="smo-pO-csJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="509" y="308"/>
+        </scene>
     </scenes>
     <resources>
         <image name="StarEmpty" width="512" height="512"/>
@@ -3210,9 +3236,9 @@
         <image name="white-plus.png" width="297" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sSu-AE-faT"/>
-        <segue reference="S0h-4g-6Vi"/>
+        <segue reference="eTj-Ly-RbU"/>
         <segue reference="Po8-wj-Htr"/>
-        <segue reference="qCc-FV-0fJ"/>
+        <segue reference="EmT-AN-78P"/>
+        <segue reference="S0h-4g-6Vi"/>
     </inferredMetricsTieBreakers>
 </document>

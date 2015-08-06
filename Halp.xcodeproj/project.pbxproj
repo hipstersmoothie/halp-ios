@@ -13,6 +13,8 @@
 		C20847991AB515A8003BCCEA /* tray-red.png in Resources */ = {isa = PBXBuildFile; fileRef = C20847981AB515A8003BCCEA /* tray-red.png */; };
 		C208479C1AB51733003BCCEA /* logout-red.png in Resources */ = {isa = PBXBuildFile; fileRef = C208479A1AB51733003BCCEA /* logout-red.png */; };
 		C208479D1AB51733003BCCEA /* message-red.png in Resources */ = {isa = PBXBuildFile; fileRef = C208479B1AB51733003BCCEA /* message-red.png */; };
+		C20F06591B72FF7E00A415B2 /* NotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F06581B72FF7E00A415B2 /* NotificationList.swift */; };
+		C20F065B1B73009000A415B2 /* notificationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F065A1B73009000A415B2 /* notificationRow.swift */; };
 		C20F5FD21AB3D65C0093FAAC /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F5FD11AB3D65C0093FAAC /* NSDataExtension.swift */; };
 		C20F5FD41AB4F6000093FAAC /* tray.png in Resources */ = {isa = PBXBuildFile; fileRef = C20F5FD31AB4F6000093FAAC /* tray.png */; };
 		C20F5FD61AB502FA0093FAAC /* NotificationTray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */; };
@@ -133,6 +135,8 @@
 		C20847981AB515A8003BCCEA /* tray-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tray-red.png"; sourceTree = "<group>"; };
 		C208479A1AB51733003BCCEA /* logout-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-red.png"; sourceTree = "<group>"; };
 		C208479B1AB51733003BCCEA /* message-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-red.png"; sourceTree = "<group>"; };
+		C20F06581B72FF7E00A415B2 /* NotificationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationList.swift; sourceTree = "<group>"; };
+		C20F065A1B73009000A415B2 /* notificationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notificationRow.swift; sourceTree = "<group>"; };
 		C20F5FD11AB3D65C0093FAAC /* NSDataExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataExtension.swift; sourceTree = "<group>"; };
 		C20F5FD31AB4F6000093FAAC /* tray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tray.png; sourceTree = "<group>"; };
 		C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTray.swift; sourceTree = "<group>"; };
@@ -493,6 +497,8 @@
 		C2C298B61A81D7870010C475 /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
+				C20F06581B72FF7E00A415B2 /* NotificationList.swift */,
+				C20F065A1B73009000A415B2 /* notificationRow.swift */,
 				C2C298A01A819A190010C475 /* BaseTableViewCell.swift */,
 				C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */,
 				C2C2989E1A8199CE0010C475 /* LeftViewController.swift */,
@@ -763,12 +769,14 @@
 				C25C06831B1EA77B007B0D26 /* PaymentTypeCell.swift in Sources */,
 				C2BBA70D1A8C7B6F0023A5EF /* basicInfo.swift in Sources */,
 				C26646F01A7849CA008B396C /* createController.swift in Sources */,
+				C20F065B1B73009000A415B2 /* notificationRow.swift in Sources */,
 				C2E835C81AB911ED00A4E340 /* matchCell.swift in Sources */,
 				C21EA2BB1AFB0DDA0029A119 /* Payments.swift in Sources */,
 				C2CD51851B05934B0022FB55 /* TabSessionCreate.swift in Sources */,
 				C29874CB1AA52EC500B6BC90 /* ZFTokenField.m in Sources */,
 				C2E5E6D91AFAB3290030A0EE /* ImageResizer.swift in Sources */,
 				C2E985511AAD4AA800054C19 /* Messages.swift in Sources */,
+				C20F06591B72FF7E00A415B2 /* NotificationList.swift in Sources */,
 				C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */,
 				C25C06811B1EA188007B0D26 /* KeychainWrapper.m in Sources */,
 				C2B8E0061A79D5970093C03B /* SwiftyJSON.swift in Sources */,

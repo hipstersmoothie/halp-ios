@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
         let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
         let nvc = UINavigationController(rootViewController: mainViewController)
-        let rightViewController = storyboard.instantiateViewControllerWithIdentifier("NotificationList") as! UIViewController
+        let rightViewController = storyboard.instantiateViewControllerWithIdentifier("NotificationList") as! UITableViewController
         
         leftViewController.mainViewController = nvc
         leftViewController.nav = nvc
