@@ -14,9 +14,11 @@ class SessionCounterController: UIViewController {
     @IBOutlet var time: UILabel!
     var timer = NSTimer()
     var totTime = 0
+    var currentAlert:UIAlertController!
     
     @IBOutlet var hold: UIButton!
     override func viewDidLoad() {
+       println(sessionRate)
         super.viewDidLoad()
         rate.text = "$\(sessionRate)/hour"
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increment"), userInfo: nil, repeats: true)
@@ -32,8 +34,8 @@ class SessionCounterController: UIViewController {
     }
     
     @IBAction func endAction(sender: AnyObject) {
-        var alert = UIAlertController(title: "Do you want to end the session?", message: "The session has run for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+        currentAlert = UIAlertController(title: "Do you want to end the session?", message: "The session has run for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
+        currentAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
             halpApi.endSession(self.totTime) { success, json in
                 if success == true{
                     self.endAlert()
@@ -43,7 +45,7 @@ class SessionCounterController: UIViewController {
                 }
             }
         }))
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(currentAlert, animated: true, completion: nil)
     }
     
     func handleBtnLongPressgesture(gestureRecognizer:UIGestureRecognizer) {
@@ -57,6 +59,7 @@ class SessionCounterController: UIViewController {
     }
     
     func increment() {
+        println(totTime)
         ++totTime
         var seconds = totTime % 60
         var minutes = (totTime - seconds) / 60
@@ -86,15 +89,22 @@ class SessionCounterController: UIViewController {
     }
     
     func endAlert() {
-        var alert = UIAlertController(title: "Session has Ended", message: "The session ran for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Rate!", style: .Default, handler: { action in
-            if pinMode == "student" {
-                self.performSegueWithIdentifier("writeReviewForTutor", sender: self)
-            } else {
-                self.performSegueWithIdentifier("writeReviewForStudent", sender: self)
+        if(currentAlert != nil) {
+            currentAlert.dismissViewControllerAnimated(true) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.currentAlert = UIAlertController(title: "Session has Ended", message: "The session ran for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
+                    self.currentAlert.addAction(UIAlertAction(title: "Rate!", style: .Default, handler: { action in
+                    if pinMode == "student" {
+                        self.performSegueWithIdentifier("writeReviewForTutor", sender: self)
+                    } else {
+                        self.performSegueWithIdentifier("writeReviewForStudent", sender: self)
+                    }
+                    }))
+                    self.presentViewController(self.currentAlert, animated: true, completion: nil)
+                }
             }
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
+        }
+       
     }
     
     override func didReceiveMemoryWarning() {
