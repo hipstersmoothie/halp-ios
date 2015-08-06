@@ -2709,6 +2709,10 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhG-Xh-w8G">
                                 <rect key="frame" x="120" y="386" width="152" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="ONa-lt-zcu"/>
+                                    <constraint firstAttribute="width" constant="152" id="Ov5-Ub-Qbw"/>
+                                </constraints>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2721,6 +2725,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sq5-uh-y4T" customClass="FloatRatingView" customModule="Halp" customModuleProvider="target">
                                 <rect key="frame" x="182" y="275" width="28" height="27"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="h5e-YX-kfU"/>
+                                    <constraint firstAttribute="height" constant="27" id="peJ-yC-RJf"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
@@ -2737,6 +2745,14 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="EXL-M8-hrZ" secondAttribute="centerX" id="1Qg-BW-0oJ"/>
+                            <constraint firstItem="yhG-Xh-w8G" firstAttribute="top" secondItem="Sq5-uh-y4T" secondAttribute="bottom" constant="84" id="IOM-DC-OBY"/>
+                            <constraint firstItem="Sq5-uh-y4T" firstAttribute="top" secondItem="EXL-M8-hrZ" secondAttribute="bottom" constant="35" id="W4M-uD-EuF"/>
+                            <constraint firstAttribute="centerX" secondItem="Sq5-uh-y4T" secondAttribute="centerX" id="dgt-ED-ByS"/>
+                            <constraint firstItem="EXL-M8-hrZ" firstAttribute="top" secondItem="cPY-9l-5eX" secondAttribute="bottom" constant="153" id="jfJ-a0-bbt"/>
+                            <constraint firstAttribute="centerX" secondItem="yhG-Xh-w8G" secondAttribute="centerX" id="qi1-fi-fzB"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
