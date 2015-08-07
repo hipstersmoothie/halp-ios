@@ -228,7 +228,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         dispatch_async(dispatch_get_main_queue()) {
             if success {
                 for (index: String, subJson: JSON) in json["pins"] {
-                    println(subJson)
                     self.addPin(UserPin(user: subJson), myPin: false)
                 }
             } else {
@@ -326,6 +325,11 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         if count > 0 {
             self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
         }
+        let events = data["events"] as! [String]
+        if(events.count > 0) {
+            self.navigationItem.rightBarButtonItem?.badgeValue = "\(events.count)"
+            notifications = events
+        }
     }
 
     
@@ -379,9 +383,33 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
+    func updateNotifications() {
+        halpApi.getNotifications() { success, json in
+            if (success) {
+                let object = json["notification"].dictionaryValue
+                
+                notifications = object["events"]!.arrayValue.map() { event in
+                    return event.stringValue
+                }
+                
+                dispatch_async(dispatch_get_main_queue()) {
+
+                if(notifications.count > 0) {
+                    self.navigationItem.rightBarButtonItem?.badgeValue = "\(notifications.count)"
+                } else {
+                    self.navigationItem.rightBarButtonItem?.badgeValue = ""
+                }
+                }
+            } else {
+                
+            }
+        }
+    }
+    
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateNotifications()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
         matches = []
         // Do any additional setup after loading the view, typically from a nib.
