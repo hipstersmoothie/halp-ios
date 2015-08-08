@@ -64,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         // Notification RECIEVED
+        notificationCounts = userInfo as! [String : AnyObject]
         NSNotificationCenter.defaultCenter().postNotificationName("notificationsRecieved", object: nil, userInfo: userInfo)
         if (userInfo["session"] != nil) {
             NSNotificationCenter.defaultCenter().postNotificationName("inSession", object: nil, userInfo: userInfo)
