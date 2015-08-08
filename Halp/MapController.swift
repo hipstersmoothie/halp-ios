@@ -321,14 +321,68 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func gotNotifications(notification: NSNotification) {
         let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
+        println(data)
         let count = data["count"] as! NSInteger
+        println(count)
         if count > 0 {
-            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
+            self.navigationItem.rightBarButtonItem?.badgeValue = "\(count)"
         }
         let events = data["events"] as! [String]
         if(events.count > 0) {
             self.navigationItem.rightBarButtonItem?.badgeValue = "\(events.count)"
             notifications = events
+        }
+    }
+    
+    func updateNotifications() {
+        halpApi.getNotifications() { success, json in
+            if (success) {
+                let object = json["notification"].dictionaryValue
+                
+                notifications = object["events"]!.arrayValue.map() { event in
+                    if(event.stringValue == "student_pin_removed") {
+                        return "Your student pin was removed!"
+                    } else if(event.stringValue == "tutor_pin_removed") {
+                        return "Your tutor pin was removed!"
+                    } else if(event.stringValue == "sub_merchant_approved") {
+                        return "Your tutor details were approved. You can now start tutoring!"
+                    }
+
+                    return event.stringValue
+                }
+                
+                let studentMatches = object["studentNewMatches"]!.intValue
+                if studentMatches > 0 {
+                    notifications.append("You have \(studentMatches) new matched tutors.")
+                }
+                
+                let tutorMatches = object["tutorNewMatches"]!.intValue
+                if tutorMatches > 0 {
+                    notifications.append("You have \(tutorMatches) new matched students. These people need help with classes or skill you are knowledgable in.")
+                }
+                
+                let studentUnreadMessages = object["studentUnreadMessages"]!.intValue
+                if studentUnreadMessages > 0 {
+                    notifications.append("You have \(studentUnreadMessages) new messages from tutors.")
+                }
+                
+                let tutorUnreadMessages = object["tutorUnreadMessages"]!.intValue
+                if tutorUnreadMessages > 0 {
+                    notifications.append("You have \(tutorUnreadMessages) new messages from students.")
+                }
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    let count = object["count"]!.intValue
+
+                    if(notifications.count > 0) {
+                        self.navigationItem.rightBarButtonItem?.badgeValue = "\(notifications.count)"
+                    } else {
+                        self.navigationItem.rightBarButtonItem?.badgeValue = ""
+                    }
+                }
+            } else {
+                
+            }
         }
     }
 
@@ -383,28 +437,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
-    func updateNotifications() {
-        halpApi.getNotifications() { success, json in
-            if (success) {
-                let object = json["notification"].dictionaryValue
-                
-                notifications = object["events"]!.arrayValue.map() { event in
-                    return event.stringValue
-                }
-                
-                dispatch_async(dispatch_get_main_queue()) {
 
-                if(notifications.count > 0) {
-                    self.navigationItem.rightBarButtonItem?.badgeValue = "\(notifications.count)"
-                } else {
-                    self.navigationItem.rightBarButtonItem?.badgeValue = ""
-                }
-                }
-            } else {
-                
-            }
-        }
-    }
     
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
