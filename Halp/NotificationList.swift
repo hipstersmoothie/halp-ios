@@ -42,6 +42,9 @@ func buildNotificationList(object:Dictionary<String, AnyObject>) {
     if tutorUnreadMessages > 0 {
         notifications.append("You have \(tutorUnreadMessages) new messages from students.")
     }
+    
+    let count = object["count"] as! Int
+    UIApplication.sharedApplication().applicationIconBadgeNumber = count + events.count
 }
 
 class NotificationList: UITableViewController {
