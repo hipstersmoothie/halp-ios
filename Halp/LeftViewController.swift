@@ -178,6 +178,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        updateNotificationCounts()
     }
     
     override func viewDidAppear(animated: Bool) {

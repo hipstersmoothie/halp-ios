@@ -328,6 +328,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let count = object["count"] as! Int
         let events = object["events"] as! [String]
         buildNotificationList(object)
+        notificationCounts = object
         
         dispatch_async(dispatch_get_main_queue()) {
             let fullCount = events.count + count
