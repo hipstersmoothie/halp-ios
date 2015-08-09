@@ -1999,17 +1999,17 @@
                         <viewControllerLayoutGuide type="bottom" id="Pfl-QZ-fkB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t9B-2k-hVO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfA-Av-s9H">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="cfA-Av-s9H">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHo-V1-2gf" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gSD-7J-mbx">
-                                                <rect key="frame" x="-1" y="388" width="375" height="162"/>
+                                                <rect key="frame" x="-1" y="378" width="375" height="162"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="444461083.094437">
                                                     <!--2015-02-01 05:24:43 +0000-->
                                                 </date>
@@ -2021,7 +2021,7 @@
                                                 </date>
                                             </datePicker>
                                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-14-0uw">
-                                                <rect key="frame" x="1" y="344" width="375" height="44"/>
+                                                <rect key="frame" x="1" y="334" width="375" height="44"/>
                                                 <items>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DpG-s9-EIw"/>
                                                     <barButtonItem title="Done" id="QiU-LS-l8d">
@@ -2032,7 +2032,7 @@
                                                 </items>
                                             </toolbar>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FnF-Fw-fJK" customClass="AutoToke" customModule="Halp" customModuleProvider="target">
-                                                <rect key="frame" x="43" y="347" width="288" height="50"/>
+                                                <rect key="frame" x="43" y="347" width="288" height="45"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="HHP-wg-Rpz"/>
@@ -2123,7 +2123,7 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="when do you need halp by?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HsL-96-ou3">
-                                                <rect key="frame" x="43" y="412" width="288" height="50"/>
+                                                <rect key="frame" x="43" y="407" width="288" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="HsL-96-ou3" secondAttribute="height" multiplier="144:25" id="222-jq-65e"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="28p-Fw-9ud"/>
@@ -2143,7 +2143,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-Gf-zas">
-                                                <rect key="frame" x="102" y="477" width="170" height="43"/>
+                                                <rect key="frame" x="102" y="472" width="170" height="43"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="43" id="dv1-yd-C0D"/>
                                                 </constraints>
@@ -2171,7 +2171,7 @@
                                             <constraint firstItem="m61-xm-leG" firstAttribute="centerY" secondItem="M2d-a4-p5p" secondAttribute="centerY" id="VZo-lB-Dwj"/>
                                             <constraint firstItem="HsL-96-ou3" firstAttribute="top" secondItem="FnF-Fw-fJK" secondAttribute="bottom" constant="15" id="VuT-jM-aqD"/>
                                             <constraint firstItem="FnF-Fw-fJK" firstAttribute="top" secondItem="3PA-o6-h2D" secondAttribute="bottom" constant="15" id="WN4-MR-gQ8"/>
-                                            <constraint firstAttribute="bottom" secondItem="EaX-Gf-zas" secondAttribute="bottom" constant="30" id="WQm-ef-rTj"/>
+                                            <constraint firstAttribute="bottom" secondItem="EaX-Gf-zas" secondAttribute="bottom" constant="25" id="WQm-ef-rTj"/>
                                             <constraint firstItem="xJ3-14-0uw" firstAttribute="leading" secondItem="cHo-V1-2gf" secondAttribute="leading" constant="1" id="YEg-ii-5M9"/>
                                             <constraint firstAttribute="trailing" secondItem="gSD-7J-mbx" secondAttribute="trailing" constant="1" id="a2L-nf-NeT"/>
                                             <constraint firstItem="M2d-a4-p5p" firstAttribute="top" secondItem="cHo-V1-2gf" secondAttribute="top" constant="20" id="aGd-k8-y2b"/>
@@ -2227,7 +2227,7 @@
                         </variation>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="550"/>
+                    <size key="freeformSize" width="375" height="540"/>
                     <connections>
                         <outlet property="addPhotoView" destination="M2d-a4-p5p" id="3Qx-V1-rU9"/>
                         <outlet property="cameraIcon" destination="m61-xm-leG" id="gP6-dT-4vS"/>

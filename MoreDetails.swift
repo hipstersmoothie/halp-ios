@@ -68,6 +68,7 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     }
     
     func hideKeyboard() {
+        println("tap")
         timeField.resignFirstResponder()
         sessDesc.resignFirstResponder()
         skillsField.textField.resignFirstResponder()
@@ -80,7 +81,6 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
         tapGesture.cancelsTouchesInView = false
         self.scrollView.addGestureRecognizer(tapGesture)
-        
         tokens = NSMutableArray()
         skillsField.delegate = self
         skillsField.dataSource = self
