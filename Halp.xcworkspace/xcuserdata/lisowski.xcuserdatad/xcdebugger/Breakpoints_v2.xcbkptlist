@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SlideMenuController.swift"
-            timestampString = "450649070.702882"
+            timestampString = "460776838.953096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "858"
-            endingLineNumber = "858"
+            startingLineNumber = "868"
+            endingLineNumber = "868"
             landmarkName = "slideMenuController()"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Halp/SessionCounterController.swift"
-            timestampString = "460522805.509431"
+            timestampString = "460520037.326988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "endAction(_:)"
             landmarkType = "5">
          </BreakpointContent>

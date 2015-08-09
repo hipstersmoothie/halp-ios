@@ -190,6 +190,21 @@ class HalpAPI {
         halpRequest("/profile", method: "PUT", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
     }
     
+    func getNotifications(completionHandler: ((Bool, JSON) -> Void)?) {
+        var params = Dictionary<String, String>()
+        halpRequest("/notification", method: "GET", params: params, completionHandler: completionHandler, sessionId: sessionId.stringValue)
+    }
+    
+    func markNotification(event:String) {
+        func empty(success:Bool, json:JSON) {
+            
+        }
+        var params = [
+            "event" : event
+        ]
+        halpRequest("/read-event", method: "PUT", params: params, completionHandler: empty, sessionId: sessionId.stringValue)
+    }
+    
     // Payments
     func getClientToken(completionHandler: ((Bool, JSON) -> Void)?) {
         var params = Dictionary<String, String>()

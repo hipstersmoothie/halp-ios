@@ -9,8 +9,6 @@
 import UIKit
 
 class NotificationTray: UITableViewController {
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

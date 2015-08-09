@@ -21,7 +21,7 @@ protocol LeftMenuProtocol : class {
     func changeViewController(menu: LeftMenu)
 }
 
-var notificationCounts:Dictionary<NSObject, AnyObject>!
+var notificationCounts:Dictionary<String, AnyObject>!
 
 class LeftViewController : UITableViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
@@ -64,7 +64,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         let login = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
         self.loginController = UINavigationController(rootViewController: login)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateNotificationCounts"), name: "notificationsRecieved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("launchSession:"), name: "inSession", object: nil)
     }
@@ -120,11 +120,6 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     @IBOutlet var messageCount: UILabel!
     @IBOutlet var switchModeImage: UIImageView!
     @IBOutlet var messageImage: UIImageView!
-    func gotNotifications(notification: NSNotification) {
-        notificationCounts = notification.userInfo
-        updateNotificationCounts()
-    }
-    
     @IBOutlet var matchCountLabel: UILabel!
     @IBOutlet var matchImage: UIImageView!
     func updateNotificationCounts() {
@@ -183,6 +178,7 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        updateNotificationCounts()
     }
     
     override func viewDidAppear(animated: Bool) {
