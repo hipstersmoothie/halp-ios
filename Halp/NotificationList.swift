@@ -62,6 +62,16 @@ class NotificationList: UITableViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "notificationsRecieved", object: nil)
+        let events = notificationCounts["events"] as! [String]
+        if contains(events, "student_pin_removed") {
+            halpApi.markNotification("student_pin_removed")
+        }
+        if contains(events, "tutor_pin_removed") {
+            halpApi.markNotification("tutor_pin_removed")
+        }
+        if contains(events, "sub_merchant_approved") {
+            halpApi.markNotification("sub_merchant_approved")
+        }
     }
     
     func updateLabels() {
@@ -78,6 +88,27 @@ class NotificationList: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! notificationRow
+        println(cell.message.text)
+        if (cell.message.text?.contains("messages from tutors") == true) {
+            let left = self.slideMenuController()?.leftViewController as! LeftViewController
+            
+            if(pinMode != "student") {
+                left.changeViewController(.TutorMode)
+            }
+            left.changeViewController(.Messages)
+            self.slideMenuController()?.closeRight()
+        }
+        
+        if (cell.message.text?.contains("messages from students") == true) {
+            let left = self.slideMenuController()?.leftViewController as! LeftViewController
+            
+            if(pinMode != "tutor") {
+                left.changeViewController(.TutorMode)
+            }
+            left.changeViewController(.Messages)
+            self.slideMenuController()?.closeRight()
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

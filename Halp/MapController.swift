@@ -353,6 +353,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
 
     
     override func viewWillAppear(animated: Bool) {
+        checkForNewPins()
+        updateNotifications()
         if(self.tableView.indexPathForSelectedRow() != nil) {
             self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow()!, animated: true)
         }
@@ -362,12 +364,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
-
-        checkForNewPins()
-        if notificationCounts != nil {
-            let count = notificationCounts["count"] as! NSInteger
-            self.navigationItem.rightBarButtonItem?.badgeValue = "\(count)"
-        }
     }
     override func viewDidDisappear(animated: Bool) {
         //NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
@@ -407,7 +403,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateNotifications()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
         matches = []
         // Do any additional setup after loading the view, typically from a nib.

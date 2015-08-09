@@ -39,6 +39,10 @@ extension String  {
     subscript (r: Range<Int>) -> String {
         return substringWithRange(Range(start: advance(startIndex, r.startIndex), end: advance(startIndex, r.endIndex)))
     }
+    
+    func contains(find: String) -> Bool{
+        return self.rangeOfString(find) != nil
+    }
 }
 
 // Creates a UIColor from a Hex string.
