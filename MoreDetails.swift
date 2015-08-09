@@ -68,18 +68,14 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     }
     
     @IBOutlet var scrollView: UIScrollView!
-    override func viewDidLayoutSubviews() {
-        self.scrollView.contentSize = CGSizeMake(320, self.view.frame.size.height + self.skillsField.frame.size.height)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.scrollView.bounces = false
         tokens = NSMutableArray()
         skillsField.delegate = self
         skillsField.dataSource = self
         skillsField.textField.font = skillsField.textField.font.fontWithSize(15)
         skillsField.textField.attributedPlaceholder =  NSAttributedString(string: "skills needed to solve this", attributes: [NSForegroundColorAttributeName : UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 0.7)])
-        //skillsField.reloadData(false)
         skillsField.mDelegate = self
         skillsField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
         skillsField.layer.borderWidth = 1.0
