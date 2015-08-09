@@ -62,16 +62,6 @@ class NotificationList: UITableViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "notificationsRecieved", object: nil)
-        let events = notificationCounts["events"] as! [String]
-        if contains(events, "student_pin_removed") {
-            halpApi.markNotification("student_pin_removed")
-        }
-        if contains(events, "tutor_pin_removed") {
-            halpApi.markNotification("tutor_pin_removed")
-        }
-        if contains(events, "sub_merchant_approved") {
-            halpApi.markNotification("sub_merchant_approved")
-        }
     }
     
     func updateLabels() {
