@@ -67,10 +67,20 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         pickedImage = RBSquareImageTo(image, CGSize(width: 100, height: 100))
     }
     
+    func hideKeyboard() {
+        timeField.resignFirstResponder()
+        sessDesc.resignFirstResponder()
+        skillsField.textField.resignFirstResponder()
+    }
+    
     @IBOutlet var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.bounces = false
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
+        tapGesture.cancelsTouchesInView = false
+        self.scrollView.addGestureRecognizer(tapGesture)
+        
         tokens = NSMutableArray()
         skillsField.delegate = self
         skillsField.dataSource = self
