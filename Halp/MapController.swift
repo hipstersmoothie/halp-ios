@@ -374,10 +374,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func gotMatches(notification: NSNotification) {
         matches = []
         pause(self.view)
-        if notificationCounts != nil {
-            let count = notificationCounts["count"] as! NSInteger
-            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
-        }
         halpApi.getMatches() { success, json in
             if success {
                 let matchArr = json["matches"].arrayValue

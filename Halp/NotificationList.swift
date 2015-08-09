@@ -84,15 +84,17 @@ class NotificationList: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notifications.count
+        if notifications.count != 0 {
+            return notifications.count
+        }
+        return 1
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! notificationRow
-        println(cell.message.text)
+        let left = self.slideMenuController()?.leftViewController as! LeftViewController
+
         if (cell.message.text?.contains("messages from tutors") == true) {
-            let left = self.slideMenuController()?.leftViewController as! LeftViewController
-            
             if(pinMode != "student") {
                 left.changeViewController(.TutorMode)
             }
@@ -101,23 +103,42 @@ class NotificationList: UITableViewController {
         }
         
         if (cell.message.text?.contains("messages from students") == true) {
-            let left = self.slideMenuController()?.leftViewController as! LeftViewController
-            
             if(pinMode != "tutor") {
                 left.changeViewController(.TutorMode)
             }
             left.changeViewController(.Messages)
             self.slideMenuController()?.closeRight()
         }
+        
+        if (cell.message.text?.contains("matched tutors") == true) {
+            if(pinMode != "student") {
+                left.changeViewController(.TutorMode)
+            }
+            self.slideMenuController()?.closeRight()
+            NSNotificationCenter.defaultCenter().postNotificationName("GetMatches", object: nil, userInfo: nil)
+        }
+        
+        if (cell.message.text?.contains("matched student") == true) {
+            if(pinMode != "tutor") {
+                left.changeViewController(.TutorMode)
+            }
+            self.slideMenuController()?.closeRight()
+            NSNotificationCenter.defaultCenter().postNotificationName("GetMatches", object: nil, userInfo: nil)
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("notificationCell") as! notificationRow
-
-        cell.message.text = notifications[indexPath.row]
-        cell.message.numberOfLines = 0;
-        cell.icon.image = UIImage(named: "unreadDot.png")
-        
+        if(notifications.count != 0) {
+            cell.message.text = notifications[indexPath.row]
+            cell.message.numberOfLines = 0;
+            cell.icon.image = UIImage(named: "unreadDot.png")
+        } else {
+            cell.message.text = "No new notifications."
+            cell.message.numberOfLines = 0;
+            cell.icon.image = nil
+        }
+    
         return cell
     }
 }
