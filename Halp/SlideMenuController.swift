@@ -208,6 +208,16 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     override func closeRight() {
         self.closeRightWithVelocity(0.0)
         self.setCloseWindowLebel()
+        let events = notificationCounts["events"] as! [String]
+        if contains(events, "student_pin_removed") {
+            halpApi.markNotification("student_pin_removed")
+        }
+        if contains(events, "tutor_pin_removed") {
+            halpApi.markNotification("tutor_pin_removed")
+        }
+        if contains(events, "sub_merchant_approved") {
+            halpApi.markNotification("sub_merchant_approved")
+        }
     }
     
     

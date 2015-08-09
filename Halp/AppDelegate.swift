@@ -30,12 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! ViewController
         let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
         let nvc = UINavigationController(rootViewController: mainViewController)
+        let rightViewController = storyboard.instantiateViewControllerWithIdentifier("NotificationList") as! UITableViewController
         
         leftViewController.mainViewController = nvc
         leftViewController.nav = nvc
 
         
-        let slideMenuController = SlideMenuController(mainViewController: nvc, leftMenuViewController: leftViewController)
+        let slideMenuController = SlideMenuController(mainViewController: nvc, leftMenuViewController: leftViewController, rightMenuViewController: rightViewController)
         
         self.window?.backgroundColor = teal
         self.window?.rootViewController = slideMenuController
@@ -63,6 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         // Notification RECIEVED
+        notificationCounts = userInfo as! [String : AnyObject]
+        let count = notificationCounts["count"] as! Int
+        let events = notificationCounts["events"] as! [String]
+        UIApplication.sharedApplication().applicationIconBadgeNumber = count + events.count
+        
         NSNotificationCenter.defaultCenter().postNotificationName("notificationsRecieved", object: nil, userInfo: userInfo)
         if (userInfo["session"] != nil) {
             NSNotificationCenter.defaultCenter().postNotificationName("inSession", object: nil, userInfo: userInfo)

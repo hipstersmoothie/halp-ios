@@ -228,7 +228,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         dispatch_async(dispatch_get_main_queue()) {
             if success {
                 for (index: String, subJson: JSON) in json["pins"] {
-                    println(subJson)
                     self.addPin(UserPin(user: subJson), myPin: false)
                 }
             } else {
@@ -321,15 +320,41 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     func gotNotifications(notification: NSNotification) {
-        let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
-        let count = data["count"] as! NSInteger
-        if count > 0 {
-            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
+        let data = notification.userInfo! as! Dictionary<String, AnyObject>
+        self.updates(data)
+    }
+    
+    func updates(object:Dictionary<String, AnyObject>) {
+        let count = object["count"] as! Int
+        let events = object["events"] as! [String]
+        buildNotificationList(object)
+        notificationCounts = object
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            let fullCount = events.count + count
+            if(fullCount > 0) {
+                self.navigationItem.rightBarButtonItem?.badgeValue = "\(fullCount)"
+            } else {
+                self.navigationItem.rightBarButtonItem?.badgeValue = ""
+            }
+        }
+    }
+    
+    func updateNotifications() {
+        halpApi.getNotifications() { success, json in
+            if (success) {
+                let object = json["notification"].dictionaryObject! as Dictionary<String, AnyObject>
+                self.updates(object)
+            } else {
+                
+            }
         }
     }
 
     
     override func viewWillAppear(animated: Bool) {
+        checkForNewPins()
+        updateNotifications()
         if(self.tableView.indexPathForSelectedRow() != nil) {
             self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow()!, animated: true)
         }
@@ -339,12 +364,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("toggleMode:"), name: "SwitchMode", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotMatches:"), name: "GetMatches", object: nil)
-
-        checkForNewPins()
-        if notificationCounts != nil {
-            let count = notificationCounts["count"] as! NSInteger
-            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
-        }
     }
     override func viewDidDisappear(animated: Bool) {
         //NSNotificationCenter.defaultCenter().removeObserver(self, name: "DeleteMyPin", object: nil)
@@ -355,10 +374,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func gotMatches(notification: NSNotification) {
         matches = []
         pause(self.view)
-        if notificationCounts != nil {
-            let count = notificationCounts["count"] as! NSInteger
-            self.navigationItem.leftBarButtonItem?.badgeValue = "\(count)"
-        }
         halpApi.getMatches() { success, json in
             if success {
                 let matchArr = json["matches"].arrayValue
@@ -378,6 +393,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
         }
     }
+    
+
     
     @IBOutlet var findTutorButton: UIButton!
     override func viewDidLoad() {
@@ -415,8 +432,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.navigationItem.hidesBackButton = true
         self.addLeftBarButtonWithImage(UIImage(named: "timeline-list-grid-list-icon.png")!)
         
-        self.navigationItem.rightBarButtonItem = nil
-
+        var button: UIButton = UIButton()
+        button.setImage(UIImage(named: "tray.png"), forState: .Normal)
+        button.frame = CGRectMake(0, 0, 40, 40)
+        button.addTarget(self, action: Selector("right"), forControlEvents: .TouchUpInside)
+        var rightItem:UIBarButtonItem = UIBarButtonItem()
+        rightItem.customView = button
+        self.navigationItem.rightBarButtonItem = rightItem
+        
         navigationController?.navigationBar.barTintColor = teal
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
@@ -426,6 +449,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         pinsInArea = []
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    }
+    
+    func right() {
+        self.slideMenuController()?.openRight()
     }
     
     func checkForNewPins() {
