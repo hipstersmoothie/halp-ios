@@ -11,6 +11,7 @@ import UIKit
 class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate, AutoTokeDelegate {
     var pickedImage:UIImage!
     var tokens:NSMutableArray!
+    var offset:CGFloat = 0
     @IBOutlet var addPhotoView: UIButton!
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var datePicker: UIDatePicker!
@@ -66,14 +67,26 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         pickedImage = RBSquareImageTo(image, CGSize(width: 100, height: 100))
     }
     
+    func hideKeyboard() {
+        println("tap")
+        timeField.resignFirstResponder()
+        sessDesc.resignFirstResponder()
+        skillsField.textField.resignFirstResponder()
+    }
+    
+    @IBOutlet var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.scrollView.bounces = false
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
+        tapGesture.cancelsTouchesInView = false
+        self.scrollView.addGestureRecognizer(tapGesture)
         tokens = NSMutableArray()
+        
         skillsField.delegate = self
         skillsField.dataSource = self
         skillsField.textField.font = skillsField.textField.font.fontWithSize(15)
         skillsField.textField.attributedPlaceholder =  NSAttributedString(string: "skills needed to solve this", attributes: [NSForegroundColorAttributeName : UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 0.7)])
-        //skillsField.reloadData(false)
         skillsField.mDelegate = self
         skillsField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
         skillsField.layer.borderWidth = 1.0
@@ -201,17 +214,20 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     }
     
     func tokenFieldDidBeginEditing(tokenField:ZFTokenField) {
-        animateViewMoving(true, moveValue: 180)
+        animateViewMoving(true, moveValue: 100)
+        scrollToBottom()
     }
     
     func tokenFieldDidEndEditing(tokenField:ZFTokenField) {
-        animateViewMoving(false, moveValue: 180)
+        animateViewMoving(false, moveValue: 100)
     }
     
     func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String, AnyObject>) {
         
     }
-    
+    override func viewDidLayoutSubviews() {
+        self.skillsField.description
+    }
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>] {
         return skills
     }
@@ -265,52 +281,35 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         return 12
     }
     
-    func updateTokenFieldHeight(tokenField: ZFTokenField!, increment:Bool) {
-        //        var val = CGFloat(50)
-        //        if increment == false {
-        //            if myRows > tokenField.height {
-        //                myRows = tokenField.height
-        //
-        //                if tokenHeight.constant - val >= 50 {
-        //                    tokenHeight.constant -= val
-        //                    contentHeight.constant -= val
-        //                }
-        //            }
-        //        } else {
-        //            if myRows < tokenField.height {
-        //                myRows = tokenField.height
-        //                tokenHeight.constant += val
-        //                contentHeight.constant += val
-        //            }
-        //        }
-    }
-    
     func tokenFieldShouldEndEditing(textField: ZFTokenField!) -> Bool {
         return true
     }
     
     func tokenDeleteButtonPressed(tokenButton: UIButton) {
-        //tokenField.indexOfTokenView(tokenButton.superview) needed?
         var index:Int = Int(skillsField.indexOfTokenView(tokenButton.superview?.superview))
         if index != NSNotFound {
             tokens.removeObjectAtIndex(index)
             skillsField.reloadData(false)
-            //updateTokenFieldHeight(tokenField, increment: false)
         }
     }
-    //
-    //    func scrollToBottom() {
-    //        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
-    //        scrollView.setContentOffset(bottomOffset, animated: true)
-    //    }
+
+    func scrollToBottom() {
+        println("get to the bottom!")
+//        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
+//        scrollView.setContentOffset(bottomOffset, animated: true)
+//        
+//        [scrollview scrollRectToVisible:CGRectMake(scrollview.contentSize.width - 1,scrollview.contentSize.height - 1, 1, 1) animated:YES];
+
+        self.scrollView.scrollRectToVisible(CGRectMake(scrollView.contentSize.width - 1,scrollView.contentSize.height - 1, 1, 1), animated: true)
+    }
     
     func tokenSelected(textField: AutoToke) {
-        //skillsField.addToken(textField.textField)
+
     }
+    
     func tokenField(tokenField: ZFTokenField!, didReturnWithText text: String!) {
         tokens.addObject(text)
         skillsField.reloadData(true)
-        //updateTokenFieldHeight(tokenField, increment: true)
-        //scrollToBottom()
+        scrollToBottom()
     }
 }
