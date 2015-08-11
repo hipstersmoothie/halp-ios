@@ -183,7 +183,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OTM-Mz-teO">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="of6-eM-Def">
@@ -1570,7 +1570,8 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YHu-3y-AgP">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tutorCell" id="e2a-cG-QWj" customClass="tutorRow" customModule="Halp" customModuleProvider="target">
                                                 <autoresizingMask key="autoresizingMask"/>
@@ -3243,8 +3244,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="zVp-6g-87O">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" rowHeight="56" id="iUJ-By-fuZ" customClass="notificationRow" customModule="Halp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -3274,6 +3275,7 @@
                                         <constraint firstItem="Kc6-PL-XZZ" firstAttribute="leading" secondItem="b38-iN-b9m" secondAttribute="leading" constant="15" id="wAJ-tS-yHh"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="icon" destination="Kc6-PL-XZZ" id="rEP-NX-BxR"/>
                                     <outlet property="message" destination="Aia-YT-qNK" id="EgN-Un-Aw6"/>
@@ -3311,9 +3313,9 @@
         <image name="white-plus.png" width="297" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eTj-Ly-RbU"/>
-        <segue reference="Po8-wj-Htr"/>
         <segue reference="Dm7-Lu-mGU"/>
+        <segue reference="Po8-wj-Htr"/>
         <segue reference="S0h-4g-6Vi"/>
+        <segue reference="eTj-Ly-RbU"/>
     </inferredMetricsTieBreakers>
 </document>
