@@ -82,6 +82,7 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         tapGesture.cancelsTouchesInView = false
         self.scrollView.addGestureRecognizer(tapGesture)
         tokens = NSMutableArray()
+        
         skillsField.delegate = self
         skillsField.dataSource = self
         skillsField.textField.font = skillsField.textField.font.fontWithSize(15)
@@ -213,17 +214,20 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     }
     
     func tokenFieldDidBeginEditing(tokenField:ZFTokenField) {
-        animateViewMoving(true, moveValue: 180)
+        animateViewMoving(true, moveValue: 100)
+        scrollToBottom()
     }
     
     func tokenFieldDidEndEditing(tokenField:ZFTokenField) {
-        animateViewMoving(false, moveValue: 180)
+        animateViewMoving(false, moveValue: 100)
     }
     
     func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String, AnyObject>) {
         
     }
-    
+    override func viewDidLayoutSubviews() {
+        self.skillsField.description
+    }
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>] {
         return skills
     }
@@ -277,52 +281,35 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         return 12
     }
     
-    func updateTokenFieldHeight(tokenField: ZFTokenField!, increment:Bool) {
-        //        var val = CGFloat(50)
-        //        if increment == false {
-        //            if myRows > tokenField.height {
-        //                myRows = tokenField.height
-        //
-        //                if tokenHeight.constant - val >= 50 {
-        //                    tokenHeight.constant -= val
-        //                    contentHeight.constant -= val
-        //                }
-        //            }
-        //        } else {
-        //            if myRows < tokenField.height {
-        //                myRows = tokenField.height
-        //                tokenHeight.constant += val
-        //                contentHeight.constant += val
-        //            }
-        //        }
-    }
-    
     func tokenFieldShouldEndEditing(textField: ZFTokenField!) -> Bool {
         return true
     }
     
     func tokenDeleteButtonPressed(tokenButton: UIButton) {
-        //tokenField.indexOfTokenView(tokenButton.superview) needed?
         var index:Int = Int(skillsField.indexOfTokenView(tokenButton.superview?.superview))
         if index != NSNotFound {
             tokens.removeObjectAtIndex(index)
             skillsField.reloadData(false)
-            //updateTokenFieldHeight(tokenField, increment: false)
         }
     }
-    //
-    //    func scrollToBottom() {
-    //        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
-    //        scrollView.setContentOffset(bottomOffset, animated: true)
-    //    }
+
+    func scrollToBottom() {
+        println("get to the bottom!")
+//        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
+//        scrollView.setContentOffset(bottomOffset, animated: true)
+//        
+//        [scrollview scrollRectToVisible:CGRectMake(scrollview.contentSize.width - 1,scrollview.contentSize.height - 1, 1, 1) animated:YES];
+
+        self.scrollView.scrollRectToVisible(CGRectMake(scrollView.contentSize.width - 1,scrollView.contentSize.height - 1, 1, 1), animated: true)
+    }
     
     func tokenSelected(textField: AutoToke) {
-        //skillsField.addToken(textField.textField)
+
     }
+    
     func tokenField(tokenField: ZFTokenField!, didReturnWithText text: String!) {
         tokens.addObject(text)
         skillsField.reloadData(true)
-        //updateTokenFieldHeight(tokenField, increment: true)
-        //scrollToBottom()
+        scrollToBottom()
     }
 }

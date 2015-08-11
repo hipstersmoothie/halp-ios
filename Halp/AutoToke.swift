@@ -65,6 +65,7 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
                 }
             }
         }
+        
     }
     
     override func textFieldDidChange(textField: ZFTokenTextField!) {
@@ -73,6 +74,7 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
             self.provideSuggestions()
         }
     }
+    
     
     override func resignFirstResponder() -> Bool{
         if tableViewController != nil {
@@ -114,18 +116,19 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
             else{
                 //PopoverSize frame has not been set. Use default parameters instead.
                 var frameForPresentation = self.frame
-                frameForPresentation.origin.y += self.frame.size.height
+                frameForPresentation.origin.y += self.frame.size.height - 225
                 frameForPresentation.size.height = 200
                 self.tableViewController!.tableView.frame = frameForPresentation
             }
             
             var frameForPresentation = self.frame
-            frameForPresentation.origin.y += self.frame.size.height;
+            frameForPresentation.origin.y += self.frame.size.height - 225;
             frameForPresentation.size.height = 200;
             tableViewController!.tableView.frame = frameForPresentation
             
             self.superview?.addSubview(tableViewController!.tableView)
             self.tableViewController!.tableView.alpha = 0.0
+
             UIView.animateWithDuration(0.3,
                 animations: ({
                     self.tableViewController!.tableView.alpha = 1.0
@@ -134,6 +137,7 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
                     (finished : Bool) in
                     
             })
+            
         }
         
     }
@@ -163,14 +167,17 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
         }
         
         var frameForPresentation = self.frame
-        frameForPresentation.origin.y += self.frame.size.height;
         if (count == 1) {
+            frameForPresentation.origin.y += self.frame.size.height - 95;
             frameForPresentation.size.height = 45;
         } else if (count == 2) {
+            frameForPresentation.origin.y += self.frame.size.height - 140;
             frameForPresentation.size.height = 90;
         } else if (count == 3) {
+            frameForPresentation.origin.y += self.frame.size.height - 185;
             frameForPresentation.size.height = 135;
         } else {
+            frameForPresentation.origin.y += self.frame.size.height - 230;
             frameForPresentation.size.height = 180;
         }
         tableViewController?.tableView.frame = frameForPresentation
