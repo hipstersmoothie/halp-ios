@@ -48,14 +48,13 @@ func styleButton(button: UIButton) {
     button.clipsToBounds = true
 }
 
-func styleField(field: UITextField) {
+func styleField(field: UITextField, placeholder:String) {
+    let paddingView2 = UIView(frame: CGRectMake(0, 0, 15, field.frame.height))
     field.borderStyle = .RoundedRect
-    field.layer.borderWidth = 0
-    field.layer.shadowOpacity = 0.2
-    field.layer.shadowRadius = 3.5
-    field.layer.shadowColor = UIColor.blackColor().CGColor;
-    field.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-    field.clipsToBounds = false
+    field.leftView = paddingView2
+    field.leftViewMode = .Always
+    field.attributedPlaceholder =
+    NSAttributedString(string: placeholder, attributes: [NSForegroundColorAttributeName : UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 0.7)])
 }
 
 class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate {
@@ -191,8 +190,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
         registerButton.hidden = true
         orLabel.hidden = true
         
-        styleField(username)
-        styleField(password)
+        styleField(username, "username")
+        styleField(password, "password")
     }
     
     override func prefersStatusBarHidden() -> Bool {

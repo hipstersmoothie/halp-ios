@@ -8,6 +8,22 @@
 
 import UIKit
 
+func loadProfilePic(profilePic:UIImageView, user:User) {
+    if user.image != "" {
+        let url = NSURL(string: user.image)
+        let data = NSData(contentsOfURL: url!)
+        profilePic.image = UIImage(data: data!)
+    } else {
+        profilePic.image = UIImage(named: "tutor.jpeg")
+    }
+    
+    profilePic.layer.borderWidth=1.0
+    profilePic.layer.masksToBounds = false
+    profilePic.layer.borderColor = UIColor.whiteColor().CGColor
+    profilePic.layer.cornerRadius = profilePic.frame.size.height/2
+    profilePic.clipsToBounds = true
+}
+
 class studentProfile: UIViewController {
     @IBOutlet var name: UILabel!
     @IBOutlet var course: UILabel!
@@ -37,13 +53,7 @@ class studentProfile: UIViewController {
         super.viewDidLoad()
         // Name and Image
         name.text = "\(selectedTutor.user.firstname) \(selectedTutor.user.lastname[selectedTutor.user.lastname.startIndex])"
-        if selectedTutor.user.image != "" {
-            let url = NSURL(string: selectedTutor.user.image)
-            let data = NSData(contentsOfURL: url!)
-            profilePic.image = UIImage(data: data!)
-        } else {
-            profilePic.image = UIImage(named: "tutor.jpeg")
-        }
+        loadProfilePic(profilePic, selectedTutor.user)
         
         // Course
         for (university, courseList) in selectedTutor.courses {
@@ -54,14 +64,6 @@ class studentProfile: UIViewController {
         
         skills.text = ", ".join(selectedTutor.skills)
         pinDesc.text = selectedTutor.pinDescription
-        
-        
-        profilePic.layer.borderWidth=1.0
-        profilePic.layer.masksToBounds = false
-        profilePic.layer.borderColor = UIColor.whiteColor().CGColor
-        profilePic.layer.cornerRadius = 13
-        profilePic.layer.cornerRadius = profilePic.frame.size.height/2
-        profilePic.clipsToBounds = true
         
         styleButton(rOSButton)
         styleButton(startSessionButton)

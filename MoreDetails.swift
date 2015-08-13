@@ -225,9 +225,8 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String, AnyObject>) {
         
     }
-    override func viewDidLayoutSubviews() {
-        self.skillsField.description
-    }
+
+    
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>] {
         return skills
     }

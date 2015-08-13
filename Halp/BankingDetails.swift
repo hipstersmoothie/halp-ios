@@ -18,10 +18,10 @@ class BankingDetails: UIViewController {
         let next = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextScreen")
         self.navigationItem.rightBarButtonItem = next
         
-        styleField(acctNumber)
-        styleField(routingNumber)
-        styleField(email)
-        styleField(phone)
+        styleField(acctNumber, "account number")
+        styleField(routingNumber, "routing number")
+        styleField(email, "email")
+        styleField(phone, "phone")
     }
     
     override func didReceiveMemoryWarning() {

@@ -46,20 +46,10 @@ class SchoolPicker: UIViewController, XLPagerTabStripChildItem, MPGTextFieldDele
         nextButton.layer.borderColor = teal.CGColor
         nextButton.clipsToBounds = true
         
-        let paddingView2 = UIView(frame: CGRectMake(0, 0, 15, self.courseField.frame.height))
-        courseField.borderStyle = .RoundedRect
-        courseField.leftView = paddingView2
-        courseField.leftViewMode = .Always
-        courseField.attributedPlaceholder =
-            NSAttributedString(string: "course", attributes: [NSForegroundColorAttributeName : UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 0.7)])
+        styleField(courseField, "course")
         courseField.mDelegate = self
         
-        let paddingView = UIView(frame: CGRectMake(0, 0, 15, self.universityField.frame.height))
-        universityField.borderStyle = .RoundedRect
-        universityField.leftView = paddingView
-        universityField.leftViewMode = .Always
-        universityField.attributedPlaceholder =
-            NSAttributedString(string: "school name", attributes: [NSForegroundColorAttributeName : UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 0.7)])
+        styleField(universityField, "school")
         universityField.mDelegate = self
     }
 
