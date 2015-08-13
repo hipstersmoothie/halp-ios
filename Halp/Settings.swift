@@ -127,7 +127,6 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         
         if loggedInUser.rate == 0 {
             self.tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .None)
-            self.tableView.deleteSections(<#sections: NSIndexSet#>, withRowAnimation: <#UITableViewRowAnimation#>)
         }
     }
     
