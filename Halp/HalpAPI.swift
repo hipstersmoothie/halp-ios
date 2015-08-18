@@ -197,7 +197,7 @@ class HalpAPI {
     
     func markNotification(event:String) {
         func empty(success:Bool, json:JSON) {
-            
+            println(success, json)
         }
         var params = [
             "event" : event

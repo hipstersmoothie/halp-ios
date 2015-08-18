@@ -331,12 +331,18 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         notificationCounts = object
         
         dispatch_async(dispatch_get_main_queue()) {
-            let fullCount = events.count + count
-            if(fullCount > 0) {
-                self.navigationItem.rightBarButtonItem?.badgeValue = "\(fullCount)"
+            if(count > 0) {
+                self.navigationItem.rightBarButtonItem?.badgeValue = "\(count)"
             } else {
                 self.navigationItem.rightBarButtonItem?.badgeValue = ""
             }
+        }
+        
+        if (object["session"] != nil && object["session"]?.isEqual(NSNull()) == false) {
+            let session = object["session"] as! Dictionary<String, AnyObject>
+            NSNotificationCenter.defaultCenter().postNotificationName("inSession", object: nil, userInfo: session)
+        } else {
+            NSNotificationCenter.defaultCenter().postNotificationName("GetNewMessages", object: nil, userInfo: object)
         }
     }
     
@@ -344,6 +350,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         halpApi.getNotifications() { success, json in
             if (success) {
                 let object = json["notification"].dictionaryObject! as Dictionary<String, AnyObject>
+                let count = object["count"] as! Int
+                UIApplication.sharedApplication().applicationIconBadgeNumber = count
                 self.updates(object)
             } else {
                 
@@ -400,6 +408,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gotNotifications:"), name: "notificationsRecieved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateNotifications"), name: "updateNotifications", object: nil)
         matches = []
         // Do any additional setup after loading the view, typically from a nib.
         // Core Location

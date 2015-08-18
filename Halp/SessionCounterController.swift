@@ -18,9 +18,11 @@ class SessionCounterController: UIViewController {
     
     @IBOutlet var hold: UIButton!
     override func viewDidLoad() {
-       println(sessionRate)
         super.viewDidLoad()
         rate.text = "$\(sessionRate)/hour"
+        
+        var date = NSDate(timeIntervalSince1970: NSTimeInterval(sessionStartTime))
+        totTime = NSDate().secondsFrom(date)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("increment"), userInfo: nil, repeats: true)
         
         var btn_LongPress_gesture = UILongPressGestureRecognizer(target: self, action: "handleBtnLongPressgesture:")
