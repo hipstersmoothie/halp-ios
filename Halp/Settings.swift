@@ -81,6 +81,13 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        // Create a new variable to store the instance of PlayerTableViewController
+        let destinationVC = segue.destinationViewController as! UniversityList
+        destinationVC.coursesInfo = loggedInUser.courses
+        destinationVC.uniNames = Array(loggedInUser.courses.keys)
+    }
+    
     @IBOutlet var firstName: UITextField!
     @IBOutlet var lastName: UITextField!
     @IBOutlet var bioTextview: UITextView!
@@ -88,7 +95,6 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
     @IBOutlet var skillsField: UITextField!
     @IBOutlet var rateField: UITextField!
     @IBOutlet var saveButton: UIButton!
-    @IBOutlet var bankingInfoCell: UITableViewCell!
     @IBOutlet var classesCell: UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +124,6 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         
         styleButton(saveButton)
         
-        bankingInfoCell.accessoryType = .DisclosureIndicator
         classesCell.accessoryType = .DisclosureIndicator
         
         if loggedInUser.bio != "" {
@@ -127,6 +132,14 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         
         if loggedInUser.rate == 0 {
             self.tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println(indexPath)
+        println("morp")
+        if indexPath.row == 3 {
+            self.performSegueWithIdentifier("showGetUnis", sender: nil)
         }
     }
     

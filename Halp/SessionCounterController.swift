@@ -38,7 +38,7 @@ class SessionCounterController: UIViewController {
     @IBAction func endAction(sender: AnyObject) {
         currentAlert = UIAlertController(title: "Do you want to end the session?", message: "The session has run for \(self.time.text!) and cost \(self.cost.text!)", preferredStyle: .Alert)
         currentAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-            halpApi.endSession(self.totTime) { success, json in
+            halpApi.endSession(1000) { success, json in
                 if success == true{
                     self.currentAlert = nil
                     self.endAlert()
