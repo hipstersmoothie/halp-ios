@@ -136,8 +136,6 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(indexPath)
-        println("morp")
         if indexPath.row == 3 {
             self.performSegueWithIdentifier("showGetUnis", sender: nil)
         }
