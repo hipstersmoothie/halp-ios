@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SchoolPicker: UIViewController, XLPagerTabStripChildItem, MPGTextFieldDelegate {
+class SchoolPicker: UIViewController, XLPagerTabStripChildItem, MPGTextFieldDelegate, UITextFieldDelegate {
     @IBOutlet var universityField: MPGTextField_Swift!
     @IBOutlet var courseField: MPGTextField_Swift!
     @IBOutlet var nextButton: UIButton!
@@ -99,5 +99,13 @@ class SchoolPicker: UIViewController, XLPagerTabStripChildItem, MPGTextFieldDele
             courseField.enabled = true
         }
     }
-
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
 }

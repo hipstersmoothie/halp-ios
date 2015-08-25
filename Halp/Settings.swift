@@ -9,12 +9,9 @@
 import UIKit
 
 class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var courseRow = 1
-    var firstname:String!
-    var universities:[String] = []
-    var courses:[[Course]] = []
     var newPic:UIImage!
     var image = UIImagePickerController()
+    var coursesInfo:Dictionary<String, AnyObject>!
     
     func pickPhoto(sender: AnyObject) {
         self.presentViewController(image, animated: true, completion: nil)
@@ -26,49 +23,44 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         tableView.reloadData()
     }
     
-    @IBAction func addUniRow(sender: AnyObject) {
-        courseRow++
-        tableView.reloadData()
-    }
-    
     @IBAction func saveSettings(sender: AnyObject) {
         var params = Dictionary<String, AnyObject>()
         
-//        if infoCell.firstName.text != loggedInUser.firstname {
-//            params.updateValue(infoCell.firstName.text, forKey: "firstname")
-//        }
-//        
-//        if infoCell.lastName.text != loggedInUser.lastname {
-//            params.updateValue(infoCell.lastName.text, forKey: "lastname")
-//        }
-//        
-//        if newPic != nil {
-//            let imageData = UIImagePNGRepresentation(newPic)
-//            let base64String = imageData.base64EncodedStringWithOptions(nil)
-//            
-//            params.updateValue(base64String, forKey: "image")
-//        }
-//        
-//        //Tutor Settings
-//        var tutor = Dictionary<String, AnyObject>()
-//        if bio.bio.text != loggedInUser.bio {
-//            tutor.updateValue(bio.bio.text, forKey: "bio")
-//        }
-//        
-//        var skillsArr = split(skills.skills.text) {$0 == ","}
-//        if skillsArr.count != loggedInUser.skills.count {
-//            tutor.updateValue(skillsArr, forKey: "skills")
-//        }
-//
-//        if rate.rate.text != "" && (rate.rate.text as NSString).doubleValue != loggedInUser.rate {
-//            tutor.updateValue( (rate.rate.text as NSString).doubleValue, forKey: "rate")
-//        }
-//        
-//        if tutor.count > 0 {
-//            params.updateValue(tutor, forKey: "tutor")
-//        }
-//        
-//        halpApi.updateProfile(params, completionHandler: self.updatedProfile)
+        if firstName.text != loggedInUser.firstname {
+            params.updateValue(firstName.text, forKey: "firstname")
+        }
+
+        if lastName.text != loggedInUser.lastname {
+            params.updateValue(lastName.text, forKey: "lastname")
+        }
+
+        if newPic != nil {
+            let imageData = UIImagePNGRepresentation(newPic)
+            let base64String = imageData.base64EncodedStringWithOptions(nil)
+            
+            params.updateValue(base64String, forKey: "image")
+        }
+        
+        //Tutor Settings
+        var tutor = Dictionary<String, AnyObject>()
+        if bioTextview.text != loggedInUser.bio {
+            tutor.updateValue(bioTextview.text, forKey: "bio")
+        }
+        
+        var skillsArr = split(skillsField.text) {$0 == ","}
+        if skillsArr.count != loggedInUser.skills.count {
+            tutor.updateValue(skillsArr, forKey: "skills")
+        }
+
+        if rateField.text != "" && (rateField.text as NSString).doubleValue != loggedInUser.rate {
+            tutor.updateValue( (rateField.text as NSString).doubleValue, forKey: "rate")
+        }
+        
+        if tutor.count > 0 {
+            params.updateValue(tutor, forKey: "tutor")
+        }
+        
+        halpApi.updateProfile(params, completionHandler: self.updatedProfile)
     }
     
     func updatedProfile(success:Bool, json:JSON) {
@@ -86,6 +78,8 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         let destinationVC = segue.destinationViewController as! UniversityList
         destinationVC.coursesInfo = loggedInUser.courses
         destinationVC.uniNames = Array(loggedInUser.courses.keys)
+        destinationVC.update = true
+        destinationVC.controller = self
     }
     
     @IBOutlet var firstName: UITextField!
@@ -98,11 +92,10 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
     @IBOutlet var classesCell: UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.coursesInfo = loggedInUser.courses
         image.delegate = self
         image.sourceType = .PhotoLibrary
         image.allowsEditing = false
-        
-        courseRow = universities.count
         
         styleField(firstName, "first name")
         firstName.text = loggedInUser.firstname
@@ -144,10 +137,6 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
     @IBOutlet var addAnotherSection: UITableViewCell!
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.title = "Account Settings"
-        for (university, courseList) in loggedInUser.courses {
-            universities.append(university)
-            courses.append(courseList)
-        }
         self.tableView.reloadData()
     }
     
@@ -159,39 +148,23 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
      func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         
         if textField.tag != 0 && textField.tag != 1 {
-            var pointInTable:CGPoint = textField.superview!.convertPoint(textField.frame.origin, toView:self.tableView)
-            var contentOffset:CGPoint = self.tableView.contentOffset
-            contentOffset.y  = pointInTable.y
-            if let accessoryView = textField.inputAccessoryView {
-                contentOffset.y -= accessoryView.frame.size.height
-            }
-            
-            contentOffset.y -= 150
-            self.tableView.contentOffset = contentOffset
+            animateViewMoving(textField)
         }
         
         return true;
     }
-//    
-//    func textViewDidBeginEditing(textView: UITextView) {
-//        animateViewMoving(true, moveValue: 100)
-//        textView.text = nil
-//    }
     
-//    func textViewDidEndEditing(textView: UITextView) {
-//        animateViewMoving(false, moveValue: 100)
-//        if textView.text == "" {
-//            textView.text = "Write a bio about yourself. This helps student get to know you before you meet."
-//        }
-//    }
-//    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        animateViewMoving(textView)
+        textView.text = nil
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true);
+    func textViewDidEndEditing(textView: UITextView) {
+        animateViewMoving(textView)
+        if textView.text == "" {
+            textView.text = "Write a bio about yourself. This helps student get to know you before you meet."
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -202,14 +175,17 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         }
     }
     
-    func animateViewMoving (up:Bool, moveValue :CGFloat){
-        var movementDuration:NSTimeInterval = 0.3
-        var movement:CGFloat = ( up ? -moveValue : moveValue)
-        UIView.beginAnimations( "animateView", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration )
-        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
-        UIView.commitAnimations()
+    func animateViewMoving (view: UIView){
+        var pointInTable:CGPoint = view.superview!.convertPoint(view.frame.origin, toView:self.tableView)
+        var contentOffset:CGPoint = self.tableView.contentOffset
+        contentOffset.y  = pointInTable.y
+        if let accessoryView = view.inputAccessoryView {
+            contentOffset.y -= accessoryView.frame.size.height
+        }
+        
+        contentOffset.y -= 150
+        self.tableView.contentOffset = contentOffset
+
     }
 
 }

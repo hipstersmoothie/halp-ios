@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate, AutoTokeDelegate  {
+class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFieldDataSource, ZFTokenFieldDelegate, AutoTokeDelegate, UITextFieldDelegate  {
     var tokens:NSMutableArray!
     @IBOutlet var universityField: MPGTextField_Swift!
     @IBOutlet var addButton: UIButton!

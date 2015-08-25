@@ -367,7 +367,7 @@
         <scene sceneID="jpF-lj-Gs4">
             <objects>
                 <tableViewController storyboardIdentifier="Settings" id="crf-15-OoH" customClass="Settings" customModule="Halp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="e6s-x6-NNg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="e6s-x6-NNg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -375,7 +375,7 @@
                         <sections>
                             <tableViewSection headerTitle="Basic Info" id="Jr0-eF-md0" userLabel="Basic Info">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicInfo" rowHeight="157" id="88i-i3-Rrd" customClass="basicInfo" customModule="Halp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="basicInfo" rowHeight="157" id="88i-i3-Rrd" customClass="basicInfo" customModule="Halp" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="88i-i3-Rrd" id="PPG-CY-kJR">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -394,11 +394,17 @@
                                                     <rect key="frame" x="20" y="19" width="241" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="crf-15-OoH" id="LYG-zT-LCp"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ac3-EX-IZU">
                                                     <rect key="frame" x="20" y="85" width="241" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="crf-15-OoH" id="h0p-b0-uD1"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -414,7 +420,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Tutor Info" id="esJ-1H-TlJ">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="skills" rowHeight="90" id="n48-Dv-9F4" customClass="skillsCell" customModule="Halp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="skills" rowHeight="90" id="n48-Dv-9F4" customClass="skillsCell" customModule="Halp" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n48-Dv-9F4" id="uOf-8q-Guc">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -424,7 +430,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="crf-15-OoH" id="Vz1-w8-uct"/>
+                                                        <outlet property="delegate" destination="crf-15-OoH" id="6XJ-fh-QbH"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -435,19 +441,11 @@
                                             <outlet property="skills" destination="i2Z-l3-3u7" id="e2b-HC-TTB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rate" rowHeight="84" id="OZz-D3-kgJ" customClass="rateCell" customModule="Halp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="rate" rowHeight="84" id="OZz-D3-kgJ" customClass="rateCell" customModule="Halp" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZz-D3-kgJ" id="h12-SK-EHU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-mz-tN4">
-                                                    <rect key="frame" x="275" y="15" width="82" height="56"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="crf-15-OoH" id="74g-ly-Dk9"/>
-                                                    </connections>
-                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIb-dA-07w">
                                                     <rect key="frame" x="255" y="31" width="10" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -460,14 +458,19 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-mz-tN4">
+                                                    <rect key="frame" x="273" y="14" width="82" height="56"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="crf-15-OoH" id="yF1-R3-RCl"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="rate" destination="RNv-mz-tN4" id="Hg9-Z2-kx8"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bio" rowHeight="164" id="bA2-ph-AMH" customClass="bioCell" customModule="Halp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="bio" rowHeight="164" id="bA2-ph-AMH" customClass="bioCell" customModule="Halp" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bA2-ph-AMH" id="aTe-pe-uGo">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -478,15 +481,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="crf-15-OoH" id="hLB-Tg-Q55"/>
+                                                        <outlet property="delegate" destination="crf-15-OoH" id="S7X-oK-lZa"/>
                                                     </connections>
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="bio" destination="Rs3-Kh-DgA" id="nNz-Xi-CbV"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rate" rowHeight="60" id="JGm-jl-NLo">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -503,7 +503,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAnother" rowHeight="115" id="zs1-FI-qk4">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="addAnother" rowHeight="115" id="zs1-FI-qk4">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zs1-FI-qk4" id="AiA-ru-USa">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -562,7 +562,7 @@
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="uniInfo" rowHeight="86" id="F9x-kw-dar" customClass="UniCourseCell" customModule="Halp" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="uniInfo" rowHeight="86" id="F9x-kw-dar" customClass="UniCourseCell" customModule="Halp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F9x-kw-dar" id="XxZ-hs-Ty4">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -616,7 +616,7 @@
                                     <outlet property="uniTitle" destination="Wku-XQ-y7e" id="JM4-ub-7U8"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="AddAnother" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddAnother" rowHeight="67" id="mUE-u5-tEd">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="AddAnother" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddAnother" rowHeight="67" id="mUE-u5-tEd">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mUE-u5-tEd" id="5fG-W5-8DP">
@@ -631,6 +631,9 @@
                                                 <color key="titleColor" red="0.53333333329999999" green="0.80392156859999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="addUniversity:" destination="tem-kj-QUD" eventType="touchUpInside" id="qRy-sY-I03"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -651,6 +654,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="nl9-gE-ggy" kind="show" identifier="addUniCourse" id="TsZ-tx-IuP"/>
+                        <segue destination="crf-15-OoH" kind="show" identifier="toSettings" id="Q9K-gH-wnM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g63-Bk-bAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -711,6 +715,9 @@
                                         <exclude reference="tM8-kY-9Cg"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="nl9-gE-ggy" id="KJh-27-E09"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -736,7 +743,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZ9-Wo-WKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1615.5" y="-2663.5"/>
+            <point key="canvasLocation" x="1721.5" y="-2663.5"/>
         </scene>
         <!--Bio And Skills Controller-->
         <scene sceneID="0Ty-MO-hZP">
@@ -2202,6 +2209,9 @@
                                 <rect key="frame" x="51" y="228" width="273" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Vuh-gb-jYy" id="gcC-1g-Dxb"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3549,8 +3559,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="sSu-AE-faT"/>
-        <segue reference="S0h-4g-6Vi"/>
         <segue reference="Po8-wj-Htr"/>
+        <segue reference="S0h-4g-6Vi"/>
         <segue reference="qCc-FV-0fJ"/>
         <segue reference="YgQ-bl-k40"/>
     </inferredMetricsTieBreakers>

@@ -8,6 +8,11 @@
 
 import UIKit
 
-class bioCell: UITableViewCell {
+class bioCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet var bio: UITextView!
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

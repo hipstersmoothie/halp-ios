@@ -11,11 +11,28 @@ import UIKit
 class UniversityList: UITableViewController {
     var coursesInfo = Dictionary<String, AnyObject>()
     var uniNames:[String] = []
+    var update = false
+    var controller:UIViewController!
+    
+    @IBAction func addUniversity(sender: AnyObject) {
+        self.performSegueWithIdentifier("addUniCourse", sender:self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
+        if update {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveClasses")
+        }
+    }
+    
+    func saveClasses() {
+        if update {
+            let settings = controller as! Settings
+            settings.coursesInfo = self.coursesInfo
+        }
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,7 +58,6 @@ class UniversityList: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println(indexPath.row)
         if coursesInfo.count == 0 || indexPath.row == coursesInfo.count {
             var cell =  self.tableView.dequeueReusableCellWithIdentifier("AddAnother") as! UITableViewCell
             return cell
