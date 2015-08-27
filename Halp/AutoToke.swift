@@ -20,6 +20,8 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
     var mDelegate : AutoTokeDelegate?
     var tableViewController : UITableViewController?
     var data = [Dictionary<String, AnyObject>]()
+    var direction:Bool!
+    var adjustment:CGFloat!
     
     //Set this to override the default color of suggestions popover. The default color is [UIColor colorWithWhite:0.8 alpha:0.9]
     @IBInspectable var popoverBackgroundColor : UIColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
@@ -43,6 +45,7 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
     override func layoutSubviews() {
         super.layoutSubviews()
         runAutoComplete()
+        adjustment = direction == true ? -225 : 0;
     }
     
     func runAutoComplete() {
@@ -105,6 +108,7 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
             tapRecognizer.delegate = self
             self.superview?.addGestureRecognizer(tapRecognizer)
             
+            
             self.tableViewController = UITableViewController.alloc()
             self.tableViewController!.tableView.delegate = self
             self.tableViewController!.tableView.dataSource = self
@@ -116,14 +120,14 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
             else{
                 //PopoverSize frame has not been set. Use default parameters instead.
                 var frameForPresentation = self.frame
-                frameForPresentation.origin.y += self.frame.size.height - 225
+                frameForPresentation.origin.y += self.frame.size.height + adjustment
                 frameForPresentation.size.height = 200
                 self.tableViewController!.tableView.frame = frameForPresentation
             }
             
             var frameForPresentation = self.frame
-            frameForPresentation.origin.y += self.frame.size.height - 225;
-            frameForPresentation.size.height = 200;
+            frameForPresentation.origin.y += self.frame.size.height + adjustment
+            frameForPresentation.size.height = 200
             tableViewController!.tableView.frame = frameForPresentation
             
             self.superview?.addSubview(tableViewController!.tableView)
@@ -167,17 +171,20 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
         }
         
         var frameForPresentation = self.frame
+        if(direction == false) {
+            frameForPresentation.origin.y += self.frame.size.height;
+        }
         if (count == 1) {
-            frameForPresentation.origin.y += self.frame.size.height - 95;
+            
             frameForPresentation.size.height = 45;
         } else if (count == 2) {
-            frameForPresentation.origin.y += self.frame.size.height - 140;
+            
             frameForPresentation.size.height = 90;
         } else if (count == 3) {
-            frameForPresentation.origin.y += self.frame.size.height - 185;
+            
             frameForPresentation.size.height = 135;
         } else {
-            frameForPresentation.origin.y += self.frame.size.height - 230;
+            
             frameForPresentation.size.height = 180;
         }
         tableViewController?.tableView.frame = frameForPresentation

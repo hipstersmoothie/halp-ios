@@ -68,7 +68,6 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     }
     
     func hideKeyboard() {
-        println("tap")
         timeField.resignFirstResponder()
         sessDesc.resignFirstResponder()
         skillsField.textField.resignFirstResponder()
@@ -94,6 +93,7 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         skillsField.clipsToBounds = true
         tokens.addObject("_cameraIcon")
         skillsField.reloadData(false)
+        skillsField.direction = false
         
         addPhotoView.addDashedBorder()
         addPhotoView.contentEdgeInsets = UIEdgeInsetsMake(50, 0, 0, 0)
@@ -225,9 +225,8 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     func autoTokeDidEndEditing(textField: AutoToke, withSelection data: Dictionary<String, AnyObject>) {
         
     }
-    override func viewDidLayoutSubviews() {
-        self.skillsField.description
-    }
+
+    
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>] {
         return skills
     }
@@ -294,12 +293,6 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
     }
 
     func scrollToBottom() {
-        println("get to the bottom!")
-//        var bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height)
-//        scrollView.setContentOffset(bottomOffset, animated: true)
-//        
-//        [scrollview scrollRectToVisible:CGRectMake(scrollview.contentSize.width - 1,scrollview.contentSize.height - 1, 1, 1) animated:YES];
-
         self.scrollView.scrollRectToVisible(CGRectMake(scrollView.contentSize.width - 1,scrollView.contentSize.height - 1, 1, 1), animated: true)
     }
     

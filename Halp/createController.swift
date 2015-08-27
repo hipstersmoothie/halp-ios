@@ -99,11 +99,11 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         styleButton(createButton)
-        styleField(email)
-        styleField(firstname)
-        styleField(lastName)
-        styleField(password)
-        styleField(confirmPass)
+        styleField(email, "email")
+        styleField(firstname, "first name")
+        styleField(lastName, "last name")
+        styleField(password, "password")
+        styleField(confirmPass, "confirm pass")
     }
     
     func popToRoot(sender:UIBarButtonItem){

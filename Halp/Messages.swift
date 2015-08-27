@@ -32,19 +32,19 @@ class Messages: UITableViewController {
         pause(self.view)
         chats = []
         halpApi.getConversations() { sucess, json in
-            if sucess == true {
-                let conversations = json["conversations"].arrayValue
-                
-                for conversation in conversations {
-                    self.chats.append(Chat(rootMessage: conversation))
-                }
-                
-                dispatch_async(dispatch_get_main_queue()) {
+            dispatch_async(dispatch_get_main_queue()) {
+                if sucess == true {
+                    let conversations = json["conversations"].arrayValue
+                    
+                    for conversation in conversations {
+                        self.chats.append(Chat(rootMessage: conversation))
+                    }
+                    
                     self.tableView.reloadData()
-                    start(self.view)
+                } else {
+                    println(json)
                 }
-            } else {
-                println(json)
+                start(self.view)
             }
         }
         
@@ -77,7 +77,10 @@ class Messages: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
+        if chats.count > 0 {
+            return chats.count
+        }
+        return 1
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -95,11 +98,16 @@ class Messages: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(ChatCell), forIndexPath: indexPath) as! ChatCell
-        
-        cell.configureWithChat(chats[indexPath.row])
-        
-        return cell
+        if chats.count > 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(ChatCell), forIndexPath: indexPath) as! ChatCell
+            
+            cell.configureWithChat(chats[indexPath.row])
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("noMessages") as! UITableViewCell
+            return cell
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

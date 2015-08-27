@@ -70,10 +70,9 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
     }
     
     func launchSession(notification: NSNotification) {
-        let data = notification.userInfo! as Dictionary<NSObject, AnyObject>
-        if let session = data["session"] as? Dictionary<String, AnyObject> {
-            if sessionStartTime == 0 {
-                sessionStartTime = session["startTimestamp"] as! NSInteger
+        if let session = notification.userInfo as? Dictionary<String, AnyObject> {
+            if let time = session["startTimestamp"] as? NSInteger {
+                sessionStartTime = time
                 sessionRate = session["rate"] as! Double
                 otherUserId = session["otherUserId"] as! NSInteger
                 nav.pushViewController(self.sessionController, animated: true)

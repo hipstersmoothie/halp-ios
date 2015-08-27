@@ -22,14 +22,14 @@ class MerchantDetails: UIViewController {
         let next = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextScreen")
         self.navigationItem.rightBarButtonItem = next
         
-        styleField(email)
-        styleField(phone)
-        styleField(dateOfBirth)
-        styleField(ssn)
-        styleField(address)
-        styleField(city)
-        styleField(zip)
-        styleField(state)
+        styleField(email, "email")
+        styleField(phone, "phone")
+        styleField(dateOfBirth, "date of birth")
+        styleField(ssn, "social security number")
+        styleField(address, "address")
+        styleField(city, "city")
+        styleField(zip, "zip")
+        styleField(state, "state")
     }
     
     override func didReceiveMemoryWarning() {

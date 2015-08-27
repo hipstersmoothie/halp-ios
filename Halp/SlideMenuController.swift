@@ -218,6 +218,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         if contains(events, "sub_merchant_approved") {
             halpApi.markNotification("sub_merchant_approved")
         }
+        NSNotificationCenter.defaultCenter().postNotificationName("updateNotifications", object: nil, userInfo: nil)
     }
     
     

@@ -66,8 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Notification RECIEVED
         notificationCounts = userInfo as! [String : AnyObject]
         let count = notificationCounts["count"] as! Int
+        println("notification recieved")
         let events = notificationCounts["events"] as! [String]
-        UIApplication.sharedApplication().applicationIconBadgeNumber = count + events.count
+        UIApplication.sharedApplication().applicationIconBadgeNumber = count
         
         NSNotificationCenter.defaultCenter().postNotificationName("notificationsRecieved", object: nil, userInfo: userInfo)
         if (userInfo["session"] != nil) {
