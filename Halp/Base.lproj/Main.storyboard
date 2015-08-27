@@ -387,8 +387,12 @@
                                                     <rect key="frame" x="296" y="105" width="46" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <state key="normal" title="Edit">
+                                                        <color key="titleColor" red="0.53333333329999999" green="0.80392156859999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="editPicture:" destination="crf-15-OoH" eventType="touchUpInside" id="5sp-jX-IhO"/>
+                                                    </connections>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l1E-gT-A1Z">
                                                     <rect key="frame" x="20" y="19" width="241" height="50"/>
@@ -410,7 +414,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="editPic" destination="o3H-MN-q8v" id="dWn-Zo-zKg"/>
                                             <outlet property="firstName" destination="l1E-gT-A1Z" id="1PJ-WJ-cwz"/>
                                             <outlet property="lastName" destination="Ac3-EX-IZU" id="uxD-jp-CgI"/>
                                             <outlet property="profilePic" destination="N9h-ea-HB8" id="uhx-kD-BnT"/>
@@ -3562,6 +3565,6 @@
         <segue reference="Po8-wj-Htr"/>
         <segue reference="S0h-4g-6Vi"/>
         <segue reference="qCc-FV-0fJ"/>
-        <segue reference="YgQ-bl-k40"/>
+        <segue reference="N5I-MR-7BE"/>
     </inferredMetricsTieBreakers>
 </document>

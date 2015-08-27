@@ -20,7 +20,7 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         self.dismissViewControllerAnimated(true, completion: nil)
         newPic = RBSquareImageTo(image, CGSize(width: 100, height: 100))
-        tableView.reloadData()
+        profilePic.image = newPic        
     }
     
     @IBAction func saveSettings(sender: AnyObject) {
@@ -47,7 +47,10 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
             tutor.updateValue(bioTextview.text, forKey: "bio")
         }
         
-        var skillsArr = split(skillsField.text) {$0 == ","}
+        var skillsArr = split(skillsField.text) {$0 == "," }
+        skillsArr = skillsArr.map() { skill in
+            return skill.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        }
         if skillsArr.count != loggedInUser.skills.count {
             tutor.updateValue(skillsArr, forKey: "skills")
         }
@@ -61,7 +64,7 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         if tutor.count > 0 {
             params.updateValue(tutor, forKey: "tutor")
         }
-        println(params)
+        pause(self.view)
         halpApi.updateProfile(params, completionHandler: self.updatedProfile)
     }
     
@@ -83,6 +86,7 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
     }
     func updatedProfile(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
+            start(self.view)
             if success {
                 createAlert(self, "Success!", "Account details changed.")
                 loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
@@ -99,6 +103,10 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         destinationVC.uniNames = Array(coursesInfo.keys)
         destinationVC.update = true
         destinationVC.controller = self
+    }
+    
+    @IBAction func editPicture(sender: AnyObject) {
+        pickPhoto(self)
     }
     
     @IBOutlet var firstName: UITextField!
