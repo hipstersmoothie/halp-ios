@@ -93,6 +93,7 @@ class MoreDetails: UIViewController, XLPagerTabStripChildItem, UIImagePickerCont
         skillsField.clipsToBounds = true
         tokens.addObject("_cameraIcon")
         skillsField.reloadData(false)
+        skillsField.direction = false
         
         addPhotoView.addDashedBorder()
         addPhotoView.contentEdgeInsets = UIEdgeInsetsMake(50, 0, 0, 0)

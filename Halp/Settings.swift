@@ -56,17 +56,36 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
             tutor.updateValue( (rateField.text as NSString).doubleValue, forKey: "rate")
         }
         
+        tutor.updateValue(compileCourses(), forKey: "courses")
+        
         if tutor.count > 0 {
             params.updateValue(tutor, forKey: "tutor")
         }
-        
+        println(params)
         halpApi.updateProfile(params, completionHandler: self.updatedProfile)
     }
     
+    func compileCourses() -> Dictionary<String,[Dictionary<String, String>]> {
+        var courses = Dictionary<String,[Dictionary<String, String>]>()
+        for (school, courseEntries) in coursesInfo {
+            let coursesArr = courseEntries as! [Course]
+            var interpCourses:[Dictionary<String, String>] = []
+            for course in coursesArr {
+                interpCourses.append([
+                    "subject": course.subject,
+                    "number": String(course.number)
+                ])
+            }
+            
+            courses.updateValue(interpCourses, forKey: school)
+        }
+        return courses
+    }
     func updatedProfile(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
             if success {
                 createAlert(self, "Success!", "Account details changed.")
+                loggedInUser = User(user: json["profile"], courses: json["profile"]["tutor"]["courses"])
             } else {
                 createAlert(self, "Error.", "Something went wrong changing your account details.")
             }
@@ -76,8 +95,8 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Create a new variable to store the instance of PlayerTableViewController
         let destinationVC = segue.destinationViewController as! UniversityList
-        destinationVC.coursesInfo = loggedInUser.courses
-        destinationVC.uniNames = Array(loggedInUser.courses.keys)
+        destinationVC.coursesInfo = coursesInfo
+        destinationVC.uniNames = Array(coursesInfo.keys)
         destinationVC.update = true
         destinationVC.controller = self
     }

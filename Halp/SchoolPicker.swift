@@ -48,6 +48,7 @@ class SchoolPicker: UIViewController, XLPagerTabStripChildItem, MPGTextFieldDele
         
         styleField(courseField, "course")
         courseField.mDelegate = self
+        courseField.textColor = UIColor.grayColor()
         
         styleField(universityField, "school")
         universityField.mDelegate = self
@@ -97,6 +98,7 @@ class SchoolPicker: UIViewController, XLPagerTabStripChildItem, MPGTextFieldDele
                 }
             }
             courseField.enabled = true
+            courseField.textColor = teal
         }
     }
     

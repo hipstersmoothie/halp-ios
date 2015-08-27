@@ -13,6 +13,56 @@ class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFi
     @IBOutlet var universityField: MPGTextField_Swift!
     @IBOutlet var addButton: UIButton!
     @IBOutlet var coursesListField: AutoToke!
+    var newCourses:[Course] = []
+    var parent:UniversityList!
+    
+    @IBAction func addButtonActions(sender: AnyObject) {
+        for(var i = 1; i < tokens.count; i++) {
+            let current = tokens[i] as! String
+            var courseInfo = split(current) {$0 == " "}
+            if courseInfo.count != 2 {
+                createAlert(self, "Error", "Format Course like CPE 123.")
+                return;
+            }
+            
+            var dict = Dictionary<String, AnyObject>()
+            dict["subject"] = courseInfo[0]
+            dict["number"] = courseInfo[1]
+            newCourses.append(Course(course: JSON(dict)))
+        }
+        
+        if universityField.text == "" {
+            createAlert(self, "Error", "Please enter a university")
+        } else if tokens.count < 2 {
+            createAlert(self, "Error", "Please enter some courses.")
+        } else {
+            let destinationVC = self.parent
+            if destinationVC.coursesInfo[universityField.text] == nil {
+                destinationVC.coursesInfo[universityField.text] = []
+            }
+            
+            let oldCourses = destinationVC.coursesInfo[universityField.text] as! [Course]
+            let oldSet = Set(oldCourses)
+            let newSet = Set(newCourses)
+            println(oldSet)
+            println(newSet)
+            let unionSet = Array(oldSet.union(newSet))
+            destinationVC.coursesInfo[universityField.text] = unionSet
+            
+            let oldUniNames = Set(destinationVC.uniNames)
+            println(destinationVC.uniNames)
+            println(oldUniNames)
+            let newUniNames = Set([universityField.text])
+            println(newUniNames)
+            let unionNames = Array(oldUniNames.union(newUniNames))
+            destinationVC.uniNames = unionNames
+            
+            println(unionSet)
+            println(unionNames)
+            self.navigationController?.popViewControllerAnimated(true)
+            parent.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +72,22 @@ class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFi
         universityField.mDelegate = self
         
         tokens = NSMutableArray()
+        tokens.addObject("blank")
+        
         coursesListField.mDelegate = self
         coursesListField.delegate = self
         coursesListField.dataSource = self
+        coursesListField.direction = true
+
         coursesListField.textField.font = coursesListField.textField.font.fontWithSize(15)
-        coursesListField.textField.attributedPlaceholder =  NSAttributedString(string: "courses", attributes: [NSForegroundColorAttributeName : UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 0.7)])
+        coursesListField.textField.attributedPlaceholder =  NSAttributedString(string: "courses", attributes: [NSForegroundColorAttributeName : UIColor.grayColor()])
+        
         coursesListField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
         coursesListField.layer.borderWidth = 1.0
         coursesListField.layer.cornerRadius = 5.0
         coursesListField.clipsToBounds = true
         coursesListField.reloadData(false)
-        coursesListField.enabled = false
+        coursesListField.enabled = true
 
     }
     
@@ -68,6 +123,7 @@ class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFi
                 }
             }
             coursesListField.enabled = true
+            coursesListField.textField.attributedPlaceholder =  NSAttributedString(string: "courses", attributes: [NSForegroundColorAttributeName : UIColor(red: 136/255, green: 205/255, blue: 202/255, alpha: 0.7)])
         }
     }
     
@@ -84,6 +140,14 @@ class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFi
     }
     
     func tokenField(tokenField: ZFTokenField!, viewForTokenAtIndex index: UInt) -> UIView! {
+        if index == 0 {
+            let image =  UIImageView(image: UIImage(named: "blank.png"))
+            image.frame = CGRectMake(0, 0, 10, 10);
+            let position = UIView(frame: CGRectMake(0, 0, 10, 10))
+            position.addSubview(image)
+            return position
+        }
+        
         var nibContents = NSBundle.mainBundle().loadNibNamed("TokenView", owner: nil, options: nil)
         var view: UIView = nibContents[0] as! UIView
         var label:UILabel = view.viewWithTag(2) as! UILabel
@@ -131,5 +195,14 @@ class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFi
     
     func skillAutoComplete(textfield: AutoToke) -> [Dictionary<String, AnyObject>] {
         return courses
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
     }
 }

@@ -684,19 +684,6 @@
                                     <outlet property="delegate" destination="nl9-gE-ggy" id="w56-nr-Fmh"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQk-X6-Xcg">
-                                <rect key="frame" x="115" y="571" width="144" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="RQk-X6-Xcg" secondAttribute="height" multiplier="144:55" id="7FD-Z4-QVs"/>
-                                </constraints>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonAction:" destination="nl9-gE-ggy" eventType="touchUpInside" id="FQn-xI-95T"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbU-NC-MwC" customClass="AutoToke" customModule="Halp" customModuleProvider="target">
                                 <rect key="frame" x="51" y="249" width="273" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -704,7 +691,7 @@
                                     <constraint firstAttribute="height" constant="50" id="5BT-uq-xlO"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="8Qw-qn-sfF"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="U9M-MF-YGQ"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="UF6-nn-U86"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="mhC-nJ-fYX"/>
                                     <constraint firstAttribute="width" secondItem="hbU-NC-MwC" secondAttribute="height" multiplier="144:25" id="tM8-kY-9Cg"/>
                                 </constraints>
                                 <variation key="default">
@@ -719,6 +706,19 @@
                                     <outlet property="delegate" destination="nl9-gE-ggy" id="KJh-27-E09"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQk-X6-Xcg">
+                                <rect key="frame" x="115" y="571" width="144" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RQk-X6-Xcg" secondAttribute="height" multiplier="144:55" id="7FD-Z4-QVs"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonActions:" destination="nl9-gE-ggy" eventType="touchUpInside" id="Vg4-hV-SGg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

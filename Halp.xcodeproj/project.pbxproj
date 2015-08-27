@@ -65,6 +65,7 @@
 		C278E3761A79EFB90006BCBD /* location-alt-512.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3751A79EFB90006BCBD /* location-alt-512.png */; };
 		C278E3781A79F04B0006BCBD /* student.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E3771A79F04B0006BCBD /* student.png */; };
 		C278E37E1A79F9AF0006BCBD /* timeline-list-grid-list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */; };
+		C287983B1B8D80010047B952 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C287983A1B8D80010047B952 /* ArrayExtension.swift */; };
 		C294ECE91A9B018900CFBB0D /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECE71A9B018900CFBB0D /* blank.png */; };
 		C294ECEF1A9B084D00CFBB0D /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = C294ECEE1A9B084D00CFBB0D /* point.png */; };
 		C29874CB1AA52EC500B6BC90 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = C29874CA1AA52EC500B6BC90 /* ZFTokenField.m */; };
@@ -197,6 +198,7 @@
 		C278E3751A79EFB90006BCBD /* location-alt-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-alt-512.png"; sourceTree = "<group>"; };
 		C278E3771A79F04B0006BCBD /* student.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student.png; sourceTree = "<group>"; };
 		C278E37D1A79F9AE0006BCBD /* timeline-list-grid-list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-list-grid-list-icon.png"; sourceTree = "<group>"; };
+		C287983A1B8D80010047B952 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		C294ECE71A9B018900CFBB0D /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = ../../../blank.png; sourceTree = "<group>"; };
 		C294ECEE1A9B084D00CFBB0D /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = point.png; path = ../../../point.png; sourceTree = "<group>"; };
 		C29874C91AA52EC500B6BC90 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				C243CCE61AF17D4100F82379 /* FloatRatingView.swift */,
 				C2353ABE1AB67A8D00B0616F /* UIBarButtonItem+Badge.m */,
 				C2E5E6D81AFAB3290030A0EE /* ImageResizer.swift */,
+				C287983A1B8D80010047B952 /* ArrayExtension.swift */,
 				C29874C91AA52EC500B6BC90 /* ZFTokenField.h */,
 				C29874CA1AA52EC500B6BC90 /* ZFTokenField.m */,
 				C2B8E0051A79D5970093C03B /* SwiftyJSON.swift */,
@@ -722,6 +725,7 @@
 				C2AC27081A9E683A00262621 /* MPGTextField-Swift.swift in Sources */,
 				C24392131A7F485D00A3AC58 /* reviewList.swift in Sources */,
 				C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */,
+				C287983B1B8D80010047B952 /* ArrayExtension.swift in Sources */,
 				C22B73C61AF032FC008231A4 /* RegisterContents.swift in Sources */,
 				C2B8B8E51AB218CC00CFB6C8 /* MessageSentDateCell.swift in Sources */,
 				C29874D11AA5546600B6BC90 /* AutoToke.swift in Sources */,

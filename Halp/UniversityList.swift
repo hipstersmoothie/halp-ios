@@ -23,7 +23,7 @@ class UniversityList: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         if update {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveClasses")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "saveClasses")
         }
     }
     
@@ -37,6 +37,11 @@ class UniversityList: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC = segue.destinationViewController as! AddUniversityAndCourses
+        destinationVC.parent = self
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
