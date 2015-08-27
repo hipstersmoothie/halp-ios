@@ -19,7 +19,6 @@
 		C20F5FD41AB4F6000093FAAC /* tray.png in Resources */ = {isa = PBXBuildFile; fileRef = C20F5FD31AB4F6000093FAAC /* tray.png */; };
 		C20F5FD61AB502FA0093FAAC /* NotificationTray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */; };
 		C21A789A1A9043B10052AF72 /* BioAndSkillsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */; };
-		C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */; };
 		C21EA2BB1AFB0DDA0029A119 /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21EA2BA1AFB0DDA0029A119 /* Payments.swift */; };
 		C22B6C4D1A905CCF009729AD /* SetRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22B6C4C1A905CCF009729AD /* SetRateController.swift */; };
 		C22B73C61AF032FC008231A4 /* RegisterContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22B73C51AF032FC008231A4 /* RegisterContents.swift */; };
@@ -45,11 +44,6 @@
 		C25C06851B1EC8FC007B0D26 /* AddPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C06841B1EC8FC007B0D26 /* AddPaymentMethod.swift */; };
 		C2605A0F1A897D6700AEBBFE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2605A0E1A897D6700AEBBFE /* Settings.swift */; };
 		C263A8561B82EF7400A1FAD2 /* UniversityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A8551B82EF7400A1FAD2 /* UniversityList.swift */; };
-		C263A8581B82F17B00A1FAD2 /* experienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A8571B82F17B00A1FAD2 /* experienceCell.swift */; };
-		C263A85A1B82F23A00A1FAD2 /* basicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A8591B82F23A00A1FAD2 /* basicInfo.swift */; };
-		C263A85C1B82F24200A1FAD2 /* skillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A85B1B82F24200A1FAD2 /* skillsCell.swift */; };
-		C263A85E1B82F26F00A1FAD2 /* rateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A85D1B82F26F00A1FAD2 /* rateCell.swift */; };
-		C263A8601B82F2EA00A1FAD2 /* bioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A85F1B82F2EA00A1FAD2 /* bioCell.swift */; };
 		C263A8621B82F4D100A1FAD2 /* UniCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A8611B82F4D100A1FAD2 /* UniCourseCell.swift */; };
 		C263A8641B8444BF00A1FAD2 /* AddUniversityAndCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263A8631B8444BF00A1FAD2 /* AddUniversityAndCourses.swift */; };
 		C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26646CB1A7843B0008B396C /* AppDelegate.swift */; };
@@ -145,7 +139,6 @@
 		C20F5FD31AB4F6000093FAAC /* tray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tray.png; sourceTree = "<group>"; };
 		C20F5FD51AB502FA0093FAAC /* NotificationTray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTray.swift; sourceTree = "<group>"; };
 		C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioAndSkillsController.swift; sourceTree = "<group>"; };
-		C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorSetupCourses.swift; sourceTree = "<group>"; };
 		C21EA2BA1AFB0DDA0029A119 /* Payments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		C22B6C4C1A905CCF009729AD /* SetRateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRateController.swift; sourceTree = "<group>"; };
 		C22B73C51AF032FC008231A4 /* RegisterContents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterContents.swift; sourceTree = "<group>"; };
@@ -173,11 +166,6 @@
 		C25C06841B1EC8FC007B0D26 /* AddPaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentMethod.swift; sourceTree = "<group>"; };
 		C2605A0E1A897D6700AEBBFE /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C263A8551B82EF7400A1FAD2 /* UniversityList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityList.swift; sourceTree = "<group>"; };
-		C263A8571B82F17B00A1FAD2 /* experienceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experienceCell.swift; sourceTree = "<group>"; };
-		C263A8591B82F23A00A1FAD2 /* basicInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = basicInfo.swift; sourceTree = "<group>"; };
-		C263A85B1B82F24200A1FAD2 /* skillsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = skillsCell.swift; sourceTree = "<group>"; };
-		C263A85D1B82F26F00A1FAD2 /* rateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateCell.swift; sourceTree = "<group>"; };
-		C263A85F1B82F2EA00A1FAD2 /* bioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bioCell.swift; sourceTree = "<group>"; };
 		C263A8611B82F4D100A1FAD2 /* UniCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniCourseCell.swift; path = ../UniCourseCell.swift; sourceTree = "<group>"; };
 		C263A8631B8444BF00A1FAD2 /* AddUniversityAndCourses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUniversityAndCourses.swift; sourceTree = "<group>"; };
 		C26646C61A7843B0008B396C /* Halp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Halp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,15 +287,9 @@
 				C263A8551B82EF7400A1FAD2 /* UniversityList.swift */,
 				C263A8611B82F4D100A1FAD2 /* UniCourseCell.swift */,
 				C263A8631B8444BF00A1FAD2 /* AddUniversityAndCourses.swift */,
-				C263A85F1B82F2EA00A1FAD2 /* bioCell.swift */,
-				C263A8571B82F17B00A1FAD2 /* experienceCell.swift */,
-				C263A8591B82F23A00A1FAD2 /* basicInfo.swift */,
-				C263A85D1B82F26F00A1FAD2 /* rateCell.swift */,
-				C263A85B1B82F24200A1FAD2 /* skillsCell.swift */,
 				C22B6C4C1A905CCF009729AD /* SetRateController.swift */,
 				C2CB4F821B27B991008FBF41 /* MerchantDetails.swift */,
 				C2CB4F841B27C486008FBF41 /* BankingDetails.swift */,
-				C21A789B1A9057180052AF72 /* TutorSetupCourses.swift */,
 				C21A78991A9043B10052AF72 /* BioAndSkillsController.swift */,
 			);
 			name = Settings;
@@ -724,7 +706,6 @@
 			files = (
 				C2AC27081A9E683A00262621 /* MPGTextField-Swift.swift in Sources */,
 				C24392131A7F485D00A3AC58 /* reviewList.swift in Sources */,
-				C21A789C1A9057180052AF72 /* TutorSetupCourses.swift in Sources */,
 				C287983B1B8D80010047B952 /* ArrayExtension.swift in Sources */,
 				C22B73C61AF032FC008231A4 /* RegisterContents.swift in Sources */,
 				C2B8B8E51AB218CC00CFB6C8 /* MessageSentDateCell.swift in Sources */,
@@ -738,7 +719,6 @@
 				C24392111A7F430D00A3AC58 /* TutorDetails.swift in Sources */,
 				C263A8561B82EF7400A1FAD2 /* UniversityList.swift in Sources */,
 				C2C298A41A819CC80010C475 /* UITableViewExtension.swift in Sources */,
-				C263A8581B82F17B00A1FAD2 /* experienceCell.swift in Sources */,
 				C243CCE91AF1901600F82379 /* tutorRatingController.swift in Sources */,
 				C20F5FD61AB502FA0093FAAC /* NotificationTray.swift in Sources */,
 				C2F8E93B1A89576F003ED69D /* User.swift in Sources */,
@@ -756,10 +736,8 @@
 				C2353ABF1AB67A8D00B0616F /* UIBarButtonItem+Badge.m in Sources */,
 				C2C298B21A81B7BE0010C475 /* ReviewController.swift in Sources */,
 				C2D5C8871B292B66006EA4F3 /* CreditCardCell.swift in Sources */,
-				C263A8601B82F2EA00A1FAD2 /* bioCell.swift in Sources */,
 				C243CCE71AF17D4100F82379 /* FloatRatingView.swift in Sources */,
 				C263A8641B8444BF00A1FAD2 /* AddUniversityAndCourses.swift in Sources */,
-				C263A85C1B82F24200A1FAD2 /* skillsCell.swift in Sources */,
 				C2C298931A80455B0010C475 /* BumpController.swift in Sources */,
 				C20F5FD21AB3D65C0093FAAC /* NSDataExtension.swift in Sources */,
 				C24597581A946E7500CBA227 /* studentProfile.swift in Sources */,
@@ -769,7 +747,6 @@
 				C2B8B8E61AB218CC00CFB6C8 /* MessageBubbleCell.swift in Sources */,
 				C2E985561AAD4C7700054C19 /* Chat.swift in Sources */,
 				C2CD518B1B05AB4E0022FB55 /* MoreDetails.swift in Sources */,
-				C263A85A1B82F23A00A1FAD2 /* basicInfo.swift in Sources */,
 				C25C06851B1EC8FC007B0D26 /* AddPaymentMethod.swift in Sources */,
 				C24391FF1A7EC6CA00A3AC58 /* tutorRow.swift in Sources */,
 				C26646CC1A7843B0008B396C /* AppDelegate.swift in Sources */,
@@ -779,7 +756,6 @@
 				C20F065B1B73009000A415B2 /* notificationRow.swift in Sources */,
 				C2E835C81AB911ED00A4E340 /* matchCell.swift in Sources */,
 				C21EA2BB1AFB0DDA0029A119 /* Payments.swift in Sources */,
-				C263A85E1B82F26F00A1FAD2 /* rateCell.swift in Sources */,
 				C2CD51851B05934B0022FB55 /* TabSessionCreate.swift in Sources */,
 				C29874CB1AA52EC500B6BC90 /* ZFTokenField.m in Sources */,
 				C2E5E6D91AFAB3290030A0EE /* ImageResizer.swift in Sources */,

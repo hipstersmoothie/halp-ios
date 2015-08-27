@@ -8,10 +8,9 @@
 
 import UIKit
 
-var setUpTutorParams = Dictionary<String, AnyObject>()
-
 class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFTokenFieldDelegate, AutoTokeDelegate, UITextViewDelegate, UITextFieldDelegate {
     var tokens:NSMutableArray!
+    var setUpTutorParams = Dictionary<String, AnyObject>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +24,7 @@ class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFToken
         skillsField.textField.placeholder = "Excel, Coding, Massage"
         skillsField.reloadData(false)
         skillsField.mDelegate = self
+        skillsField.direction = true
     }
     
     func tokenSelected(textField: AutoToke) {
@@ -45,6 +45,12 @@ class BioAndSkillsController: UIViewController, ZFTokenFieldDataSource,  ZFToken
             
             self.performSegueWithIdentifier("toAddClasses", sender: self)
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let vc = segue.destinationViewController as! UniversityList
+        vc.setUpTutorParams = setUpTutorParams
+        vc.update = false
     }
     
     func tokenField(tokenField: ZFTokenField!, didRemoveTokenAtIndex index: UInt) {

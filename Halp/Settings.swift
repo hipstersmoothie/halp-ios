@@ -84,6 +84,7 @@ class Settings: UITableViewController, UITextViewDelegate, UITextFieldDelegate, 
         }
         return courses
     }
+    
     func updatedProfile(success:Bool, json:JSON) {
         dispatch_async(dispatch_get_main_queue()) {
             start(self.view)

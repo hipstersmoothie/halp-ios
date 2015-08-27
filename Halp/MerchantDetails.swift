@@ -9,6 +9,8 @@
 import UIKit
 
 class MerchantDetails: UIViewController {
+    var setUpTutorParams:Dictionary<String, AnyObject>!
+ 
     @IBOutlet var email: UITextField!
     @IBOutlet var phone: UITextField!
     @IBOutlet var dateOfBirth: UITextField!
@@ -32,6 +34,10 @@ class MerchantDetails: UIViewController {
         styleField(state, "state")
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let vc = segue.destinationViewController as! BankingDetails
+        vc.setUpTutorParams = setUpTutorParams
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -66,7 +72,7 @@ class MerchantDetails: UIViewController {
                     "postalCode": zip.text
                 ]
             ]
-            setUpTutorParams.updateValue(merchant, forKey: "merchant")
+            setUpTutorParams?.updateValue(merchant, forKey: "merchant")
             self.performSegueWithIdentifier("toBankDetails", sender: self)
         }
     }
