@@ -205,4 +205,25 @@ class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFi
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
+    
+    
+    var moved:CGFloat!
+    func tokenFieldDidBeginEditing(tokenField:ZFTokenField) {
+        moved = 100 + tokenField.frame.height
+        animateViewMoving(true, moveValue: moved)
+    }
+    
+    func tokenFieldDidEndEditing(tokenField:ZFTokenField) {
+        animateViewMoving(false, moveValue: moved)
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.3
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
+    }
 }
