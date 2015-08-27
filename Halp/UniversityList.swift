@@ -13,6 +13,7 @@ class UniversityList: UITableViewController {
     var uniNames:[String] = []
     var update = false
     var controller:UIViewController!
+    var setUpTutorParams:Dictionary<String, AnyObject>!
     
     @IBAction func addUniversity(sender: AnyObject) {
         self.performSegueWithIdentifier("addUniCourse", sender:self)
@@ -24,14 +25,22 @@ class UniversityList: UITableViewController {
         tableView.estimatedRowHeight = 160
         if update {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "saveClasses")
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextSetupScreen")
+        }
+    }
+    
+    func nextSetupScreen() {
+        if coursesInfo.count > 0 {
+            self.performSegueWithIdentifier("toMerchantDetails", sender: self)
+        } else {
+            createAlert(self, "Error", "Please provide a course to tutor")
         }
     }
     
     func saveClasses() {
-        if update {
-            let settings = controller as! Settings
-            settings.coursesInfo = self.coursesInfo
-        }
+        let settings = controller as! Settings
+        settings.coursesInfo = self.coursesInfo
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -40,8 +49,31 @@ class UniversityList: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = segue.destinationViewController as! AddUniversityAndCourses
-        destinationVC.parent = self
+        if (segue.identifier == "toMerchantDetails") {
+            let destinationVC = segue.destinationViewController as! MerchantDetails
+            setUpTutorParams.updateValue(compileCourses(), forKey: "courses")
+            destinationVC.setUpTutorParams = setUpTutorParams
+        } else {
+            let destinationVC = segue.destinationViewController as! AddUniversityAndCourses
+            destinationVC.parent = self
+        }
+    }
+    
+    func compileCourses() -> Dictionary<String,[Dictionary<String, String>]> {
+        var courses = Dictionary<String,[Dictionary<String, String>]>()
+        for (school, courseEntries) in coursesInfo {
+            let coursesArr = courseEntries as! [Course]
+            var interpCourses:[Dictionary<String, String>] = []
+            for course in coursesArr {
+                interpCourses.append([
+                    "subject": course.subject,
+                    "number": String(course.number)
+                    ])
+            }
+            
+            courses.updateValue(interpCourses, forKey: school)
+        }
+        return courses
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

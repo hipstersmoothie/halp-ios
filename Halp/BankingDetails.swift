@@ -9,6 +9,8 @@
 import UIKit
 
 class BankingDetails: UIViewController {
+    var setUpTutorParams:Dictionary<String, AnyObject>!
+
     @IBOutlet var acctNumber: UITextField!
     @IBOutlet var routingNumber: UITextField!
     @IBOutlet var email: UITextField!
@@ -26,6 +28,11 @@ class BankingDetails: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let vc = segue.destinationViewController as! SetRateController
+        vc.setUpTutorParams = setUpTutorParams
     }
     
     func nextScreen() {

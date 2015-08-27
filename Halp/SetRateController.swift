@@ -9,6 +9,8 @@
 import UIKit
 
 class SetRateController: UIViewController {
+    var setUpTutorParams:Dictionary<String, AnyObject>!
+
     @IBOutlet var rate: UILabel!
     @IBOutlet var rateSLider: UISlider!
     
