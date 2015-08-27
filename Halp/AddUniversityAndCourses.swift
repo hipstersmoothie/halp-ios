@@ -77,7 +77,7 @@ class AddUniversityAndCourses: UIViewController, MPGTextFieldDelegate, ZFTokenFi
         coursesListField.mDelegate = self
         coursesListField.delegate = self
         coursesListField.dataSource = self
-        coursesListField.direction = true
+        coursesListField.direction = false
 
         coursesListField.textField.font = coursesListField.textField.font.fontWithSize(15)
         coursesListField.textField.attributedPlaceholder =  NSAttributedString(string: "courses", attributes: [NSForegroundColorAttributeName : UIColor.grayColor()])

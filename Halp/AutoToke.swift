@@ -171,30 +171,21 @@ class AutoToke: ZFTokenField, UITableViewDelegate, UITableViewDataSource, UIGest
         }
         
         var frameForPresentation = self.frame
-        if direction == true {
-            if (count == 1) {
-                frameForPresentation.size.height = 45;
-            } else if (count == 2) {
-                frameForPresentation.size.height = 90;
-            } else if (count == 3) {
-                frameForPresentation.size.height = 135;
-            } else {
-                frameForPresentation.size.height = 180;
-            }
+        if(direction == false) {
+            frameForPresentation.origin.y += self.frame.size.height;
+        }
+        if (count == 1) {
+            
+            frameForPresentation.size.height = 45;
+        } else if (count == 2) {
+            
+            frameForPresentation.size.height = 90;
+        } else if (count == 3) {
+            
+            frameForPresentation.size.height = 135;
         } else {
-            if (count == 1) {
-                frameForPresentation.origin.y += self.frame.size.height - 95;
-                frameForPresentation.size.height = 45;
-            } else if (count == 2) {
-                frameForPresentation.origin.y += self.frame.size.height - 140;
-                frameForPresentation.size.height = 90;
-            } else if (count == 3) {
-                frameForPresentation.origin.y += self.frame.size.height - 185;
-                frameForPresentation.size.height = 135;
-            } else {
-                frameForPresentation.origin.y += self.frame.size.height - 230;
-                frameForPresentation.size.height = 180;
-            }
+            
+            frameForPresentation.size.height = 180;
         }
         tableViewController?.tableView.frame = frameForPresentation
         
