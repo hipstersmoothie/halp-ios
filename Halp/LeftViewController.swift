@@ -38,6 +38,8 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         super.init(coder: aDecoder)
     }
    
+    @IBOutlet var profilePic: UIImageView!
+    @IBOutlet var name: UILabel!
     override func viewDidLoad() {
         nav = self.mainViewController as! UINavigationController
         super.viewDidLoad()
@@ -67,6 +69,12 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateNotificationCounts"), name: "notificationsRecieved", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("messageClicked:"), name: "MessageClicked", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("launchSession:"), name: "inSession", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setupProfile"), name: "loggedIn", object: nil)
+    }
+    
+    func setupProfile() {
+        loadProfilePic(profilePic, loggedInUser)
+        name.text = "\(loggedInUser.firstname) \(loggedInUser.lastname)"
     }
     
     func launchSession(notification: NSNotification) {
@@ -153,24 +161,24 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
             
             if matchCount > 0 {
                 matchCountLabel.text = "\(matchCount)"
-                matchImage.image = UIImage(named: "message-red.png")!
+                matchImage.image = UIImage(named: "multiple25-red.png")!
             } else {
                 matchCountLabel.text = ""
-                matchImage.image = UIImage(named: "message.png")!
+                matchImage.image = UIImage(named: "multiple25.png")!
             }
             
             if otherCountNum > 0 && otherMatchCountNum > 0 {
                 otherCount.text = "\(otherCountNum)/\(otherMatchCountNum)"
-                switchModeImage.image = UIImage(named: "logout-red.png")!
+                switchModeImage.image = UIImage(named: "switch14-red.png")!
             } else if otherCountNum > 0 {
                 otherCount.text = "\(otherCountNum)"
-                switchModeImage.image = UIImage(named: "logout-red.png")!
+                switchModeImage.image = UIImage(named: "switch14-red.png")!
             } else if otherMatchCountNum > 0 {
                 otherCount.text = "\(otherMatchCountNum)"
-                switchModeImage.image = UIImage(named: "logout-red.png")!
+                switchModeImage.image = UIImage(named: "switch14-red.png")!
             } else {
                 otherCount.text = ""
-                switchModeImage.image = UIImage(named: "logout.png")!
+                switchModeImage.image = UIImage(named: "switch14.png")!
             }
         }
     }
@@ -203,18 +211,16 @@ class LeftViewController : UITableViewController, LeftMenuProtocol {
         case .TutorMode:
             if loggedInUser.rate > 0 {
                 self.slideMenuController()?.closeLeft()
-                if modeLabel.text == "Tutor Mode" {
+                if modeLabel.text == "Student Mode" {
                     pinMode = "tutor"
-                    modeLabel.text = "Student Mode"
+                    modeLabel.text = "Tutor Mode"
                 } else {
                     pinMode = "student"
-                    modeLabel.text = "Tutor Mode"
+                    modeLabel.text = "Student Mode"
                 }
                 NSNotificationCenter.defaultCenter().postNotificationName("SwitchMode", object: nil, userInfo: nil)
                 otherCount.text = ""
-                switchModeImage.image = UIImage(named: "logout.png")!
                 updateNotificationCounts()
-                
             } else {
                 nav.pushViewController(self.tutorSetupController, animated: true)
                 self.slideMenuController()?.closeLeft()

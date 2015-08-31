@@ -130,6 +130,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBLoginViewDelegate
 
                 self.performSegueWithIdentifier("toApp", sender: self)
                 getInitData()
+                NSNotificationCenter.defaultCenter().postNotificationName("loggedIn", object: nil, userInfo: nil)
             } else {
                 createAlert(self, "Error Logging In", "Please provide valid credentials.")
             }
