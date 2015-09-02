@@ -458,6 +458,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
         pinsInArea = []
         self.tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 60
     }
     
     func right() {
@@ -654,8 +656,16 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             let user = pinsInArea[indexPath.row].user
             cell.myLabel.text = "\(user.firstname) \(user.lastname[user.lastname.startIndex])"
             cell.rating.editable = false
-            cell.rating.rating = user.rating            
-
+            cell.rating.rating = user.rating
+            
+            var all:[String] = []
+            for (school, courseEntries) in user.courses {
+                for entry in courseEntries {
+                    all.append("\(entry.subject) \(entry.number)")
+                }
+            }
+            cell.classList.text = ", ".join(all)
+            
             if matches.count > 0 {
                 cell.contentView.alpha = 0.5
                 
@@ -666,6 +676,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     }
                 }
             }
+            
+            loadProfilePic(cell.profilePic, user)
             
             return cell
         } else {
@@ -694,14 +706,14 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             return cell
         }
     }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if pinsInArea[indexPath.row].pinDescription != "" && pinsInArea[indexPath.row].skills.count > 0 {
-            return 61
-        }
-        
-        return 44
-    }
+//    
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if pinsInArea[indexPath.row].pinDescription != "" && pinsInArea[indexPath.row].skills.count > 0 {
+//            return 61
+//        }
+//        
+//        return 83
+//    }
     
     func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
         
