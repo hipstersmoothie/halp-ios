@@ -63,6 +63,7 @@ class createController: UIViewController, UINavigationControllerDelegate, UIText
                 sessionId = json["sessionId"]
                 self.performSegueWithIdentifier("toMap", sender: self)
                 getInitData()
+                NSNotificationCenter.defaultCenter().postNotificationName("loggedIn", object: nil, userInfo: nil)
             } else {
                 createAlert(self, "Problem Creating Account", "Someone is already using that email!")
             }
